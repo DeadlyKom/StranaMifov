@@ -1,0 +1,196 @@
+{
+  "slot": 6,
+  "source": "Tools/Disasm/Extracted/Active/06_PRES.C.bin",
+  "catalog_origin": 32768,
+  "runtime_origin": 49152,
+  "length": 11295,
+  "end_exclusive": 60447,
+  "entry_points": [
+    57856,
+    58279,
+    58300,
+    58424,
+    58447,
+    58478,
+    58510,
+    58554,
+    58602,
+    58636,
+    58683,
+    58710,
+    58752,
+    58786,
+    58874,
+    58974,
+    59091,
+    59130
+  ],
+  "range_convention": "все пары диапазонов [start,endExclusive] заданы runtime-адресами",
+  "code_ranges": [
+    [
+      57856,
+      58173
+    ],
+    [
+      58279,
+      58966
+    ],
+    [
+      58974,
+      59152
+    ]
+  ],
+  "confirmed_data_ranges": [
+    [
+      49152,
+      57856
+    ],
+    [
+      58173,
+      58279
+    ],
+    [
+      58966,
+      58974
+    ],
+    [
+      59152,
+      60447
+    ]
+  ],
+  "data_parts": [
+    {
+      "start": 49152,
+      "endExclusive": 56064,
+      "kind": "screen_scr",
+      "format": "6144 пикселей в экранном порядке Spectrum +768 атрибутов"
+    },
+    {
+      "start": 56064,
+      "endExclusive": 57856,
+      "kind": "font_8x8",
+      "format": "224 глифа с кодами32..255, по8байтов, указатель DA00+8*A"
+    },
+    {
+      "start": 58173,
+      "endExclusive": 58175,
+      "kind": "variables",
+      "format": "координаты последнего проявляемого знакоместа"
+    },
+    {
+      "start": 58175,
+      "endExclusive": 58279,
+      "kind": "credit_script",
+      "format": "атрибут,x,y,ASCII-строка с0, FF разделяет страницы, FE завершает"
+    },
+    {
+      "start": 58966,
+      "endExclusive": 58974,
+      "kind": "rng_state",
+      "format": "временное слово предела и три16битных слова состояния"
+    },
+    {
+      "start": 59152,
+      "endExclusive": 59352,
+      "kind": "star_points",
+      "format": "100пар y,x, значения в файле заменяются при старте"
+    },
+    {
+      "start": 59352,
+      "endExclusive": 60447,
+      "kind": "story_script",
+      "format": "B1 разделяет страницы, затем строка/длительность и CP866-текст сCR, FF завершает"
+    }
+  ],
+  "load_evidence": [
+    "BL3 #6372..#637D, банк4, имя PRES по#62C2, DE=C000",
+    "BL3 #63A4..#63A9 и #63E4..#63E9 -> CALL E200"
+  ],
+  "chunks": [
+    {
+      "slot": 6,
+      "offset": 0,
+      "length": 6912,
+      "source": "Assets/Gfx/PRES/PRES_screen.scr",
+      "path": "Assets/Gfx/PRES/PRES_screen.scr",
+      "label": "PRES_screen",
+      "representation": "original",
+      "sha256": "f5c2e5796fec0d525176f2bbba79ed265729b2d047917cf5350d26845ddede1d"
+    },
+    {
+      "slot": 6,
+      "offset": 6912,
+      "length": 1792,
+      "source": "Assets/Gfx/PRES/PRES_font.bin",
+      "path": "Assets/Gfx/PRES/PRES_font.bin",
+      "label": "PRES_font",
+      "representation": "original",
+      "sha256": "aeeedd1f8391343c52b738237460f31e7fbb6d845daacf371cc1a320e5bea304"
+    },
+    {
+      "slot": 6,
+      "offset": 9021,
+      "length": 2,
+      "source": "Assets/Gfx/PRES/PRES_cell_position.bin",
+      "path": "Assets/Gfx/PRES/PRES_cell_position.bin",
+      "label": "PRES_cell_position",
+      "representation": "original",
+      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+    },
+    {
+      "slot": 6,
+      "offset": 9023,
+      "length": 104,
+      "source": "Assets/Gfx/PRES/PRES_credits.bin",
+      "path": "Assets/Gfx/PRES/PRES_credits.bin",
+      "label": "PRES_credits",
+      "representation": "original",
+      "sha256": "734f296752e5029ce83414295d758445650fdf4de8f9ca4b6a5a73a7268605d2"
+    },
+    {
+      "slot": 6,
+      "offset": 9814,
+      "length": 8,
+      "source": "Assets/Gfx/PRES/PRES_rng.bin",
+      "path": "Assets/Gfx/PRES/PRES_rng.bin",
+      "label": "PRES_rng",
+      "representation": "original",
+      "sha256": "53951adf50a2f96041265a706eeff5238db33792332723e9367d6942d1f17a7f"
+    },
+    {
+      "slot": 6,
+      "offset": 10000,
+      "length": 200,
+      "source": "Assets/Gfx/PRES/PRES_stars.bin",
+      "path": "Assets/Gfx/PRES/PRES_stars.bin",
+      "label": "PRES_stars",
+      "representation": "original",
+      "sha256": "50137e396d0dd6050b680265d45fb138564c7421d735c0336ab494f3b0253cfb"
+    },
+    {
+      "slot": 6,
+      "offset": 10200,
+      "length": 1095,
+      "source": "Assets/Gfx/PRES/PRES_story.bin",
+      "path": "Assets/Gfx/PRES/PRES_story.bin",
+      "label": "PRES_story",
+      "representation": "original",
+      "sha256": "82a4b1549cebec1755aa56002f64e34e2dccffd31e0504f2b3f94e95bee95382"
+    }
+  ],
+  "pngs": [
+    "Assets/Gfx/PRES/PRES_screen.png",
+    "Assets/Gfx/PRES/PRES_font.png"
+  ],
+  "screen_zero_attributes": 0,
+  "instruction_count": 689,
+  "code_bytes": 1182,
+  "external_calls": {
+    "028E": [
+      58485
+    ]
+  },
+  "keyboard_rom_no_alternative_mutations": true,
+  "unclassified_bytes": 0,
+  "validation": "достижимость прямых переходов, полное покрытие трёх диапазонов кода, обратное сравнение извлечённых блоков, без сборки и исполнения игры"
+}

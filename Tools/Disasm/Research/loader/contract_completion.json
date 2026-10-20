@@ -1,0 +1,30 @@
+{
+  "overlay_fields_added": 40,
+  "loader_fields_added": 11,
+  "loader_fields_revised": 12,
+  "overlay_effects_corrected": [
+    "O13:B703 BC сохранён"
+  ],
+  "files": {
+    "overlay_annotations.json": {
+      "procedures": 40,
+      "missing": {},
+      "missing_fields": 0
+    },
+    "bl3_annotations.json": {
+      "procedures": 30,
+      "missing": {},
+      "missing_fields": 0
+    },
+    "annotations.json": {
+      "procedures": 70,
+      "missing": {},
+      "missing_fields": 0
+    }
+  },
+  "nonminimal_contracts": "У сложных входов Corrupt является консервативным разрешённым набором изменений через все вызываемые ветви, а не обещанием, что каждый указанный регистр меняется при каждом вызове",
+  "not_proven_preserved": {},
+  "abnormal_return": "O21:B801 при отсутствии свободной записи оставляет PUSH BC на стеке перед RET #B82A",
+  "validation": "сверка листингов и PUSH/POP, графов вызовов и фиксированных печатаемых строк, сборка и запуск игры не выполнялись",
+  "resolved_external_images": "O18/O19 используют уже разобранный распаковщик BL1, код совпадает с HERIMG, из альтернативных регистров меняется только BC'"
+}

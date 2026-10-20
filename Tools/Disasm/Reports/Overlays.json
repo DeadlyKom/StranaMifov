@@ -1,0 +1,376 @@
+[
+  {
+    "slot": 48,
+    "module_id": 1,
+    "name": "Overlay01",
+    "offset": 0,
+    "length": 1904,
+    "code_payload_length": 1897,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "EnemyCastle",
+    "purpose": "захват чужого замка и вознаграждение за победу"
+  },
+  {
+    "slot": 48,
+    "module_id": 2,
+    "name": "Overlay02",
+    "offset": 1904,
+    "length": 3084,
+    "code_payload_length": 3077,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "VisitTown",
+    "purpose": "город, найм армии и корабля, осадные орудия, контракты"
+  },
+  {
+    "slot": 48,
+    "module_id": 3,
+    "name": "Overlay03",
+    "offset": 4988,
+    "length": 1133,
+    "code_payload_length": 1126,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "VisitTemple",
+    "purpose": "храм духов, телепортация, изучение заклинаний и вступление в секту"
+  },
+  {
+    "slot": 48,
+    "module_id": 4,
+    "name": "Overlay04",
+    "offset": 6121,
+    "length": 656,
+    "code_payload_length": 649,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "RecruitCreatures",
+    "purpose": "найм обитающих в строении существ"
+  },
+  {
+    "slot": 48,
+    "module_id": 5,
+    "name": "Overlay05",
+    "offset": 6777,
+    "length": 1530,
+    "code_payload_length": 1523,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "CollectTreasure",
+    "purpose": "подбор клада, магических книг, снадобий, заклинаний и карт"
+  },
+  {
+    "slot": 48,
+    "module_id": 6,
+    "name": "Overlay06",
+    "offset": 8307,
+    "length": 342,
+    "code_payload_length": 335,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "JoinArmy",
+    "purpose": "встреча существ, готовых присоединиться к армии"
+  },
+  {
+    "slot": 48,
+    "module_id": 7,
+    "name": "Overlay07",
+    "offset": 8649,
+    "length": 598,
+    "code_payload_length": 591,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "BanditBattle",
+    "purpose": "встреча разбойников либо пиратов и бой с ними"
+  },
+  {
+    "slot": 48,
+    "module_id": 8,
+    "name": "Overlay08",
+    "offset": 9247,
+    "length": 1106,
+    "code_payload_length": 1099,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "ArmyScreen",
+    "purpose": "просмотр армии, настроения и возможностей отрядов"
+  },
+  {
+    "slot": 48,
+    "module_id": 9,
+    "name": "Overlay09",
+    "offset": 10353,
+    "length": 355,
+    "code_payload_length": 348,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "SaveGame",
+    "purpose": "подтверждение и запись состояния на диск"
+  },
+  {
+    "slot": 48,
+    "module_id": 10,
+    "name": "Overlay10",
+    "offset": 10708,
+    "length": 1089,
+    "code_payload_length": 1082,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "DismissTroops",
+    "purpose": "роспуск выбранного отряда и его реакция"
+  },
+  {
+    "slot": 48,
+    "module_id": 11,
+    "name": "Overlay11",
+    "offset": 11797,
+    "length": 217,
+    "code_payload_length": 210,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "TakeOff",
+    "purpose": "переход к полёту и предупреждение о катапульте"
+  },
+  {
+    "slot": 48,
+    "module_id": 12,
+    "name": "Overlay12",
+    "offset": 12014,
+    "length": 37,
+    "code_payload_length": 30,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "Land",
+    "purpose": "проверка возможности приземления и смена режима"
+  },
+  {
+    "slot": 48,
+    "module_id": 13,
+    "name": "Overlay13",
+    "offset": 12051,
+    "length": 1974,
+    "code_payload_length": 1967,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 12,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "MapScreen",
+    "purpose": "карта пройденного, полная карта и вид с высоты птичьего полёта"
+  },
+  {
+    "slot": 49,
+    "module_id": 14,
+    "name": "Overlay14",
+    "offset": 0,
+    "length": 610,
+    "code_payload_length": 603,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "SailContinent",
+    "purpose": "выбор другого континента и плавание"
+  },
+  {
+    "slot": 49,
+    "module_id": 15,
+    "name": "Overlay15",
+    "offset": 610,
+    "length": 293,
+    "code_payload_length": 286,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "SceptreMap",
+    "purpose": "просмотр собранных частей карты цели"
+  },
+  {
+    "slot": 49,
+    "module_id": 16,
+    "name": "Overlay16",
+    "offset": 903,
+    "length": 1161,
+    "code_payload_length": 1154,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "SearchSceptre",
+    "purpose": "поиск рунного посоха и успешное завершение игры"
+  },
+  {
+    "slot": 49,
+    "module_id": 17,
+    "name": "Overlay17",
+    "offset": 2064,
+    "length": 2740,
+    "code_payload_length": 2733,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "Information",
+    "purpose": "сведения о замках, заклинаниях, контрактах и статистике"
+  },
+  {
+    "slot": 49,
+    "module_id": 18,
+    "name": "Overlay18",
+    "offset": 4804,
+    "length": 859,
+    "code_payload_length": 852,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "FriendlyAnecdote",
+    "purpose": "встреча доброжелательного рассказчика анекдотов"
+  },
+  {
+    "slot": 49,
+    "module_id": 19,
+    "name": "Overlay19",
+    "offset": 5663,
+    "length": 866,
+    "code_payload_length": 859,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "HostileAnecdote",
+    "purpose": "встреча враждебного рассказчика анекдотов"
+  },
+  {
+    "slot": 49,
+    "module_id": 20,
+    "name": "Overlay20",
+    "offset": 6529,
+    "length": 522,
+    "code_payload_length": 515,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "GameOver",
+    "purpose": "поражение героя либо окончание срока поисков"
+  },
+  {
+    "slot": 49,
+    "module_id": 21,
+    "name": "Overlay21",
+    "offset": 7051,
+    "length": 2933,
+    "code_payload_length": 2926,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "OwnCastle",
+    "purpose": "гарнизон своего замка, перенос отрядов, защита и вызов помощи"
+  },
+  {
+    "slot": 49,
+    "module_id": 22,
+    "name": "Overlay22",
+    "offset": 9984,
+    "length": 1159,
+    "code_payload_length": 1152,
+    "runtime_origin": 45568,
+    "entrypoints": [
+      45568
+    ],
+    "trailer": "overlay",
+    "logical_bank": 13,
+    "code_data_status": "contains code and inline data; recursive CFG required",
+    "semantic_name": "ControlsHelp",
+    "purpose": "постраничная справка по клавишам игры и боя"
+  }
+]

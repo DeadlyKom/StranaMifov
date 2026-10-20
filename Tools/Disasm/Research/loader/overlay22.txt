@@ -1,0 +1,52 @@
+OVERLAY 22: постраничная справка по клавишам игры и боя
+CALL TARGETS B200,B261
+
+ROUTINE B200
+B200 cd346d       CALL $6D34
+B203 cd3f6d       CALL $6D3F
+B206 010000       LD BC,$0000
+B209 112018       LD DE,$1820
+B20C 3e46         LD A,$46
+B20E cdcf73       CALL $73CF
+B211 0601         LD B,$01
+B213 11a0b2       LD DE,$B2A0
+B216 cd1771       CALL $7117
+B219 cd61b2       CALL $B261
+B21C 010000       LD BC,$0000
+B21F 112018       LD DE,$1820
+B222 3e46         LD A,$46
+B224 cdcf73       CALL $73CF
+B227 0601         LD B,$01
+B229 1133b4       LD DE,$B433
+B22C cd1771       CALL $7117
+B22F cd61b2       CALL $B261
+B232 010000       LD BC,$0000
+B235 112018       LD DE,$1820
+B238 3e46         LD A,$46
+B23A cdcf73       CALL $73CF
+B23D 0601         LD B,$01
+B23F 116fb5       LD DE,$B56F
+B242 cd1771       CALL $7117
+B245 010017       LD BC,$1700
+B248 112001       LD DE,$0120
+B24B 3e42         LD A,$42
+B24D cdad73       CALL $73AD
+B250 0617         LD B,$17
+B252 1193b2       LD DE,$B293
+B255 cd1771       CALL $7117
+B258 0600         LD B,$00
+B25A cdf47b       CALL $7BF4
+B25D cd4a94       CALL $944A
+B260 c9           RET
+
+ROUTINE B261
+B261 010017       LD BC,$1700
+B264 112001       LD DE,$0120
+B267 3e44         LD A,$44
+B269 cdad73       CALL $73AD
+B26C 0617         LD B,$17
+B26E 117ab2       LD DE,$B27A
+B271 cd1771       CALL $7117
+B274 0600         LD B,$00
+B276 cdf47b       CALL $7BF4
+B279 c9           RET

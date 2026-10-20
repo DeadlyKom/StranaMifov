@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+
+# Verify that the code examples in the 'Extending SkoolKit' documentation
+# actually work
+
+write_skool() {
+  cat <<EOF
+@start
+@rom
+@writer=skoolkit.game.GameAsmWriter
+
+; Start
+;
+@ignoreua
+; Test the timestamp() method: #CALL(timestamp())
+; .
+; Test the #RAW(#TIMESTAMP) macro: #TIMESTAMP
+; .
+; Test the snapshot attribute: the word at 32768 is #WORD32768
+; .
+; #UDGTABLE
+; { #SPRITE4(j4*)        | #SPRITE6(*j6)        | #FRAMES(j4;j6)(anim) }
+; { #CHR(35)SPRITE4(j4*) | #CHR(35)SPRITE6(*j6) | #CHR(35)FRAMES(j4;j6)(anim.png) }
+; TABLE#
+; .
+; #UDGTABLE
+; { #CALL(sprite(3,j3)) }
+; { #CHR(35)CALL(sprite(3,j3)) }
+; TABLE#
+; .
+; #UDGTABLE
+; { #INVERSE32768,56 }
+; { #CHR(35)INVERSE32768,56 }
+; TABLE#
+; .
+; #UDGTABLE
+; { #CALL(countdown(countdown)) }
+; { #CHR(35)CALL(countdown(countdown.png)) }
+; TABLE#
+; .
+; #CALL(copyright()) 2026 Me
+b32768 DEFB 1,2,4,8,16,32,64,128
+EOF
+}
+
+write_ref() {
+  cat <<EOF
+[Config]
+HtmlWriterClass=skoolkit.game.GameHtmlWriter
+
+[Template:simple]
+{text}
+EOF
+}
+
+write_module() {
+  cat <<EOF
+import time
+
+from skoolkit.graphics import Udg, Frame
+from skoolkit.skoolhtml import HtmlWriter
+from skoolkit.skoolasm import AsmWriter
+from skoolkit.skoolmacro import parse_ints, parse_image_macro
+
+class GameHtmlWriter(HtmlWriter):
+    def init(self):
+        if self.base != 0:
+            raise Exception("GameHtmlWriter.base != 0")
+        if self.case != 0:
+            raise Exception("GameHtmlWriter.case != 0")
+        self.init_called = 1
+
+    def init_page(self, skoolkit, game):
+        game['Release'] = 'test-api ' + time.strftime("%Y-%m-%d")
+
+    def sprite(self, cwd, attr, fname):
+        udgs = [[Udg(attr, self.snapshot[32768:32776])]]
+        return self.handle_image(Frame(udgs, 2), fname, cwd)
+
+    # #SPRITEattr[{x,y,width,height}](fname)
+    def expand_sprite(self, text, index, cwd):
+        end, crop_rect, fname, frame, alt, (attr,) = parse_image_macro(text, index, names=['attr'])
+        udgs = [[Udg(attr, self.snapshot[32768:32776])]] * 2
+        frame = Frame(udgs, 2, 0, *crop_rect, name=frame)
+        return end, self.handle_image(frame, fname, cwd, alt)
+
+    # #WORDaddress
+    def expand_word(self, text, index, cwd):
+        end, address = parse_ints(text, index, 1)
+        return end, str(self.snapshot[address] + 256 * self.snapshot[address + 1])
+
+    # #INVERSEaddress,attr
+    def expand_inverse(self, text, index, cwd):
+        end, address, attr = parse_ints(text, index, 2)
+        fname = 'inverse{}_{}'.format(address, attr)
+        udg = Udg(attr, self.snapshot[address:address + 8])
+        inv_udg = udg.copy() # Exercise Udg.copy()
+        inv_udg.data = [b ^ 255 for b in inv_udg.data]
+        frame = Frame([[inv_udg]], 2)
+        return end, self.handle_image(frame, fname, cwd)
+
+    def countdown(self, cwd, fname):
+        attr = 56
+        kwargs = dict(scale=4, x=2, y=2, width=28, height=28, delay=100)
+        frames = [Frame([[Udg(attr, self.snapshot[15768:15776])]], **kwargs)]
+        frames.append(Frame([[Udg(attr, self.snapshot[15760:15768])]], **kwargs))
+        frames.append(Frame([[Udg(attr, self.snapshot[15752:15760])]], **kwargs))
+        frames.append(Frame([[Udg(attr, self.snapshot[15744:15752])]], **kwargs))
+        return self.handle_image(frames, fname, cwd)
+
+    def timestamp(self, cwd):
+        return time.strftime("%a %d %b %Y %H:%M:%S %Z")
+
+    def expand_timestamp(self, text, index, cwd):
+        return index, time.strftime("%a %d %b %Y %H:%M:%S %Z")
+
+    def copyright(self, cwd):
+        if not hasattr(self, 'init_called'):
+            raise Exception('init() not called')
+        return self.format_template('simple', {'text': self.expand('#CHR169')})
+
+class GameAsmWriter(AsmWriter):
+    def init(self):
+        if self.base != 0:
+            raise Exception("GameAsmWriter.base != 0")
+        if self.case != 0:
+            raise Exception("GameAsmWriter.case != 0")
+        self.init_called = 1
+
+    # #WORDaddress
+    def expand_word(self, text, index):
+        end, address = parse_ints(text, index, 1)
+        return end, str(self.snapshot[address] + 256 * self.snapshot[address + 1])
+
+    def timestamp(self):
+        return time.strftime("%a %d %b %Y %H:%M:%S %Z")
+
+    def expand_timestamp(self, text, index):
+        return index, time.strftime("%a %d %b %Y %H:%M:%S %Z")
+
+    def copyright(self):
+        if not hasattr(self, 'init_called'):
+            raise Exception('init() not called')
+        return self.expand('#CHR169')
+EOF
+}
+
+SKOOL2HTML=./skool2html.py
+SKOOL2ASM=./skool2asm.py
+if [ ! -f $SKOOL2HTML ] || [ ! -f $SKOOL2ASM ] || [ ! -d skoolkit ]; then
+  if [ -z "$SKOOLKIT_HOME" ]; then
+    echo "Error: SKOOLKIT_HOME not defined."
+    exit 1
+  fi
+  if [ ! -d "$SKOOLKIT_HOME" ]; then
+    echo "Error: directory not found: $SKOOLKIT_HOME"
+    exit 1
+  fi
+  cd $SKOOLKIT_HOME
+fi
+
+write_skool > build/game.skool
+write_ref > build/game.ref
+write_module > skoolkit/game.py
+
+rm -rf build/html/game
+$SKOOL2HTML -d build/html build/game.skool
+$SKOOL2ASM build/game.skool > build/game.asm
+
+rm skoolkit/game.py*

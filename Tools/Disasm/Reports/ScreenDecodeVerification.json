@@ -1,0 +1,151 @@
+{
+  "decoder": "independent Python RLE compared to original Z80 decoder in SkoolKit Simulator",
+  "rom_call": "standard 48K ROM, CALL 007C, RET",
+  "full_machine": false,
+  "results": [
+    {
+      "slot": 8,
+      "picture": 1,
+      "instructions": 121499,
+      "tstates": 1160153,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 2,
+      "instructions": 182522,
+      "tstates": 1759552,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 3,
+      "instructions": 183049,
+      "tstates": 1760921,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 4,
+      "instructions": 182636,
+      "tstates": 1765872,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 5,
+      "instructions": 182912,
+      "tstates": 1764013,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 6,
+      "instructions": 182646,
+      "tstates": 1763192,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 7,
+      "instructions": 182810,
+      "tstates": 1765329,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 8,
+      "instructions": 182398,
+      "tstates": 1764224,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 8,
+      "picture": 9,
+      "instructions": 182389,
+      "tstates": 1764903,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "aa"
+    },
+    {
+      "slot": 33,
+      "picture": 1,
+      "instructions": 182719,
+      "tstates": 1769939,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 33,
+      "picture": 2,
+      "instructions": 121024,
+      "tstates": 1162498,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 33,
+      "picture": 3,
+      "instructions": 183197,
+      "tstates": 1766903,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 33,
+      "picture": 4,
+      "instructions": 124417,
+      "tstates": 1171786,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 33,
+      "picture": 5,
+      "instructions": 182326,
+      "tstates": 1770894,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 34,
+      "picture": 1,
+      "instructions": 118281,
+      "tstates": 1154113,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 34,
+      "picture": 2,
+      "instructions": 116573,
+      "tstates": 1144131,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 34,
+      "picture": 3,
+      "instructions": 122440,
+      "tstates": 1162518,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    },
+    {
+      "slot": 34,
+      "picture": 4,
+      "instructions": 184850,
+      "tstates": 1781284,
+      "independent_decoder_matches_original": true,
+      "trailing_bytes": "f5"
+    }
+  ]
+}

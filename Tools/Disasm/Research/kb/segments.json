@@ -1,0 +1,300 @@
+{
+  "blocks": [
+    {
+      "id": "KB_Outer",
+      "slot": 3,
+      "origin": 24905,
+      "length": 28,
+      "rawOffset": 0,
+      "binPath": "work/kb/kb_outer_stub.bin",
+      "kind": "code",
+      "entryPoints": [
+        24905
+      ],
+      "sha256": "f90379307a8f572ffd68f811c9b6eb06e4cd98f99189875503f942e025b11ad2"
+    },
+    {
+      "id": "KB_Relocate",
+      "slot": 3,
+      "origin": 24933,
+      "length": 79,
+      "rawOffset": 28,
+      "binPath": "work/kb/kb_relocate.bin",
+      "kind": "code",
+      "entryPoints": [
+        24933
+      ],
+      "sha256": "16eaac1f62f62d659cc571c24d68b24df2610273173a78454ae1efa4016c0c14"
+    },
+    {
+      "id": "KB_Difference",
+      "slot": 3,
+      "origin": 49117,
+      "length": 35,
+      "rawOffset": 107,
+      "binPath": "work/kb/kb_difference_stub.bin",
+      "kind": "code",
+      "entryPoints": [
+        49117
+      ],
+      "sha256": "db5c0a547a186886702dce3163292df944385e5a04596846f417186297252707"
+    },
+    {
+      "id": "KB_LoadBL3",
+      "slot": 3,
+      "origin": 49152,
+      "length": 257,
+      "rawOffset": 142,
+      "binPath": "work/kb/kb_load_bl3.bin",
+      "kind": "mixed",
+      "entryPoints": [
+        49152,
+        49370
+      ],
+      "sha256": "b8b4a13e58e8606ab4a53bcff9248fe421400298e53cf6f35c53f4dc9e99a877"
+    },
+    {
+      "id": "KB_Tail",
+      "slot": 3,
+      "origin": 49409,
+      "length": 7,
+      "rawOffset": 399,
+      "binPath": "work/kb/kb_tail.bin",
+      "kind": "data",
+      "entryPoints": [],
+      "sha256": "837885c8f8091aeaeb9ec3c3f85a6ff470a415e610b8ba3e49f9b33c9cf9d619"
+    },
+    {
+      "id": "BL3",
+      "slot": 4,
+      "origin": 24905,
+      "length": 7147,
+      "rawOffset": 0,
+      "binPath": "work/kb/bl3_stage2.bin",
+      "kind": "mixed",
+      "entryPoints": [
+        24905,
+        24926,
+        24929,
+        25372
+      ]
+    }
+  ],
+  "kbReconstruction": {
+    "outerXorKeyPath": "work/kb/kb_outer_xor.bin",
+    "relocationXorKeyPath": "work/kb/kb_relocate_xor.bin",
+    "stepsRu": [
+      "составить промежуточный блок длиной 299 байт из KB_Difference, KB_LoadBL3 и KB_Tail в этом порядке",
+      "для j от 256 до 0 заменить байт 35+j на plaintext_LoadBL3[j] XOR intermediate[36+j], это обратное соседнее XOR-преобразование",
+      "каждый из 299 байтов преобразовать XOR с kb_relocate_xor.bin, затем присоединить результат после KB_Outer и KB_Relocate",
+      "все 406 байтов преобразовать XOR с kb_outer_xor.bin, нулевые байты ключа оставляют непокрытые первым шифратором диапазоны без изменения"
+    ],
+    "fixedNetXorSafe": false,
+    "warningRu": "единый ключ original XOR final воспроизводит исходные байты, но не подходит для редактирования KB_LoadBL3, потому что соседнее XOR-преобразование требует пересчитывать цепочку справа налево",
+    "checkedOriginalRoundtrip": true,
+    "assemblerTest": true,
+    "fullMachineRuntimeTest": false,
+    "assemblerEvidence": "Docs/BuildVerification.json"
+  },
+  "bl3Reconstruction": {
+    "netXorKeyPath": "work/kb/bl3_net_xor.bin",
+    "fixedNetXorSafe": true,
+    "conditionRu": "ключ корректен при неизменных длинах и инструкциях внешнего шифратора KB и начального шифратора BL3, оба преобразования являются независимым от данных XOR-потоком"
+  },
+  "simulation": {
+    "engine": "SkoolKit 10.0 Python Simulator, fast_ldir=False, interrupts=False",
+    "initialRegisters": {
+      "PC": 24905,
+      "SP": 24576,
+      "IY": 23610
+    },
+    "firstTrdosModel": "C=0A, имя CTPAHA  B, результат C=2",
+    "secondTrdosModel": "C=0E, имя BL3     C, файл slot4 загружен в6149, слово5CE6=6149, слово5CE8=1BEB",
+    "modelBoundaryRu": "TR-DOS не исполнялся, два успешных обращения заменены указанной моделью, значения R вокруг обращений восстанавливает сам загрузчик",
+    "kbStage1Steps": 14542,
+    "kbStage1Tstates": 88630,
+    "kbLayer2EntrySteps": 17010,
+    "kbLayer3EntryTotalTstates": 134824,
+    "bl3ExternalDecodeSteps": 1715334,
+    "bl3OwnDecodeSteps": 57005,
+    "bl3FirstRefreshKey": 84,
+    "bl3OwnRefreshStep": 9
+  },
+  "kbFunctions": [
+    {
+      "address": 24905,
+      "endExclusive": 24933,
+      "name": "DecryptOuter",
+      "descriptionRu": "отключает прерывания, задаёт R=70 и шесть раз обрабатывает 220 байт с6165, каждый байт получает XOR с текущим R, H, L и номером оставшегося прохода B, R учитывает реальные M1-циклы инструкций"
+    },
+    {
+      "address": 24933,
+      "endExclusive": 24944,
+      "name": "CopyInner",
+      "descriptionRu": "переносит 299 байтов из61B4 вBFDE, исходник последних 158 байтов не входит в диапазон наружного шифрования"
+    },
+    {
+      "address": 24944,
+      "endExclusive": 24957,
+      "name": "EraseOuter",
+      "descriptionRu": "записывает ноль в6149 и запускает LDIR с BC=0, после 50 переносов байт ED самой инструкции LDIR по617B становится нулём, повторение прекращается, байт B0 по617C исполняется как OR B, нули остаются в6149..617B"
+    },
+    {
+      "address": 24957,
+      "endExclusive": 24978,
+      "name": "PrepareStackLoop",
+      "descriptionRu": "нормализует R после самостирания, помещает в стек адрес6192 и промежуточный адресBFDD, задаёт HL=BFDE, DE=BFDD, BC=012B"
+    },
+    {
+      "address": 24978,
+      "endExclusive": 24990,
+      "name": "DecryptShift",
+      "descriptionRu": "XOR байта(HL) с R, LDI одновременно переносит его на один байт вниз и уменьшает BC, DEC SP дважды возвращает стек к сохранённому адресу6192, RET PE повторяет цикл пока BC не ноль, затем второй DEC SP дважды и RET PO передают управление вBFDD, ключ первого байта34 и шаг9 по модулю128"
+    },
+    {
+      "address": 24990,
+      "endExclusive": 25012,
+      "name": "UnusedBranch",
+      "descriptionRu": "в нормальном ходе не достигается, обе развилки RET PE и RET PO покрывают состояния PV после LDI, поэтому нельзя объявлять этот фрагмент исполняемым без отдельной точки входа"
+    },
+    {
+      "address": 49117,
+      "endExclusive": 49152,
+      "name": "DecryptDifference",
+      "descriptionRu": "сохраняет текущий SP в операнде LD SP поBFFE, задаёт SP=C000 и 257 раз читает пару соседних байтов POP DE, обнуляет A после фиктивного LD A,R, записывает E XOR D обратно через PUSH DE, увеличивает SP на1, тем самым преобразует C000..C100 как p[i]=s[i] XOR s[i+1], затем восстанавливает SP и входит вC000"
+    },
+    {
+      "address": 49152,
+      "endExclusive": 49214,
+      "name": "BuildProtectionName",
+      "descriptionRu": "вычисляет семь операндов имени CTPAHA  B из IYh=5C, арифметики и показаний R, изменяя байтыC0DE,C0E2,C0E6,C0EA,C0EE,C0F2,C0FE в процедуреC0DA, два исходных пробелаC0F6,C0FA сохраняются, затем вызываетC0DA для записи девятибайтового имени в5CDD"
+    },
+    {
+      "address": 49214,
+      "endExclusive": 49232,
+      "name": "CheckDirectoryPosition",
+      "descriptionRu": "сохраняет R, вызывает TR-DOS C=0A для поиска CTPAHA.B, восстанавливает R, значение C XOR2 записывает в операнд поC07B, нормальная позиция файла в каталоге2 даёт ноль"
+    },
+    {
+      "address": 49232,
+      "endExclusive": 49279,
+      "name": "BuildBlockName",
+      "descriptionRu": "меняет операнды процедурыC0DA для формирования BL3     C, использует IYl=3A и R, загружает HL=003E при правильной позицииCTPAHA и сохраняет это слово вC0AB, превращая будущий код в LD A,0"
+    },
+    {
+      "address": 49279,
+      "endExclusive": 49293,
+      "name": "LoadBlock",
+      "descriptionRu": "сохраняет R, обнуляет5D10 и вызывает TR-DOS C=0E с A=0 для загрузки BL3 по адресу каталога6149, затем восстанавливает R"
+    },
+    {
+      "address": 49293,
+      "endExclusive": 49323,
+      "name": "DecryptBL3",
+      "descriptionRu": "пятнадцать проходов по7147 байтам от адреса в5CE6, на каждом байте читает R, XOR L и записывает результат вR, затем XOR B,C,D,E,H и байт(HL), записывает расшифрованный байт, увеличивает HL и C, уменьшает DE, внешний B от0F до01"
+    },
+    {
+      "address": 49323,
+      "endExclusive": 49360,
+      "name": "ProtectionBranch",
+      "descriptionRu": "после нормального C=2 от поиска выполнит LD A,0, OR A и переходC0CD, затем JP6149, при другом результате копирует десять байтов изC0D0 в6C16 и портит двадцать псевдослучайных байтов страницы64xx, поэтому поведение зависит от исходного порядка файлов"
+    },
+    {
+      "address": 49360,
+      "endExclusive": 49370,
+      "name": "CorruptionData",
+      "descriptionRu": "десять байтов ветки повреждения при нарушении проверки положения файла"
+    },
+    {
+      "address": 49370,
+      "endExclusive": 49409,
+      "name": "WriteFilename",
+      "descriptionRu": "записывает девять байтов имени и расширения из самомодифицируемых операндов LD A,n в5CDD..5CE5, операнды находятсяC0DE,C0E2,C0E6,C0EA,C0EE,C0F2,C0F6,C0FA,C0FE"
+    }
+  ],
+  "bl3Functions": [
+    {
+      "address": 24905,
+      "endExclusive": 24926,
+      "name": "DecryptOwnBody",
+      "descriptionRu": "после внешнего дешифрования изKB отключает прерывания и задаётR=50, XOR с показаниямиR обрабатывает7125 байтов615E..7D32, первый ключ54, шаг9 по модулю128, последний байт файла7D33 не меняется этим проходом"
+    },
+    {
+      "address": 24926,
+      "endExclusive": 24929,
+      "name": "EntryJump",
+      "descriptionRu": "передаёт управление инициализации631C"
+    },
+    {
+      "address": 24929,
+      "endExclusive": 25040,
+      "name": "Interrupt",
+      "descriptionRu": "обработчикIM2 сохраняет основные, альтернативные и индексные регистры и текущую страницу памяти, сохраняет временные операнды6DFE и6E50, при бите5 в61D5 периодически вызывает6E97 с координатами61D2 и изменяемым значением61D1, вызывает7196 и ROM386E с IY=5C3A, восстанавливает страницу через5FA1, возвращает все регистры и выполняет EI,RETI"
+    },
+    {
+      "address": 25040,
+      "endExclusive": 25246,
+      "name": "InterruptAndStackData",
+      "descriptionRu": "поля61D0=06,61D1=F2,61D2..61D3 координаты и61D5 флаги, далее нулевая область, начало стека629C, не размечать её как цепочку NOP-процедур"
+    },
+    {
+      "address": 25246,
+      "endExclusive": 25372,
+      "name": "Names",
+      "descriptionRu": "имена загружаемых файлов, включая RAMDRIVE,C, DATA2,C, HERIMG,C, HERTXT,C и другие записи по9 байтов, интерпретация как код ошибочна"
+    },
+    {
+      "address": 25372,
+      "endExclusive": 25499,
+      "name": "Initialize",
+      "descriptionRu": "загружает RAMDRIVE.C черезTRDOS C=0E и вызывает7D34, ставитSP=629C, заполняет6000..6100 значением61 для IM2-вектора6161, задаётI=60 иIM2, выбирает страницу08 через5FA1 и очищаетC000..FFFF, сохраняет системные значения5C78..5C7A иR для генератора, загружает ресурсы в страницы4,3,0 через7092"
+    },
+    {
+      "address": 28818,
+      "name": "LoadResource",
+      "descriptionRu": "копирует девять байт имени и расширения из HL в 5CDD, записывает 0 в 5D10, исходный DE переносит в HL, задаёт C=0E и A=3, хвостовой JP 6DBC вызывает TR-DOS, длина выбирается из параметров файла"
+    },
+    {
+      "address": 28092,
+      "name": "ReadSectors",
+      "descriptionRu": "DI, IY=5C3A, входной AF сохраняется вокруг установки I=3F, затем IM1 и EI, вызывается 3D13 с исходными A и остальными параметрами, после возврата DI, I=60, IM2, EI, исходный IY не восстанавливается, A к выходу равен60"
+    },
+    {
+      "address": 28311,
+      "name": "InterruptDraw",
+      "descriptionRu": "сохраняет HL, записывает прямой адрес5FA1 в операнды6DFE и6E50, вызывает6DEE, используется из обработчика прерывания6161, здесь нет EI обёртки70DF, сохранение и восстановление регистров выполняет6DEE"
+    },
+    {
+      "address": 29078,
+      "name": "InterruptTick",
+      "descriptionRu": "Если #7219 ненулевой, сразу возвращается. Каждые 6 вызовов уменьшает второй счётчик, раз в 8 таких шагов очищает 38 знаков строки 18 и печатает очередную строку из банка 6 по указателю #721C до CR. Маркер #B0 устанавливает #7219=#FF и завершает обработку. На остальных активных шагах прокручивает область от #40A2 вверх на один пиксель: 14 рядов знакомест, 7 копирований по 28 байтов и переход по 30 байтов к следующему ряду. Внешний обработчик прерываний сохраняет регистры и банк, сама процедура этого полного сохранения не делает."
+    }
+  ],
+  "bl3CodeSeeds": [
+    24905,
+    24926,
+    24929,
+    25372,
+    28818,
+    28092,
+    28118,
+    28311,
+    29078,
+    29457,
+    29216,
+    28900,
+    29793,
+    28326
+  ],
+  "bl3ConfirmedDataRanges": [
+    [
+      25040,
+      25372
+    ]
+  ],
+  "warningsRu": [
+    "BL3 plaintext получен при стандартном IY=5C3A и успешных двух вызовах TR-DOS, это статическая проверка дешифратора с моделированием DOS, не запуск игры в полном эмуляторе",
+    "Функции BL3 разобраны в Source/Files/04_BL3.asm и индексированы в Docs/Functions.tsv, полный запуск игры не выполнялся",
+    "Функции BL3 разобраны в Source/Files/04_BL3.asm и индексированы в Docs/Functions.tsv, полный запуск игры не выполнялся"
+  ]
+}

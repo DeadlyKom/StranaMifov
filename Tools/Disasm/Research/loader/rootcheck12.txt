@@ -1,0 +1,15 @@
+ROOT REVIEW OVERLAY 12
+B200 3a336a       LD A,($6A33)
+B203 e603         AND $03
+B205 fe02         CP $02
+B207 c0           RET NZ
+B208 ed4b2e6a     LD BC,($6A2E)
+B20C cdc480       CALL $80C4
+B20F cb7f         BIT 7,A
+B211 c0           RET NZ
+B212 e63f         AND $3F
+B214 c0           RET NZ
+B215 3a336a       LD A,($6A33)
+B218 e6fc         AND $FC
+B21A 32336a       LD ($6A33),A
+B21D c9           RET

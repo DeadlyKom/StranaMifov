@@ -1,0 +1,141 @@
+{
+  "weight_and_mana_tables": [
+    {
+      "source": "Source/Files/22_WERWOIN1.asm",
+      "bytes": 2000,
+      "difficulty": 1,
+      "types": [
+        "FWeightedTroop",
+        "FWeightedType"
+      ]
+    },
+    {
+      "source": "Source/Files/23_WERWOIN2.asm",
+      "bytes": 2000,
+      "difficulty": 2,
+      "types": [
+        "FWeightedTroop",
+        "FWeightedType"
+      ]
+    },
+    {
+      "source": "Source/Files/24_WERWOIN3.asm",
+      "bytes": 2000,
+      "difficulty": 3,
+      "types": [
+        "FWeightedTroop",
+        "FWeightedType"
+      ]
+    },
+    {
+      "source": "Source/Files/25_MGPOWER1.asm",
+      "bytes": 110,
+      "difficulty": 1,
+      "types": [
+        "FArmyManaPool"
+      ]
+    },
+    {
+      "source": "Source/Files/26_MGPOWER2.asm",
+      "bytes": 115,
+      "difficulty": 2,
+      "types": [
+        "FArmyManaPool"
+      ]
+    },
+    {
+      "source": "Source/Files/27_MGPOWER3.asm",
+      "bytes": 110,
+      "difficulty": 3,
+      "types": [
+        "FArmyManaPool"
+      ]
+    }
+  ],
+  "world_object_groups": [
+    {
+      "symbol": "Data.WorldObjects.CastlesCont1",
+      "address": 31281,
+      "count": 26,
+      "size": 35,
+      "type": "FCastle"
+    },
+    {
+      "symbol": "Data.WorldObjects.CastlesCont2",
+      "address": 32191,
+      "count": 20,
+      "size": 35,
+      "type": "FCastle"
+    },
+    {
+      "symbol": "Data.WorldObjects.CastlesCont3",
+      "address": 32891,
+      "count": 23,
+      "size": 35,
+      "type": "FCastle"
+    },
+    {
+      "symbol": "Data.WorldObjects.CastlesCont4",
+      "address": 33696,
+      "count": 11,
+      "size": 35,
+      "type": "FCastle"
+    },
+    {
+      "symbol": "Data.WorldObjects.TownsCont1",
+      "address": 34081,
+      "count": 41,
+      "size": 26,
+      "type": "FTown"
+    },
+    {
+      "symbol": "Data.WorldObjects.TownsCont2",
+      "address": 35147,
+      "count": 50,
+      "size": 26,
+      "type": "FTown"
+    },
+    {
+      "symbol": "Data.WorldObjects.TownsCont3",
+      "address": 36447,
+      "count": 30,
+      "size": 26,
+      "type": "FTown"
+    },
+    {
+      "symbol": "Data.WorldObjects.TownsCont4",
+      "address": 37227,
+      "count": 39,
+      "size": 26,
+      "type": "FTown"
+    },
+    {
+      "symbol": "Data.WorldObjects.TemplesCont1",
+      "address": 38241,
+      "count": 10,
+      "size": 5,
+      "type": "FTemple"
+    },
+    {
+      "symbol": "Data.WorldObjects.TemplesCont2",
+      "address": 38291,
+      "count": 15,
+      "size": 5,
+      "type": "FTemple"
+    },
+    {
+      "symbol": "Data.WorldObjects.TemplesCont3",
+      "address": 38366,
+      "count": 7,
+      "size": 5,
+      "type": "FTemple"
+    },
+    {
+      "symbol": "Data.WorldObjects.TemplesCont4",
+      "address": 38401,
+      "count": 18,
+      "size": 5,
+      "type": "FTemple"
+    }
+  ]
+}

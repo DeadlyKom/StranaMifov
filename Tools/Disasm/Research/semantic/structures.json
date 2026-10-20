@@ -1,0 +1,2822 @@
+{
+  "schema_version": 1,
+  "source": "MYTHLAND.TRD, исходные байты и подтверждённые обращения",
+  "structures": [
+    {
+      "name": "FTroop",
+      "size": 3,
+      "meaning": "исходная стратегическая запись отряда",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "ID",
+          "meaning": "ID типа отряда, 0 завершает плотный список. В финансовом проходе #9B10/#9B14 временно устанавливаются биты 7/6, поэтому не во всех промежуточных состояниях байт является чистым ID",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34943,
+              "hex": "#887F",
+              "operation": "C=(IX+1), B=(IX+2), ID=(IX+0), затем IX+=3 по #88DB"
+            },
+            {
+              "module": "S10",
+              "address": 41477,
+              "hex": "#A205",
+              "operation": "сравнение ID и обновление количества +1/+2, IX+=3"
+            },
+            {
+              "module": "S10",
+              "address": 39687,
+              "hex": "#9B07",
+              "operation": "AND #1F перед #7AEF, затем SET 7/6,(HL)"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 2,
+          "name": "Count",
+          "meaning": "беззнаковая численность little-endian",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34943,
+              "hex": "#887F",
+              "operation": "C=(IX+1), B=(IX+2), ID=(IX+0), затем IX+=3 по #88DB"
+            },
+            {
+              "module": "S10",
+              "address": 41477,
+              "hex": "#A205",
+              "operation": "сравнение ID и обновление количества +1/+2, IX+=3"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        }
+      ],
+      "count_examples": [
+        5,
+        3
+      ],
+      "termination": "ID=0"
+    },
+    {
+      "name": "FMapList",
+      "size": 4,
+      "meaning": "дескриптор списка объектов одного континента",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 2,
+          "name": "Data",
+          "meaning": "адрес первой записи в банке выбранной группы",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36374,
+              "hex": "#8E16",
+              "operation": "L=(IX+0), H=(IX+1), затем IX=HL"
+            },
+            {
+              "module": "S10",
+              "address": 37639,
+              "hex": "#9307",
+              "operation": "L=(IX+0), H=(IX+1), затем IX=HL"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 2,
+          "size": 2,
+          "name": "Count",
+          "meaning": "число записей little-endian, не размер в байтах",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36380,
+              "hex": "#8E1C",
+              "operation": "C=(IX+2), B=(IX+3), DEC BC на каждой записи"
+            },
+            {
+              "module": "S10",
+              "address": 37645,
+              "hex": "#930D",
+              "operation": "C=(IX+2), B=(IX+3), DEC BC на каждой записи"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        }
+      ],
+      "indexing": "#7A74 прибавляет 4*A. У публичных баз #6AE9/#6AF9/... индекс начинается с 1, первая реальная запись находится база+4"
+    },
+    {
+      "name": "FMoveStep",
+      "size": 3,
+      "meaning": "рабочий кандидат перемещения внешнего объекта",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "TerrainMask",
+          "meaning": "маска класса местности кандидата, #FF выделяет водный класс, 0 не требует проверки способностей",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37488,
+              "hex": "#9270",
+              "operation": "для трёх координат вызываются #80C4/#867D и результат пишется в+0"
+            },
+            {
+              "module": "S10",
+              "address": 37857,
+              "hex": "#93E1",
+              "operation": "ненулевой класс проверяется через способности отряда"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец соседней клетки",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37745,
+              "hex": "#9371",
+              "operation": "кандидат x=(IY+1), допустимо3..157"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка соседней клетки",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37758,
+              "hex": "#937E",
+              "operation": "кандидат y=(IY+2), допустимо3..96"
+            }
+          ],
+          "confidence": "proven"
+        }
+      ],
+      "base": 37558,
+      "array_count": 3
+    },
+    {
+      "name": "FMapArmy",
+      "size": 22,
+      "meaning": "подвижная армия разбойников либо пиратов",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Flags",
+          "meaning": "состояние внешней армии",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36408,
+              "hex": "#8E38",
+              "operation": "чтение флагов записи с шагом #16"
+            }
+          ],
+          "confidence": "proven",
+          "bits": [
+            {
+              "mask": 1,
+              "name": "Free",
+              "meaning": "свободная/выключенная запись",
+              "evidence": [
+                {
+                  "module": "S10",
+                  "address": 36411,
+                  "hex": "#8E3B",
+                  "operation": "AND #11 пропускает бит 0 и бит 4"
+                },
+                {
+                  "module": "S10",
+                  "address": 36713,
+                  "hex": "#8F69",
+                  "operation": "BIT 0,(HL) ищет свободную запись"
+                }
+              ]
+            },
+            {
+              "mask": 14,
+              "name": "Delay",
+              "meaning": "упакованная задержка, каждый проход вычитает 2 из маски #0E и пропускает движение",
+              "evidence": [
+                {
+                  "module": "S10",
+                  "address": 36419,
+                  "hex": "#8E43",
+                  "operation": "AND #0E, SUB 2, восстановление остальных битов через AND #F1"
+                }
+              ]
+            },
+            {
+              "mask": 16,
+              "name": "Processed",
+              "meaning": "отметка обработки в текущем проходе, в конце снимается у всех",
+              "evidence": [
+                {
+                  "module": "S10",
+                  "address": 37200,
+                  "hex": "#9150",
+                  "operation": "SET 4,(IX+0)"
+                },
+                {
+                  "module": "S10",
+                  "address": 37225,
+                  "hex": "#9169",
+                  "operation": "RES 4,(HL)"
+                }
+              ]
+            },
+            {
+              "mask": 32,
+              "name": "Water",
+              "meaning": "1 выбирает водный класс #FF и пиратов, 0 наземный класс и разбойников",
+              "evidence": [
+                {
+                  "module": "S10",
+                  "address": 36459,
+                  "hex": "#8E6B",
+                  "operation": "AND #20 и сравнение с режимом героя"
+                },
+                {
+                  "module": "O07",
+                  "address": 45610,
+                  "hex": "#B22A",
+                  "operation": "BIT 5,(IX-3), выбор строк разбойники/пираты"
+                }
+              ]
+            },
+            {
+              "mask": 64,
+              "name": "Facing",
+              "meaning": "горизонтальная ориентация, #91BF устанавливает/снимает по направлению, отступление дополнительно инвертирует",
+              "evidence": [
+                {
+                  "module": "S10",
+                  "address": 37311,
+                  "hex": "#91BF",
+                  "operation": "A=1/5 не меняет бит 6, A=2..4 ставит, A>=6 снимает"
+                },
+                {
+                  "module": "S10",
+                  "address": 37165,
+                  "hex": "#912D",
+                  "operation": "XOR #40 при отступлении"
+                }
+              ]
+            },
+            {
+              "mask": 128,
+              "name": "Unknown7",
+              "meaning": "игровой смысл бита 7 не установлен",
+              "evidence": [
+                {
+                  "module": "S10",
+                  "address": 36429,
+                  "hex": "#8E4D",
+                  "operation": "AND #F1 сохраняет бит 7 при обновлении задержки"
+                }
+              ],
+              "confidence": "unknown"
+            }
+          ]
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец стратегической карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36504,
+              "hex": "#8E98",
+              "operation": "C=(IX+1) перед определением направления"
+            },
+            {
+              "module": "S10",
+              "address": 37144,
+              "hex": "#9118",
+              "operation": "(IX+1)=C"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка стратегической карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36507,
+              "hex": "#8E9B",
+              "operation": "B=(IX+2)"
+            },
+            {
+              "module": "S10",
+              "address": 37147,
+              "hex": "#911B",
+              "operation": "(IX+2)=B"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 3,
+          "size": 2,
+          "name": "Mana",
+          "meaning": "текущий запас магической силы внешней армии. Восстанавливается с пределом 15000 и передаётся словом DE в бой",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41129,
+              "hex": "#A0A9",
+              "operation": "HL=word(IX+3), DE=15000, вызов #A0FC, запись обратно +3/+4"
+            },
+            {
+              "module": "O07",
+              "address": 45722,
+              "hex": "#B29A",
+              "operation": "IX уже смещён на +3, DE=word(IX+0), затем IX+=4, бой #D255"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 5,
+          "size": 2,
+          "name": "ManaRegen",
+          "meaning": "прибавляемое при регенерации количество магической силы",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41138,
+              "hex": "#A0B2",
+              "operation": "BC=word(IX+5), прибавление к word(IX+3) с насыщением 15000"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 7,
+          "size": 15,
+          "name": "Army",
+          "meaning": "пять стратегических отрядов FTroop",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36473,
+              "hex": "#8E79",
+              "operation": "HL=указатель записи+7, B=5, #9193"
+            },
+            {
+              "module": "O07",
+              "address": 45667,
+              "hex": "#B263",
+              "operation": "IY=указатель записи+3, IY+=4, A=5 перед #7E55"
+            }
+          ],
+          "confidence": "proven",
+          "type": "FTroop",
+          "count": 5
+        }
+      ],
+      "bank": 1,
+      "notes": [
+        "Разделение #8FC5..#9001 создаёт новую запись, но не инициализирует Mana и ManaRegen. Семантическое описание сохраняет эту особенность оригинала."
+      ]
+    },
+    {
+      "name": "FMapTroop",
+      "size": 6,
+      "meaning": "шестибайтовая группа существ на стратегической карте",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Flags",
+          "meaning": "состояние шестибайтовой группы, бит 0 свободна/использована, бит 5 вода, бит 6 ориентация, другие биты отдельно не именуются",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37658,
+              "hex": "#931A",
+              "operation": "BIT 0,(IX+0)"
+            },
+            {
+              "module": "S10",
+              "address": 37683,
+              "hex": "#9333",
+              "operation": "AND #20"
+            },
+            {
+              "module": "S10",
+              "address": 37925,
+              "hex": "#9425",
+              "operation": "#91BF изменяет бит 6"
+            },
+            {
+              "module": "O21",
+              "address": 47105,
+              "hex": "#B801",
+              "operation": "поиск свободной шестибайтовой записи и заполнение полей"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37916,
+              "hex": "#941C",
+              "operation": "(IX+1)=C"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37919,
+              "hex": "#941F",
+              "operation": "(IX+2)=B"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 3,
+          "size": 1,
+          "name": "ID",
+          "meaning": "тип отряда, описатель SOLDIERS",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37871,
+              "hex": "#93EF",
+              "operation": "A=(IX+3), CALL #7AEF"
+            },
+            {
+              "module": "S10",
+              "address": 44273,
+              "hex": "#ACF1",
+              "operation": "тип соседней записи переносится в +3"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 4,
+          "size": 2,
+          "name": "Count",
+          "meaning": "беззнаковая численность little-endian",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 44265,
+              "hex": "#ACE9",
+              "operation": "проверка пары IY+4/+5"
+            },
+            {
+              "module": "S10",
+              "address": 44296,
+              "hex": "#AD08",
+              "operation": "(IX+4)=C, (IX+5)=B после чтения начальной численности SOLDIERS"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        }
+      ],
+      "bank": 0,
+      "notes": [
+        "Структура встречается в списке #6B69 и родственных списках #6B19/#6B29/#6B39/#6B49. Роль списка и формат весовых записей WERWOIN различаются.",
+        "Обход #92CB после отказа C!=0,8 от #8CD1 может продолжить с изменённым IX, восстановление #928F отсутствует на этом пути."
+      ]
+    },
+    {
+      "name": "FCastle",
+      "size": 35,
+      "meaning": "35-байтная запись замка",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Flags",
+          "meaning": "бит 0 выключает запись, значения остальных битов отдельно не установлены",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34740,
+              "hex": "#87B4",
+              "operation": "BIT 0,(IX+0), шаг35"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 42503,
+              "hex": "#A607",
+              "operation": "координаты атакуемого замка из +1/+2"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 42503,
+              "hex": "#A607",
+              "operation": "координаты атакуемого замка из +1/+2"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 3,
+          "size": 15,
+          "name": "Name",
+          "meaning": "15 символов имени CP866, допускается редактирование всех 15",
+          "evidence": [
+            {
+              "module": "O21",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "интерфейс получает #867B, указатель на имя физической записи+3"
+            },
+            {
+              "module": "S04",
+              "address": 26731,
+              "hex": "#686B",
+              "operation": "#77A3 выбирает имя шаг16 и копирует15символов"
+            }
+          ],
+          "confidence": "proven",
+          "encoding": "cp866"
+        },
+        {
+          "offset": 18,
+          "size": 1,
+          "name": "Terminator",
+          "meaning": "нулевой терминатор после имени",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 30627,
+              "hex": "#77A3",
+              "operation": "после копирования15символов дописывается ноль"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 19,
+          "size": 1,
+          "name": "Owner",
+          "meaning": "0 собственный замок, 1..15 правитель FRuler, #FF особое отсутствие правителя/банды",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34746,
+              "hex": "#87BA",
+              "operation": "владелец0 учитывается как собственный"
+            },
+            {
+              "module": "S10",
+              "address": 34797,
+              "hex": "#87ED",
+              "operation": "поиск по заданному владельцу"
+            },
+            {
+              "module": "S10",
+              "address": 42518,
+              "hex": "#A616",
+              "operation": "владелец ближайшего замка определяет нападающего"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 20,
+          "size": 15,
+          "name": "Army",
+          "meaning": "пять записей гарнизона FTroop",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 43114,
+              "hex": "#A86A",
+              "operation": "15 байтов атакующей армии копируются в гарнизон"
+            },
+            {
+              "module": "O21",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "гарнизон вычисляется имя+17, то есть запись+20"
+            }
+          ],
+          "confidence": "proven",
+          "type": "FTroop",
+          "count": 5
+        }
+      ],
+      "bank": 0,
+      "array_base": 49152,
+      "array_count": 80,
+      "pointer_views": [
+        {
+          "name": "NameView",
+          "base_offset": 3,
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34418,
+              "hex": "#8672",
+              "operation": "IX передаётся через #867B как указатель имени замка"
+            }
+          ],
+          "warning": "IX+16 от имени соответствует Owner+19 физической записи, IX+17 соответствует Army+20"
+        }
+      ]
+    },
+    {
+      "name": "FMapItem",
+      "size": 3,
+      "meaning": "трёхбайтовая находка, не FTroop несмотря на одинаковую длину",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Flags",
+          "meaning": "бит0 означает использованную/выключенную находку",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37823,
+              "hex": "#93BF",
+              "operation": "SET 0,(IX+0) для типа8 от #8CD1"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36109,
+              "hex": "#8D0D",
+              "operation": "тип8 выбирает группу #6B59, общий поиск координат +1/+2"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36109,
+              "hex": "#8D0D",
+              "operation": "тип8 выбирает группу #6B59, общий поиск координат +1/+2"
+            }
+          ],
+          "confidence": "proven"
+        }
+      ],
+      "bank": 0
+    },
+    {
+      "name": "FTemple",
+      "size": 5,
+      "meaning": "запись храма духов",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Flags",
+          "meaning": "бит0 выключает запись",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36161,
+              "hex": "#8D41",
+              "operation": "дескриптор типа3 задаёт шаг5 и общий поиск"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36206,
+              "hex": "#8D6E",
+              "operation": "общий поиск читает +1/+2"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36206,
+              "hex": "#8D6E",
+              "operation": "общий поиск читает +1/+2"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 3,
+          "size": 1,
+          "name": "Cult",
+          "meaning": "тип храма/секты",
+          "evidence": [
+            {
+              "module": "O03",
+              "address": 45585,
+              "hex": "#B211",
+              "operation": "поле+3 выбирает строку секты и коэффициенты услуг"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 4,
+          "size": 1,
+          "name": "Spell",
+          "meaning": "ID доступного для изучения заклинания",
+          "evidence": [
+            {
+              "module": "O03",
+              "address": 45639,
+              "hex": "#B247",
+              "operation": "A=(IX+4), CALL #8066"
+            }
+          ],
+          "confidence": "proven"
+        }
+      ],
+      "bank": 0
+    },
+    {
+      "name": "FTown",
+      "size": 26,
+      "meaning": "26-байтная запись города",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Flags",
+          "meaning": "бит0 выключает запись, бит1 проверяется при доступности контракта",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41525,
+              "hex": "#A235",
+              "operation": "таблица #6AF9 и шаг26"
+            },
+            {
+              "module": "O02",
+              "address": 46315,
+              "hex": "#B4EB",
+              "operation": "BIT 1,(IX-3), IX указывает на имя"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 44570,
+              "hex": "#AE1A",
+              "operation": "координаты города используются для дохода замка"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка карты",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 44570,
+              "hex": "#AE1A",
+              "operation": "координаты города используются для дохода замка"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 3,
+          "size": 11,
+          "name": "Name",
+          "meaning": "11 символов имени CP866",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26873,
+              "hex": "#68F9",
+              "operation": "выбор уникального имени с шагом12, копирование11символов"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 14,
+          "size": 1,
+          "name": "Terminator",
+          "meaning": "нулевой терминатор имени",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 30627,
+              "hex": "#77A3",
+              "operation": "после копирования имени записывается0"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 15,
+          "size": 2,
+          "name": "Unknown15",
+          "meaning": "пара численных/служебных полей, более узкий смысл не установлен, #AE1A использует их при выборе прибавки дохода350/450",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 44570,
+              "hex": "#AE1A",
+              "operation": "проверки полей15/16 влияют на доход"
+            }
+          ],
+          "confidence": "partial"
+        },
+        {
+          "offset": 17,
+          "size": 9,
+          "name": "Army",
+          "meaning": "до трёх отрядов FTroop",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41525,
+              "hex": "#A235",
+              "operation": "обнуляет9байт с+17, формирует0..3отряда"
+            }
+          ],
+          "confidence": "proven",
+          "type": "FTroop",
+          "count": 3
+        }
+      ],
+      "bank": 0
+    },
+    {
+      "name": "FRuler",
+      "size": 28,
+      "meaning": "описатель правителя в DATA1",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 21,
+          "name": "Name",
+          "meaning": "21 символ имени вражеского правителя, дополнение пробелами",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 32846,
+              "hex": "#804E",
+              "operation": "IX=#CCAF+28*ID, ID1 даёт#CCCB"
+            },
+            {
+              "module": "O17",
+              "address": 46808,
+              "hex": "#B6D8",
+              "operation": "печать имён побеждённых правителей ID1..15"
+            },
+            {
+              "module": "S46",
+              "address": 52427,
+              "hex": "#CCCB",
+              "operation": "первые21байт записи являются CP866-именем"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 21,
+          "size": 1,
+          "name": "Terminator",
+          "meaning": "ноль после имени",
+          "evidence": [
+            {
+              "module": "S46",
+              "address": 52448,
+              "hex": "#CCE0",
+              "operation": "нулевой байт записи0+21"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 22,
+          "size": 2,
+          "name": "Mana",
+          "meaning": "текущая магическая сила",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41176,
+              "hex": "#A0D8",
+              "operation": "чтение word(IX+22) и восстановление к максимуму+24"
+            },
+            {
+              "module": "O01",
+              "address": 46031,
+              "hex": "#B3CF",
+              "operation": "DE=word(IX+22) перед #D255"
+            },
+            {
+              "module": "O01",
+              "address": 46070,
+              "hex": "#B3F6",
+              "operation": "остаток магии из DE записывается в+22/+23"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 24,
+          "size": 2,
+          "name": "ManaMax",
+          "meaning": "максимум магической силы",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41182,
+              "hex": "#A0DE",
+              "operation": "DE=word(IX+24), общий ограничитель#A0FC"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 26,
+          "size": 2,
+          "name": "ManaRegen",
+          "meaning": "пополнение магической силы за вызов восстановления",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41188,
+              "hex": "#A0E4",
+              "operation": "BC=word(IX+26), прибавление к word(IX+22)"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        }
+      ],
+      "bank": 3,
+      "array_base": 52427,
+      "array_count": 15
+    },
+    {
+      "name": "FSpell",
+      "size": 23,
+      "meaning": "описатель заклинания в DATA1",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 20,
+          "name": "Name",
+          "meaning": "20 символов названия заклинания, дополнение пробелами",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 32870,
+              "hex": "#8066",
+              "operation": "IX=#CE58+23*ID, ID1 даёт#CE6F"
+            },
+            {
+              "module": "O17",
+              "address": 47347,
+              "hex": "#B8F3",
+              "operation": "печать имён изученных заклинаний ID1..10"
+            },
+            {
+              "module": "S46",
+              "address": 52847,
+              "hex": "#CE6F",
+              "operation": "первые20байт записи являются CP866-именем"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 20,
+          "size": 1,
+          "name": "Terminator",
+          "meaning": "ноль после имени",
+          "evidence": [
+            {
+              "module": "S46",
+              "address": 52867,
+              "hex": "#CE83",
+              "operation": "нулевой байт записи0+20"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 21,
+          "size": 2,
+          "name": "ManaCost",
+          "meaning": "магическая стоимость, также служит основанием цены изучения с множителем100 и модификатором секты",
+          "evidence": [
+            {
+              "module": "S47",
+              "address": 55702,
+              "hex": "#D996",
+              "operation": "BC=word(IX+21) после #8066, далее проверка/списание магии"
+            },
+            {
+              "module": "O03",
+              "address": 45649,
+              "hex": "#B251",
+              "operation": "BC=word(IX+21), умножение на100"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        }
+      ],
+      "bank": 3,
+      "array_base": 52847,
+      "array_count": 10
+    },
+    {
+      "name": "FPerson",
+      "size": 245,
+      "meaning": "персональная часть состояния, имя и игровые поля. Совпадает с245байтными PERSON1..6/8 после загрузки",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 9,
+          "name": "Name",
+          "meaning": "имя выбранного героя, девять символов CP866",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            },
+            {
+              "module": "S10",
+              "address": 38574,
+              "hex": "#96AE",
+              "operation": "строка панели содержит указатель#69F8"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 9,
+          "size": 1,
+          "name": "Terminator",
+          "meaning": "нулевой терминатор имени",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 10,
+          "size": 2,
+          "name": "Leadership",
+          "meaning": "лидерство, задаёт предел количества отряда через деление на коэффициент типа",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34545,
+              "hex": "#86F1",
+              "operation": "BC=word(#6A02), деление на byte(#6AD3+ID) и floor"
+            },
+            {
+              "module": "S10",
+              "address": 35321,
+              "hex": "#89F9",
+              "operation": "насыщенное уменьшение"
+            },
+            {
+              "module": "S10",
+              "address": 35361,
+              "hex": "#8A21",
+              "operation": "насыщенное увеличение"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 12,
+          "size": 2,
+          "name": "Mana",
+          "meaning": "текущая магическая сила героя",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41090,
+              "hex": "#A082",
+              "operation": "текущее значение, прибавление#6A08 с максимумом#6A06"
+            },
+            {
+              "module": "S47",
+              "address": 56181,
+              "hex": "#DB75",
+              "operation": "вычитает стоимость заклинания из#6A04 с насыщением0"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 14,
+          "size": 2,
+          "name": "ManaMax",
+          "meaning": "максимум магической силы",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41093,
+              "hex": "#A085",
+              "operation": "верхняя граница DE для#6A04"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 16,
+          "size": 2,
+          "name": "ManaRegen",
+          "meaning": "пополнение магической силы при очередном восстановлении",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 41097,
+              "hex": "#A089",
+              "operation": "BC=word(#6A08), прибавляется к#6A04"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 18,
+          "size": 10,
+          "name": "Spells",
+          "meaning": "10 байтов состояния заклинаний, бит0 — заклинание изучено, остальные биты отдельно не именуются",
+          "evidence": [
+            {
+              "module": "O17",
+              "address": 47347,
+              "hex": "#B8F3",
+              "operation": "ID1..10 проверяют бит0 по #6A09+ID"
+            }
+          ],
+          "confidence": "proven",
+          "count": 10
+        },
+        {
+          "offset": 28,
+          "size": 5,
+          "name": "Money",
+          "meaning": "наличные монеты в пятибайтном формате калькулятора ROM",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 38552,
+              "hex": "#9698",
+              "operation": "панель печатает поле под подписью Наличные"
+            },
+            {
+              "module": "S10",
+              "address": 41877,
+              "hex": "#A395",
+              "operation": "оплата неподконтрольного отряда вычитает из#6A14"
+            }
+          ],
+          "confidence": "proven",
+          "type": "Float5"
+        },
+        {
+          "offset": 33,
+          "size": 5,
+          "name": "BaseIncome",
+          "meaning": "постоянная часть недельного дохода в формате Float5, складывается с доходами замков",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 38758,
+              "hex": "#9766",
+              "operation": "сумма доходов замков, затем#6A19+#6A14 складываются и пишутся в#6A14"
+            },
+            {
+              "module": "O05",
+              "address": 46125,
+              "hex": "#B42D",
+              "operation": "награда увеличивает#6A19"
+            }
+          ],
+          "confidence": "proven",
+          "type": "Float5"
+        },
+        {
+          "offset": 38,
+          "size": 15,
+          "name": "Army",
+          "meaning": "пять записей армии героя FTroop",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34943,
+              "hex": "#887F",
+              "operation": "C=(IX+1), B=(IX+2), ID=(IX+0), затем IX+=3 по #88DB"
+            },
+            {
+              "module": "S10",
+              "address": 41477,
+              "hex": "#A205",
+              "operation": "сравнение ID и обновление количества +1/+2, IX+=3"
+            }
+          ],
+          "confidence": "proven",
+          "type": "FTroop",
+          "count": 5
+        },
+        {
+          "offset": 53,
+          "size": 1,
+          "name": "Continent",
+          "meaning": "текущий континент1..4",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 25561,
+              "hex": "#63D9",
+              "operation": "индекс выбирает KARTA?"
+            },
+            {
+              "module": "S10",
+              "address": 37633,
+              "hex": "#9301",
+              "operation": "выбор континентального списка"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 54,
+          "size": 1,
+          "name": "X",
+          "meaning": "столбец текущей клетки героя",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37579,
+              "hex": "#92CB",
+              "operation": "BC=word(#6A2E), C=x,B=y"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 55,
+          "size": 1,
+          "name": "Y",
+          "meaning": "строка текущей клетки героя",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37579,
+              "hex": "#92CB",
+              "operation": "BC=word(#6A2E), C=x,B=y"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 56,
+          "size": 1,
+          "name": "ShipMap",
+          "meaning": "континент корабля, #FF означает отсутствие корабля",
+          "evidence": [
+            {
+              "module": "O02",
+              "address": 46296,
+              "hex": "#B4D8",
+              "operation": "при отказе от корабля #6A30=#FF"
+            },
+            {
+              "module": "S10",
+              "address": 33968,
+              "hex": "#84B0",
+              "operation": "континент при размещении корабля"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 57,
+          "size": 1,
+          "name": "ShipX",
+          "meaning": "столбец корабля, #FF является признаком отсутствия",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 25773,
+              "hex": "#64AD",
+              "operation": "проверка #FF"
+            },
+            {
+              "module": "O02",
+              "address": 46290,
+              "hex": "#B4D2",
+              "operation": "word(#6A31)=#FFFF при отказе от корабля"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 58,
+          "size": 1,
+          "name": "ShipY",
+          "meaning": "строка корабля",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 33964,
+              "hex": "#84AC",
+              "operation": "координаты корабля BC=word(#6A31)"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 59,
+          "size": 1,
+          "name": "MoveFlags",
+          "meaning": "младшие2бита — режим0суша/1корабль/2полёт, бит2 служебный режим вида, биты3/4 ориентация героя/корабля, бит5 наличие осадных орудий. Биты6/7 здесь не установлены",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 37680,
+              "hex": "#9330",
+              "operation": "AND3 сверяется с водным битом группы"
+            },
+            {
+              "module": "S10",
+              "address": 35844,
+              "hex": "#8C04",
+              "operation": "запись горизонтальной ориентации"
+            },
+            {
+              "module": "O17",
+              "address": 45878,
+              "hex": "#B336",
+              "operation": "бит5 определяет сообщение об осадных орудиях"
+            },
+            {
+              "module": "O11",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "переход к режиму полёта"
+            },
+            {
+              "module": "O12",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "выход из режима полёта"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 60,
+          "size": 1,
+          "name": "MapFlags",
+          "meaning": "флаги доступных полных карт/континентов, биты выбираются по континенту",
+          "evidence": [
+            {
+              "module": "O13",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "по биту текущего континента доступна полная карта"
+            },
+            {
+              "module": "O14",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "из флагов строится список континентов"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 61,
+          "size": 1,
+          "name": "DayFraction",
+          "meaning": "дробная часть дня в единицах1/256, переполнение увеличивает Days",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 38664,
+              "hex": "#9708",
+              "operation": "прибавляется стоимость шага#69D7, перенос увеличиваетword#6A36"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 62,
+          "size": 2,
+          "name": "Days",
+          "meaning": "счётчик прошедших дней",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 38674,
+              "hex": "#9712",
+              "operation": "при переносе дробной части увеличивается на1"
+            },
+            {
+              "module": "S10",
+              "address": 38014,
+              "hex": "#947E",
+              "operation": "печать календаря"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 64,
+          "size": 2,
+          "name": "Deadline",
+          "meaning": "предел числа дней, поражение вызывается именно при Days == Deadline",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 38691,
+              "hex": "#9723",
+              "operation": "DE=word#6A38, SBC HL,DE, только равенство вызывает #8799"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 66,
+          "size": 1,
+          "name": "Contract",
+          "meaning": "номер замка текущего контракта с1, 0 означает отсутствие",
+          "evidence": [
+            {
+              "module": "O17",
+              "address": 45844,
+              "hex": "#B314",
+              "operation": "35*номер от#BFE0 даёт имя замка"
+            },
+            {
+              "module": "O02",
+              "address": 46327,
+              "hex": "#B4F7",
+              "operation": "ненулевой контракт запрещает новый"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 67,
+          "size": 1,
+          "name": "Cult",
+          "meaning": "принадлежность героя к секте,0не состоит",
+          "evidence": [
+            {
+              "module": "O03",
+              "address": 45621,
+              "hex": "#B235",
+              "operation": "сравнение с типом храма"
+            },
+            {
+              "module": "S10",
+              "address": 38350,
+              "hex": "#95CE",
+              "operation": "наличие секты добавляет15000 к расходам"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 68,
+          "size": 8,
+          "name": "Unknown6A3C",
+          "meaning": "содержимое восьми байтов не получило подтверждённых игровых имён",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "unknown"
+        },
+        {
+          "offset": 76,
+          "size": 1,
+          "name": "GoodX",
+          "meaning": "столбец соответствующего рассказчика",
+          "evidence": [
+            {
+              "module": "O18",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "встреча переносит отметку рассказчика и обновляет координаты"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 77,
+          "size": 1,
+          "name": "GoodY",
+          "meaning": "строка соответствующего рассказчика",
+          "evidence": [
+            {
+              "module": "O18",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "координаты рассказчика"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 78,
+          "size": 1,
+          "name": "GoodMap",
+          "meaning": "континент соответствующего рассказчика",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36049,
+              "hex": "#8CD1",
+              "operation": "континент сверяется с текущим перед поиском специальной клетки"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 79,
+          "size": 2,
+          "name": "Unknown6A47",
+          "meaning": "два байта между континентом и счётчиком встреч, назначение не установлено",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "unknown"
+        },
+        {
+          "offset": 81,
+          "size": 2,
+          "name": "GoodVisits",
+          "meaning": "число встреч с соответствующим рассказчиком",
+          "evidence": [
+            {
+              "module": "O18",
+              "address": 45600,
+              "hex": "#B220",
+              "operation": "счётчик встречи увеличивается и используется при выборе рассказа"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 83,
+          "size": 1,
+          "name": "BadX",
+          "meaning": "столбец соответствующего рассказчика",
+          "evidence": [
+            {
+              "module": "O19",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "встреча переносит отметку рассказчика и обновляет координаты"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 84,
+          "size": 1,
+          "name": "BadY",
+          "meaning": "строка соответствующего рассказчика",
+          "evidence": [
+            {
+              "module": "O19",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "координаты рассказчика"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 85,
+          "size": 1,
+          "name": "BadMap",
+          "meaning": "континент соответствующего рассказчика",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 36049,
+              "hex": "#8CD1",
+              "operation": "континент сверяется с текущим перед поиском специальной клетки"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 86,
+          "size": 2,
+          "name": "Unknown6A4E",
+          "meaning": "два байта между континентом и счётчиком встреч, назначение не установлено",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "unknown"
+        },
+        {
+          "offset": 88,
+          "size": 2,
+          "name": "BadVisits",
+          "meaning": "число встреч с соответствующим рассказчиком",
+          "evidence": [
+            {
+              "module": "O19",
+              "address": 45600,
+              "hex": "#B220",
+              "operation": "счётчик встречи увеличивается и используется при выборе рассказа"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 90,
+          "size": 3,
+          "name": "Unknown6A52",
+          "meaning": "назначение трёх байтов не установлено",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "unknown"
+        },
+        {
+          "offset": 93,
+          "size": 5,
+          "name": "PuzzleOpen",
+          "meaning": "пять строк по5бит открытых частей карты цели",
+          "evidence": [
+            {
+              "module": "O15",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "подсчёт25открытых частей по пяти байтам"
+            }
+          ],
+          "confidence": "proven",
+          "count": 5
+        },
+        {
+          "offset": 98,
+          "size": 25,
+          "name": "PuzzleTiles",
+          "meaning": "образец квадратного участка5x5 для поиска посоха, сравнение младших6бит",
+          "evidence": [
+            {
+              "module": "O16",
+              "address": 45568,
+              "hex": "#B200",
+              "operation": "сравнение массива с5x5стратегической карты"
+            }
+          ],
+          "confidence": "proven",
+          "count": 25
+        },
+        {
+          "offset": 123,
+          "size": 25,
+          "name": "IdleDays",
+          "meaning": "25 счётчиков дней по ID1..25, сброс при добавлении нового ID, используется порогом деградации",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 31396,
+              "hex": "#7AA4",
+              "operation": "IX=#6A72+ID"
+            },
+            {
+              "module": "S10",
+              "address": 40668,
+              "hex": "#9EDC",
+              "operation": "увеличение счётчиков"
+            },
+            {
+              "module": "S10",
+              "address": 40801,
+              "hex": "#9F61",
+              "operation": "чтение счётчика для сравнения с SOLDIERS+41"
+            }
+          ],
+          "confidence": "proven",
+          "count": 25
+        },
+        {
+          "offset": 148,
+          "size": 25,
+          "name": "UpgradeCount",
+          "meaning": "25 счётчиков развития по ID1..25, сравниваются с SOLDIERS+40, точная единица накопления в данном файле не устанавливается",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 40702,
+              "hex": "#9EFE",
+              "operation": "чтение IX+25 при IX=#6A72+ID"
+            },
+            {
+              "module": "S10",
+              "address": 31380,
+              "hex": "#7A94",
+              "operation": "оба массива сбрасываются для нового ID"
+            }
+          ],
+          "confidence": "partial",
+          "count": 25
+        },
+        {
+          "offset": 173,
+          "size": 1,
+          "name": "Unknown6AA5",
+          "meaning": "назначение байта не установлено",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "unknown"
+        },
+        {
+          "offset": 174,
+          "size": 2,
+          "name": "Unknown6AA6",
+          "meaning": "метрика доступа к новому контракту, сравнивается с30 и участвует в отношении с#6AA8, её точный игровой смысл не установлен",
+          "evidence": [
+            {
+              "module": "O02",
+              "address": 46367,
+              "hex": "#B51F",
+              "operation": "word#6AA6 сравнивается с30"
+            },
+            {
+              "module": "O02",
+              "address": 46390,
+              "hex": "#B536",
+              "operation": "участвует в проверке отношения кword#6AA8"
+            }
+          ],
+          "confidence": "partial",
+          "type": "WORD"
+        },
+        {
+          "offset": 176,
+          "size": 2,
+          "name": "Unknown6AA8",
+          "meaning": "вторая метрика доступа к контракту, ноль обходит проверку отношения, точный смысл не установлен",
+          "evidence": [
+            {
+              "module": "O02",
+              "address": 46377,
+              "hex": "#B529",
+              "operation": "нулевое значение разрешает дальнейшую ветвь"
+            },
+            {
+              "module": "O02",
+              "address": 46397,
+              "hex": "#B53D",
+              "operation": "делитель отношенияword#6AA6/word#6AA8"
+            }
+          ],
+          "confidence": "partial",
+          "type": "WORD"
+        },
+        {
+          "offset": 178,
+          "size": 1,
+          "name": "Attacker",
+          "meaning": "0нет угрозы замку,1..15 правитель, #FFбанды",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 42422,
+              "hex": "#A5B6",
+              "operation": "выбор новой/существующей угрозы"
+            },
+            {
+              "module": "S10",
+              "address": 42523,
+              "hex": "#A61B",
+              "operation": "записывается владелец ближайшего другого замка"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 179,
+          "size": 1,
+          "name": "AttackDays",
+          "meaning": "дни до разрешения угрозы, исходно20+R(15)",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 42591,
+              "hex": "#A65F",
+              "operation": "запись20+R(15)"
+            },
+            {
+              "module": "S10",
+              "address": 42754,
+              "hex": "#A702",
+              "operation": "вычитание входного0/1 по факту дня"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 180,
+          "size": 2,
+          "name": "AttackCastle",
+          "meaning": "адрес физической35байтной записи атакуемого замка в банке0",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 42481,
+              "hex": "#A5F1",
+              "operation": "сохранение IX выбранного замка"
+            },
+            {
+              "module": "O21",
+              "address": 45596,
+              "hex": "#B21C",
+              "operation": "сравнение с текущим замком с поправкой на указатель имени"
+            }
+          ],
+          "confidence": "proven",
+          "type": "WORD"
+        },
+        {
+          "offset": 182,
+          "size": 15,
+          "name": "AttackArmy",
+          "meaning": "пять записей FTroop атакующей армии, построение создаёт2..4отряда",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 42598,
+              "hex": "#A666",
+              "operation": "обнуление15байт"
+            },
+            {
+              "module": "S10",
+              "address": 42655,
+              "hex": "#A69F",
+              "operation": "формирование FTroop"
+            },
+            {
+              "module": "O21",
+              "address": 46637,
+              "hex": "#B62D",
+              "operation": "IX=#6AAE перед боем"
+            }
+          ],
+          "confidence": "proven",
+          "type": "FTroop",
+          "count": 5
+        },
+        {
+          "offset": 197,
+          "size": 23,
+          "name": "Unknown6ABD",
+          "meaning": "23 сохраняемых байта до массива коэффициентов контроля, назначение не установлено",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "unknown"
+        },
+        {
+          "offset": 220,
+          "size": 25,
+          "name": "UnitControl",
+          "meaning": "25 коэффициентов предела контроля армии по ID1..25, предел=floor(Leadership/коэффициент)",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 34552,
+              "hex": "#86F8",
+              "operation": "HL=#6AD3, затем прибавляется ID и читается байт-делитель"
+            },
+            {
+              "module": "S04",
+              "address": 26417,
+              "hex": "#6731",
+              "operation": "PERSON7 сворачивает25пар диапазонов в25коэффициентов"
+            }
+          ],
+          "confidence": "proven",
+          "count": 25
+        }
+      ],
+      "base": 27128,
+      "source_files": [
+        "PERSON1",
+        "PERSON2",
+        "PERSON3",
+        "PERSON4",
+        "PERSON5",
+        "PERSON6",
+        "PERSON8"
+      ],
+      "mapping_evidence": [
+        {
+          "module": "S04",
+          "address": 26400,
+          "hex": "#6720",
+          "operation": "PERSONn загружается в #793C"
+        },
+        {
+          "module": "S10",
+          "address": 25432,
+          "hex": "#6358",
+          "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+        }
+      ]
+    },
+    {
+      "name": "FGameState",
+      "size": 256,
+      "meaning": "полный256байтный заголовок состояния, включает героя и глобальные события",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Hero",
+          "meaning": "номер выбранного героя1..8",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26200,
+              "hex": "#6658",
+              "operation": "результат выбора героя записывается#7931"
+            },
+            {
+              "module": "S10",
+              "address": 25505,
+              "hex": "#63A1",
+              "operation": "#69ED выбирает IP? для портрета"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "Difficulty",
+          "meaning": "сложность1..3",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26472,
+              "hex": "#6768",
+              "operation": "#7932 определяет начальный предел дней5000/4000/3000"
+            },
+            {
+              "module": "S10",
+              "address": 42611,
+              "hex": "#A673",
+              "operation": "#69EE выбирает таблицу сложности NAEMARMY"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 2,
+          "size": 8,
+          "name": "SaveName",
+          "meaning": "8символьное имя файла сохранения",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26289,
+              "hex": "#66B1",
+              "operation": "ввод имени по#7933"
+            },
+            {
+              "module": "S10",
+              "address": 38582,
+              "hex": "#96B6",
+              "operation": "панель содержит указатель#69EF"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 10,
+          "size": 1,
+          "name": "Terminator",
+          "meaning": "терминатор после имени файла",
+          "evidence": [
+            {
+              "module": "S10",
+              "address": 25429,
+              "hex": "#6355",
+              "operation": "256байт из банк3:#C700 копируются в #69ED"
+            },
+            {
+              "module": "S04",
+              "address": 27694,
+              "hex": "#6C2E",
+              "operation": "первый блок сохранения начинается #7931, инверсия255байт и запись одного сектора"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 11,
+          "size": 245,
+          "name": "Person",
+          "meaning": "FPerson, шаблон персонажа после нормализации PERSON7",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "proven",
+          "type": "FPerson"
+        }
+      ],
+      "base": 27117,
+      "save_format": "первый сектор .M, первые255байт инвертируются #770B",
+      "mapping_evidence": [
+        {
+          "module": "S10",
+          "address": 25429,
+          "hex": "#6355",
+          "operation": "256байт из банк3:#C700 копируются в #69ED"
+        },
+        {
+          "module": "S04",
+          "address": 27694,
+          "hex": "#6C2E",
+          "operation": "первый блок сохранения начинается #7931, инверсия255байт и запись одного сектора"
+        }
+      ]
+    },
+    {
+      "name": "FByteRange",
+      "size": 2,
+      "meaning": "пара диапазона коэффициента PERSON7",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 1,
+          "name": "Min",
+          "meaning": "нижняя граница исходного диапазона",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26429,
+              "hex": "#673D",
+              "operation": "из max вычитается min"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 1,
+          "size": 1,
+          "name": "Max",
+          "meaning": "верхняя граница исходного диапазона",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26426,
+              "hex": "#673A",
+              "operation": "A=(IX+1)"
+            }
+          ],
+          "confidence": "proven"
+        }
+      ]
+    },
+    {
+      "name": "FPerson7",
+      "size": 270,
+      "meaning": "дисковый вариант PERSON7 до нормализации,270байт. Нельзя усекать как обычный PERSON без выполнения алгоритма",
+      "fields": [
+        {
+          "offset": 0,
+          "size": 220,
+          "name": "Prefix",
+          "meaning": "первые220байт совпадают по расположению с FPerson до UnitControl",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26400,
+              "hex": "#6720",
+              "operation": "PERSONn загружается в #793C"
+            },
+            {
+              "module": "S10",
+              "address": 25432,
+              "hex": "#6358",
+              "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+            }
+          ],
+          "confidence": "proven"
+        },
+        {
+          "offset": 220,
+          "size": 50,
+          "name": "ControlRanges",
+          "meaning": "25пар FByteRange, загрузчик заменяет каждую пару одним коэффициентом на месте и оставляет первые245байт как FPerson",
+          "evidence": [
+            {
+              "module": "S04",
+              "address": 26417,
+              "hex": "#6731",
+              "operation": "IX=HL=#7A18, B=25, IXшагает2, HLшагает1"
+            },
+            {
+              "module": "S04",
+              "address": 26435,
+              "hex": "#6743",
+              "operation": "min+RandomScaled(max-min), дополнительно возможны удвоение или floor(значение/2)+1"
+            }
+          ],
+          "confidence": "proven",
+          "type": "FByteRange",
+          "count": 25
+        }
+      ]
+    }
+  ],
+  "world_lists": [
+    {
+      "name": "Castles",
+      "anchor": 27369,
+      "first": 27373,
+      "bank": 0,
+      "type": "FCastle",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27373,
+          "data": 49152,
+          "count": 26
+        },
+        {
+          "continent": 2,
+          "descriptor": 27377,
+          "data": 50062,
+          "count": 20
+        },
+        {
+          "continent": 3,
+          "descriptor": 27381,
+          "data": 50762,
+          "count": 23
+        },
+        {
+          "continent": 4,
+          "descriptor": 27385,
+          "data": 51567,
+          "count": 11
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27373,
+          "hex": "#6AED",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "Towns",
+      "anchor": 27385,
+      "first": 27389,
+      "bank": 0,
+      "type": "FTown",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27389,
+          "data": 51952,
+          "count": 41
+        },
+        {
+          "continent": 2,
+          "descriptor": 27393,
+          "data": 53018,
+          "count": 50
+        },
+        {
+          "continent": 3,
+          "descriptor": 27397,
+          "data": 54318,
+          "count": 30
+        },
+        {
+          "continent": 4,
+          "descriptor": 27401,
+          "data": 55098,
+          "count": 39
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27389,
+          "hex": "#6AFD",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "Temples",
+      "anchor": 27401,
+      "first": 27405,
+      "bank": 0,
+      "type": "FTemple",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27405,
+          "data": 56112,
+          "count": 10
+        },
+        {
+          "continent": 2,
+          "descriptor": 27409,
+          "data": 56162,
+          "count": 15
+        },
+        {
+          "continent": 3,
+          "descriptor": 27413,
+          "data": 56237,
+          "count": 7
+        },
+        {
+          "continent": 4,
+          "descriptor": 27417,
+          "data": 56272,
+          "count": 18
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27405,
+          "hex": "#6B0D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "SitesA",
+      "anchor": 27417,
+      "first": 27421,
+      "bank": 0,
+      "type": "FMapTroop",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27421,
+          "data": 56362,
+          "count": 8
+        },
+        {
+          "continent": 2,
+          "descriptor": 27425,
+          "data": 56410,
+          "count": 9
+        },
+        {
+          "continent": 3,
+          "descriptor": 27429,
+          "data": 56464,
+          "count": 7
+        },
+        {
+          "continent": 4,
+          "descriptor": 27433,
+          "data": 56506,
+          "count": 6
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27421,
+          "hex": "#6B1D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "SitesB",
+      "anchor": 27433,
+      "first": 27437,
+      "bank": 0,
+      "type": "FMapTroop",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27437,
+          "data": 56542,
+          "count": 5
+        },
+        {
+          "continent": 2,
+          "descriptor": 27441,
+          "data": 56572,
+          "count": 10
+        },
+        {
+          "continent": 3,
+          "descriptor": 27445,
+          "data": 56632,
+          "count": 7
+        },
+        {
+          "continent": 4,
+          "descriptor": 27449,
+          "data": 56674,
+          "count": 8
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27437,
+          "hex": "#6B2D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "SitesC",
+      "anchor": 27449,
+      "first": 27453,
+      "bank": 0,
+      "type": "FMapTroop",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27453,
+          "data": 56722,
+          "count": 11
+        },
+        {
+          "continent": 2,
+          "descriptor": 27457,
+          "data": 56788,
+          "count": 6
+        },
+        {
+          "continent": 3,
+          "descriptor": 27461,
+          "data": 56824,
+          "count": 6
+        },
+        {
+          "continent": 4,
+          "descriptor": 27465,
+          "data": 56860,
+          "count": 7
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27453,
+          "hex": "#6B3D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "SitesD",
+      "anchor": 27465,
+      "first": 27469,
+      "bank": 0,
+      "type": "FMapTroop",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27469,
+          "data": 56902,
+          "count": 8
+        },
+        {
+          "continent": 2,
+          "descriptor": 27473,
+          "data": 56950,
+          "count": 8
+        },
+        {
+          "continent": 3,
+          "descriptor": 27477,
+          "data": 56998,
+          "count": 7
+        },
+        {
+          "continent": 4,
+          "descriptor": 27481,
+          "data": 57040,
+          "count": 7
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27469,
+          "hex": "#6B4D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "Items",
+      "anchor": 27481,
+      "first": 27485,
+      "bank": 0,
+      "type": "FMapItem",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27485,
+          "data": 57082,
+          "count": 150
+        },
+        {
+          "continent": 2,
+          "descriptor": 27489,
+          "data": 57532,
+          "count": 150
+        },
+        {
+          "continent": 3,
+          "descriptor": 27493,
+          "data": 57982,
+          "count": 150
+        },
+        {
+          "continent": 4,
+          "descriptor": 27497,
+          "data": 58432,
+          "count": 150
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27485,
+          "hex": "#6B5D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "MapTroops",
+      "anchor": 27497,
+      "first": 27501,
+      "bank": 0,
+      "type": "FMapTroop",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27501,
+          "data": 58882,
+          "count": 20
+        },
+        {
+          "continent": 2,
+          "descriptor": 27505,
+          "data": 59002,
+          "count": 30
+        },
+        {
+          "continent": 3,
+          "descriptor": 27509,
+          "data": 59182,
+          "count": 30
+        },
+        {
+          "continent": 4,
+          "descriptor": 27513,
+          "data": 59362,
+          "count": 20
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27501,
+          "hex": "#6B6D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    },
+    {
+      "name": "MapArmies",
+      "anchor": 27513,
+      "first": 27517,
+      "bank": 1,
+      "type": "FMapArmy",
+      "descriptors": [
+        {
+          "continent": 1,
+          "descriptor": 27517,
+          "data": 49152,
+          "count": 160
+        },
+        {
+          "continent": 2,
+          "descriptor": 27521,
+          "data": 52672,
+          "count": 180
+        },
+        {
+          "continent": 3,
+          "descriptor": 27525,
+          "data": 56632,
+          "count": 190
+        },
+        {
+          "continent": 4,
+          "descriptor": 27529,
+          "data": 60812,
+          "count": 214
+        }
+      ],
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX+=4*A"
+        },
+        {
+          "module": "S10",
+          "address": 27517,
+          "hex": "#6B7D",
+          "operation": "исходные слова адреса и числа записей"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    "Все offset и size выражены в байтах, слова little-endian, исходные адреса и размещение не меняются",
+    "confidence unknown/partial не означает резерв для нового кода, исходное поле сохраняется",
+    "Структуры описывают разные представления, FPerson вложен в FGameState и не требует отдельной памяти",
+    "IX/IY могут указывать внутрь записи, смещение базы обязательно учитывать"
+  ]
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "slot": 6,
+    "offset": 0,
+    "length": 6912,
+    "source": "Assets/Gfx/PRES/PRES_screen.scr",
+    "path": "Assets/Gfx/PRES/PRES_screen.scr",
+    "label": "PRES_screen",
+    "representation": "original",
+    "sha256": "f5c2e5796fec0d525176f2bbba79ed265729b2d047917cf5350d26845ddede1d"
+  },
+  {
+    "slot": 6,
+    "offset": 6912,
+    "length": 1792,
+    "source": "Assets/Gfx/PRES/PRES_font.bin",
+    "path": "Assets/Gfx/PRES/PRES_font.bin",
+    "label": "PRES_font",
+    "representation": "original",
+    "sha256": "aeeedd1f8391343c52b738237460f31e7fbb6d845daacf371cc1a320e5bea304"
+  },
+  {
+    "slot": 6,
+    "offset": 9021,
+    "length": 2,
+    "source": "Assets/Gfx/PRES/PRES_cell_position.bin",
+    "path": "Assets/Gfx/PRES/PRES_cell_position.bin",
+    "label": "PRES_cell_position",
+    "representation": "original",
+    "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7"
+  },
+  {
+    "slot": 6,
+    "offset": 9023,
+    "length": 104,
+    "source": "Assets/Gfx/PRES/PRES_credits.bin",
+    "path": "Assets/Gfx/PRES/PRES_credits.bin",
+    "label": "PRES_credits",
+    "representation": "original",
+    "sha256": "734f296752e5029ce83414295d758445650fdf4de8f9ca4b6a5a73a7268605d2"
+  },
+  {
+    "slot": 6,
+    "offset": 9814,
+    "length": 8,
+    "source": "Assets/Gfx/PRES/PRES_rng.bin",
+    "path": "Assets/Gfx/PRES/PRES_rng.bin",
+    "label": "PRES_rng",
+    "representation": "original",
+    "sha256": "53951adf50a2f96041265a706eeff5238db33792332723e9367d6942d1f17a7f"
+  },
+  {
+    "slot": 6,
+    "offset": 10000,
+    "length": 200,
+    "source": "Assets/Gfx/PRES/PRES_stars.bin",
+    "path": "Assets/Gfx/PRES/PRES_stars.bin",
+    "label": "PRES_stars",
+    "representation": "original",
+    "sha256": "50137e396d0dd6050b680265d45fb138564c7421d735c0336ab494f3b0253cfb"
+  },
+  {
+    "slot": 6,
+    "offset": 10200,
+    "length": 1095,
+    "source": "Assets/Gfx/PRES/PRES_story.bin",
+    "path": "Assets/Gfx/PRES/PRES_story.bin",
+    "label": "PRES_story",
+    "representation": "original",
+    "sha256": "82a4b1549cebec1755aa56002f64e34e2dccffd31e0504f2b3f94e95bee95382"
+  }
+]

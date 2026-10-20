@@ -1,0 +1,487 @@
+модуль	адрес	символ	original_name	описание	команд в графе	предметная аннотация	исходник	строка	чтение	запись	вызовы
+CTPB	#5D57	Loader.Basic.LoadSector	Loader.Basic.LoadSector	чтение следующего сектора скрытого загрузчика	5	True	Source/Loader/Basic.asm	25	#5CF4		
+CTPL	#8000	Loader.Sectors.DecodeFirst	Loader.Sectors.F8000	очистка экрана и первый слой защиты	40	True	Source/Loader/Sectors.asm	22	#5C08, #5C3D	#5C08, #5C3D	
+CTPL	#804F	Loader.Sectors.DecodeSecond	Loader.Sectors.F804F	второй слой защиты секторного загрузчика	30	True	Source/Loader/Sectors.asm	81	#5C08, #5C3D	#5C08, #5C3D	
+CTPL	#808A	Loader.Sectors.LoadHiddenMenu	Loader.Sectors.F808A	чтение двух скрытых блоков дискового меню	10	True	Source/Loader/Sectors.asm	130			#80A2
+CTPL	#80A2	Loader.Sectors.ReadDecodeBlock	Loader.Sectors.F80A2	чтение секторов и адресное XOR-преобразование	18	True	Source/Loader/Sectors.asm	154	#5CF4		#3D13
+CTPM	#6171	Loader.Menu.DecodeMenu	Loader.Menu.DecodeMenu	расшифровка меню с подменой канала вывода BASIC	14	True	Source/Loader/Menu/DecodeMenu.asm	20	#5C51	#5C51, #6198	
+CTPM	#619D	Loader.Menu.PrintHook	Loader.Menu.PrintHook	перехватчик RST #10 внутри защитного преобразования	9	True	Source/Loader/Menu/PrintHook.asm	15			
+CTPM	#61A8	Loader.Menu.MainMenu	Loader.Menu.MainMenu	вход в скрытое меню дисковой версии	39	True	Source/Loader/Menu/MainMenu.asm	17	#5D16, #6935, #6C74	#6419, #6672, #6935, #6C4C, #6C74	#620B, #627F, #63F2, #644E, #6631, #6666, #6AB4, #6AD5, #6B32, #6C86, #6D67, #6E07, #E000
+CTPM	#620B	Loader.Menu.ShowHelp	Loader.Menu.ShowHelp	загрузка и постраничный просмотр описания игры	68	True	Source/Loader/Menu/ShowHelp.asm	18	#5CE8, #5CEB		#644E, #65DE, #6B40, #6C86, #6D67
+CTPM	#627F	Loader.Menu.EditUnits	Loader.Menu.EditUnits	вход в редактор параметров игровых армий	160	True	Source/Loader/Menu/EditUnits.asm	19	#66B7, #6937	#66B6, #66B7, #66B9, #6937	#63C6, #63DC, #644E, #6481, #64B2, #65DE, #6644, #6AB4, #6AD5, #6B32, #6B40, #6BA1, #6C86, #6D67
+CTPM	#63C6	Loader.Menu.ToggleDegrade	Loader.Menu.F63C6	переключение настройки редактора и отметки изменения	149	True	Source/Loader/Menu/ToggleDegrade.asm	20	#66B7, #6937, #7C41	#66B6, #66B7, #66B9, #6937, #7C41	#63DC, #6481, #64B2, #6644, #6AB4, #6AD5, #6B32, #6B40, #6BA1, #6D67
+CTPM	#63DC	Loader.Menu.PrintDegrade	Loader.Menu.F63DC	вывод состояния переключаемой настройки редактора	8	True	Source/Loader/Menu/PrintDegrade.asm	16	#7C41		#6D67
+CTPM	#63F2	Loader.Menu.SaveAYState	Loader.Menu.F63F2	переход к IM 1 с сохранением состояния AY перед дисковой операцией	21	True	Source/Loader/Menu/SaveAYState.asm	15			
+CTPM	#6429	Loader.Menu.MenuInterrupt	Loader.Menu.F6429	обработчик IM 2 скрытого меню	23	True	Source/Loader/Menu/MenuInterrupt.asm	17		#6434	#6BED, #E006
+CTPM	#644E	Loader.Menu.RestoreAYState	Loader.Menu.F644E	установка IM 2 и восстановление регистров AY	33	True	Source/Loader/Menu/RestoreAYState.asm	16			
+CTPM	#6481	Loader.Menu.ResetUnitValues	Loader.Menu.F6481	восстановление числовых параметров из встроенной таблицы	169	True	Source/Loader/Menu/ResetUnitValues.asm	17	#66B7, #6937, #7C41	#66B6, #66B7, #66B9, #6937, #7C41	#63C6, #63DC, #64B2, #6644, #6AB4, #6AD5, #6B32, #6B40, #6BA1, #6C86, #6D67
+CTPM	#64B2	Loader.Menu.SaveUnitValues	Loader.Menu.F64B2	сохранение изменённых параметров на диск	173	True	Source/Loader/Menu/SaveUnitValues.asm	16	#64F4, #66B7, #6937	#64F4, #66B6, #66B7, #66B9, #6937	#63C6, #63DC, #63F2, #644E, #6481, #65DE, #6644, #6AB4, #6AD5, #6B32, #6B40, #6BA1, #6D67
+CTPM	#64FC	Loader.Menu.AddSectors	Loader.Menu.F64FC	продвижение пары трек-сектор на B секторов	8	True	Source/Loader/Menu/AddSectors.asm	13			
+CTPM	#6508	Loader.Menu.FindFile	Loader.Menu.F6508	поиск 9-байтового имени в каталоге TR-DOS	35	True	Source/Loader/Menu/FindFile.asm	16			#6548
+CTPM	#6548	Loader.Menu.DiskOperation	Loader.Menu.F6548	выполнение дисковой операции с выбором привода и обработкой ошибки	23	True	Source/Loader/Menu/DiskOperation.asm	17	#6672		#6573, #65F1, #6666
+CTPM	#6573	Loader.Menu.CallDosIO	Loader.Menu.F6573	шлюз TR-DOS с перехватом ошибок и служебных возвратов	24	True	Source/Loader/Menu/CallDosIO.asm	22	#5C3D	#5C3D, #5CC2, #5CC3, #659B, #65A2, #65A5	#3D13
+CTPM	#65B2	Loader.Menu.DosErrorReturn	Loader.Menu.F65B2	возврат по ошибке через ERR_SP	10	True	Source/Loader/Menu/DosErrorReturn.asm	17		#5C3D, #5CC2	
+CTPM	#65B6	Loader.Menu.DosReturnHook	Loader.Menu.F65B6	перехват возвратов TR-DOS через #5CC2	33	True	Source/Loader/Menu/DosReturnHook.asm	20	#5CCE	#5C3D, #5CC2	
+CTPM	#65DE	Loader.Menu.AccessFile	Loader.Menu.F65DE	операция с файлом по имени и смещению в секторах	23	True	Source/Loader/Menu/AccessFile.asm	22	#5CEA, #5CEB		#64FC, #6508, #6548
+CTPM	#65F1	Loader.Menu.ShowDiskError	Loader.Menu.F65F1	показ дисковой ошибки с восстановлением главного меню	45	True	Source/Loader/Menu/ShowDiskError.asm	19	#6419, #6935, #6C74	#6935, #6C4C, #6C74	#620B, #627F, #63F2, #644E, #6631, #6AB4, #6AD5, #6B32, #6BA1, #6BA9, #6C86, #6D67, #6E07
+CTPM	#6631	Loader.Menu.ClearScreen	Loader.Menu.F6631	очистка экранной памяти и заполнение атрибутов	9	True	Source/Loader/Menu/ClearScreen.asm	15			
+CTPM	#6644	Loader.Menu.ByteToDecimal	Loader.Menu.F6644	преобразование беззнакового байта в три десятичные цифры	8	True	Source/Loader/Menu/ByteToDecimal.asm	15			#6657
+CTPM	#6657	Loader.Menu.WriteDigit	Loader.Menu.F6657	получение одной десятичной цифры повторным вычитанием	12	True	Source/Loader/Menu/WriteDigit.asm	15			
+CTPM	#6666	Loader.Menu.SelectDrive	Loader.Menu.F6666	установка текущего привода TR-DOS	5	True	Source/Loader/Menu/SelectDrive.asm	15		#5D16	
+CTPM	#6938	Loader.Menu.HighlightAreas	Loader.Menu.F6938	подсветка области меню под курсором	36	True	Source/Loader/Menu/HighlightAreas.asm	17	#6C7A		#6E43
+CTPM	#698A	Loader.Menu.CursorBackdrop	Loader.Menu.F698A	сохранение или восстановление фона курсора	46	True	Source/Loader/Menu/CursorBackdrop.asm	17	#69B7, #6C75	#69B7	#6E9B
+CTPM	#69D8	Loader.Menu.DrawCursor	Loader.Menu.F69D8	вывод маскированного пиксельного курсора	79	True	Source/Loader/Menu/DrawCursor.asm	17	#69F7, #6C75	#69F7	#6E9B
+CTPM	#6A56	Loader.Menu.MoveCursor	Loader.Menu.F6A56	расчёт следующей позиции курсора по управлению	56	True	Source/Loader/Menu/MoveCursor.asm	18	#6C74, #6C79	#6C76, #6C79	#6B40
+CTPM	#6AB4	Loader.Menu.BeginMenu	Loader.Menu.F6AB4	подготовка выбора пункта меню курсором	13	True	Source/Loader/Menu/BeginMenu.asm	15	#6C74	#6C7A	#6938, #698A, #69D8, #6BA1
+CTPM	#6AD5	Loader.Menu.PollMenu	Loader.Menu.F6AD5	один шаг ожидания выбора в меню	52	True	Source/Loader/Menu/PollMenu.asm	17	#6C74, #6C75, #6C78, #6C7A, #6EC5	#6C7C	#6A56, #6BEB
+CTPM	#6B32	Loader.Menu.EndMenu	Loader.Menu.F6B32	завершение выбора пункта меню	5	True	Source/Loader/Menu/EndMenu.asm	15			#6938, #698A, #6BB4
+CTPM	#6B40	Loader.Menu.ReadControls	Loader.Menu.F6B40	объединённый опрос клавиатуры и Kempston	28	True	Source/Loader/Menu/ReadControls.asm	15			#6B72
+CTPM	#6B72	Loader.Menu.ReadKeyCodes	Loader.Menu.F6B72	опрос последовательности упакованных кодов кнопок	34	True	Source/Loader/Menu/ReadKeyCodes.asm	15			
+CTPM	#6BA1	Loader.Menu.WaitRelease	Loader.Menu.F6BA1	ожидание отпускания кнопки действия	4	True	Source/Loader/Menu/WaitRelease.asm	14			#6B40
+CTPM	#6BA9	Loader.Menu.WaitPress	Loader.Menu.F6BA9	ожидание нового нажатия кнопки действия	5	True	Source/Loader/Menu/WaitPress.asm	14			#6B40, #6BA1
+CTPM	#6BB4	Loader.Menu.MenuClick	Loader.Menu.F6BB4	короткий звуковой отклик меню	2	True	Source/Loader/Menu/MenuClick.asm	17			#6BC1
+CTPM	#6BB9	Loader.Menu.BeepShortDelay	Loader.Menu.F6BB9	вариант биперного эффекта с параметрами D=96, E=8	2	True	Source/Loader/Menu/BeepShortDelay.asm	16			#6BC1
+CTPM	#6BBE	Loader.Menu.BeepLongDelay	Loader.Menu.F6BBE	вариант биперного эффекта с параметрами D=64, E=127	1	True	Source/Loader/Menu/BeepLongDelay.asm	16			
+CTPM	#6BC1	Loader.Menu.Beep	Loader.Menu.F6BC1	биперный эффект с псевдослучайной задержкой	16	True	Source/Loader/Menu/Beep.asm	16	#6C4B, #6C4C		#6BDC
+CTPM	#6BDC	Loader.Menu.RandomByte	Loader.Menu.F6BDC	получение псевдослучайного байта для бипера	9	True	Source/Loader/Menu/RandomByte.asm	14	#6C49	#6C49	
+CTPM	#6BEB	Loader.Menu.WaitCursorFrame	Loader.Menu.F6BEB	ожидание одного прерывания с обновлением курсора	2	True	Source/Loader/Menu/WaitCursorFrame.asm	16			
+CTPM	#6BED	Loader.Menu.TickCursor	Loader.Menu.F6BED	обновление курсора и подсветки в прерывании	14	True	Source/Loader/Menu/TickCursor.asm	16	#6C76	#6C74	#6938, #698A, #69D8
+CTPM	#6C86	Loader.Menu.DrawWindow	Loader.Menu.F6C86	рисование окна по дескриптору	102	True	Source/Loader/Menu/DrawWindow.asm	19		#6EC5, #6EC7, #6EC8, #6EC9, #6ECA, #6ECB	#6D37, #6D4D, #6D67, #6E43, #6E55, #6E9B
+CTPM	#6D37	Loader.Menu.DrawHBorder	Loader.Menu.F6D37	рисование горизонтальной границы окна	16	True	Source/Loader/Menu/DrawHBorder.asm	15			#6E9B
+CTPM	#6D4D	Loader.Menu.FillWindowAttrs	Loader.Menu.F6D4D	заполнение прямоугольника атрибутов окна	16	True	Source/Loader/Menu/FillWindowAttrs.asm	14			#6E71
+CTPM	#6D67	Loader.Menu.PrintString	Loader.Menu.F6D67	печать строки с управляющими кодами	53	True	Source/Loader/Menu/PrintString.asm	16	#6EC8, #6EC9	#6EC7, #6ECA, #6ECB	#6D67, #6DBD, #6E90
+CTPM	#6DBD	Loader.Menu.PrintChar	Loader.Menu.F6DBD	печать одного знака шестипиксельного шрифта	35	True	Source/Loader/Menu/PrintChar.asm	15	#6EC7, #6EC9, #6ECA, #6ECB	#6ECA, #6ECB	#6E71, #6F11
+CTPM	#6E07	Loader.Menu.StartGame	Loader.Menu.F6E07	загрузка стартового блока игры и удаление скрытого меню	24	True	Source/Loader/Menu/StartGame.asm	23	#5CE8, #6672		#65DE, #6666
+CTPM	#6E43	Loader.Menu.SwapAttrStrip	Loader.Menu.F6E43	обмен цветов INK и PAPER в полосе атрибутов	13	True	Source/Loader/Menu/SwapAttrStrip.asm	15			#6E55, #6E71
+CTPM	#6E55	Loader.Menu.SwapAttrColors	Loader.Menu.F6E55	обмен INK и PAPER одного атрибута	19	True	Source/Loader/Menu/SwapAttrColors.asm	12			
+CTPM	#6E71	Loader.Menu.AttrAddress	Loader.Menu.F6E71	адрес атрибута по символьным координатам	22	True	Source/Loader/Menu/AttrAddress.asm	12			
+CTPM	#6E90	Loader.Menu.MulSix	Loader.Menu.F6E90	умножение беззнакового байта на 6 по модулю 256	8	True	Source/Loader/Menu/MulSix.asm	13			
+CTPM	#6E9B	Loader.Menu.PixelAddress	Loader.Menu.F6E9B	адрес пиксельного байта и положение бита на экране ZX Spectrum	28	True	Source/Loader/Menu/PixelAddress.asm	12			
+CTPM	#6ECC	Loader.Menu.DrawShiftedRow	Loader.Menu.F6ECC	вывод строки байтов со сдвигом по горизонтали	45	True	Source/Loader/Menu/DrawShiftedRow.asm	16	#6E04, #6E05, #6E06	#6E04, #6E05, #6E06	
+CTPM	#6F11	Loader.Menu.DrawByteRect	Loader.Menu.F6F11	вывод прямоугольника байтов в пиксельных координатах	14	True	Source/Loader/Menu/DrawByteRect.asm	15			#6E9B, #6ECC
+CTPA	#E000	Music.Menu.InitMenuMusic	Music.Menu.FE000	внешний вход запуска музыки скрытого меню	2	True	Source/Loader/Music.asm	19			#E009
+CTPA	#E006	Music.Menu.TickMenuMusic	Music.Menu.FE006	внешний вход одного тика AY-проигрывателя	1	True	Source/Loader/Music.asm	36			#E144
+CTPA	#E009	Music.Menu.InitPlayer	Music.Menu.FE009	инициализация проигрывателя по адресу модуля	44	True	Source/Loader/Music.asm	56		#E070, #E072, #E074, #E076, #E078, #E079, #E07A, #E07B, #E089, #E08B, #E093, #E095, #E09D, #E09F, #E0BB	#E0AF, #E0B5, #E0BA, #E41F
+CTPA	#E0AF	Music.Menu.FindTableEntry	Music.Menu.FE0AF	поиск записи с заданным первым байтом в таблице фиксированного шага	4	True	Source/Loader/Music.asm	155			
+CTPA	#E0B5	Music.Menu.ReadRelPointer	Music.Menu.FE0B5	чтение относительного указателя музыкального модуля	5	True	Source/Loader/Music.asm	172			
+CTPA	#E0BA	Music.Menu.RelocatePtr	Music.Menu.FE0BA	преобразование относительного смещения в абсолютный адрес	4	True	Source/Loader/Music.asm	189			
+CTPA	#E0C0	Music.Menu.ReadSampleStep	Music.Menu.FE0C0	разбор трёхбайтового шага музыкального семпла	33	True	Source/Loader/Music.asm	208			
+CTPA	#E0F8	Music.Menu.NextPattern	Music.Menu.FE0F8	переход на следующую позицию композиции	30	True	Source/Loader/Music.asm	264	#E070, #E074, #E0A0	#E07B, #E07D, #E07F, #E0A0, #E344	#E0AF, #E0B5
+CTPA	#E139	Music.Menu.StepDuration	Music.Menu.FE139	обновление задержки чтения команд канала	5	True	Source/Loader/Music.asm	312			
+CTPA	#E144	Music.Menu.TickPlayer	Music.Menu.FE144	один временной шаг композиции	29	True	Source/Loader/Music.asm	333	#E078, #E079, #E07B, #E07D, #E07F	#E079, #E07B, #E07D, #E07F	#E0F8, #E139, #E198, #E28E
+CTPA	#E198	Music.Menu.DecodeChannel	Music.Menu.FE198	интерпретатор команд музыкального канала	69	True	Source/Loader/Music.asm	386	#E072, #E076	#E0AC, #E0AE	#E0AF
+CTPA	#E235	Music.Menu.StepSample	Music.Menu.FE235	продвижение позиции семпла и обработка его повтора	32	True	Source/Loader/Music.asm	495			
+CTPA	#E269	Music.Menu.StoreNoise	Music.Menu.FE269	обновление общего параметра шума в начале семпла	6	True	Source/Loader/Music.asm	543		#E0A7	
+CTPA	#E271	Music.Menu.ApplyEnvelope	Music.Menu.FE271	применение аппаратной огибающей к амплитуде канала	14	True	Source/Loader/Music.asm	565		#E0AE	
+CTPA	#E28E	Music.Menu.BuildAYState	Music.Menu.FE28E	расчёт трёх каналов и общего буфера регистров AY	63	True	Source/Loader/Music.asm	600	#E087, #E091, #E09B, #E0A8	#E0A1, #E0A3, #E0A5, #E0A8, #E33C	#E0C0, #E235, #E269, #E271, #E332, #E41F
+CTPA	#E332	Music.Menu.CalcTonePeriod	Music.Menu.FE332	расчёт периода ноты с орнаментом и смещением семпла	29	True	Source/Loader/Music.asm	690			
+CTPA	#E41F	Music.Menu.WriteAY	Music.Menu.FE41F	передача буфера регистров в AY	17	True	Source/Loader/Music.asm	767			
+S04	#6149	Startup.DecodeBoot	Startup.DecodeBoot	расшифровать начальный модуль перед передачей управления	13	True	Source/Startup/DecodeBoot.asm	16			
+S04	#615E	Startup.Entry	Startup.Entry	передать управление начальной настройке игры	1	True	Source/Startup/Entry.asm	13			#631C
+S04	#6161	Startup.Interrupt	Startup.Interrupt	обработать кадровое прерывание начального модуля	63	True	Source/Startup/Interrupt.asm	16	#5FA0, #61D0, #61D1, #61D2, #61D5, #6DFE, #6E50	#61D0, #61D1, #6DFE, #6E50	#386E, #5FA1, #6E97, #7196
+S04	#631C	Startup.Init	Startup.Init	настройка памяти, начальное меню и подготовка нового либо сохранённого мира	996	True	Source/Startup/Init.asm	20	#5C78, #5C79, #5CEB, #5CF4, #6CAD, #6CD6, #6CD7, #7385, #7931, #7932, #7972, #7998, #7D35	#5CE5, #5D10, #62D1, #62E4, #630F, #631A, #692A, #6B80, #6CAD, #6CD7, #7190, #7192, #7194, #7219, #7384, #7385, #7931, #7932, #797C, #7988, #798A, #798F, #7991, #7996, #7998, #7D35	#3D13, #5FA1, #65AE, #6DBC, #6DD6, #6DE5, #6EA6, #6F15, #7092, #70DF, #70E4, #7100, #7132, #7220, #7311, #732A, #7347, #7386, #7461, #770B, #7715, #77A3, #7808, #78A4, #78B9, #78D0, #7D33, #7D34, #E200
+S04	#65A9	Startup.PromptStateDisk	Startup.PromptStateDisk	показать приглашение вставить диск с состояниями и дождаться клавиши	24	True	Source/Startup/PromptStateDisk.asm	16			#70E4, #7311
+S04	#65AE	Startup.PromptGameDisk	Startup.PromptGameDisk	показать приглашение вставить диск с игрой и дождаться клавиши	23	True	Source/Startup/PromptGameDisk.asm	15			#70E4, #7311
+S04	#6DBC	Startup.CallTrdos	Startup.CallTrdos	вызвать TR-DOS с временным переходом в IM 1	15	True	Source/Startup/CallTrdos.asm	14			#3D13
+S04	#6DD6	Startup.SelectStateBank	Startup.F6DD6	запросить диск с состояниями и выбрать банк 1	3	True	Source/Startup/SelectStateBank.asm	14			#65A9
+S04	#6DE5	Startup.SetStateExt	Startup.F6DE5	установить тип файла состояния M и запросить диск состояний	3	True	Source/Startup/SetStateExt.asm	12			#65A9
+S04	#6DEE	Startup.DrawGlyph	Startup.DrawGlyph	нарисовать символ шириной шесть пикселей с произвольным битовым сдвигом	61	True	Source/Startup/DrawGlyph.asm	19	#5F9F		#6E5B, #70DF
+S04	#6E5B	Startup.GlyphAddress	Startup.GlyphAddress	вычислить экранный адрес и битовый сдвиг шестипиксельного символа	31	True	Source/Startup/GlyphAddress.asm	14			
+S04	#6E88	Startup.DrawGlyphEI	Startup.DrawGlyphEI	нарисовать символ с разрешением прерываний после переключения банка	7	True	Source/Startup/DrawGlyphEI.asm	15		#6DFE, #6E50	#6DEE
+S04	#6E97	Startup.DrawGlyphNoEI	Startup.F6E97	нарисовать символ без дополнительного EI в обёртке переключения банка	7	True	Source/Startup/DrawGlyphNoEI.asm	15		#6DFE, #6E50	#6DEE
+S04	#6EA6	Startup.DrawRawSprite	Startup.DrawRawSprite	вывести непрозрачный прямоугольный спрайт с атрибутами	63	True	Source/Startup/DrawRawSprite.asm	16			#6EFA
+S04	#6EFA	Startup.ScreenCharAddr	Startup.F6EFA	вычислить адрес верхней пиксельной строки знакоместа	18	True	Source/Startup/ScreenCharAddr.asm	13			
+S04	#6F15	Startup.EditText	Startup.EditText	ввести строку ограниченной длины с мигающим курсором	54	True	Source/Startup/EditText.asm	18	#61D2, #61D5, #6FA5	#61D2, #61D5, #6FA3, #6FA5, #6FA7	#6F81, #6FA8
+S04	#6F81	Startup.DrawEditBuffer	Startup.DrawEditBuffer	перерисовать поле редактирования и стереть символ за его концом	20	True	Source/Startup/DrawEditBuffer.asm	15	#6FA3, #6FA5, #6FA7		#6E88
+S04	#6FA8	Startup.ReadEditChar	Startup.ReadEditChar	дождаться допустимого символа для строкового ввода	60	True	Source/Startup/ReadEditChar.asm	16	#5C08, #61D5	#5C08, #61D5	
+S04	#7092	Startup.LoadFile	Startup.LoadFile	загрузить именованный файл в заданную область через TR-DOS	10	True	Source/Startup/LoadFile.asm	13		#5D10	#6DBC
+S04	#70DF	Startup.PageAndEnable	Startup.PageAndEnable	выбрать логический банк и разрешить прерывания	3	True	Source/Startup/PageAndEnable.asm	14			#5FA1
+S04	#70E4	Startup.DrawText	Startup.DrawText	вывести строку с нулевым терминатором и переходами строк	21	True	Source/Startup/DrawText.asm	14			#6E88
+S04	#7100	Startup.ClearScreen	Startup.ClearScreen	обнулить все пиксели и атрибуты ZX-экрана	12	True	Source/Startup/ClearScreen.asm	13			
+S04	#7132	Startup.RandomRange	Startup.RandomRange	получить псевдослучайное число, масштабированное к входному пределу	46	True	Source/Startup/RandomRange.asm	16	#7190, #7192, #7194	#718E, #7190, #7192, #7194	
+S04	#7196	Startup.TickIntroText	Startup.F7196	периодический вывод и прокрутка текста во время создания новой игры	69	True	Source/Startup/TickIntroText.asm	19	#7219, #721C, #721E	#7219, #721C, #721E	#5FA1, #6E97
+S04	#7220	Startup.DrawFrame	Startup.F7220	рисование рамки из восьми одноклеточных образцов с атрибутами	66	True	Source/Startup/DrawFrame.asm	17	#72C5, #72C7, #72C8	#72C5, #72C7	#6EA6
+S04	#7311	Startup.RestoreScreen	Startup.F7311	восстановление полного экрана из сохранённого фона в банк 4	11	True	Source/Startup/RestoreScreen.asm	15	#5FA0		#5FA1
+S04	#732A	Startup.FindSaveRecord	Startup.F732A	поиск N-й неудалённой записи типа M в буфере каталога	14	True	Source/Startup/FindSaveRecord.asm	15			
+S04	#7347	Startup.ListSaveNames	Startup.F7347	вывод страницы до пятнадцати имён сохранений	35	True	Source/Startup/ListSaveNames.asm	17	#7385, #7CA6	#7CA6	#6E88, #732A
+S04	#7386	Startup.DrawHeroStory	Startup.F7386	вывод текстового описания выбранного героя из HERTXT	25	True	Source/Startup/DrawHeroStory.asm	15	#7D35		#6E88
+S04	#73B0	Startup.DrawMenuCursor	Startup.F73B0	рисование курсора в новой позиции с выравниванием маски	28	True	Source/Startup/DrawMenuCursor.asm	17	#76BE, #76C0		#73EF, #7416, #7674, #7699
+S04	#73EF	Startup.CursorByteAddr	Startup.F73EF	адрес экранного пиксельного байта по координатам курсора	26	True	Source/Startup/CursorByteAddr.asm	13			
+S04	#7416	Startup.DrawCursorByte	Startup.F7416	маскированная запись одного байта курсора	11	True	Source/Startup/DrawCursorByte.asm	16			
+S04	#7429	Startup.SaveCursorBack	Startup.F7429	сохранение фона новой позиции курсора	15	True	Source/Startup/SaveCursorBack.asm	15	#76C0		#73EF
+S04	#7444	Startup.RestoreCursor	Startup.F7444	восстановление фона старой позиции курсора	17	True	Source/Startup/RestoreCursor.asm	15	#76BE		#73EF
+S04	#7461	Startup.ChooseMenuRect	Startup.F7461	выбор прямоугольной области меню пиксельным курсором	108	True	Source/Startup/ChooseMenuRect.asm	21	#763F, #76BE, #76C0, #770A	#763F, #76BE, #76C0	#73B0, #7429, #7444, #7572, #75CA, #7612, #7644, #7650, #765C, #7668, #7674, #7699
+S04	#7572	Startup.HitTestMenu	Startup.F7572	поиск прямоугольника меню под пиксельным курсором	45	True	Source/Startup/HitTestMenu.asm	14	#76C0		
+S04	#75CA	Startup.ToggleMenuInk	Startup.F75CA	обратимая подсветка области меню обменом INK и PAPER	46	True	Source/Startup/ToggleMenuInk.asm	16			
+S04	#7612	Startup.ReadMenuInput	Startup.F7612	опрос клавиатуры ROM и Kempston с преобразованием направлений	18	True	Source/Startup/ReadMenuInput.asm	16			#028E
+S04	#7644	Startup.CursorUp	Startup.F7644	движение курсора на один пиксель вверх в пределах меню	6	True	Source/Startup/CursorUp.asm	13	#76BF	#76C1	
+S04	#7650	Startup.CursorDown	Startup.F7650	движение курсора на один пиксель вниз в пределах меню	6	True	Source/Startup/CursorDown.asm	12	#76BF	#76C1	
+S04	#765C	Startup.CursorLeft	Startup.F765C	движение курсора на один пиксель влево в пределах меню	6	True	Source/Startup/CursorLeft.asm	12	#76BE	#76C0	
+S04	#7668	Startup.CursorRight	Startup.F7668	движение курсора на один пиксель вправо в пределах меню	6	True	Source/Startup/CursorRight.asm	12	#76BE	#76C0	
+S04	#7674	Startup.RotateCursorR	Startup.F7674	циклическое вращение 24-битных строк рисунка и маски курсора вправо	23	True	Source/Startup/RotateCursorR.asm	17	#770A	#770A	
+S04	#7699	Startup.RotateCursorL	Startup.F7699	циклическое вращение 24-битных строк рисунка и маски курсора влево	23	True	Source/Startup/RotateCursorL.asm	15	#770A	#770A	
+S04	#770B	Startup.InvertState	Startup.F770B	побайтовая инверсия блока данных состояния	9	True	Source/Startup/InvertState.asm	16			
+S04	#7715	Startup.MarkStructures	Startup.F7715	отметка занимаемых строениями клеток стартовых карт	18	True	Source/Startup/MarkStructures.asm	17		#77A2	#5FA1, #7746
+S04	#7746	Startup.MarkGroupCells	Startup.F7746	обход записей одной группы и отметка их прямоугольного следа на карте	37	True	Source/Startup/MarkGroupCells.asm	19	#77A2	#7774, #7776, #7787	#7791
+S04	#7791	Startup.MarkUsedCell	Startup.F7791	установка бита занятости клетки с восстановлением банка	8	True	Source/Startup/MarkUsedCell.asm	15	#5FA0, #77A2		#5FA1, #78A4
+S04	#77A3	Startup.PickUnusedName	Startup.F77A3	случайный выбор ещё не использованного имени с копированием в рабочий банк	47	True	Source/Startup/PickUnusedName.asm	19	#6CCE	#6CCE, #77CB, #77D3, #77E9, #77EB	#70DF, #7132
+S04	#7808	Startup.CreateWanderers	Startup.F7808	создание четырёх континентальных групп случайных шестибайтовых отрядов	71	True	Source/Startup/CreateWanderers.asm	19	#6CD7	#6CD7, #787D, #7895	#70DF, #7132, #78A4, #78B9
+S04	#78A4	Startup.MapCellAddress	Startup.F78A4	адрес клетки карты выбранного континента при создании игры	13	True	Source/Startup/MapCellAddress.asm	15			#70DF
+S04	#78B9	Startup.RandomMapPos	Startup.F78B9	выбор случайных внутренних координат стратегической карты	15	True	Source/Startup/RandomMapPos.asm	15			#7132
+S04	#78D0	Startup.GenerateArmy	Startup.F78D0	генерация от двух до пяти трёхбайтовых отрядов по весовой таблице	42	True	Source/Startup/GenerateArmy.asm	20		#78EF, #78F2	#70DF, #7132
+S05	#7D34	MemoryDriver.Detect	MemoryDriver.Detect	определение схемы расширенной памяти и установка общего переключателя банков	60	True	Source/Files/05_RAMDRIVE.asm	21			#7DBE, #7F4F
+S05	#7DBE	MemoryDriver.CheckBanks	MemoryDriver.CheckBanks	проверка независимости нижней и верхней группы банков	24	True	Source/Files/05_RAMDRIVE.asm	100			#5FA1
+S05	#7E8F	MemoryDriver.PortDFFD	MemoryDriver.PortDFFD	шаблон старшего порта #DFFD	4	True	Source/Files/05_RAMDRIVE.asm	168			
+S05	#7E97	MemoryDriver.PortFDFD	MemoryDriver.PortFDFD	шаблон старшего порта #FDFD	4	True	Source/Files/05_RAMDRIVE.asm	184			
+S05	#7E9F	MemoryDriver.Port1FFD	MemoryDriver.Port1FFD	шаблон старшего порта #1FFD	6	True	Source/Files/05_RAMDRIVE.asm	200			
+S05	#7EA7	MemoryDriver.Port7FFD	MemoryDriver.Port7FFD	шаблон расширения верхних битов #7FFD	10	True	Source/Files/05_RAMDRIVE.asm	219			
+S05	#7EB6	MemoryDriver.BankCode	MemoryDriver.BankCode	копируемый общий переключатель логических банков 0..15	23	True	Source/Files/05_RAMDRIVE.asm	244		#5FA0	
+S05	#7EDA	MemoryDriver.FillAttr	MemoryDriver.FillAttr	заполнение атрибутов строки сообщения	16	True	Source/Files/05_RAMDRIVE.asm	284	#7ED8, #7F31		#7F32
+S05	#7EF1	MemoryDriver.DrawGlyph	MemoryDriver.DrawGlyph	печать утолщённого символа шрифта ПЗУ	48	True	Source/Files/05_RAMDRIVE.asm	315	#7ED8, #7ED9		
+S05	#7F32	MemoryDriver.AttrAddress	MemoryDriver.AttrAddress	расчёт атрибутного адреса по символьным координатам	20	True	Source/Files/05_RAMDRIVE.asm	378			
+S05	#7F4F	MemoryDriver.Print	MemoryDriver.Print	печать строки с управляющими кодами цвета и позиции	34	True	Source/Files/05_RAMDRIVE.asm	412		#7ED8, #7F31	#7EDA, #7EF1
+S06	#E200	Presentation.Present	Presentation.Present	показать вступление, титры со звёздами и проявить титульный экран	162	True	Source/Files/06_PRES.asm	33	#5CC8, #5CC9, #E33D, #E33E	#E33D, #E5F4, #E658, #E65A, #E65C	#E3A7, #E3BC, #E46E, #E48E, #E4BA, #E50C, #E556, #E5A2, #E5FA
+S06	#E3A7	Presentation.WaitStars	Presentation.WaitStars	выдержать заданное число секунд с движущимися звёздами	11	True	Source/Files/06_PRES.asm	230			#E46E, #E580
+S06	#E3BC	Presentation.StoryPages	Presentation.StoryPages	показать центрированные текстовые страницы предыстории	56	True	Source/Files/06_PRES.asm	264	#E413	#E413, #E432	#E3A7, #E438, #E50C, #E556
+S06	#E438	Presentation.PrintCell	Presentation.PrintCell	вывести один знак предыстории с цветом знакоместа	15	True	Source/Files/06_PRES.asm	350			#E44F, #E4EA
+S06	#E44F	Presentation.DrawGlyph	Presentation.DrawGlyph	нарисовать собственный 8x8 глиф в экранное знакоместо	24	True	Source/Files/06_PRES.asm	382			#E53B
+S06	#E46E	Presentation.PollInput	Presentation.PollInput	проверить клавиатуру и любой ненулевой ввод Kempston	21	True	Source/Files/06_PRES.asm	424			#028E
+S06	#E48E	Presentation.CreditLine	Presentation.CreditLine	показать строку титров увеличенным шрифтом на фоне звёзд	25	True	Source/Files/06_PRES.asm	465			#E580, #E65E
+S06	#E4BA	Presentation.EraseCredit	Presentation.EraseCredit	стереть строку титров и перейти к следующей записи	29	True	Source/Files/06_PRES.asm	508			#E50C
+S06	#E4EA	Presentation.FillAttrs	Presentation.FillAttrs	заполнить прямоугольник атрибутов заданным цветом	26	True	Source/Files/06_PRES.asm	553			
+S06	#E50C	Presentation.ClearRect	Presentation.ClearRect	очистить пиксели прямоугольника и задать его атрибуты	35	True	Source/Files/06_PRES.asm	599			#E4EA, #E53B
+S06	#E53B	Presentation.CellAddress	Presentation.CellAddress	вычислить экранный адрес верхней линии знакоместа	18	True	Source/Files/06_PRES.asm	652			
+S06	#E556	Presentation.InitStars	Presentation.InitStars	подготовить атрибуты фона и включить сто звёзд	25	True	Source/Files/06_PRES.asm	687		#E5F4	#E5A2
+S06	#E580	Presentation.MoveStars	Presentation.MoveStars	сдвинуть сто звёзд на один пиксель влево	23	True	Source/Files/06_PRES.asm	730		#E5F4	#E5A2
+S06	#E5A2	Presentation.PlotStar	Presentation.PlotStar	изменить один звёздный пиксель только в области свободного фона	61	True	Source/Files/06_PRES.asm	771			
+S06	#E5FA	Presentation.RandomRange	Presentation.RandomRange	получить псевдослучайное целое от нуля до указанного предела	46	True	Source/Files/06_PRES.asm	853	#E658, #E65A, #E65C	#E656, #E658, #E65A, #E65C	
+S06	#E65E	Presentation.LargeGlyph	Presentation.LargeGlyph	нарисовать глиф титров с масштабом два по горизонтали и три по вертикали	74	True	Source/Files/06_PRES.asm	929			#E6D3, #E6FA
+S06	#E6D3	Presentation.LargeRow	Presentation.LargeRow	записать шестнадцать пикселей и перейти к следующей экранной строке	25	True	Source/Files/06_PRES.asm	1019			
+S06	#E6FA	Presentation.ExpandBits	Presentation.ExpandBits	удвоить каждый бит восьмибитной строки в шестнадцатибитную	13	True	Source/Files/06_PRES.asm	1062			
+S08	#7D33	Graphics.Heroes.Draw	Graphics.Heroes.Draw	вход в самоперемещаемый распаковщик банка изображений	1	True	Source/Files/08_HERIMG.asm	18			#7D39
+S08	#7D39	Graphics.Heroes.Unpack	Graphics.Heroes.Unpack	выбор изображения, RLE-распаковка пикселей и атрибутов	152	True	Source/Files/08_HERIMG.asm	41			#007C
+S10	#615E	Engine.MainEntry	Engine.MainEntry	передать управление инициализации игры	1	True	Source/Engine/MainEntry.asm	12			#6335
+S10	#6161	Engine.Interrupt	Engine.Interrupt	обработать маскируемое прерывание IM 2	69	True	Source/Engine/Interrupt.asm	17	#5FA0, #655F, #6560, #6561, #6563, #6566, #703B, #708D	#655F, #6560, #6561, #703B, #708D	#386E, #5FA1, #6BB0, #70D4, #8104
+S10	#631C	Engine.LoadRamDrive	Engine.LoadRamDrive	загрузить RAMDRIVE в служебную область #5FA0	10	True	Source/Engine/LoadRamDrive.asm	13		#5D10	#6D15
+S10	#6335	Engine.Initialize	Engine.Initialize	инициализировать стек, IM 2, ресурсы и главный цикл	118	True	Source/Engine/Initialize.asm	15	#5C78, #5C79, #69ED, #6A2D, #6A44, #6A4B, #6A4D	#62E2, #62F1, #630D, #6315, #7C6B, #7C6D, #7C6F	#5FA1, #6B8D, #6CC8, #7B0B, #80AE, #80B4, #944A
+S10	#6470	Engine.MainLoop	Engine.MainLoop	обновлять экран и обрабатывать ввод основного режима	80	True	Source/Engine/MainLoop.asm	14	#6A2E, #6A31, #6A33	#6A31, #8D29	#6C3B, #6C63, #6D2F, #80C4, #82D5, #8A2C, #8CD1, #8D6E, #8DDA, #92CB, #944A, #9704, #B200
+S10	#6B8D	Engine.ClearBank8	Engine.ClearBank8	очистить рабочую область логического банка 8	20	True	Source/Engine/ClearBank8.asm	14	#5FA0		#6D2F
+S10	#6BB0	Engine.CheckCalls	Engine.CheckCalls	проверить неизменность трёх инструкций CALL #6B8D	30	True	Source/Engine/CheckCalls.asm	17			
+S10	#6BE9	Engine.Wait20Frames	Engine.Wait20Frames	выдержать двадцать прерываний	6	True	Source/Engine/Wait20Frames.asm	12			
+S10	#6BF1	Engine.ReadInput	Engine.ReadInput	прочитать клавиатуру или Kempston	36	True	Source/Engine/ReadInput.asm	15			#028E
+S10	#6C3B	Engine.LoadOverlay	Engine.LoadOverlay	скопировать выбранный оверлей в #B200	22	True	Source/Engine/LoadOverlay.asm	16	#5FA0, #655E	#655E	#6C89, #6C97, #6D2F
+S10	#6C63	Engine.SaveOverlay	Engine.SaveOverlay	сохранить изменённую рабочую копию оверлея в банк хранения	22	True	Source/Engine/SaveOverlay.asm	14	#5FA0, #655E		#6C89, #6C97, #6D2F
+S10	#6C89	Engine.OverlayBank	Engine.OverlayBank	выбрать банк хранения по номеру оверлея	7	True	Source/Engine/OverlayBank.asm	12	#655E		#6D2F
+S10	#6C97	Engine.FindOverlay	Engine.FindOverlay	найти исходный адрес и размер оверлея	16	True	Source/Engine/FindOverlay.asm	13			#6CB0
+S10	#6CB0	Engine.FindOverlayEnd	Engine.FindOverlayEnd	найти следующий семибайтный маркер overlay	11	True	Source/Engine/FindOverlayEnd.asm	13			
+S10	#6CC8	Engine.LoadFile	Engine.LoadFile	загрузить именованный файл через TR-DOS	10	True	Source/Engine/LoadFile.asm	13		#5D10	#6D15
+S10	#6D15	Engine.CallTrdos	Engine.CallTrdos	вызвать TR-DOS с временным режимом IM 1	15	True	Source/Engine/CallTrdos.asm	13			#3D13
+S10	#6D2F	Engine.PageEI	Engine.PageEI	переключить логический банк и разрешить прерывания	3	True	Source/Engine/PageEI.asm	13			#5FA1
+S10	#6D34	Engine.StopView	Engine.StopView	выключить обработку объектов в прерывании	6	True	Source/Engine/StopView.asm	12	#6566	#6566	
+S10	#6D3F	Engine.ResetViewFlags	Engine.ResetViewFlags	сбросить младшие шесть флагов 48 записей объектов	17	True	Source/Engine/ResetViewFlags.asm	13			
+S10	#6D57	Engine.StartView	Engine.StartView	включить обработку объектов в прерывании	6	True	Source/Engine/StartView.asm	12	#6566	#6566	
+S10	#6D62	Engine.StackBC	Engine.StackBC	передать целое BC на стек калькулятора ROM	14	True	Source/Engine/StackBC.asm	13			#2D2B
+S10	#6D76	Engine.PopBC	Engine.PopBC	извлечь результат калькулятора ROM в BC	12	True	Source/Engine/PopBC.asm	13			#2DA2
+S10	#6D88	Engine.StackA	Engine.StackA	передать байт A на стек калькулятора ROM	14	True	Source/Engine/StackA.asm	13			#2D28
+S10	#6D9C	Engine.PopA	Engine.PopA	извлечь байтовое целое из калькулятора ROM	12	True	Source/Engine/PopA.asm	14			#2DD5
+S10	#6DAE	Engine.StackFloat5	Engine.StackFloat5	передать пятибайтное число по HL на стек калькулятора	20	True	Source/Engine/StackFloat5.asm	14			#2ABB
+S10	#6DC4	Engine.StoreFloat5	Engine.StoreFloat5	сохранить вершину калькулятора в пятибайтное поле по HL	20	True	Source/Engine/StoreFloat5.asm	14			#2BF1
+S10	#6DDA	Engine.FloatSignZero	Engine.FloatSignZero	определить знак и нулевое значение результата калькулятора	28	True	Source/Engine/FloatSignZero.asm	15	#6E0A		#6DC4
+S10	#6E0E	Engine.EditText	Engine.EditText	редактировать строку с анимированным курсором	53	True	Source/Engine/EditText.asm	15	#6563, #6566, #6E9D	#6563, #6566, #6E9B, #6E9D, #6E9F	#6E79, #6EA0
+S10	#6E79	Engine.DrawEditText	Engine.DrawEditText	перерисовать поле редактирования	20	True	Source/Engine/DrawEditText.asm	13	#6E9B, #6E9D, #6E9F		#70C5
+S10	#6EA0	Engine.ReadTextChar	Engine.ReadTextChar	прочитать и преобразовать символ текстового ввода	66	True	Source/Engine/ReadTextChar.asm	13	#5C08, #6566	#5C08, #6566	#6F25
+S10	#6F25	Engine.RemapKey	Engine.RemapKey	заменить специальные коды клавиатуры по таблице	14	True	Source/Engine/RemapKey.asm	12			
+S10	#6FC0	Engine.EditNumber	Engine.EditNumber	ввести число из не более пяти цифр	55	True	Source/Engine/EditNumber.asm	16	#6566, #7025	#6566	#6D62, #6D88, #6E0E
+S10	#702B	Engine.DrawGlyph	Engine.DrawGlyph	нарисовать восьмистрочный символ шрифта	61	True	Source/Engine/DrawGlyph.asm	15	#5F9F		#6D2F, #7098
+S10	#7098	Engine.GlyphAddress	Engine.GlyphAddress	вычислить экранный адрес и сдвиг символа	31	True	Source/Engine/GlyphAddress.asm	14			
+S10	#70C5	Engine.DrawGlyphEI	Engine.DrawGlyphEI	вывести символ с обычной процедурой переключения банка	7	True	Source/Engine/DrawGlyphEI.asm	13		#703B, #708D	#702B
+S10	#70D4	Engine.DrawGlyphDI	Engine.DrawGlyphDI	вывести символ из прерывания с сохранением режима DI	7	True	Source/Engine/DrawGlyphDI.asm	14		#703B, #708D	#702B
+S10	#70E3	Engine.DrawNumber	Engine.DrawNumber	преобразовать число и вывести символы подряд	27	True	Source/Engine/DrawNumber.asm	14			#70C5, #7227
+S10	#7117	Engine.PrintMessage	Engine.PrintMessage	разобрать строку сообщения с управляющими кодами	136	True	Source/Engine/PrintMessage.asm	23	#72B1, #72B2	#71E8, #71ED, #72B1, #72B2	#6D62, #6DAE, #70C5, #7227
+S10	#7227	Engine.NumberToDecimal	Engine.NumberToDecimal	преобразовать число калькулятора в десятичные цифры	61	True	Source/Engine/NumberToDecimal.asm	16			#6D62, #6D76, #6D9C, #6DAE, #6DC4
+S10	#72ED	Engine.GrabUnitTile	Engine.GrabUnitTile	сохранить фон и создать анимированный объект 4 на 4 знакоместа	38	True	Source/Engine/GrabUnitTile.asm	14	#5FA0		#7341, #74F7, #80DB
+S10	#7341	Engine.ViewCellAddr	Engine.ViewCellAddr	найти экранный объект клетки и связанное численное поле	22	True	Source/Engine/ViewCellAddr.asm	14			
+S10	#7366	Engine.SetUnitPicture	Engine.SetUnitPicture	создать четырёхкадровый экранный объект	30	True	Source/Engine/SetUnitPicture.asm	14			#7341, #80DB
+S10	#73AD	Engine.FillAttributes	Engine.FillAttributes	заполнить прямоугольник атрибутов цветом A	26	True	Source/Engine/FillAttributes.asm	12			
+S10	#73CF	Engine.ClearRectangle	Engine.ClearRectangle	обнулить пиксели прямоугольника и заполнить его атрибуты	35	True	Source/Engine/ClearRectangle.asm	14			#73AD, #7693
+S10	#73FE	Engine.DrawFrame	Engine.DrawFrame	нарисовать рамку окна из восьми одноклеточных элементов	70	True	Source/Engine/DrawFrame.asm	13	#74AB, #74AD, #74AE	#74AB, #74AD	#7545
+S10	#74F7	Engine.GrabTile4x4	Engine.GrabTile4x4	сохранить прямоугольник экрана 4 на 4 знакоместа в буфер DE	55	True	Source/Engine/GrabTile4x4.asm	13			#7693
+S10	#7545	Engine.DrawRawSprite	Engine.DrawRawSprite	вывести непрозрачный спрайт с атрибутами	69	True	Source/Engine/DrawRawSprite.asm	14			#7693
+S10	#75A2	Engine.DrawMask	Engine.DrawMask	вывести пиксельный спрайт по маске	44	True	Source/Engine/DrawMask.asm	13			#7693
+S10	#75E1	Engine.DrawRawMirrored	Engine.DrawRawMirrored	вывести непрозрачный спрайт с горизонтальным отражением	78	True	Source/Engine/DrawRawMirrored.asm	14			#7693, #76AE
+S10	#7649	Engine.DrawMaskFlip	Engine.DrawMaskFlip	вывести маскированный спрайт с горизонтальным отражением	50	True	Source/Engine/DrawMaskFlip.asm	13			#7693, #76AE
+S10	#7693	Engine.CellAddress	Engine.CellAddress	вычислить ZX-адрес верхней пиксельной строки знакоместа	18	True	Source/Engine/CellAddress.asm	12			
+S10	#76AE	Engine.ReverseBits	Engine.ReverseBits	отразить восемь бит байта A	9	True	Source/Engine/ReverseBits.asm	12			
+S10	#76BC	Engine.DrawMenuCursor	Engine.DrawMenuCursor	нарисовать указатель меню с пиксельным смещением	28	True	Source/Engine/DrawMenuCursor.asm	13	#79CA, #79CC		#76FB, #7722, #7980, #79A5
+S10	#76FB	Engine.PixelAddress	Engine.PixelAddress	вычислить адрес байта экрана по пиксельным координатам	26	True	Source/Engine/PixelAddress.asm	13			
+S10	#7722	Engine.CursorMaskByte	Engine.CursorMaskByte	наложить один байт указателя в пределах пиксельной области	11	True	Source/Engine/CursorMaskByte.asm	14			
+S10	#7735	Engine.SaveCursor	Engine.SaveCursor	сохранить фон под указателем меню	15	True	Source/Engine/SaveCursor.asm	13	#79CC		#76FB
+S10	#7750	Engine.RestoreCursor	Engine.RestoreCursor	восстановить фон под старой позицией указателя	17	True	Source/Engine/RestoreCursor.asm	13	#79CA		#76FB
+S10	#776D	Engine.SelectMenuItem	Engine.SelectMenuItem	управлять указателем и выбрать прямоугольный пункт меню	108	True	Source/Engine/SelectMenuItem.asm	16	#794B, #79CA, #79CC, #7A16	#794B, #79CA, #79CC	#76BC, #7735, #7750, #787E, #78D6, #791E, #7950, #795C, #7968, #7974, #7980, #79A5
+S10	#787E	Engine.HitTestMenu	Engine.HitTestMenu	найти прямоугольник меню под пиксельным указателем	45	True	Source/Engine/HitTestMenu.asm	14	#79CC		
+S10	#78D6	Engine.InvertMenuItem	Engine.InvertMenuItem	поменять местами INK и PAPER прямоугольного пункта меню	46	True	Source/Engine/InvertMenuItem.asm	13			
+S10	#791E	Engine.WaitMenuInput	Engine.WaitMenuInput	дождаться клавиши либо Kempston для меню	18	True	Source/Engine/WaitMenuInput.asm	14			#028E
+S10	#7950	Engine.CursorUp	Engine.CursorUp	сдвинуть указатель меню на пиксель вверх	6	True	Source/Engine/CursorUp.asm	14	#79CB	#79CD	
+S10	#795C	Engine.CursorDown	Engine.CursorDown	сдвинуть указатель меню на пиксель вниз	6	True	Source/Engine/CursorDown.asm	14	#79CB	#79CD	
+S10	#7968	Engine.CursorLeft	Engine.CursorLeft	сдвинуть указатель меню на пиксель влево	6	True	Source/Engine/CursorLeft.asm	13	#79CA	#79CC	
+S10	#7974	Engine.CursorRight	Engine.CursorRight	сдвинуть указатель меню на пиксель вправо	6	True	Source/Engine/CursorRight.asm	14	#79CA	#79CC	
+S10	#7980	Engine.ShiftCursorR	Engine.ShiftCursorR	циклически сдвинуть вправо 24 битные строки указателя и маски	23	True	Source/Engine/ShiftCursorR.asm	14	#7A16	#7A16	
+S10	#79A5	Engine.ShiftCursorL	Engine.ShiftCursorL	циклически сдвинуть влево 24 битные строки указателя и маски	23	True	Source/Engine/ShiftCursorL.asm	14	#7A16	#7A16	
+S10	#7A17	Engine.SumArmyPower	Engine.SumArmyPower	сложить произведения количества отрядов на поле силы типа	28	True	Source/Engine/SumArmyPower.asm	17	#5FA0, #7A49	#7A49	#6D2F, #6D62, #6D88, #8036
+S10	#7A4E	Engine.SelectThreshold	Engine.SelectThreshold	определить одну из четырёх категорий по порогам	23	True	Source/Engine/SelectThreshold.asm	13			
+S10	#7A74	Engine.IndexFourBytes	Engine.IndexFourBytes	сместить IX к четырёхбайтной записи с индексом A	8	True	Source/Engine/IndexFourBytes.asm	12			
+S10	#7A80	Engine.NthName	Engine.NthName	найти строку имени в списке с нулевыми разделителями	16	True	Source/Engine/NthName.asm	13			
+S10	#7A94	Engine.ClearTwoFlags	Engine.ClearTwoFlags	обнулить два связанных байта таблиц	6	True	Source/Engine/ClearTwoFlags.asm	12			#7AA4
+S10	#7AA4	Engine.IndexFlagArray	Engine.IndexFlagArray	получить указатель IX=#6A72+A	7	True	Source/Engine/IndexFlagArray.asm	12			
+S10	#7AB0	Engine.ArmyRating	Engine.ArmyRating	рассчитать оценку армии из суммы взвешенных количеств	25	True	Source/Engine/ArmyRating.asm	16			#6D62, #6D88, #8036
+S10	#7AEF	Engine.UnitFlags	Engine.UnitFlags	прочитать пару флагов описателя отряда	16	True	Source/Engine/UnitFlags.asm	12	#5FA0		#6D2F, #8036
+S10	#7B0B	Engine.MarkMapObjects	Engine.MarkMapObjects	пометить занятые клетки карты для групп объектов	45	True	Source/Engine/MarkMapObjects.asm	14			#5FA1, #7B97
+S10	#7B97	Engine.MarkObjectGroup	Engine.MarkObjectGroup	установить бит 7 карты под активными записями группы	36	True	Source/Engine/MarkObjectGroup.asm	16	#6A2D	#7BC6, #7BC8, #7BD9	#7A74, #7BE3
+S10	#7BE3	Engine.MarkMapCell	Engine.MarkMapCell	установить бит 7 байта клетки стратегической карты	8	True	Source/Engine/MarkMapCell.asm	14	#5FA0		#5FA1, #80AE, #80B4
+S10	#7BF4	Engine.WaitOrInput	Engine.WaitOrInput	выдержать паузу с досрочным выходом по вводу	17	True	Source/Engine/WaitOrInput.asm	15			#6BE9, #6BF1
+S10	#7C0D	Engine.RandomScaled	Engine.RandomScaled	получить масштабированное псевдослучайное число	46	True	Source/Engine/RandomScaled.asm	16	#7C6B, #7C6D, #7C6F	#7C69, #7C6B, #7C6D, #7C6F	
+S10	#7C71	Engine.GetDirection	Engine.GetDirection	определить одно из восьми направлений от BC к DE	79	True	Source/Engine/GetDirection.asm	15	#7D1A, #7D1B	#7D1A, #7D1B	#6D62, #6D76
+S10	#7D6B	Engine.CountWord	Engine.CountWord	выбрать словесное описание величины HL	25	True	Source/Engine/CountWord.asm	13			
+S10	#7E55	Engine.PrintArmyBrief	Engine.PrintArmyBrief	вывести краткий список состава армии	32	True	Source/Engine/PrintArmyBrief.asm	15	#5FA0, #7E7F	#7E7E, #7E7F, #7E8E, #7EA0	#6D2F, #7117, #7D6B, #7EA7
+S10	#7EA7	Engine.FormatUnitName	Engine.FormatUnitName	сформировать имя типа отряда со специальным окончанием	38	True	Source/Engine/FormatUnitName.asm	15			#8036
+S10	#7F40	Engine.MoveToTarget	Engine.MoveToTarget	преобразовать направление к цели в команду движения героя	10	True	Source/Engine/MoveToTarget.asm	15	#69D5, #6A2E		#7C71, #8A31
+S10	#7F5F	Engine.NearestObject	Engine.NearestObject	найти ближайшую активную запись выбранной группы	66	True	Source/Engine/NearestObject.asm	17	#7FEC, #7FEE	#7FA8, #7FB1, #7FDB, #7FEC, #7FEE	#6D2F, #7A74, #801F
+S10	#7FF0	Engine.FloorDistance	Engine.FloorDistance	вычислить целую часть евклидова расстояния	28	True	Source/Engine/FloorDistance.asm	16			#6D62, #6D76, #801F
+S10	#801F	Engine.SquareByte	Engine.SquareByte	возвести беззнаковый байт A в квадрат	15	True	Source/Engine/SquareByte.asm	12			
+S10	#8036	Engine.UnitDesc	Engine.UnitDesc	получить описатель типа отряда	14	True	Source/Engine/UnitDesc.asm	13			#6D2F
+S10	#804E	Engine.RulerDesc	Engine.RulerDesc	получить описатель одного из пятнадцати вражеских правителей	14	True	Source/Engine/RulerDesc.asm	14			#6D2F
+S10	#8066	Engine.SpellDesc	Engine.SpellDesc	получить описатель одного из десяти заклинаний	14	True	Source/Engine/SpellDesc.asm	14			#6D2F
+S10	#807E	Engine.CompactArmy	Engine.CompactArmy	сжать список трёхбайтных записей армии	33	True	Source/Engine/CompactArmy.asm	14		#809D	
+S10	#80AE	Engine.SelectMapBank	Engine.SelectMapBank	выбрать логический банк 10 с текущей картой	3	True	Source/Engine/SelectMapBank.asm	12			#6D2F
+S10	#80B4	Engine.MapCellAddress	Engine.MapCellAddress	вычислить адрес клетки карты	11	True	Source/Engine/MapCellAddress.asm	12			
+S10	#80C4	Engine.ReadMapCell	Engine.ReadMapCell	прочитать байт клетки текущей карты	15	True	Source/Engine/ReadMapCell.asm	12	#5FA0		#6D2F, #80AE, #80B4
+S10	#80DB	Engine.UnitSpriteAddr	Engine.UnitSpriteAddr	выбрать банк и начало четырёхкадрового графического ресурса	28	True	Source/Engine/UnitSpriteAddr.asm	14			
+S10	#8104	Engine.RenderObjects	Engine.RenderObjects	обновить 48 экранных объектов сетки 8 на 6	138	True	Source/Engine/RenderObjects.asm	15	#8243	#8243	#5FA1, #8244, #825B, #827A
+S10	#8244	Engine.DrawBackLayer	Engine.DrawBackLayer	нарисовать фон объекта 4 на 4 знакоместа	12	True	Source/Engine/DrawBackLayer.asm	12			#7545, #75E1
+S10	#825B	Engine.DrawMaskLayer	Engine.DrawMaskLayer	нарисовать маскированный слой объекта 4 на 4 знакоместа	16	True	Source/Engine/DrawMaskLayer.asm	13			#75A2, #7649
+S10	#827A	Engine.DrawCountDI	Engine.DrawCountDI	вывести беззнаковое число из HL при обработке прерывания	41	True	Source/Engine/DrawCountDI.asm	14		#82B1, #82B2, #82B3	#70D4
+S10	#82D5	Engine.UpdateLocalView	Engine.UpdateLocalView	отметить открытые клетки вокруг героя и подготовить экранные объекты	216	True	Source/Engine/UpdateLocalView.asm	15	#6A2D, #6A2E, #6A30, #6A31, #6A33, #6A44, #6A46, #6A4B, #6A4D, #853F	#832E, #853F, #8541	#6D2F, #6D34, #6D57, #80AE, #80B4, #84ED, #8543, #85D0
+S10	#84ED	Engine.PlaceViewLayer	Engine.PlaceViewLayer	поставить графический слой только на текущем континенте и в области обзора	37	True	Source/Engine/PlaceViewLayer.asm	18	#853F	#852D, #8534, #8536	#8652
+S10	#8543	Engine.PlaceGroup	Engine.PlaceGroup	разместить прямоугольные объекты группы в локальном окне	69	True	Source/Engine/PlaceGroup.asm	18	#6A2D, #853F	#856E, #8578, #857B, #85C6	#7A74, #8652
+S10	#85D0	Engine.PlaceCells	Engine.PlaceCells	разместить одноклеточные записи группы в локальном окне	55	True	Source/Engine/PlaceCells.asm	16	#6A2D, #853F	#8628, #862D, #8648	#7A74, #8652
+S10	#8652	Engine.InLocalView	Engine.InLocalView	проверить попадание координат BC в прямоугольник локального окна	18	True	Source/Engine/InLocalView.asm	13	#853F, #8540, #8541, #8542		
+S10	#8672	Engine.RunOwnCastle	Engine.RunOwnCastle	загрузить и выполнить обработчик своего замка	4	True	Source/Engine/RunOwnCastle.asm	14			#6C3B, #B200
+S10	#867D	Engine.TerrainMask	Engine.TerrainMask	преобразовать младшие шесть бит байта местности по таблице порогов	10	True	Source/Engine/TerrainMask.asm	13			
+S10	#8697	Engine.TerrainBattle	Engine.TerrainBattle	преобразовать местность по второй таблице порогов	10	True	Source/Engine/TerrainBattle.asm	13			
+S10	#86B1	Engine.FreeCapacity	Engine.FreeCapacity	вычислить остаток допустимого количества выбранного типа отряда	36	True	Source/Engine/FreeCapacity.asm	14		#86C6	#86EA
+S10	#86EA	Engine.ControlLimit	Engine.ControlLimit	рассчитать численный предел типа отряда из поля героя и таблицы	21	True	Source/Engine/ControlLimit.asm	13	#6A02		#6D62, #6D76, #6D88
+S10	#8712	Engine.BottomFrame	Engine.BottomFrame	нарисовать окно в нижней части экрана	4	True	Source/Engine/BottomFrame.asm	12			#73FE
+S10	#871C	Engine.NeedMoreMoney	Engine.NeedMoreMoney	вывести сообщение о нехватке денег	6	True	Source/Engine/NeedMoreMoney.asm	12			#7117, #8712
+S10	#8799	Engine.RunOverlay20	Engine.RunOverlay20	выполнить оверлей 20 и продолжить подсчётом записей	3	True	Source/Engine/RunOverlay20.asm	14			#6C3B, #B200
+S10	#87A1	Engine.CountOwnCastles	Engine.CountOwnCastles	подсчитать записи банка 0 по флагу и полю #13	24	True	Source/Engine/CountOwnCastles.asm	14	#5FA0		#6D2F
+S10	#87D1	Engine.HasOwnerCastle	Engine.HasOwnerCastle	найти активную запись с заданным владельцем	25	True	Source/Engine/HasOwnerCastle.asm	15	#5FA0		#6D2F
+S10	#8801	Engine.ShowScene	Engine.ShowScene	показать одну из девяти упакованных сцен BL1/BL2 с восстановлением банка и основных регистров	32	True	Source/Engine/ShowScene.asm	21	#5F9F	#C002	#5FA1, #6D2F, #73CF, #C000
+S10	#883A	Engine.BuildArmy	Engine.BuildArmy	преобразовать состав армии в пять боевых записей по 18 байт	88	True	Source/Engine/BuildArmy.asm	18	#5FA0, #88F0, #88F9	#88F0, #88F9	#6D2F, #6D62, #6DC4, #8036
+S10	#88FA	Engine.StoreArmy	Engine.StoreArmy	преобразовать боевые записи обратно в исходный состав армии	56	True	Source/Engine/StoreArmy.asm	17	#5FA0, #88F9	#88F9	#6D2F, #6D76, #6DAE
+S10	#896D	Engine.ArmyMood	Engine.ArmyMood	оценить совместимость типа отряда с составом армии	59	True	Source/Engine/ArmyMood.asm	17	#5FA0, #8991	#8991, #89B4, #89BA, #89BD	#6D2F, #8036
+S10	#89E0	Engine.LoseLeadership	Engine.LoseLeadership	уменьшить 16 битное поле героя #6A02 с насыщением 0	15	True	Source/Engine/LoseLeadership.asm	14	#6A02	#6A02	#6D76, #6D88, #6DAE
+S10	#8A08	Engine.GainLeadership	Engine.GainLeadership	увеличить 16 битное поле героя #6A02 с насыщением #FFFF	15	True	Source/Engine/GainLeadership.asm	14	#6A02	#6A02	#6D76, #6D88, #6DAE
+S10	#8A2C	Engine.HandleMapInput	Engine.HandleMapInput	получить команду главного режима и обработать движение	2	True	Source/Engine/HandleMapInput.asm	16			#6BF1
+S10	#8A31	Engine.ApplyMoveCode	Engine.ApplyMoveCode	применить уже полученный код движения к позиции героя	174	True	Source/Engine/ApplyMoveCode.asm	14	#6A2D, #6A2E, #6A31, #6A33, #8BD6, #8BD9, #8BDB, #8BDC	#69D5, #69D7, #6A2E, #6A31, #6A33, #8BD6, #8BD9, #8BDA, #8BDB, #8BDC	#6D2F, #7A74, #80C4, #8697, #8A2C, #8BDD, #8BF2, #8BF9, #8C15, #8C31, #8C39
+S10	#8BDD	Engine.MapMoveUp	Engine.MapMoveUp	уменьшить строку героя в пределах рабочей части карты	13	True	Source/Engine/MapMoveUp.asm	14			#8A2C
+S10	#8BF2	Engine.MapMoveDown	Engine.MapMoveDown	увеличить строку героя в пределах рабочей части карты	13	True	Source/Engine/MapMoveDown.asm	14			#8A2C
+S10	#8BF9	Engine.MapMoveLeft	Engine.MapMoveLeft	уменьшить столбец героя и повернуть его влево	22	True	Source/Engine/MapMoveLeft.asm	15	#6A33	#6A33	#8A2C
+S10	#8C15	Engine.MapMoveRight	Engine.MapMoveRight	увеличить столбец героя и повернуть его вправо	22	True	Source/Engine/MapMoveRight.asm	14	#6A33	#6A33	#8A2C
+S10	#8C31	Engine.MoveMask	Engine.MoveMask	получить маску по текущему байту местности	4	True	Source/Engine/MoveMask.asm	12	#8BD9		#867D
+S10	#8C39	Engine.FilterArmy	Engine.FilterArmy	отфильтровать армию по маске местности и обновить записи	61	True	Source/Engine/FilterArmy.asm	18	#6A2E	#8C5F, #8C81, #8D29	#6D3F, #6D57, #7117, #7366, #73FE, #7AEF, #7BF4, #807E, #82D5, #8A2C, #8CD1
+S10	#8CD1	Engine.FindMapObject	Engine.FindMapObject	определить тип объекта в координатах #8D29	54	True	Source/Engine/FindMapObject.asm	15	#6A2D, #6A44, #6A46, #6A4B, #6A4D, #8D29		#6D2F, #80C4, #8D6E
+S10	#8D6E	Engine.FindRecord	Engine.FindRecord	найти активную запись группы, покрывающую координату HL	57	True	Source/Engine/FindRecord.asm	16	#6A2D	#8DB1, #8DB3, #8DB6, #8DBB, #8DCF	#7A74, #80C4
+S10	#8DDA	Engine.StepArmies	Engine.StepArmies	сближение, отступление и разделение внешних армий около героя	399	True	Source/Engine/StepArmies.asm	32	#6A2D, #6A2E, #6A33, #9172, #928F, #9291, #92BF	#8D29, #8F61, #8F64, #8FC6, #8FE2, #9034, #903D, #9161, #9164, #9172, #928F, #9291, #9292, #9294	#6D2F, #7A74, #7AEF, #7C71, #807E, #80AE, #80B4, #80C4, #8CD1, #9173, #9193, #91BF, #9245
+S10	#9173	Engine.InNearbyRect	Engine.InNearbyRect	проверить координаты DE относительно ближайшей области героя	18	True	Source/Engine/InNearbyRect.asm	12	#9292, #9293, #9294, #9295		
+S10	#9193	Engine.CompareArmies	Engine.CompareArmies	сопоставить взвешенные величины двух составов армии	17	True	Source/Engine/CompareArmies.asm	15			#6D88, #6DDA, #91B6
+S10	#91B6	Engine.SumArmyBank1	Engine.SumArmyBank1	вычислить сумму полей армии из банка 1	4	True	Source/Engine/SumArmyBank1.asm	13			#6D2F, #7A17
+S10	#91BF	Engine.SetFacing	Engine.SetFacing	изменить бит 6 флагов объекта по коду направления	9	True	Source/Engine/SetFacing.asm	13			
+S10	#91D1	Engine.StepsUp	Engine.StepsUp	сформировать три варианта шага вверх	6	True	Source/Engine/StepsUp.asm	14			
+S10	#91E1	Engine.StepsUpRight	Engine.StepsUpRight	сформировать три варианта шага вверх-вправо	5	True	Source/Engine/StepsUpRight.asm	13			
+S10	#91EE	Engine.StepsRight	Engine.StepsRight	сформировать три варианта шага вправо	6	True	Source/Engine/StepsRight.asm	13			
+S10	#91FE	Engine.StepsDownRight	Engine.StepsDownRight	сформировать три варианта шага вниз-вправо	5	True	Source/Engine/StepsDownRight.asm	13			
+S10	#920B	Engine.StepsDown	Engine.StepsDown	сформировать три варианта шага вниз	6	True	Source/Engine/StepsDown.asm	13			
+S10	#921B	Engine.StepsDownLeft	Engine.StepsDownLeft	сформировать три варианта шага вниз-влево	5	True	Source/Engine/StepsDownLeft.asm	13			
+S10	#9228	Engine.StepsLeft	Engine.StepsLeft	сформировать три варианта шага влево	6	True	Source/Engine/StepsLeft.asm	13			
+S10	#9238	Engine.StepsUpLeft	Engine.StepsUpLeft	сформировать три варианта шага вверх-влево	5	True	Source/Engine/StepsUpLeft.asm	13			
+S10	#9245	Engine.MakeSteps	Engine.MakeSteps	построить три возможных шага объекта и вызвать обработчик направления	22	True	Source/Engine/MakeSteps.asm	16			
+S10	#9270	Engine.ClassifySteps	Engine.ClassifySteps	заполнить тип местности у трёх возможных шагов	13	True	Source/Engine/ClassifySteps.asm	15			#80C4, #867D
+S10	#92CB	Engine.StepMapTroops	Engine.StepMapTroops	перемещение шестибайтовых объектов из континентальной таблицы #6B69	161	True	Source/Engine/StepMapTroops.asm	31	#6A2D, #6A2E, #6A33, #928F, #9291	#8D29, #928F, #9291, #9292, #9294	#6D2F, #7A74, #7AEF, #7C71, #80AE, #80B4, #80C4, #8CD1, #9173, #91BF, #9245
+S10	#944A	Engine.RefreshPanels	Engine.RefreshPanels	перерисовать верхнюю строку и боковую панель игры	11	True	Source/Engine/RefreshPanels.asm	14			#6B8D, #73FE, #9468, #94C8, #957C
+S10	#9468	Engine.PrintDate	Engine.PrintDate	разобрать счётчик дней и вывести календарную дату	41	True	Source/Engine/PrintDate.asm	14	#6A36		#73CF, #94C8, #94D2
+S10	#94C8	Engine.PrintZeroText	Engine.PrintZeroText	вывести строку с нулевым терминатором	7	True	Source/Engine/PrintZeroText.asm	13			#70C5
+S10	#94D2	Engine.PrintU16	Engine.PrintU16	вывести 16 битное число HL без ведущих нулей	36	True	Source/Engine/PrintU16.asm	15		#9503, #9504, #9505	#70C5
+S10	#957C	Engine.RefreshHero	Engine.RefreshHero	обновить боковую панель героя, расходы и рейтинг	110	True	Source/Engine/RefreshHero.asm	16	#6A02, #6A31, #6A3B		#6B8D, #6D2F, #6D62, #6D76, #6DAE, #6DC4, #6DDA, #70E3, #7117, #73AD, #73FE, #7545, #7AB0, #94C8, #94D2, #9E78, #ADBF
+S10	#9704	Engine.TickTime	Engine.TickTime	продвинуть время игры и выполнить периодические расчёты	576	True	Source/Engine/TickTime.asm	18	#69D7, #6A04, #6A06, #6A1E, #6A2E, #6A31, #6A33, #6A35, #6A36, #6A38, #6A3B, #9824, #9825, #9B54, #9B55, #9C70, #9C9D, #9CA3	#6A04, #6A2E, #6A31, #6A32, #6A33, #6A35, #6A36, #6A3B, #9824, #9825, #982D, #9925, #992D, #9B54, #9B55, #9D6D, #9E59	#6D2F, #6D34, #6D62, #6D88, #6DAE, #6DC4, #6DDA, #70E3, #7117, #73AD, #73CF, #73FE, #776D, #7A80, #7AB0, #7AEF, #7BF4, #7C0D, #8036, #807E, #80C4, #82D5, #8697, #8799, #89E0, #944A, #9468, #957C, #9E6D, #9E78, #9EA5, #9ECA, #A082, #A0FC, #A107, #A235, #A2E0, #A5AE, #AC78, #AD31, #ADBF, #D255
+S10	#9E6D	Engine.ClearLeftPanel	Engine.ClearLeftPanel	очистить основную область слева от боковой панели	5	True	Source/Engine/ClearLeftPanel.asm	12			#73CF
+S10	#9E78	Engine.StackTroopCost	Engine.StackTroopCost	передать стоимость отряда на стек калькулятора	22	True	Source/Engine/StackTroopCost.asm	15			#6D62, #8036
+S10	#9EA5	Engine.SumExpenses	Engine.SumExpenses	сложить отмеченные статьи расходов	19	True	Source/Engine/SumExpenses.asm	15			#6D88, #6DAE, #6DC4
+S10	#9ECA	Engine.DevelopTroops	Engine.DevelopTroops	повышать либо понижать типы отрядов по счётчикам	121	True	Source/Engine/DevelopTroops.asm	17	#6565		#6D34, #7117, #73AD, #73FE, #7AA4, #7BF4, #7EA7, #8036, #82D5, #957C, #A056
+S10	#A056	Engine.AddTroops	Engine.AddTroops	добавить количество BC к типу отряда A в армии героя	32	True	Source/Engine/AddTroops.asm	15			#7A94, #807E
+S10	#A082	Engine.RegenMana	Engine.RegenMana	пополнить численные запасы с ограничением максимума	47	True	Source/Engine/RegenMana.asm	16	#6A04, #6A06, #6A08	#6A04	#6D2F, #A0FC
+S10	#A0FC	Engine.AddClampedU16	Engine.AddClampedU16	прибавить BC к HL с верхней границей DE	9	True	Source/Engine/AddClampedU16.asm	13			
+S10	#A107	Engine.WeekEvent	Engine.WeekEvent	обработать наступление новой недели и связанное изменение типа существ	84	True	Source/Engine/WeekEvent.asm	18	#6A2D, #A203	#A203, #A204	#6D2F, #7117, #73FE, #7A74, #7BF4, #8036, #A205
+S10	#A205	Engine.GrowTroop	Engine.GrowTroop	увеличить количество заданного типа в трёхбайтной записи	25	True	Source/Engine/GrowTroop.asm	16	#A203, #A204		
+S10	#A235	Engine.RefreshTowns	Engine.RefreshTowns	обновить армии объектов группы #6AF9	84	True	Source/Engine/RefreshTowns.asm	17	#6A2D	#A29A, #A29F	#6D2F, #7A74, #7C0D
+S10	#A2E0	Engine.CheckRevolt	Engine.CheckRevolt	проверить превышение контроля и обработать доплату либо бой с отделившимся отрядом	158	True	Source/Engine/CheckRevolt.asm	30	#6A2E, #6A33		#6D34, #6D3F, #6D57, #6D62, #6DAE, #6DC4, #6DDA, #7117, #7366, #73AD, #73FE, #776D, #7BF4, #7C0D, #8036, #807E, #80C4, #82D5, #8697, #86EA, #89E0, #944A, #957C, #D255
+S10	#A5AE	Engine.TickCastle	Engine.TickCastle	обновить угрозу замку, автоматически разрешить штурм либо подготовить перенос героя	412	True	Source/Engine/TickCastle.asm	42	#6565, #69D9, #69EE, #6A02, #6A04, #6A0D, #6A2D, #6A2E, #6A33, #6AAA, #6AAB, #6AAC	#69D5, #69D8, #69D9, #69DB, #69DC, #6A02, #6A04, #6A2E, #6A33, #6AAA, #6AAB, #6AAC, #A6A6, #A6C1, #A6EC, #A700, #A720, #A8F5, #AA19, #AAA8, #AABC, #AB88, #ABC1	#6D2F, #6D34, #6D62, #6D76, #6D88, #6DAE, #6DC4, #6DDA, #7117, #73FE, #776D, #7A17, #7A4E, #7BF4, #7C0D, #7F5F, #7FF0, #804E, #82D5, #87A1, #957C
+S10	#AC78	Engine.RepopulateSites	Engine.RepopulateSites	восстановить население опустевших объектов по ближайшему населённому объекту	76	True	Source/Engine/RepopulateSites.asm	17	#6A2D, #AD1D, #AD30	#ACCA, #AD1D, #AD30	#6D2F, #7A4E, #7A74, #7F5F, #8036
+S10	#AD31	Engine.MoveSitesC	Engine.MoveSitesC	случайно переместить записи группы #6B39 в соседнюю свободную клетку	66	True	Source/Engine/MoveSitesC.asm	17	#6A2D, #ADBD	#ADBD	#6D2F, #7A74, #7C0D, #80AE, #80B4, #80C4
+S10	#ADBF	Engine.SumCastleIncome	Engine.SumCastleIncome	сложить доход принадлежащих герою замков на четырёх континентах	38	True	Source/Engine/SumCastleIncome.asm	15	#AE19	#AE19	#6D2F, #6D62, #6D88, #7A74, #AE1A
+S10	#AE1A	Engine.CastleIncome	Engine.CastleIncome	рассчитать доход замка с учётом ближайших городов	51	True	Source/Engine/CastleIncome.asm	15	#AE81	#AE46, #AE56, #AE81	#7A74
+S33	#C000	Graphics.Scenes1.Draw	Graphics.Scenes1.Draw	вход в самоперемещаемый распаковщик банка изображений	1	True	Source/Files/33_BL1.asm	19			#C006
+S33	#C006	Graphics.Scenes1.Unpack	Graphics.Scenes1.Unpack	выбор изображения, RLE-распаковка пикселей и атрибутов	152	True	Source/Files/33_BL1.asm	44			#007C
+S34	#C000	Graphics.Scenes2.Draw	Graphics.Scenes2.Draw	вход в самоперемещаемый распаковщик банка изображений	1	True	Source/Files/34_BL2.asm	19			#C006
+S34	#C006	Graphics.Scenes2.Unpack	Graphics.Scenes2.Unpack	выбор изображения, RLE-распаковка пикселей и атрибутов	152	True	Source/Files/34_BL2.asm	44			#007C
+S47	#D255	Battle.Battle	Battle.Battle	выполнить бой на поле 8 на 5 клеток	34	True	Source/Battle/Battle.asm	20	#6A04, #CF3C, #FCB9, #FCE7	#6A04, #E0BD, #FCB9, #FCE7	#D2B5, #F556, #F578, #F5F0, #FAAF
+S47	#D2B5	Battle.SelectActor	Battle.SelectActor	выбрать следующий отряд героя либо передать ход противнику	208	True	Source/Battle/SelectActor.asm	25	#6A04, #6A33, #CF3C, #DD56, #FCB9, #FCBB, #FCBD, #FCBE, #FCE7, #FCED	#6A04, #6A33, #DD56, #DD60, #DDE1, #DDFC, #DE21, #DE3D, #DF4D, #FCB9, #FCE7	#6D3F, #6DAE, #6DC4, #7117, #7BF4, #7C0D, #8036, #88FA, #D41A, #E0BF, #E94A, #F4D4, #F4F4, #F529, #F556, #F578, #F5F0, #F618, #F864
+S47	#D41A	Battle.InputLoop	Battle.InputLoop	ожидать и выполнять команды выбранного отряда героя	839	True	Source/Battle/InputLoop.asm	26	#6A04, #6A33, #6A3B, #CEC9, #CEE0, #CEF7, #CF0E, #CF25, #CF3C, #CF53, #D6DF, #D9BB, #DD56, #FCB9, #FCBB, #FCBD, #FCBE, #FCE7, #FCED	#6A33, #D687, #D6DE, #D6DF, #D867, #D91D, #D9BB, #DA72, #DD0A, #DD22, #DD56, #DD60, #DDE1, #DDFC, #DE21, #DE3D, #DF4D, #DF7F, #DF83, #DF89, #DFC7, #FCE7	#6BF1, #6D34, #6D3F, #6D57, #6D88, #6DAE, #6DC4, #6DDA, #7117, #73CF, #73FE, #776D, #7AEF, #7BF4, #7C0D, #8036, #8066, #88FA, #896D, #D2B5, #DB60, #DB75, #DB8E, #E013, #E018, #E01E, #E023, #E029, #E94A, #F0A0, #F44F, #F4A3, #F4D4, #F4F4, #F529, #F598, #F618, #F626, #F648, #F65E, #F67C, #F6B8, #F864, #F8BB, #F912
+S47	#DB60	Battle.ShowSpell	Battle.ShowSpell	показать название и параметры выбранного заклинания	8	True	Source/Battle/ShowSpell.asm	14		#DC06	#7117, #8066, #F618
+S47	#DB75	Battle.SpendHeroMagic	Battle.FDB75	списать магическую силу героя с насыщением нулём	11	True	Source/Battle/SpendHeroMagic.asm	13	#6A04, #FCE7	#6A04, #FCE7	
+S47	#DB8E	Battle.PickOccupied	Battle.FDB8E	выбрать клетку, занятую любым отрядом	9	True	Source/Battle/PickOccupied.asm	13			#E029, #F65E
+S47	#E013	Battle.CellUp	Battle.CellUp	уменьшить строку клетки без выхода за верхний край	5	True	Source/Battle/CellUp.asm	12			
+S47	#E018	Battle.CellDown	Battle.CellDown	увеличить строку клетки без выхода за нижний край	5	True	Source/Battle/CellDown.asm	12			
+S47	#E01E	Battle.CellLeft	Battle.CellLeft	уменьшить столбец клетки без выхода за левый край	5	True	Source/Battle/CellLeft.asm	12			
+S47	#E023	Battle.CellRight	Battle.CellRight	увеличить столбец клетки без выхода за правый край	5	True	Source/Battle/CellRight.asm	12			
+S47	#E029	Battle.SelectCell	Battle.SelectCell	перемещать курсор по боевому полю до подтверждения либо отмены	46	True	Source/Battle/SelectCell.asm	14			#E013, #E018, #E01E, #E023, #E091, #F67C
+S47	#E091	Battle.ReadCursorInput	Battle.ReadCursorInput	прочитать ввод при анимированном курсоре клетки	21	True	Source/Battle/ReadCursorInput.asm	16		#F98F, #FA1C, #FA1E	#6BF1, #F984, #F9E4, #FA08
+S47	#E0BF	Battle.AITurn	Battle.AITurn	выполнить ход противника и сбросить отметки раунда	15	True	Source/Battle/AITurn.asm	15			#73CF, #E0E8, #EBA9, #F556, #F578
+S47	#E0E8	Battle.AIArmyPass	Battle.AIArmyPass	выполнить проход ИИ по ещё не завершившим ход отрядам	20	True	Source/Battle/AIArmyPass.asm	15	#E111	#E111	#E117
+S47	#E117	Battle.AIUnitTurn	Battle.AIUnitTurn	выбрать движение или атаку одного отряда компьютера	435	True	Source/Battle/AIUnitTurn.asm	18	#6A3B, #E435, #E669, #E66B, #E8E1, #E922, #FCE7	#E225, #E420, #E42E, #E435, #E669, #E66B, #E8E1, #E922	#6DAE, #6DDA, #896D, #E569, #E5B0, #E7A5, #E7E0, #E8AD, #E8E3, #F0A0, #F5E8, #F648, #F65E, #F67C, #F6B8, #F8BB, #F912
+S47	#E569	Battle.MarkAdjacent	Battle.FE569	пометить отряды героя, стоящие не далее одной клетки от заданной	35	True	Source/Battle/MarkAdjacent.asm	14		#E5AA	
+S47	#E5B0	Battle.BuildNeighbours	Battle.FE5B0	построить восемь соседних клеток в порядке приближения к цели	31	True	Source/Battle/BuildNeighbours.asm	15			#7C71
+S47	#E5E1	Battle.ClassifyCells	Battle.FE5E1	проверить границы, препятствия и занятость восьми соседних клеток	40	True	Source/Battle/ClassifyCells.asm	15			#F65E, #F67C
+S47	#E67D	Battle.NeighboursN	Battle.NeighboursN	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursN.asm	16			
+S47	#E6A2	Battle.NeighboursNE	Battle.NeighboursNE	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursNE.asm	16			
+S47	#E6C7	Battle.NeighboursE	Battle.NeighboursE	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursE.asm	17			
+S47	#E6EC	Battle.NeighboursSE	Battle.NeighboursSE	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursSE.asm	16			
+S47	#E711	Battle.NeighboursS	Battle.NeighboursS	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursS.asm	16			
+S47	#E736	Battle.NeighboursSW	Battle.NeighboursSW	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursSW.asm	16			
+S47	#E75B	Battle.NeighboursW	Battle.NeighboursW	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursW.asm	16			
+S47	#E780	Battle.NeighboursNW	Battle.NeighboursNW	задать координаты восьми кандидатов для выбранного направления поиска	13	True	Source/Battle/NeighboursNW.asm	16			
+S47	#E7A5	Battle.MarkInRange	Battle.FE7A5	отметить цели героя в пределах подвижности отряда компьютера	26	True	Source/Battle/MarkInRange.asm	13			
+S47	#E7E0	Battle.ChooseTarget	Battle.FE7E0	выбрать отряд по таблице приоритетов и минимальной весовой оценке	85	True	Source/Battle/ChooseTarget.asm	17	#E821, #E8E1	#E7F0, #E821, #E83D, #E8E1	#6DAE, #6DDA, #E8AD
+S47	#E8AD	Battle.StackStrength	Battle.FE8AD	вычислить весовую оценку боевого отряда	21	True	Source/Battle/StackStrength.asm	14			#6D62, #6DAE, #6DC4, #8036
+S47	#E8E3	Battle.AnimatePath	Battle.AnimatePath	провести мигающую анимацию от исходной клетки к целевой	35	True	Source/Battle/AnimatePath.asm	16	#E63A	#F98F, #FA1C, #FA1E	#E5B0, #F984, #F9E4, #FA08
+S47	#E94A	Battle.RunUncontrolled	Battle.FE94A	выполнить случайный ход или атаку вышедшего из подчинения отряда	183	True	Source/Battle/RunUncontrolled.asm	16	#6A3B, #EB8B, #EB8C	#E9F7, #EB8B, #EB8C	#7C0D, #896D, #E5B0, #E8E3, #EB08, #EB2D, #F0A0, #F5E8, #F648, #F65E, #F6B8, #F8BB, #F912
+S47	#EB08	Battle.RandomTarget	Battle.RandomTarget	случайно выбрать запись из списка целей	19	True	Source/Battle/RandomTarget.asm	12	#EB8B		#7C0D
+S47	#EB2D	Battle.ListOtherUnits	Battle.FEB2D	составить список всех отрядов кроме действующего	45	True	Source/Battle/ListOtherUnits.asm	13	#EB8B	#EB8B	
+S47	#EBA9	Battle.AISpell	Battle.AISpell	выбрать и применить доступное заклинание противника	459	True	Source/Battle/AISpell.asm	18	#EFE4, #F05C, #F05E, #F083, #F084, #F085, #F086, #F087, #F088, #F089, #F08A, #FCB9, #FCE7	#EFE4, #F05C, #F05E, #F081, #F082, #F083, #F084, #F085, #F086, #F087, #F088, #F089, #F08A, #FCE7	#6D88, #6DAE, #6DC4, #6DDA, #7AEF, #7C0D, #8066, #E569, #E5B0, #E7A5, #E7E0, #E8AD, #E8E3, #F028, #F4F4, #F556, #F578, #F598, #F5E8, #F648, #F6B8, #F8BB, #F912
+S47	#F028	Battle.SpendAIMagic	Battle.SpendAIMagic	списать цену и показать применяемое противником заклинание	26	True	Source/Battle/SpendAIMagic.asm	14	#FCB9	#F07C, #FCB9	#7117, #8066, #F618
+S47	#F0A0	Battle.ResolveAttack	Battle.ResolveAttack	рассчитать атаку и возможный ответный удар	193	True	Source/Battle/ResolveAttack.asm	18	#F421, #F423, #F425	#F3F2, #F414, #F415, #F416, #F418, #F41B, #F41D, #F41F, #F421, #F423, #F425	#6D34, #6D57, #6D88, #6DAE, #6DC4, #7AEF, #7C0D, #8036, #F2A1, #F2CE, #F2D6, #F2F1, #F337, #F364, #F38B, #F3F5, #F626, #F698
+S47	#F2A1	Battle.RecordFighters	Battle.FF2A1	отметить участие отрядов героя в столкновении	15	True	Source/Battle/RecordFighters.asm	13	#F421, #F423		#F2BE
+S47	#F2BE	Battle.MarkUnitFight	Battle.FF2BE	отметить участие типа отряда в бою и сбросить накопленные дни бездействия	7	True	Source/Battle/MarkUnitFight.asm	14			#7AA4
+S47	#F2CE	Battle.WaitAttack	Battle.FF2CE	выдержать десять кадров между фазами атаки	6	True	Source/Battle/WaitAttack.asm	13			
+S47	#F2D6	Battle.EffectFactor	Battle.EffectFactor	получить коэффициент воздействия временного эффекта	15	True	Source/Battle/EffectFactor.asm	15			#F5C4
+S47	#F2F1	Battle.ApplyDrainTrait	Battle.ApplyDrainTrait	увеличить количество атакующего за счёт нанесённого воздействия	33	True	Source/Battle/ApplyDrainTrait.asm	15	#F335	#F335	#6DAE, #6DC4, #6DDA, #7AEF, #8036
+S47	#F337	Battle.ClampRegen	Battle.FF337	ограничить количество специального отряда исходной численностью	21	True	Source/Battle/ClampRegen.asm	14			#6D62, #6DAE, #6DC4, #6DDA, #8036
+S47	#F364	Battle.RangedMatchup	Battle.RangedMatchup	получить коэффициент дальнего воздействия для пары типов	21	True	Source/Battle/RangedMatchup.asm	14		#F416	
+S47	#F38B	Battle.CalcDamage	Battle.CalcDamage	рассчитать пятибайтный урон по подготовленным коэффициентам	39	True	Source/Battle/CalcDamage.asm	19	#F414, #F415, #F416, #F418, #F41B, #F41D, #F41E, #F41F		#6D62, #6D88, #6DAE, #7C0D
+S47	#F3F5	Battle.MeleeMatchup	Battle.MeleeMatchup	получить слово коэффициента совместимости двух типов в рукопашном бою	16	True	Source/Battle/MeleeMatchup.asm	12			
+S47	#F44F	Battle.HasMagicShield	Battle.FF44F	проверить магический щит стороны выбранной цели	28	True	Source/Battle/HasMagicShield.asm	14	#FCE7		#7117, #7BF4, #F618
+S47	#F4A3	Battle.ArmyValue	Battle.ArmyValue	сложить стоимостные оценки отрядов армии	24	True	Source/Battle/ArmyValue.asm	13			#6D62, #6D88, #6DAE, #8036
+S47	#F4D4	Battle.RefreshObjects	Battle.FF4D4	сбросить флаги сорока объектов поля и заново отобразить армии	16	True	Source/Battle/RefreshObjects.asm	15			#6D34, #F4F4
+S47	#F4F4	Battle.DrawBothArmies	Battle.DrawBothArmies	обновить экранные объекты обеих армий	13	True	Source/Battle/DrawBothArmies.asm	12		#F51D	#F515
+S47	#F515	Battle.DrawArmy	Battle.DrawArmy	обновить экранные объекты одной армии	10	True	Source/Battle/DrawArmy.asm	13			#F8BB
+S47	#F529	Battle.MarkUnruled	Battle.FF529	обновить признак превышения контроля у отрядов героя	23	True	Source/Battle/MarkUnruled.asm	14			#F62D
+S47	#F556	Battle.ResetTurnFlags	Battle.ResetTurnFlags	очистить временные флаги одной армии	19	True	Source/Battle/ResetTurnFlags.asm	13			
+S47	#F578	Battle.RestoreMovement	Battle.RestoreMovement	восстановить очки движения армии на новый раунд	18	True	Source/Battle/RestoreMovement.asm	13			
+S47	#F598	Battle.ApplySpell	Battle.FF598	изменить количество цели по силе заклинания	21	True	Source/Battle/ApplySpell.asm	16		#F5BD	#6D62, #6D88, #6DAE, #6DC4, #F5C4
+S47	#F5C4	Battle.SpellCoeffs	Battle.FF5C4	получить два байта коэффициентов заклинания для типа существа	19	True	Source/Battle/SpellCoeffs.asm	13			
+S47	#F5E8	Battle.WaitMoveFrames	Battle.WaitMoveFrames	выдержать сорок кадров анимации перемещения	6	True	Source/Battle/WaitMoveFrames.asm	13			
+S47	#F5F0	Battle.TickEffects	Battle.FF5F0	уменьшить длительность временных эффектов одной армии	20	True	Source/Battle/TickEffects.asm	13			
+S47	#F618	Battle.DrawHeader	Battle.FF618	оформить рамку заголовка боя цветом A	8	True	Source/Battle/DrawHeader.asm	12			#73FE
+S47	#F626	Battle.GetCellObject	Battle.FF626	получить экранный объект боевой клетки	5	True	Source/Battle/GetCellObject.asm	13			#7341
+S47	#F62D	Battle.TestControl	Battle.FF62D	сравнить численность отряда с пределом управления	16	True	Source/Battle/TestControl.asm	14			#6D62, #6DAE, #6DDA, #86EA
+S47	#F648	Battle.DirtyCell	Battle.FF648	пометить экранный объект клетки как пустой для перерисовки	12	True	Source/Battle/DirtyCell.asm	13			#F626
+S47	#F65E	Battle.FindUnitAtCell	Battle.FindUnitAtCell	найти отряд с заданными координатами в одной армии	17	True	Source/Battle/FindUnitAtCell.asm	13			
+S47	#F67C	Battle.TestObstacle	Battle.FF67C	проверить препятствие выбранной клетки	17	True	Source/Battle/TestObstacle.asm	13		#F694	
+S47	#F698	Battle.DrawAttack	Battle.FF698	вывести маскированное изображение атаки в клетке	14	True	Source/Battle/DrawAttack.asm	13			#75A2
+S47	#F6B8	Battle.ResolveLosses	Battle.FF6B8	удалить погибших, обработать бунт и проверить исход боя	152	True	Source/Battle/ResolveLosses.asm	19	#6A33, #6AA6, #6AA8, #E0BD, #F849, #F84B, #FCB9, #FCBB, #FCBD, #FCBE, #FCED, #FD47	#6A33, #6AA6, #6AA8, #F849, #F84B	#6D3F, #6D88, #6DC4, #88FA, #F529, #F626, #F648, #F84D, #F864, #F893, #F8BB
+S47	#F84D	Battle.TestDeadStack	Battle.TestDeadStack	проверить неположительное пятибайтное количество отряда	12	True	Source/Battle/TestDeadStack.asm	13			
+S47	#F864	Battle.CompactArmy	Battle.FF864	уплотнить пять записей армии и очистить освободившийся хвост	31	True	Source/Battle/CompactArmy.asm	13			
+S47	#F893	Battle.DefeatStory	Battle.FF893	обработать сюжетные последствия поражения	17	True	Source/Battle/DefeatStory.asm	14	#FCB8		#8036, #8799
+S47	#F8BB	Battle.MakeStaticUnit	Battle.FF8BB	сформировать неподвижный объект отряда и его отображаемое количество	43	True	Source/Battle/MakeStaticUnit.asm	17		#F8E8	#6D34, #6D57, #6D76, #6DAE, #80DB, #F626
+S47	#F912	Battle.MakeActingUnit	Battle.FF912	сформировать четырёхкадровый объект действующего отряда	53	True	Source/Battle/MakeActingUnit.asm	15		#F936	#6D34, #6D57, #6D76, #6DAE, #80DB, #F626
+S47	#F984	Battle.TickCursorAnim	Battle.TickCursorAnim	обновить кадр анимированного курсора выбранной клетки	57	True	Source/Battle/TickCursorAnim.asm	15	#FA1C, #FA1E	#FA1C, #FA1E	#7693, #F9E4
+S47	#F9E4	Battle.RestoreCursor	Battle.FF9E4	восстановить фон под курсором клетки	21	True	Source/Battle/RestoreCursor.asm	13			#7545
+S47	#FA08	Battle.SaveCursorBack	Battle.FFA08	сохранить фон под курсором клетки	12	True	Source/Battle/SaveCursorBack.asm	13			#74F7
+S47	#FAAF	Battle.InitBattle	Battle.InitBattle	инициализировать армии, препятствия, фон и начальные объекты боя	77	True	Source/Battle/InitBattle.asm	19	#FCB8, #FCB9, #FCED	#FCB8, #FCB9, #FCBB, #FCBD, #FCBE	#6D34, #6D88, #6DC4, #7117, #73CF, #73FE, #7BF4, #883A, #F4A3, #F893
+S47	#FB87	Battle.BuildField	Battle.FFB87	сформировать маску препятствий и фоновые объекты поля боя	106	True	Source/Battle/BuildField.asm	20	#FCB8	#FC2F, #FCE7	#73CF, #7C0D, #FC7D, #FCB0
+S47	#FC7D	Battle.MakeFieldTiles	Battle.FFC7D	создать сорок объектов поля по готовой карте тайлов	21	True	Source/Battle/MakeFieldTiles.asm	15			
+S47	#FCB0	Battle.FinishField	Battle.FFCB0	добавить обе армии к объектам поля и разрешить их обработку	4	True	Source/Battle/FinishField.asm	14			#6D57, #F4F4
+KBO	#6149	Protection.Outer.Decode	Protection.Outer.Decode	наружные шесть проходов защиты	18	True	Source/Loader/KB_Outer.asm	20			
+KBR	#6165	Protection.Move.Relocate	Protection.Move.Relocate	перенос следующего слоя защиты	4	True	Source/Loader/KB_Relocate.asm	20			
+KBR	#6170	Protection.Move.EraseOuter	Protection.Move.EraseOuter	самостирание наружного слоя	6	True	Source/Loader/KB_Relocate.asm	40			
+KBR	#617D	Protection.Move.SetStack	Protection.Move.SetStack	подготовка стекового цикла расшифровки	13	True	Source/Loader/KB_Relocate.asm	59			
+KBR	#6192	Protection.Move.DecodeShift	Protection.Move.DecodeShift	побайтовая расшифровка со сдвигом на один адрес	10	True	Source/Loader/KB_Relocate.asm	89			
+KBR	#619E	Protection.Move.DeadBranch	Protection.Move.DeadBranch	недостигаемая в нормальном ходе ветвь защиты	12	True	Source/Loader/KB_Relocate.asm	115			
+KBD	#BFDD	Protection.Xor.DecodeAdjacent	Protection.Xor.DecodeAdjacent	соседнее XOR-преобразование через стек	21	True	Source/Loader/KB_Difference.asm	24		#BFFE	
+KBL	#C000	Protection.Load.MakeCheckName	Protection.Load.MakeCheckName	построение имени проверяемого BASIC-файла	38	True	Source/Loader/KB_LoadBL3.asm	22			#C0DA
+KBL	#C03E	Protection.Load.FindBasic	Protection.Load.FindBasic	проверка положения BASIC-файла в каталоге	10	True	Source/Loader/KB_LoadBL3.asm	76		#C07B	#3D13
+KBL	#C050	Protection.Load.MakeLoaderName	Protection.Load.MakeLoaderName	построение имени BL3 и настройка ветви защиты	28	True	Source/Loader/KB_LoadBL3.asm	102		#C0AB	#C0DA
+KBL	#C07F	Protection.Load.Load	Protection.Load.Load	загрузка BL3 через TR-DOS	8	True	Source/Loader/KB_LoadBL3.asm	147		#5D10	#3D13
+KBL	#C08D	Protection.Load.Decode	Protection.Load.Decode	пятнадцать проходов расшифровки BL3	21	True	Source/Loader/KB_LoadBL3.asm	171	#5CE6		
+KBL	#C0AB	Protection.Load.CheckPosition	Protection.Load.CheckPosition	ветвь проверки каталога и повреждения при ошибке	1	True	Source/Loader/KB_LoadBL3.asm	215			
+KBL	#C0DA	Protection.Load.WriteName	Protection.Load.WriteName	запись имени файла из самомодифицируемых операндов	28	True	Source/Loader/KB_LoadBL3.asm	237			
+O01	#B200	Overlay.Capture.Entry	Overlay.Capture.Entry	захват замка, бой и выдача награды	355	True	Source/Overlays/Capture.asm	23	#6A02, #6A2A, #6A2D, #6A33, #6A3A, #867B, #B3B1, #B5C8	#6A02, #6A33, #6A3A, #867B, #B348, #B3AE, #B3B1, #B503, #B5C8, #B6BF, #B726, #B8B4, #B8D6	#6D2F, #6D34, #6D3F, #6D57, #6D88, #6DAE, #6DC4, #7117, #7366, #73AD, #73CF, #73FE, #776D, #7A94, #7BF4, #7C0D, #7F40, #7F5F, #804E, #807E, #82D5, #86B1, #89E0, #8A08, #957C, #B593, #D255
+O01	#B593	Overlay.Capture.NewMapPiece	Overlay.Capture.NewMapPiece	выбор новой свободной отметки среди 25 битов	28	True	Source/Overlays/Capture.asm	445		#B5C2, #B5C6	#7C0D
+O02	#B200	Overlay.City.Entry	Overlay.City.Entry	посещение города и операции с его ресурсами	573	True	Source/Overlays/City.asm	23	#6A02, #6A2D, #6A31, #6A33, #6A3A, #6AA6, #6AA8, #8BDC, #B9EF, #B9F1, #BA23, #BA36, #BBCD, #BC41, #BD0E, #BD51, #BDD5	#6A30, #6A31, #6A33, #6A3A, #B901, #B9EF, #B9F1, #BA23, #BA36, #BA56, #BBB8, #BBCD, #BBE0, #BC41, #BD0E, #BD71	#6BB0, #6D2F, #6D34, #6D3F, #6D62, #6D76, #6D88, #6DAE, #6DC4, #6DDA, #6FC0, #70E3, #7117, #73AD, #73CF, #73FE, #776D, #7A17, #7A94, #7AEF, #7BF4, #7C0D, #7C71, #7E55, #7F40, #7F5F, #8036, #804E, #807E, #86B1, #8712, #871C, #8801, #89E0, #B7AB, #B7BA, #B7DB, #B7EB, #D255
+O02	#B7AB	Overlay.City.RefuseEntry	Overlay.City.RefuseEntry	сообщение об отказе города из-за отношения к герою	6	True	Source/Overlays/City.asm	697			#7117, #8712
+O02	#B7BA	Overlay.City.RefreshMoney	Overlay.City.RefreshMoney	обновление строки денежных средств в городском меню	12	True	Source/Overlays/City.asm	715			#6DAE, #70E3, #7117, #73AD
+O02	#B7DB	Overlay.City.SiegePrice	Overlay.City.SiegePrice	выбор стоимости осадных орудий по отношению города	7	True	Source/Overlays/City.asm	740	#BC41	#BD51	
+O02	#B7EB	Overlay.City.ShipPrice	Overlay.City.ShipPrice	расчёт цены найма корабля по составу армии и отношению города	33	True	Source/Overlays/City.asm	766	#BC41	#BDD5	#6D62, #6D76, #8036
+O03	#B200	Overlay.Temple.Entry	Overlay.Temple.Entry	посещение храма духов	269	True	Source/Overlays/Temple.asm	21	#6A2D, #6A3B, #B4B9, #B4FE	#69D5, #6A2E, #6A3B, #B2BD, #B485, #B4B9, #B4DB, #B4FE, #B519, #B53E	#6D2F, #6D34, #6D3F, #6D62, #6D88, #6DAE, #6DC4, #6DDA, #70E3, #7117, #73AD, #776D, #7A80, #7BF4, #7F40, #7F5F, #8036, #8066, #807E, #8712, #871C, #8801, #B4AC
+O03	#B4AC	Overlay.Temple.CheckLanding	Overlay.Temple.CheckLanding	проверка свободной клетки для телепортации	272	True	Source/Overlays/Temple.asm	346	#6A2D, #6A3B, #B4B9, #B4FE	#69D5, #6A2E, #6A3B, #B2BD, #B485, #B4B9, #B4DB, #B4FE, #B519, #B53E	#6D2F, #6D62, #6D88, #6DAE, #6DC4, #6DDA, #70E3, #7117, #73AD, #776D, #7A80, #7BF4, #7F40, #7F5F, #8036, #8066, #807E, #80C4, #8712, #871C, #B4AC
+O04	#B200	Overlay.Recruit.Entry	Overlay.Recruit.Entry	найм существ из объекта карты	180	True	Source/Overlays/Recruit.asm	24	#B3D8, #B408, #B41B, #B44D, #B47F, #B481, #B483	#B25F, #B2D2, #B3D8, #B408, #B41B, #B44D, #B473, #B47F, #B481, #B483	#6D2F, #6D34, #6D3F, #6D57, #6D62, #6D76, #6DAE, #6DC4, #6FC0, #70E3, #7117, #72ED, #73AD, #73CF, #7545, #7A94, #7BF4, #7F40, #8036, #86B1, #8712, #8801
+O05	#B200	Overlay.Treasure.Entry	Overlay.Treasure.Entry	получение находки и изменение параметров героя	291	True	Source/Overlays/Treasure.asm	23	#6A02, #6A04, #6A06, #6A08, #6A1E, #6A2D, #B6FB, #B744, #B783	#6A02, #6A04, #6A06, #6A08, #B289, #B292, #B2C7, #B2D0, #B4BA, #B63C, #B68D, #B6FB, #B744, #B783, #B7D8	#6BB0, #6D2F, #6D62, #6D76, #6D88, #6DAE, #6DC4, #7117, #73AD, #73FE, #776D, #7BF4, #7C0D, #8066, #80AE, #80B4, #82D5
+O06	#B200	Overlay.Join.Entry	Overlay.Join.Entry	присоединение встреченного отряда	80	True	Source/Overlays/Join.asm	22	#6A33, #B2CC	#6A33, #B2CC	#6D2F, #6D3F, #7117, #73AD, #73FE, #776D, #7A94, #7BF4, #7E55, #80AE, #80B4, #82D5
+O07	#B200	Overlay.Bandits.Entry	Overlay.Bandits.Entry	бой с разбойниками либо пиратами	165	True	Source/Overlays/Bandits.asm	23	#6A2E, #6A33, #B3B3	#6A2E, #6A33, #B301, #B3B3, #B3C4, #B407	#6D2F, #6D3F, #6D88, #6DAE, #6DC4, #7117, #73AD, #73FE, #776D, #7BF4, #7C0D, #7E55, #7F40, #80AE, #80B4, #80C4, #82D5, #8697, #89E0, #8A08, #D255
+O08	#B200	Overlay.Army.Entry	Overlay.Army.Entry	просмотр и выбор отрядов армии	262	True	Source/Overlays/Army.asm	19	#6A1E, #6A3B, #B4BA	#B4B5, #B4BA, #B50D, #B567, #B5A1, #B5B9, #B5D6, #B5EE, #B610, #B629	#6BB0, #6D2F, #6D34, #6D3F, #6D57, #70C5, #7117, #7366, #73AD, #73CF, #73FE, #776D, #7BF4, #7EA7, #8036, #86EA, #896D, #944A
+O09	#B200	Overlay.Save.Entry	Overlay.Save.Entry	запись четырёх областей состояния в файл .M	77	True	Source/Overlays/Save.asm	25	#5CEB		#5FA1, #6D15, #6D34, #7117, #73FE, #776D, #944A, #B2D8, #B2E2
+O09	#B2D8	Overlay.Save.InvertState	Overlay.Save.InvertState	обратимая инверсия полезной области сохранения	9	True	Source/Overlays/Save.asm	116			
+O09	#B2E2	Overlay.Save.AddSectors	Overlay.Save.AddSectors	прибавление смещения секторов к паре дорожка-сектор	16	True	Source/Overlays/Save.asm	139			
+O10	#B200	Overlay.Dismiss.Entry	Overlay.Dismiss.Entry	роспуск выбранного отряда	207	True	Source/Overlays/Dismiss.asm	21	#6A02, #6A1E, #6A2E, #B261, #B420, #B421, #B60C	#B260, #B261, #B60C	#6D2F, #6D34, #6D3F, #6D62, #6D88, #6DAE, #6DC4, #6DDA, #7117, #73AD, #73CF, #73FE, #776D, #7AEF, #7BF4, #7EA7, #8036, #807E, #80C4, #8697, #89E0, #8A08, #944A, #957C, #B406, #D255
+O10	#B406	Overlay.Dismiss.ShowUnitDialog	Overlay.Dismiss.ShowUnitDialog	оформление сообщения и анимированного отряда при роспуске	11	True	Source/Overlays/Dismiss.asm	273	#B420		#6D57, #7117, #7366, #73FE
+O11	#B200	Overlay.TakeOff.Entry	Overlay.TakeOff.Entry	проверка состава армии и переход в полёт	61	True	Source/Overlays/TakeOff.asm	23	#6A1E, #6A33	#6A33	#6D34, #6D3F, #6D57, #7117, #7366, #73FE, #776D, #7AEF, #8036, #82D5
+O12	#B200	Overlay.Land.Entry	Overlay.Land.Entry	проверка клетки и завершение полёта	14	True	Source/Overlays/Land.asm	19	#6A2E, #6A33	#6A33	#80C4
+O13	#B200	Overlay.Maps.Entry	Overlay.Maps.Entry	экран выбора трёх вариантов стратегической карты	128	True	Source/Overlays/Maps.asm	28	#6A2D, #6A2E, #6A2F, #6A34, #B8EF, #B8F3, #B8F4	#B286, #B8EF, #B8F4, #B90C, #B95B, #B963	#6C63, #6D34, #6D3F, #7117, #73AD, #73CF, #73FE, #776D, #7AEF, #944A, #B335, #B504, #B7FD
+O13	#B335	Overlay.Maps.DrawExploredMap	Overlay.Maps.FB335	рисование увеличенного участка карты пройденного	121	True	Source/Overlays/Maps.asm	201	#6A2E, #B459, #B45B, #B8EC, #B8F1	#B459, #B45B, #B8EC, #B8F1, #B8F3	#6BF1, #6D2F, #7117, #73AD, #73FE, #80C4, #8D6E, #B47D, #B48E, #B4C6, #B8E1
+O13	#B47D	Overlay.Maps.MapCellPattern	Overlay.Maps.FB47D	выбор четырёхбайтового образца ландшафта малой карты	9	True	Source/Overlays/Maps.asm	365			#8697
+O13	#B48E	Overlay.Maps.IsCellExplored	Overlay.Maps.FB48E	проверка отдельного бита открытия стратегической клетки	28	True	Source/Overlays/Maps.asm	391	#6A2D, #B459	#B4C4	#6D2F
+O13	#B4C6	Overlay.Maps.XorMiniTile	Overlay.Maps.FB4C6	XOR-вывод одной клетки малой карты размером 4x4	38	True	Source/Overlays/Maps.asm	441	#B45B, #B45C		
+O13	#B504	Overlay.Maps.DrawWorldMap	Overlay.Maps.FB504	полная карта континента с просмотром замков	141	True	Source/Overlays/Maps.asm	503	#6A2D, #6A2E, #6A2F, #B6AF, #B6B0, #B6B1, #B8EF	#B642, #B6AF, #B6B0, #B6B1, #B8F3	#6BF1, #6D2F, #7117, #73AD, #73FE, #7A74, #80AE, #B6D1, #B703, #B751, #B7C3
+O13	#B6B2	Overlay.Maps.GetCastleRecord	Overlay.Maps.FB6B2	получение записи выбранного замка континента	13	True	Source/Overlays/Maps.asm	702	#6A2D, #B6AF		#7A74
+O13	#B6D1	Overlay.Maps.ShowCastleName	Overlay.Maps.FB6D1	вывод имени и принадлежности выбранного замка на полной карте	23	True	Source/Overlays/Maps.asm	732		#B697, #B6AA	#7117, #73CF, #B6B2
+O13	#B703	Overlay.Maps.BlinkCastle	Overlay.Maps.FB703	переключение мигающей рамки выбранного замка	38	True	Source/Overlays/Maps.asm	773	#B6B1	#B6B1	#B6B2, #B7C3
+O13	#B751	Overlay.Maps.MarkKnownSites	Overlay.Maps.FB751	нанесение трёх групп строений на полную карту	13	True	Source/Overlays/Maps.asm	827			#B779
+O13	#B779	Overlay.Maps.MarkSiteList	Overlay.Maps.FB779	нанесение активных записей одной таблицы объектов на полную карту	36	True	Source/Overlays/Maps.asm	856	#6A2D	#B7AB, #B7AD, #B7BC	#7A74, #B7C3
+O13	#B7C3	Overlay.Maps.XorMapPixel	Overlay.Maps.FB7C3	инверсия одного экранного пикселя полной карты	41	True	Source/Overlays/Maps.asm	917			
+O13	#B7FD	Overlay.Maps.DrawAerialMap	Overlay.Maps.FB7FD	вид с высоты птичьего полёта	120	True	Source/Overlays/Maps.asm	977	#6A2E, #B8EC, #B8ED, #B8F1	#B8EC, #B8ED, #B8F1, #B8F3	#6D2F, #7117, #73FE, #80C4, #8697, #B8E1
+O13	#B8E1	Overlay.Maps.WaitMapKey	Overlay.Maps.FB8E1	ожидание действия с десятикадровой задержкой после ввода	6	True	Source/Overlays/Maps.asm	1127			#6BF1
+O14	#B200	Overlay.Sail.Entry	Overlay.Sail.Entry	переход на выбранный доступный континент по морю	184	True	Source/Overlays/Sail.asm	26	#6565, #6A2D, #6A33, #6A34, #6A4D, #B25A, #B3B6, #B440	#62E2, #6565, #69D7, #6A2D, #6A2E, #6A30, #6A31, #6A44, #6A46, #6A4B, #B259, #B25A, #B3B6, #B440	#6CC8, #6D34, #6D3F, #7117, #73AD, #73CF, #73FE, #776D, #7B0B, #7BF4, #7C0D, #80AE, #80B4, #82D5, #944A, #957C, #9704
+O15	#B200	Overlay.TargetMap.Entry	Overlay.TargetMap.Entry	показ собранных частей карты местонахождения цели	87	True	Source/Overlays/TargetMap.asm	24		#B2D3	#6D2F, #6D34, #7117, #73CF, #73FE, #7545, #75E1, #7BF4, #944A
+O16	#B200	Overlay.Victory.Entry	Overlay.Victory.Entry	поиск цели сравнением участка карты 5x5 и завершение игры	195	True	Source/Overlays/Victory.asm	27	#6A2E, #6A33, #B45B	#69D7, #B45B, #B460, #B463	#6D15, #6D2F, #6D34, #7117, #73AD, #73CF, #73FE, #776D, #7BF4, #80AE, #80B4, #8801, #9704, #B40A, #B5F7
+O16	#B40A	Overlay.Victory.ScrollScores	Overlay.Victory.FB40A	прокрутка нижней текстовой области списка победителей	50	True	Source/Overlays/Victory.asm	273	#B45D	#B45D	
+O16	#B5F7	Overlay.Victory.TerrainCode	Overlay.Victory.FB5F7	отбрасывание служебных битов клетки при поиске цели	4	True	Source/Overlays/Victory.asm	407			
+O17	#B200	Overlay.Info.Entry	Overlay.Info.Entry	экран статистики с переходами в подробные подменю	199	True	Source/Overlays/Info.asm	25	#6A33, #6A3A, #6A3B, #6AAA, #6AAC	#B670, #B95A, #B965, #B967, #B969, #B96B, #B96D, #B96F, #B971, #B973, #B991, #BA1B, #BA67, #BB79, #BBC6, #BCA8	#6D2F, #6D34, #7117, #73AD, #73CF, #73FE, #776D, #7A80, #87A1, #87D1, #957C
+O17	#B405	Overlay.Info.CastleList	Overlay.Info.FB405	список собственных замков с листанием по 26 названий	246	True	Source/Overlays/Info.asm	269	#6A33, #6A3A, #6A3B, #6AAA, #6AAC, #B670, #BB79	#B670, #B95A, #B965, #B967, #B969, #B96B, #B96D, #B96F, #B971, #B973, #B991, #BA1B, #BA67, #BB79, #BBC6, #BCA8	#6D2F, #7117, #73AD, #73CF, #73FE, #776D, #7A80, #87A1, #87D1, #957C, #B482, #B5E9, #B608
+O17	#B482	Overlay.Info.ShowCastleInfo	Overlay.Info.FB482	карточка замка с доходом, местоположением и гарнизоном	95	True	Source/Overlays/Info.asm	345	#6A2D, #6A2E, #B678	#B678, #B690, #B849, #B85C, #B8B2	#6D62, #6D76, #7117, #73AD, #73FE, #7A4E, #7BF4, #7C71, #7E55, #7FF0, #AE1A
+O17	#B5E9	Overlay.Info.FindOwnCastle	Overlay.Info.FB5E9	поиск N-го собственного замка в таблице из 35-байтовых записей	17	True	Source/Overlays/Info.asm	483			
+O17	#B608	Overlay.Info.DrawCastlePage	Overlay.Info.FB608	вывод текущей страницы списка собственных замков	47	True	Source/Overlays/Info.asm	524	#B56E, #B644, #B64A, #B670, #BB79	#B56E, #B644, #B645, #B64A	#6D2F, #7117, #73CF, #B5E9
+O17	#B6D8	Overlay.Info.ListRulers	Overlay.Info.FB6D8	показ списка побеждённых противников	240	True	Source/Overlays/Info.asm	618	#6A33, #6A3A, #6A3B, #6AAA, #6AAC, #B722, #BBC6	#B721, #B722, #B744, #B95A, #B965, #B967, #B969, #B96B, #B96D, #B96F, #B971, #B973, #B991, #BA1B, #BA67, #BB79, #BBC6, #BCA8	#6D2F, #7117, #73AD, #73CF, #73FE, #776D, #7A80, #7BF4, #804E, #87A1, #87D1, #957C
+O17	#B749	Overlay.Info.ShowContract	Overlay.Info.FB749	подробности текущего контракта на захват замка	280	True	Source/Overlays/Info.asm	690	#6A2D, #6A2E, #6A33, #6A3A, #6A3B, #6AAA, #6AAC, #BCA8	#B849, #B85C, #B8B2, #B8DD, #B95A, #B965, #B967, #B969, #B96B, #B96D, #B96F, #B971, #B973, #B991, #BA1B, #BA67, #BB79, #BBC6, #BCA8	#6D2F, #6D62, #6D76, #7117, #73AD, #73CF, #73FE, #776D, #7A4E, #7A80, #7BF4, #7C71, #7E55, #7FF0, #804E, #87A1, #87D1, #957C
+O17	#B819	Overlay.Info.ShowThreat	Overlay.Info.FB819	показ замка, на который готовится нападение	199	True	Source/Overlays/Info.asm	798	#6A33, #6A3A, #6A3B, #6AAA, #6AAC, #B991	#B95A, #B965, #B967, #B969, #B96B, #B96D, #B96F, #B971, #B973, #B991, #BA1B, #BA67, #BB79, #BBC6, #BCA8	#6D2F, #7117, #73AD, #73CF, #73FE, #776D, #7A80, #87A1, #87D1, #957C, #B482
+O17	#B8F3	Overlay.Info.ListSpells	Overlay.Info.FB8F3	список изученных заклинаний	236	True	Source/Overlays/Info.asm	857	#6A33, #6A3A, #6A3B, #6AAA, #6AAC, #B933, #BA1B	#B932, #B933, #B95A, #B965, #B967, #B969, #B96B, #B96D, #B96F, #B971, #B973, #B991, #BA1B, #BA67, #BB79, #BBC6, #BCA8	#6D2F, #7117, #73AD, #73CF, #73FE, #776D, #7A80, #7BF4, #8066, #87A1, #87D1, #957C
+O18	#B200	Overlay.Friendly.Entry	Overlay.Friendly.Entry	встреча доброжелательного рассказчика и перенос его отметки	35	True	Source/Overlays/Friendly.asm	24	#6A44, #6A49	#6A44, #6A49	#6D34, #7117, #73FE, #7BF4, #7C0D, #80AE, #80B4, #8801, #B257
+O18	#B257	Overlay.Friendly.PrintStory	Overlay.Friendly.FB257	выбор и постраничная печать анекдота доброжелательной встречи	57	True	Source/Overlays/Friendly.asm	80			#70C5, #7117, #73AD, #73FE, #7BF4, #7C0D
+O19	#B200	Overlay.Hostile.Entry	Overlay.Hostile.Entry	встреча враждебного рассказчика и выбор его нового континента	43	True	Source/Overlays/Hostile.asm	24	#6A2D, #6A4B, #6A50	#6A4B, #6A4D, #6A50	#6D34, #7117, #73FE, #7BF4, #7C0D, #80AE, #80B4, #8801, #B2A8
+O19	#B2A8	Overlay.Hostile.PrintStory	Overlay.Hostile.FB2A8	постраничный анекдот враждебной встречи	57	True	Source/Overlays/Hostile.asm	97			#70C5, #7117, #73AD, #73FE, #7BF4, #7C0D
+O20	#B200	Overlay.Defeat.Entry	Overlay.Defeat.Entry	экран поражения и повторная загрузка стартового блока KB.co	38	True	Source/Overlays/Defeat.asm	25		#5D10	#3D13, #5FA1, #6CC8, #73CF, #73FE, #B25B
+O20	#B25B	Overlay.Defeat.WaitDefeatKey	Overlay.Defeat.FB25B	печать сообщения поражения и ожидание действия	3	True	Source/Overlays/Defeat.asm	81			#7117
+O21	#B200	Overlay.Castle.Entry	Overlay.Castle.Entry	управление гарнизоном собственного замка и его защитой	610	True	Source/Overlays/Castle.asm	32	#6566, #69D8, #69D9, #69DB, #69DC, #6A02, #6A04, #6A1E, #6A2D, #6AAA, #6AAB, #6AAC, #867B, #B356, #B875, #B876, #B92F, #BBFD, #BD34	#6566, #6A02, #6A04, #6A2E, #6A33, #6AAA, #B355, #B356, #B3C1, #B4F0, #B5C1, #B875, #B876, #B926, #B92F, #BA92, #BBFD, #BC2B, #BD34	#6D2F, #6D34, #6D3F, #6D88, #6DAE, #6DC4, #6E0E, #70E3, #7117, #73AD, #73CF, #73FE, #776D, #7A94, #7BF4, #7C0D, #7EA7, #7F40, #7F5F, #7FF0, #804E, #807E, #80C4, #8712, #8801, #89E0, #8A08, #B801, #BB5C, #BBB2, #D255
+O21	#B801	Overlay.Castle.PlaceAuxTroops	Overlay.Castle.FB801	размещение сохранённых отрядов как шестибайтовых объектов карты	49	True	Source/Overlays/Castle.asm	746	#6A2D		#7A74, #7C0D, #80C4
+O21	#BB5C	Overlay.Castle.DrawUnitList	Overlay.Castle.FBB5C	вывод до пяти отрядов и подготовка меню выбора	37	True	Source/Overlays/Castle.asm	942	#BB8F, #BD4F	#BB8F, #BD29, #BD2E, #BD4F	#6D2F, #7117, #73CF, #8036
+O21	#BBB2	Overlay.Castle.ReadUnitCount	Overlay.Castle.FBBB2	ввод числа передаваемых воинов с верхней границей	33	True	Source/Overlays/Castle.asm	1001		#BBD4	#6D76, #6FC0, #7117, #73AD
+O22	#B200	Overlay.Help.Entry	Overlay.Help.Entry	трёхстраничная справка об управлении	36	True	Source/Overlays/Help.asm	23			#6D34, #6D3F, #7117, #73AD, #73CF, #7BF4, #944A, #B261
+O22	#B261	Overlay.Help.WaitHelpPage	Overlay.Help.FB261	нижняя строка продолжения справки и ожидание	10	True	Source/Overlays/Help.asm	77			#7117, #73AD, #7BF4

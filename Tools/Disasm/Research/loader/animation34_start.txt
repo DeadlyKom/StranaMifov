@@ -1,0 +1,241 @@
+C000 18 04          JR $C006
+C002 01 FF FF       LD BC,$FFFF
+C005 0C             INC C
+C006 CD 7C 00       CALL $007C
+C009 3B             DEC SP
+C00A 3B             DEC SP
+C00B E3             EX (SP),HL
+C00C 33             INC SP
+C00D 33             INC SP
+C00E A7             AND A
+C00F 11 07 00       LD DE,$0007
+C012 ED 52          SBC HL,DE
+C014 E5             PUSH HL
+C015 FD E1          POP IY
+C017 11 2A 01       LD DE,$012A
+C01A 19             ADD HL,DE
+C01B FD 7E 00       LD A,(IY+$00)
+C01E 3D             DEC A
+C01F 28 06          JR Z,$C027
+C021 5E             LD E,(HL)
+C022 23             INC HL
+C023 56             LD D,(HL)
+C024 19             ADD HL,DE
+C025 18 F7          JR $C01E
+C027 11 00 40       LD DE,$4000
+C02A 23             INC HL
+C02B 23             INC HL
+C02C FD 7E 01       LD A,(IY+$01)
+C02F 3C             INC A
+C030 20 04          JR NZ,$C036
+C032 7E             LD A,(HL)
+C033 FD 77 01       LD (IY+$01),A
+C036 23             INC HL
+C037 FD 7E 02       LD A,(IY+$02)
+C03A 3C             INC A
+C03B 20 04          JR NZ,$C041
+C03D 7E             LD A,(HL)
+C03E FD 77 02       LD (IY+$02),A
+C041 23             INC HL
+C042 7E             LD A,(HL)
+C043 FD 77 03       LD (IY+$03),A
+C046 FD 7E 01       LD A,(IY+$01)
+C049 FE 03          CP $03
+C04B 38 04          JR C,$C051
+C04D FD 36 01 00    LD (IY+$01),$00
+C051 FD 7E 02       LD A,(IY+$02)
+C054 FE 04          CP $04
+C056 38 04          JR C,$C05C
+C058 FD 36 02 01    LD (IY+$02),$01
+C05C FD 86 01       ADD A,(IY+$01)
+C05F FE 04          CP $04
+C061 38 04          JR C,$C067
+C063 FD 36 02 01    LD (IY+$02),$01
+C067 FD 7E 02       LD A,(IY+$02)
+C06A A7             AND A
+C06B 20 04          JR NZ,$C071
+C06D FD 36 02 01    LD (IY+$02),$01
+C071 23             INC HL
+C072 1E 00          LD E,$00
+C074 FD 7E 01       LD A,(IY+$01)
+C077 87             ADD A,A
+C078 87             ADD A,A
+C079 87             ADD A,A
+C07A C6 40          ADD A,$40
+C07C 57             LD D,A
+C07D 4F             LD C,A
+C07E 06 01          LD B,$01
+C080 FD CB 03 46    BIT 0,(IY+$03)
+C084 20 02          JR NZ,$C088
+C086 06 20          LD B,$20
+C088 C5             PUSH BC
+C089 FD 46 02       LD B,(IY+$02)
+C08C C5             PUSH BC
+C08D 06 08          LD B,$08
+C08F C5             PUSH BC
+C090 06 08          LD B,$08
+C092 C5             PUSH BC
+C093 06 01          LD B,$01
+C095 FD CB 03 46    BIT 0,(IY+$03)
+C099 28 02          JR Z,$C09D
+C09B 06 20          LD B,$20
+C09D D5             PUSH DE
+C09E C5             PUSH BC
+C09F 18 43          JR $C0E4
+C0A1 C1             POP BC
+C0A2 13             INC DE
+C0A3 10 F9          DJNZ $C09E
+C0A5 D1             POP DE
+C0A6 C1             POP BC
+C0A7 14             INC D
+C0A8 10 E8          DJNZ $C092
+C0AA 7A             LD A,D
+C0AB D6 08          SUB $08
+C0AD 57             LD D,A
+C0AE 7B             LD A,E
+C0AF C6 20          ADD A,$20
+C0B1 5F             LD E,A
+C0B2 C1             POP BC
+C0B3 10 DA          DJNZ $C08F
+C0B5 7A             LD A,D
+C0B6 C6 08          ADD A,$08
+C0B8 57             LD D,A
+C0B9 C1             POP BC
+C0BA 10 D0          DJNZ $C08C
+C0BC 51             LD D,C
+C0BD 1C             INC E
+C0BE C1             POP BC
+C0BF 10 C7          DJNZ $C088
+C0C1 1E 00          LD E,$00
+C0C3 3E 58          LD A,$58
+C0C5 FD 86 01       ADD A,(IY+$01)
+C0C8 57             LD D,A
+C0C9 FD 46 02       LD B,(IY+$02)
+C0CC 4B             LD C,E
+C0CD FD CB 03 DE    SET 3,(IY+$03)
+C0D1 C5             PUSH BC
+C0D2 18 10          JR $C0E4
+C0D4 C1             POP BC
+C0D5 0B             DEC BC
+C0D6 13             INC DE
+C0D7 78             LD A,B
+C0D8 B1             OR C
+C0D9 20 F6          JR NZ,$C0D1
+C0DB FD 36 01 FF    LD (IY+$01),$FF
+C0DF FD 36 02 FF    LD (IY+$02),$FF
+C0E3 C9             RET
+C0E4 FD CB 03 56    BIT 2,(IY+$03)
+C0E8 28 0D          JR Z,$C0F7
+C0EA D9             EXX
+C0EB 05             DEC B
+C0EC 79             LD A,C
+C0ED D9             EXX
+C0EE 28 03          JR Z,$C0F3
+C0F0 12             LD (DE),A
+C0F1 18 18          JR $C10B
+C0F3 FD CB 03 96    RES 2,(IY+$03)
+C0F7 7E             LD A,(HL)
+C0F8 23             INC HL
+C0F9 A7             AND A
+C0FA 20 0E          JR NZ,$C10A
+C0FC 7E             LD A,(HL)
+C0FD D9             EXX
+C0FE 47             LD B,A
+C0FF D9             EXX
+C100 23             INC HL
+C101 7E             LD A,(HL)
+C102 D9             EXX
+C103 4F             LD C,A
+C104 D9             EXX
+C105 23             INC HL
+C106 FD CB 03 D6    SET 2,(IY+$03)
+C10A 12             LD (DE),A
+C10B FD CB 03 5E    BIT 3,(IY+$03)
+C10F 20 C3          JR NZ,$C0D4
+C111 18 8E          JR $C0A1
+C113 08             EX AF,AF'
+C114 10 11          DJNZ $C127
+C116 12             LD (DE),A
+C117 12             LD (DE),A
+C118 14             INC D
+C119 00             NOP
+C11A 03             INC BC
+C11B 00             NOP
+C11C 01 02 01       LD BC,$0102
+C11F 00             NOP
+C120 03             INC BC
+C121 00             NOP
+C122 0F             RRCA
+C123 19             ADD HL,DE
+C124 0E 00          LD C,$00
+C126 04             INC B
+C127 00             NOP
+C128 08             EX AF,AF'
+C129 18 22          JR $C14D
+C12B 22 5F 0F       LD ($0F5F),HL
+C12E 00             NOP
+C12F 03             INC BC
+C130 01 00 1F       LD BC,$1F00
+C133 FF             RST $38
+C134 82             ADD A,D
+C135 FF             RST $38
+C136 FF             RST $38
+C137 77             LD (HL),A
+C138 9C             SBC A,H
+C139 FC F9 98       CALL M,$98F9
+C13C F0             RET P
+C13D 83             ADD A,E
+C13E 80             ADD A,B
+C13F 76             HALT
+C140 E6 00          AND $00
+C142 01 00 06       LD BC,$0600
+C145 00             NOP
+C146 03             INC BC
+C147 00             NOP
+C148 03             INC BC
+C149 00             NOP
+C14A 03             INC BC
+C14B 00             NOP
+C14C 03             INC BC
+C14D 87             ADD A,A
+C14E 83             ADD A,E
+C14F 07             RLCA
+C150 E0             RET PO
+C151 7E             LD A,(HL)
+C152 0F             RRCA
+C153 C7             RST $00
+C154 FE 30          CP $30
+C156 12             LD (DE),A
+C157 4C             LD C,H
+C158 FB             EI
+C159 F7             RST $30
+C15A FF             RST $38
+C15B CF             RST $08
+C15C FF             RST $38
+C15D FF             RST $38
+C15E FB             EI
+C15F C6 F9          ADD A,$F9
+C161 80             ADD A,B
+C162 42             LD B,D
+C163 67             LD H,A
+C164 02             LD (BC),A
+C165 1F             RRA
+C166 EC 3C 0E       CALL PE,$0E3C
+C169 BC             CP H
+C16A 1C             INC E
+C16B 36 67          LD (HL),$67
+C16D BC             CP H
+C16E E3             EX (SP),HL
+C16F 8C             ADC A,H
+C170 07             RLCA
+C171 1E 3F          LD E,$3F
+C173 CF             RST $08
+C174 0F             RRCA
+C175 3F             CCF
+C176 2E 3B          LD L,$3B
+C178 E4 E0 07       CALL PO,$07E0
+C17B 73             LD (HL),E
+C17C F0             RET P
+C17D 1D             DEC E
+C17E 5A             LD E,D
+C17F FF             RST $38

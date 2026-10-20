@@ -1,0 +1,12 @@
+[
+  {"module":"S10","start":34874,"end":35066,"register":"IY","type":"FBattleUnit","base_offset":0},
+  {"module":"S10","start":34913,"end":34981,"register":"IX","type":"FTroop","base_offset":0},
+  {"module":"S10","start":34984,"end":35016,"register":"IX","type":"FSoldier","base_offset":0},
+  {"module":"S10","start":35016,"end":35051,"register":"IX","type":"FTroop","base_offset":0},
+  {"module":"S10","start":31056,"end":31104,"register":"IX","type":"FMenuHeader","base_offset":0},
+  {"module":"S47","start":61788,"end":61808,"register":"IX","type":"FSoldier","base_offset":0},
+  {"module":"S47","start":61968,"end":61988,"register":"IX","type":"FSoldier","base_offset":0},
+  {"module":"S47","start":62806,"end":62872,"register":"IY","type":"FBattleUnit","base_offset":0},
+  {"module":"S10","start":29554,"end":29586,"register":"IX","type":"FScreenObject20","base_offset":0},
+  {"module":"S10","start":33178,"end":33239,"register":"IX","type":"FScreenObject20","base_offset":0}
+]

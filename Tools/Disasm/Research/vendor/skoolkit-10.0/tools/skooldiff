@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -e # Abort on errors
+
+. $(dirname $0)/ddiffs-functions
+
+usage() {
+  cat <<EOF
+Usage: $(basename $0) [-k] $GAMES
+
+  Compares the original skool file for a game with one generated from a control
+  file and a snapshot.
+EOF
+  exit 1
+}
+
+if [ -z "$SKOOLKIT_HOME" ]; then
+  echo "Error: SKOOLKIT_HOME not defined."
+  exit 1
+fi
+if [ ! -d "$SKOOLKIT_HOME" ]; then
+  echo "Error: directory not found: $SKOOLKIT_HOME"
+  exit 1
+fi
+
+[[ $1 == -k ]] && SKOOL2CTL_OPTS=-k && shift
+
+GAME=$1
+read_ddiffsrc $GAME
+
+SKOOL=$DHOME/sources/$GAME.skool
+SKOOL2=$GAME.skool
+
+$SKOOLKIT_HOME/skool2ctl.py $SKOOL2CTL_OPTS $SKOOL | $SKOOLKIT_HOME/sna2skool.py -I ListRefs=0 $SNA2SKOOL_OPTS -c - $SNAPSHOT > $SKOOL2 2>/dev/null
+
+colordiff -Bu $SKOOL $SKOOL2 && echo "No differences" 1>&2

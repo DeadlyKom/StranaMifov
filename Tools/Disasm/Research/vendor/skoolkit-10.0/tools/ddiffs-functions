@@ -1,0 +1,33 @@
+GAMES="sd|bts|csc|mm|jsw|rom|hh"
+
+_error() {
+  echo "Error: $1" 1>&2
+  exit 1
+}
+
+read_ddiffsrc() {
+  game=$1
+  [[ -z $game ]] && usage
+
+  declare -A dhomes
+  dhomes=(
+    [sd]=SKOOLDAZE_HOME
+    [bts]=BACKTOSKOOL_HOME
+    [csc]=CONTACTSAMCRUISE_HOME
+    [mm]=MANICMINER_HOME
+    [jsw]=JETSETWILLY_HOME
+    [rom]=ROM_DISASSEMBLY_HOME
+    [hh]=HUNGRYHORACE_HOME
+  )
+  dhome_v=${dhomes[$game]}
+  [[ -n $dhome_v ]] || usage
+
+  DHOME=${!dhome_v}
+  [[ -n $DHOME ]] || _error "$dhome_v not defined"
+  [[ -d $DHOME ]] || _error "$DHOME: directory not found"
+
+  rcpath=$DHOME/.ddiffsrc
+  [[ -f $rcpath ]] || _error "$rcpath: file not found"
+
+  . $rcpath
+}

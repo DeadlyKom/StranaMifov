@@ -1,0 +1,72 @@
+[
+  {
+    "index": 1,
+    "fileOffset": 300,
+    "fileOffsetHex": "012C",
+    "runtime": "C12C",
+    "nextDelta": 3110,
+    "header": [
+      0,
+      3,
+      0
+    ],
+    "payloadOffset": 305,
+    "payloadLength": 3106
+  },
+  {
+    "index": 2,
+    "fileOffset": 3411,
+    "fileOffsetHex": "0D53",
+    "runtime": "CD53",
+    "nextDelta": 3260,
+    "header": [
+      0,
+      3,
+      1
+    ],
+    "payloadOffset": 3416,
+    "payloadLength": 3256
+  },
+  {
+    "index": 3,
+    "fileOffset": 6672,
+    "fileOffsetHex": "1A10",
+    "runtime": "DA10",
+    "nextDelta": 2542,
+    "header": [
+      0,
+      3,
+      0
+    ],
+    "payloadOffset": 6677,
+    "payloadLength": 2538
+  },
+  {
+    "index": 4,
+    "fileOffset": 9215,
+    "fileOffsetHex": "23FF",
+    "runtime": "E3FF",
+    "nextDelta": 2316,
+    "header": [
+      0,
+      3,
+      1
+    ],
+    "payloadOffset": 9220,
+    "payloadLength": 2312
+  },
+  {
+    "index": 5,
+    "fileOffset": 11532,
+    "fileOffsetHex": "2D0C",
+    "runtime": "ED0C",
+    "nextDelta": 3415,
+    "header": [
+      0,
+      3,
+      0
+    ],
+    "payloadOffset": 11537,
+    "payloadLength": 3411
+  }
+]

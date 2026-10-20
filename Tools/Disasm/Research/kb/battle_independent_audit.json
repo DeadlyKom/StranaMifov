@@ -1,0 +1,384 @@
+{
+  "scope": "независимая проверка прямых переходов, вычисленного RET и изменяемых операндов боевого модуля, без сборки и полного запуска игры",
+  "directBranchesIntoDB": [],
+  "additionalProvenCodeInDB": [],
+  "computedRET": {
+    "dispatcher": 58800,
+    "continuation": 58849,
+    "pointerTable": [
+      58989,
+      59005
+    ],
+    "targets": [
+      59005,
+      59042,
+      59079,
+      59116,
+      59153,
+      59190,
+      59227,
+      59264
+    ],
+    "allTargetsAlreadyInstructions": true
+  },
+  "dynamicCalculatorOpcodes": [
+    {
+      "address": 62450,
+      "writers": [
+        61848,
+        62028
+      ],
+      "values": [
+        5,
+        4
+      ],
+      "meaning": "комбинирование отношения эффектов с основой урона, деление при первой атаке и умножение при ответе, это байт программы ROM-калькулятора после RST28, DB здесь нужен"
+    },
+    {
+      "address": 62909,
+      "writers": [
+        62873
+      ],
+      "values": [
+        3,
+        15
+      ],
+      "meaning": "03 вычитает воздействие, 0F прибавляет лечение, исходный00 перед достижением RST28 всегда заменяется входнымC, исходный байт не является исполняемым jump-true нормального хода"
+    }
+  ],
+  "dataRangesRu": [
+    [
+      56228,
+      57363,
+      "строки интерфейса, численные вставки и меню, не найдено прямых переходов внутрь"
+    ],
+    [
+      58937,
+      58989,
+      "два списка восьми троек соседей и временные указатели цели и действующего отряда"
+    ],
+    [
+      58989,
+      59005,
+      "восемь указателей процедур, которые уже размечены кодом"
+    ],
+    [
+      59607,
+      59619,
+      "две пятибайтные оценки и указатель выбранного отряда"
+    ],
+    [
+      59682,
+      59722,
+      "байт режима ИИ и группы правил приоритета целей"
+    ],
+    [
+      60299,
+      60329,
+      "счётчик целей, рабочий указатель и список троек тип+указатель"
+    ],
+    [
+      61532,
+      61600,
+      "поля выбора заклинания, пятибайтные оценки, строка, десять флагов доступности и правила целей"
+    ],
+    [
+      62261,
+      62263,
+      "сохранённый указатель на пятибайтный урон"
+    ],
+    [
+      62484,
+      62543,
+      "коэффициенты удара, указатели участников, пятибайтные уроны и таблицы поправок"
+    ],
+    [
+      62594,
+      62627,
+      "строка сообщения о магическом щите"
+    ],
+    [
+      63561,
+      63565,
+      "два сохранённых указателя участников"
+    ],
+    [
+      64028,
+      64175,
+      "счётчик2байта, номер кадра1байт и фон курсора144байта"
+    ],
+    [
+      64696,
+      65428,
+      "параметры боя, координаты, две армии, маски и карты поля, коэффициенты заклинаний"
+    ]
+  ],
+  "savedSP": {
+    "address": 57533,
+    "length": 2,
+    "writer": 53845,
+    "meaning": "данные, даже если технический каталог функций содержит отдельную метку E0BD"
+  },
+  "codeOperandPatches": [
+    {
+      "source": 53845,
+      "target": 57533,
+      "instruction": "LD ($E0BD),SP",
+      "targetInstruction": 57533,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 54864,
+      "target": 54919,
+      "instruction": "LD ($D687),A",
+      "targetInstruction": 54918,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 54987,
+      "target": 55006,
+      "instruction": "LD ($D6DE),BC",
+      "targetInstruction": 55005,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 55015,
+      "target": 55007,
+      "instruction": "LD ($D6DF),A",
+      "targetInstruction": 55005,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 55395,
+      "target": 55399,
+      "instruction": "LD ($D867),A",
+      "targetInstruction": 55398,
+      "originalAtTarget": 198
+    },
+    {
+      "source": 55533,
+      "target": 55581,
+      "instruction": "LD ($D91D),IX",
+      "targetInstruction": 55579,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 55676,
+      "target": 55739,
+      "instruction": "LD ($D9BB),A",
+      "targetInstruction": 55737,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 55892,
+      "target": 55922,
+      "instruction": "LD ($DA72),A",
+      "targetInstruction": 55921,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 57500,
+      "target": 63887,
+      "instruction": "LD ($F98F),HL",
+      "targetInstruction": 63886,
+      "originalAtTarget": 1
+    },
+    {
+      "source": 57576,
+      "target": 57617,
+      "instruction": "LD ($E111),A",
+      "targetInstruction": 57616,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 57713,
+      "target": 57893,
+      "instruction": "LD ($E225),A",
+      "targetInstruction": 57892,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 57895,
+      "target": 57893,
+      "instruction": "LD ($E225),A",
+      "targetInstruction": 57892,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58280,
+      "target": 58421,
+      "instruction": "LD ($E435),IX",
+      "targetInstruction": 58419,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58286,
+      "target": 58414,
+      "instruction": "LD ($E42E),A",
+      "targetInstruction": 58413,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58313,
+      "target": 58400,
+      "instruction": "LD ($E420),A",
+      "targetInstruction": 58399,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58402,
+      "target": 58400,
+      "instruction": "LD ($E420),A",
+      "targetInstruction": 58399,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58416,
+      "target": 58414,
+      "instruction": "LD ($E42E),A",
+      "targetInstruction": 58413,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58429,
+      "target": 58421,
+      "instruction": "LD ($E435),IX",
+      "targetInstruction": 58419,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58739,
+      "target": 58794,
+      "instruction": "LD ($E5AA),A",
+      "targetInstruction": 58793,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 58783,
+      "target": 58794,
+      "instruction": "LD ($E5AA),A",
+      "targetInstruction": 58793,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 59360,
+      "target": 59376,
+      "instruction": "LD ($E7F0),HL",
+      "targetInstruction": 59374,
+      "originalAtTarget": 237
+    },
+    {
+      "source": 59363,
+      "target": 59453,
+      "instruction": "LD ($E83D),HL",
+      "targetInstruction": 59451,
+      "originalAtTarget": 237
+    },
+    {
+      "source": 59369,
+      "target": 59425,
+      "instruction": "LD ($E821),A",
+      "targetInstruction": 59423,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 59443,
+      "target": 59425,
+      "instruction": "LD ($E821),A",
+      "targetInstruction": 59423,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 59637,
+      "target": 63887,
+      "instruction": "LD ($F98F),HL",
+      "targetInstruction": 63886,
+      "originalAtTarget": 1
+    },
+    {
+      "source": 59846,
+      "target": 59895,
+      "instruction": "LD ($E9F7),A",
+      "targetInstruction": 59894,
+      "originalAtTarget": 1
+    },
+    {
+      "source": 59927,
+      "target": 59895,
+      "instruction": "LD ($E9F7),A",
+      "targetInstruction": 59894,
+      "originalAtTarget": 1
+    },
+    {
+      "source": 61348,
+      "target": 61412,
+      "instruction": "LD ($EFE4),A",
+      "targetInstruction": 61411,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 61848,
+      "target": 62450,
+      "instruction": "LD ($F3F2),A",
+      "targetInstruction": null,
+      "originalAtTarget": 4
+    },
+    {
+      "source": 62028,
+      "target": 62450,
+      "instruction": "LD ($F3F2),A",
+      "targetInstruction": null,
+      "originalAtTarget": 4
+    },
+    {
+      "source": 62714,
+      "target": 62749,
+      "instruction": "LD ($F51D),A",
+      "targetInstruction": 62748,
+      "originalAtTarget": 35
+    },
+    {
+      "source": 62726,
+      "target": 62749,
+      "instruction": "LD ($F51D),A",
+      "targetInstruction": 62748,
+      "originalAtTarget": 35
+    },
+    {
+      "source": 62873,
+      "target": 62909,
+      "instruction": "LD ($F5BD),A",
+      "targetInstruction": null,
+      "originalAtTarget": 0
+    },
+    {
+      "source": 63120,
+      "target": 63124,
+      "instruction": "LD ($F694),A",
+      "targetInstruction": 63123,
+      "originalAtTarget": 70
+    },
+    {
+      "source": 63686,
+      "target": 63720,
+      "instruction": "LD ($F8E8),A",
+      "targetInstruction": 63719,
+      "originalAtTarget": 67
+    },
+    {
+      "source": 63773,
+      "target": 63798,
+      "instruction": "LD ($F936),A",
+      "targetInstruction": 63797,
+      "originalAtTarget": 100
+    },
+    {
+      "source": 64553,
+      "target": 64559,
+      "instruction": "LD ($FC2F),A",
+      "targetInstruction": 64556,
+      "originalAtTarget": 70
+    }
+  ],
+  "limits": "не доказывает отсутствие всех возможных скрытых путей в полной машине, устанавливает что просмотренные прямые и вычисленные переходы не оставляют дополнительного доказанного кода в DB"
+}

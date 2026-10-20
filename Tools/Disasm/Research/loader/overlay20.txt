@@ -1,0 +1,47 @@
+OVERLAY 20: поражение героя либо окончание срока поисков
+CALL TARGETS B200,B25B
+
+ROUTINE B200
+B200 c5           PUSH BC
+B201 3e42         LD A,$42
+B203 010000       LD BC,$0000
+B206 112018       LD DE,$1820
+B209 cdcf73       CALL $73CF
+B20C 11e66c       LD DE,$6CE6
+B20F 01060b       LD BC,$0B06
+B212 cd5bb2       CALL $B25B
+B215 110040       LD DE,$4000
+B218 2165b2       LD HL,$B265
+B21B cdc86c       CALL $6CC8
+B21E 48           LD C,B
+B21F 110b16       LD DE,$160B
+B222 3e42         LD A,$42
+B224 cdfe73       CALL $73FE
+B227 c1           POP BC
+B228 79           LD A,C
+B229 a7           AND A
+B22A 116eb2       LD DE,$B26E
+B22D 2803         JR Z,$B232
+B22F 113bb3       LD DE,$B33B
+B232 0603         LD B,$03
+B234 cd5bb2       CALL $B25B
+B237 ed56         IM 1
+B239 3e3f         LD A,$3F
+B23B ed47         LD I,A
+B23D af           XOR A
+B23E cda15f       CALL $5FA1
+B241 31985f       LD SP,$5F98
+B244 21dd6c       LD HL,$6CDD
+B247 11dd5c       LD DE,$5CDD
+B24A 010900       LD BC,$0009
+B24D edb0         LDIR
+B24F 32105d       LD ($5D10),A
+B252 0e0e         LD C,$0E
+B254 af           XOR A
+B255 cd133d       CALL $3D13
+B258 c34961       JP $6149
+
+ROUTINE B25B
+B25B cd1771       CALL $7117
+B25E 06ff         LD B,$FF
+B260 c3f47b       JP $7BF4

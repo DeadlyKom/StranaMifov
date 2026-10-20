@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+set -e # Abort on errors
+
+usage() {
+  cat <<EOF
+Usage: $(basename $0) deb|rpm
+
+  Create a SkoolKit Debian or RPM package.
+EOF
+  exit 1
+}
+
+PKGTYPE=$1
+[ "$PKGTYPE" = "deb" ] || [ "$PKGTYPE" = "rpm" ] || usage
+
+if [ -z "$SKOOLKIT_HOME" ]; then
+  echo "Error: SKOOLKIT_HOME not defined."
+  exit 1
+fi
+if [ ! -d "$SKOOLKIT_HOME" ]; then
+  echo "Error: directory not found: $SKOOLKIT_HOME"
+  exit 1
+fi
+
+cd $SKOOLKIT_HOME
+VERSION=$(./skool2html.py -V 2>&1 | cut -f2 -d' ')
+SKOOLKIT_TAR=skoolkit-$VERSION.tar.xz
+if [ -f "dist/$SKOOLKIT_TAR" ]; then
+  echo "Using existing $SKOOLKIT_TAR"
+else
+  echo "Building $SKOOLKIT_TAR"
+  tools/mksktarball -q -t
+fi
+
+if [ "$PKGTYPE" = "deb" ]; then
+  cd dist
+  tar xf $SKOOLKIT_TAR
+  cd skoolkit-$VERSION
+  cp -a $SKOOLKIT_HOME/debian .
+  debuild -b -us -uc
+  rm -rf ../skoolkit_$VERSION*.build ../skoolkit_$VERSION*.changes
+  cd $SKOOLKIT_HOME
+  echo "Created $(ls $SKOOLKIT_HOME/dist/skoolkit_$VERSION-*.deb)"
+elif [ "$PKGTYPE" = "rpm" ]; then
+  cp -p dist/$SKOOLKIT_TAR ~/rpmbuild/SOURCES/skoolkit-$VERSION.tar.xz
+  rm -f ~/rpmbuild/RPMS/x86_64/skoolkit-$VERSION-*.rpm
+  rpmbuild -bb --define='_binary_payload w6.xzdio' rpm/skoolkit.spec
+  mv ~/rpmbuild/RPMS/x86_64/skoolkit-$VERSION-*.rpm dist
+  echo "Created $(ls $SKOOLKIT_HOME/dist/skoolkit-$VERSION-*.rpm)"
+fi

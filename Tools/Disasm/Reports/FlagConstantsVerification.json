@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "scope": "Independent read-only check of current stage against unchanged saved Local sources",
+  "stage_source_files": 506,
+  "local_source_files": 505,
+  "baseline_local_changes": [],
+  "bit_declarations": 108,
+  "bit_instruction_replacements": 386,
+  "original_bit_instructions": 386,
+  "all_bit_values_equal_original": true,
+  "bit_value_mismatches": [],
+  "numeric_or_unknown_bit_selectors": [],
+  "mask_declarations": 82,
+  "mask_expressions_are_one_shift_bit": true,
+  "mask_mismatches": [],
+  "flag_include_has_only_equ_and_guards": true,
+  "unexpected_flag_include_directives": [],
+  "label_and_comment_layout_errors": [],
+  "control_transfer_counts": {
+    "RET": 578,
+    "JR": 1542,
+    "DJNZ": 330,
+    "JP": 460
+  },
+  "missing_blank_lines_after_transfers": [],
+  "source_code_equal_after_resolving_new_bit_names_and_offset_alias": true,
+  "source_code_mismatches": [],
+  "only_new_source_equ": [
+    {
+      "source": "Source/Startup/EditText.asm",
+      "line": 34,
+      "code": ".FlagsOfs       EQU Startup.Interrupt.EditFlags - Startup.Interrupt.EditAnchor"
+    }
+  ],
+  "new_source_offset_alias_value": 1,
+  "new_offset_alias_is_expected": true,
+  "project_sources_modified_by_review": false,
+  "assembler_executed": false,
+  "exact_label_code_column_errors": [],
+  "bit_constant_range_errors": {},
+  "used_named_bit_constants": 108,
+  "unused_bit_constant_declarations": [],
+  "final_checks": {
+    "passed": true,
+    "parsed_equ_definitions": 190,
+    "named_bit_values": 108,
+    "mask_values": 82,
+    "all_constant_values_match_registry": true,
+    "incorrect_bit_value_rejected": true,
+    "static_transcription": {
+      "transcription_byte_identical": true,
+      "sha256": "08b0e7fd5c59bc104c9de623d2bd0bc2ff0dabf43c340cca6a06b165d2232717",
+      "image_bytes": 655360,
+      "source_blocks": 81,
+      "source_bytes": 348741,
+      "decoded_instructions": 22242,
+      "procedures": 486,
+      "semantically_annotated": 486,
+      "mnemonics_match_disassembler_reference": true,
+      "assembler_executed_by_this_check": false,
+      "full_machine_executed": false,
+      "limitation": "Instruction mnemonics and resolved operands matched the immutable reference before reference instruction bytes were used. Data and resources were read from source. This is not assembly validation."
+    },
+    "assembler_executed": false
+  }
+}

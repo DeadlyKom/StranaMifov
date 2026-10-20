@@ -1,0 +1,58 @@
+[
+  {
+    "code": 38,
+    "key": "A",
+    "overlay": 8
+  },
+  {
+    "code": 37,
+    "key": "Q",
+    "overlay": 9
+  },
+  {
+    "code": 22,
+    "key": "D",
+    "overlay": 10
+  },
+  {
+    "code": 14,
+    "key": "F",
+    "overlay": 11
+  },
+  {
+    "code": 31,
+    "key": "Z",
+    "overlay": 12
+  },
+  {
+    "code": 16,
+    "key": "M",
+    "overlay": 13
+  },
+  {
+    "code": 8,
+    "key": "N",
+    "overlay": 14
+  },
+  {
+    "code": 5,
+    "key": "T",
+    "overlay": 15
+  },
+  {
+    "code": 30,
+    "key": "S",
+    "overlay": 16
+  },
+  {
+    "code": 7,
+    "key": "V",
+    "overlay": 17
+  },
+  {
+    "code": 1,
+    "key": "H",
+    "overlay": 22,
+    "note": "код1 проверен, H соответствует стандартной таблице KEY_CODES ZX ROM, отдельная проверка образа ROM не выполнялась"
+  }
+]

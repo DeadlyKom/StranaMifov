@@ -1,0 +1,14 @@
+*.pyc
+*.py.1
+.coverage
+.emacs.desktop
+.emacs.desktop.lock
+build
+diffs
+dist
+MANIFEST
+skoolkit/csimulator.*
+skoolkit/ccmiosimulator.*
+tests/cover
+tests/test_hh_*.py
+untracked

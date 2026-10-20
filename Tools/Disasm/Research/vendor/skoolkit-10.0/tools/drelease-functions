@@ -1,0 +1,307 @@
+for vname in DHOME GAME SKOOLKIT_ARCHIVE SRCFILES; do
+  value=$(eval echo \$$vname)
+  if [[ -z $value ]]; then
+    echo "$vname is not set; aborting"
+    exit 1
+  fi
+done
+
+for vname in DHOME SKOOLKIT_ARCHIVE; do
+  value=$(eval echo \$$vname)
+  if [[ ! -d $value ]]; then
+    echo "$vname=$value: directory not found"
+    exit 1
+  fi
+done
+
+DRELEASERC=$DHOME/.dreleaserc
+if [[ ! -f $DRELEASERC ]]; then
+  echo "Error: file not found: $DRELEASERC"
+  exit 1
+fi
+. $DRELEASERC
+
+BUILD=$DHOME/build
+DIFFSBUILD=$BUILD/disassembly-diff
+DIST=$DHOME/dist
+DTMPDIR=$HOME/tmp
+SKOOL=$DHOME/sources/$GAME.skool
+REF=$DHOME/sources/$GAME.ref
+GAMENAME=$(grep ^Game= $REF | cut -c6-)
+VERSION=$(grep ^Release= $REF | awk '{print $NF}')
+RELEASE=$GAME-disassembly-$VERSION
+SKOOLKIT_TOOLS=$SKOOLKIT_HOME/tools
+if [[ -z $SKDEV ]]; then
+  SKOOLKIT_VERSION=$(cd $SKOOLKIT_HOME; git describe --tags --abbrev=0)
+  SKOOLKIT_TARBALL=$SKOOLKIT_ARCHIVE/skoolkit-$SKOOLKIT_VERSION.tar.xz
+else
+  SKOOLKIT_VERSION=$($SKOOLKIT_HOME/skool2html.py -V 2>&1 | cut -f2 -d' ')
+  SKOOLKIT_TARBALL=$SKOOLKIT_HOME/dist/skoolkit-$SKOOLKIT_VERSION.tar.xz
+fi
+
+###############################################################################
+# Utility functions
+###############################################################################
+_require_skoolkit_tarball() {
+  if [[ ! -f $SKOOLKIT_TARBALL ]]; then
+    echo "$SKOOLKIT_TARBALL: file not found"
+    [[ -n $SKDEV ]] && echo 'Run "make -C $SKOOLKIT_HOME tarball" to build it'
+    exit 1
+  fi
+}
+
+_exec() {
+  message=$1
+  command=$2
+  logfile=$3
+  failcode=$4
+
+  echo -n "${message}: "
+  if ! eval $command &> $logfile; then
+    if [[ -z "$failcode" ]] || [[ $? -eq "$failcode" ]]; then
+      echo "FAILED (see $logfile)"
+      return 1
+    fi
+  fi
+  echo "OK"
+}
+
+_cd_tmpdir() {
+  mkdir -p $DTMPDIR
+  cd $(mktemp -d --tmpdir=$DTMPDIR)
+}
+
+_check_files() {
+  filetype=$1
+  expdir=$2
+  logdir=$3
+  shift 3
+  expfiles=$*
+
+  echo -n "Checking $filetype: "
+  if [[ ! -d $expdir ]]; then
+    echo "FAILED ($expdir does not exist)"
+    return 1
+  fi
+
+  prefix=$(echo $filetype | tr ' ' _)
+  elist=$logdir/$prefix-expected.txt
+  for f in $expfiles; do echo $f; done | sort > $elist
+  alist=$logdir/$prefix-actual.txt
+  ls -A1 $expdir | grep -Ev "^(html|sources)$" | sort > $alist
+
+  missing=$logdir/$prefix-missing.txt
+  comm -23 $elist $alist > $missing
+  if [[ -s $missing ]]; then
+    echo "FAILED (expected files missing; see $missing)"
+    return 1
+  fi
+
+  extra=$logdir/$prefix-extra.txt
+  comm -13 $elist $alist > $extra
+  if [[ -s $extra ]]; then
+    echo "FAILED (unexpected files found; see $extra)"
+    return 1
+  fi
+
+  echo "OK"
+}
+
+###############################################################################
+# Count lines of length 80 or more in the skool and ref files
+###############################################################################
+count_lines() {
+  _cd_tmpdir
+  for f in $SRCFILES; do
+    if [[ $f = *.skool || $f = *.ref ]]; then
+      cmd="$SKOOLKIT_TOOLS/count80.py -i $DHOME/sources/.clinesignore -p $DHOME/sources/$f"
+      _exec "Counting lines of length 80 or more in $f" "$cmd" $(pwd)/$f.log || true
+    fi
+  done
+}
+
+###############################################################################
+# Run disassembly-diff on the disassembly
+###############################################################################
+disassembly_diffs() {
+  mkdir -p $DIFFSBUILD
+  cd $DIFFSBUILD
+  [[ -z $SKDEV ]] && ddopts="-c $SKOOLKIT_VERSION"
+  $SKOOLKIT_TOOLS/disassembly-diff $ddopts $* $GAME 2>&1 | tee diffs.log
+}
+
+###############################################################################
+# Run check-asms on the disassembly
+###############################################################################
+check_asms() {
+  cd $DIFFSBUILD/disassembly-current-$SKOOLKIT_VERSION/asm
+  $SKOOLKIT_TOOLS/check-asms $GAME 2>&1 | tee ../check-asms.log
+}
+
+###############################################################################
+# Make a TAP file from an ASM file and load it
+###############################################################################
+check_tap() {
+  _require_skoolkit_tarball
+  binfile=$DIFFSBUILD/disassembly-current-$SKOOLKIT_VERSION/asm/$1.bin
+  tapfile=$(basename $binfile .bin).tap
+  _cd_tmpdir
+  tar xf $SKOOLKIT_TARBALL
+  _exec "Writing $tapfile" "skoolkit-$SKOOLKIT_VERSION/bin2tap.py $BIN2TAPOPTS $binfile $tapfile" $(pwd)/bin2tap.log
+  fuse $tapfile
+}
+
+###############################################################################
+# Run skooldiff on the disassembly
+###############################################################################
+skooldiff() {
+  _cd_tmpdir
+  _exec "Running skooldiff -k" "$SKOOLKIT_TOOLS/skooldiff -k $GAME" $(pwd)/skooldiff-k.log
+  if [[ ${CTLINVARIANCE:-2} == 2 ]]; then
+    _exec "Running skooldiff" "$SKOOLKIT_TOOLS/skooldiff $GAME" $(pwd)/skooldiff.log
+  fi
+}
+
+###############################################################################
+# Build the disassembly distribution tarball and zip archive
+###############################################################################
+build_tarball() {
+  _require_skoolkit_tarball
+  _cd_tmpdir
+  logdir=$(pwd)
+  tar xf $SKOOLKIT_TARBALL
+  cd skoolkit-$SKOOLKIT_VERSION
+  _exec "Building tarball and zip archive" "$SKOOLKIT_TOOLS/mkdtarball $DHOME" $logdir/build.log
+  root=dist/$RELEASE
+  _exec "Checking links" "$SKOOLKIT_TOOLS/check-links.py $root/html" $logdir/check-links.log
+  _check_files "source files" $root/sources $logdir $SRCFILES
+  _check_files "txt files" $root $logdir asm.txt readme.txt
+  _exec "Checking lines in asm.txt" "$SKOOLKIT_TOOLS/count80.py -p $root/asm.txt" $logdir/count80-asm.txt
+  _exec "Checking lines in readme.txt" "$SKOOLKIT_TOOLS/count80.py -p $root/readme.txt" $logdir/count80-readme.txt
+  less $root/asm.txt
+  less $root/readme.txt
+  mkdir -p $DIST
+  mv $root.{tar.xz,zip} $DIST
+}
+
+###############################################################################
+# Update the HTML disassembly on the gh-pages branch
+###############################################################################
+update_ghpages() {
+  _require_skoolkit_tarball
+  _cd_tmpdir
+  cwd=$(pwd)
+  tar xf $SKOOLKIT_TARBALL
+  cd skoolkit-$SKOOLKIT_VERSION
+  ARGS="-j style.css -c Config/InitModule=$SKOOLKIT_TOOLS:publish $SKOOL $SKOOLKIT_TOOLS/publish.ref"
+  HEXARGS="${HEXCONFIG:--H} -d $cwd -c Config/GameDir=html -T dark --var pub=2 $ARGS"
+  DECARGS="$DECCONFIG -d $cwd/html -c Config/GameDir=dec --var pub=4 $ARGS"
+  _exec "Building hexadecimal disassembly" "./skool2html.py $HEXARGS" $cwd/$GAME-hex-build.log
+  _exec "Building decimal disassembly" "./skool2html.py $DECARGS" $cwd/$GAME-dec-build.log
+  if [[ -n $WAVCONVERT ]]; then
+    echo -n "Converting WAV files..."
+    for wav in $WAVCONVERT; do
+      oggenc -Q "${cwd}/html/audio/$wav"
+      rm "${cwd}/html/audio/$wav"
+    done
+    echo "done"
+    _exec "Rebuilding hexadecimal disassembly" "./skool2html.py $HEXARGS" $cwd/$GAME-hex-build-2.log
+    _exec "Rebuilding decimal disassembly" "./skool2html.py $DECARGS" $cwd/$GAME-dec-build-2.log
+  fi
+
+  ghrepo=$(grep ^GameDir= $REF | cut -c9- | tr -d _)
+  echo -n "Cloning $ghrepo repository: "
+  cd $cwd
+  git clone -q git@github.com:skoolkid/${ghrepo}.git
+  echo "OK"
+  cd $ghrepo
+  git checkout -q gh-pages
+  rsync -r $cwd/html/ .
+  cd ..
+  _exec "Checking links" "$SKOOLKIT_TOOLS/check-links.py $ghrepo" $cwd/$GAME-links.log
+  cd $ghrepo
+  echo
+  git status -bs
+  echo
+  cat $cwd/$GAME-links.log
+  cat <<EOM
+
+Now:
+  \$ cd $(pwd)
+  # Remove any files that are no longer used
+  # Add any new files
+  \$ git commit -am "Update $GAMENAME disassembly to $VERSION"
+  \$ git push origin gh-pages
+EOM
+}
+
+###############################################################################
+# Run the disassembly tests
+###############################################################################
+test_disassembly() {
+  _require_skoolkit_tarball
+  _cd_tmpdir
+  logdir=$(pwd)
+  tar xf $SKOOLKIT_TARBALL
+  cd skoolkit-$SKOOLKIT_VERSION
+  cp -p $SKOOLKIT_HOME/tests/disassemblytest.py tests
+  mkdir tools
+  cp -p $SKOOLKIT_TOOLS/{disassembly.mk,testwriter.py} tools
+  for v in 310 311 312 313 314; do
+    _exec "Running $GAMENAME disassembly tests (SkoolKit $SKOOLKIT_VERSION, Python ${v:0:1}.${v:1})" "SKOOLKIT_HOME=$(pwd) make -C $DHOME test$v" $logdir/test$v.log
+  done
+}
+
+###############################################################################
+# Print usage information
+###############################################################################
+usage() {
+  cat >&2 <<EOM
+Usage: $(basename $0) COMMAND [COMMAND...]
+
+$GAMENAME disassembly testing and release tool.
+
+Commands:
+  clines - count lines of length 80 or more in the skool and ref files
+  ddiffs - run disassembly-diff on the disassembly
+  ddiffn - run 'disassembly-diff -n' on the disassembly
+  asmchk - run check-asms on the disassembly
+  mktap1 - make a TAP file from the base ASM file and load it
+  mktap2 - make a TAP file from the base @rsub-mode ASM file and load it
+  skoold - run skooldiff on the disassembly
+  dtests - run the disassembly tests
+  tarzip - build the disassembly distribution tarball and zip archive
+  ghhtml - update the HTML disassembly on the gh-pages branch
+
+Environment variables:
+  SKDEV - if not blank, use the current development version of SkoolKit instead
+          of the latest release
+EOM
+  exit 1
+}
+
+###############################################################################
+# Parse command line
+###############################################################################
+parse_args() {
+  numcommands=$#
+  (($numcommands < 1)) && usage
+
+  while [[ -n "$1" ]]; do
+    [[ $numcommands -ge 2 ]] && echo "*** Running command '$1' ***"
+    case "$1" in
+      clines) count_lines ;;
+      ddiffs) disassembly_diffs ;;
+      ddiffn) disassembly_diffs -n ;;
+      asmchk) check_asms ;;
+      mktap1) check_tap $GAME ;;
+      mktap2) check_tap $GAME-f1-r ;;
+      skoold) skooldiff ;;
+      dtests) test_disassembly ;;
+      tarzip) build_tarball ;;
+      ghhtml) update_ghpages ;;
+           *) echo "*** Unknown command '$1' ***"; usage ;;
+    esac
+    shift
+  done
+}

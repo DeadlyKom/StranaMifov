@@ -1,0 +1,574 @@
+#!/usr/bin/env bash
+set -e # Abort on errors
+
+SKTMPDIR=$HOME/tmp
+SKOOLKIT_KEY=2CC665CAA1AF3D05913D8FE8C4E10ED0938CD04A
+COMMANDS=$(echo {bin2{sna,tap},rzx{info,play},skool2{asm,bin,ctl,html},sna2{ctl,img,skool},snap{info,mod},tap{2sna,info},trace}.py)
+
+###############################################################################
+# Check required environment variables
+###############################################################################
+_require_skoolkit() {
+  if [ -z "$SKOOLKIT_HOME" ]; then
+    echo "Error: SKOOLKIT_HOME not defined."
+    exit 1
+  fi
+  if [ ! -d "$SKOOLKIT_HOME" ]; then
+    echo "Error: directory not found: $SKOOLKIT_HOME"
+    exit 1
+  fi
+  TOOLS=$SKOOLKIT_HOME/tools
+  VERSION=$($SKOOLKIT_HOME/skool2html.py -V 2>&1 | cut -f2 -d' ')
+  TARBALL=$SKOOLKIT_HOME/dist/skoolkit-$VERSION.tar.xz
+}
+
+_require_disassemblies() {
+  if [[ -z $SKOOLDAZE_HOME ]]; then
+    echo "Error: SKOOLDAZE_HOME not defined."
+    exit 1
+  fi
+  if [[ ! -d $SKOOLDAZE_HOME ]]; then
+    echo "Error: directory not found: $SKOOLDAZE_HOME"
+    exit 1
+  fi
+
+  if [[ -z $BACKTOSKOOL_HOME ]]; then
+    echo "Error: BACKTOSKOOL_HOME not defined."
+    exit 1
+  fi
+  if [[ ! -d $BACKTOSKOOL_HOME ]]; then
+    echo "Error: directory not found: $BACKTOSKOOL_HOME"
+    exit 1
+  fi
+
+  if [[ -z $CONTACTSAMCRUISE_HOME ]]; then
+    echo "Error: CONTACTSAMCRUISE_HOME not defined."
+    exit 1
+  fi
+  if [[ ! -d $CONTACTSAMCRUISE_HOME ]]; then
+    echo "Error: directory not found: $CONTACTSAMCRUISE_HOME"
+    exit 1
+  fi
+
+  if [[ -z $MANICMINER_HOME ]]; then
+    echo "Error: MANICMINER_HOME not defined."
+    exit 1
+  fi
+  if [[ ! -d $MANICMINER_HOME ]]; then
+    echo "Error: directory not found: $MANICMINER_HOME"
+    exit 1
+  fi
+
+  if [[ -z $JETSETWILLY_HOME ]]; then
+    echo "Error: JETSETWILLY_HOME not defined."
+    exit 1
+  fi
+  if [[ ! -d $JETSETWILLY_HOME ]]; then
+    echo "Error: directory not found: $JETSETWILLY_HOME"
+    exit 1
+  fi
+
+  if [[ -z $ROM_DISASSEMBLY_HOME ]]; then
+    echo "Error: ROM_DISASSEMBLY_HOME not defined."
+    exit 1
+  fi
+  if [[ ! -d $ROM_DISASSEMBLY_HOME ]]; then
+    echo "Error: directory not found: $ROM_DISASSEMBLY_HOME"
+    exit 1
+  fi
+
+  if [[ -z $HUNGRYHORACE_HOME ]]; then
+    echo "Error: HUNGRYHORACE_HOME not defined."
+    exit 1
+  fi
+  if [[ ! -d $HUNGRYHORACE_HOME ]]; then
+    echo "Error: directory not found: $HUNGRYHORACE_HOME"
+    exit 1
+  fi
+}
+
+###############################################################################
+# Utility functions
+###############################################################################
+_exec() {
+  message=$1
+  command=$2
+  logfile=$3
+
+  echo -n "${message}: "
+  if ! $command &> $logfile; then
+    echo "FAILED (see $logfile)"
+    return 1
+  fi
+  echo "OK"
+}
+
+_wait() {
+  message=$1
+  pid=$2
+  failsuffix=$3
+  oksuffix=${4:-$failsuffix}
+
+  echo -n "${message}: "
+  if wait $pid; then
+    [[ "$oksuffix" = _ ]] && echo "OK" || echo "OK $oksuffix"
+  else
+    echo "FAILED $failsuffix"
+  fi
+}
+
+_cd_tmpdir() {
+  mkdir -p $SKTMPDIR
+  cd $(mktemp -d --tmpdir=$SKTMPDIR)
+}
+
+_create_venv() {
+  venvdir=${1:-venv}
+
+  _exec "Creating virtual environment" "python3 -m venv $venvdir" $(pwd)/venv.log
+}
+
+_build_tarball() {
+  echo -n "Building tarball for version $VERSION of SkoolKit: "
+  $TOOLS/mksktarball -q -t
+  echo "OK"
+}
+
+_check_commands() {
+  path=$1
+  logdir=$2
+
+  for cmdname in $COMMANDS; do
+    echo -n "Running $cmdname: "
+    cmd=$path/$cmdname
+    if [[ ! -f $cmd ]]; then
+      echo "FAILED ($cmd not found)"
+      return 1
+    fi
+    logfile=$logdir/$cmdname.log
+    $cmd &> $logfile || :
+    if ! grep -q ^usage: $logfile; then
+      echo "FAILED (see $logfile)"
+      return 1
+    fi
+    echo "OK"
+  done
+}
+
+_check_man_pages() {
+  echo -n "Checking man pages: "
+  for cmdname in $COMMANDS; do
+    manpage=/usr/share/man/man1/$cmdname.1.gz
+    if [[ ! -f $manpage ]]; then
+      echo "FAILED ($manpage not found)"
+      return 1
+    fi
+  done
+  echo "OK"
+}
+
+_check_files() {
+  filetype=$1
+  expdir=$2
+  logdir=$3
+  shift 3
+  expfiles=$*
+
+  echo -n "Checking $filetype: "
+  if [[ ! -d $expdir ]]; then
+    echo "FAILED ($expdir does not exist)"
+    return 1
+  fi
+  rcount=0
+  for f in $expfiles; do
+    resource=$expdir/$f
+    if [[ ! -f $resource ]]; then
+      echo "FAILED ($f not found in $expdir)"
+      return 1
+    fi
+    let rcount+=1
+  done
+  rlist=$logdir/$filetype.txt
+  ls -1 $expdir > $rlist
+  numresources=$(cat $rlist | wc -l)
+  if [[ $numresources -ne $rcount ]]; then
+    echo "FAILED (unexpected files found; see $rlist)"
+    return 1
+  fi
+  echo "OK"
+}
+
+_check_resources() {
+  rootdir=$1
+  logdir=$2
+
+  _check_files resources $rootdir $logdir skoolkit{,-dark,-green,-plum,-wide}.css {{128,plus2}-{0,1},48}.rom
+}
+
+_check_examples() {
+  rootdir=$1
+  logdir=$2
+
+  _check_files examples $rootdir $logdir hungry_horace.{ctl,ref,t2s}
+}
+
+###############################################################################
+# Run the disassemblies (HH/ROM/MM/JSW/SD/BTS/CSC) tests
+###############################################################################
+test_disassemblies() {
+  _require_skoolkit
+  _require_disassemblies
+
+  mkdir -p $HUNGRYHORACE_HOME/build
+  hhlog=$HUNGRYHORACE_HOME/build/tests.log
+  mkdir -p $ROM_DISASSEMBLY_HOME/build
+  romlog=$ROM_DISASSEMBLY_HOME/build/tests.log
+  mkdir -p $MANICMINER_HOME/build
+  mmlog=$MANICMINER_HOME/build/tests.log
+  mkdir -p $JETSETWILLY_HOME/build
+  jswlog=$JETSETWILLY_HOME/build/tests.log
+  mkdir -p $SKOOLDAZE_HOME/build
+  sdlog=$SKOOLDAZE_HOME/build/tests.log
+  mkdir -p $BACKTOSKOOL_HOME/build
+  btslog=$BACKTOSKOOL_HOME/build/tests.log
+  mkdir -p $CONTACTSAMCRUISE_HOME/build
+  csclog=$CONTACTSAMCRUISE_HOME/build/tests.log
+  targets="test310 test311 test312 test313 test314"
+
+  _exec "Hungry Horace tests" "make -C $HUNGRYHORACE_HOME $targets" $hhlog
+  _exec "Manic Miner tests" "make -C $MANICMINER_HOME $targets" $mmlog
+  _exec "Jet Set Willy tests" "make -C $JETSETWILLY_HOME $targets" $jswlog
+  _exec "Spectrum ROM tests" "make -C $ROM_DISASSEMBLY_HOME $targets" $romlog
+  _exec "Skool Daze tests" "make -C $SKOOLDAZE_HOME $targets" $sdlog
+  _exec "Back to Skool tests" "make -C $BACKTOSKOOL_HOME $targets" $btslog
+  _exec "Contact Sam Cruise tests" "make -C $CONTACTSAMCRUISE_HOME $targets" $csclog
+}
+
+###############################################################################
+# Run disassembly-diff on the ROM/HH/MM/JSW/SD/BTS/CSC disassemblies
+###############################################################################
+disassembly_diffs() {
+  _require_skoolkit
+  _require_disassemblies
+
+  hhdiffsdir=$HUNGRYHORACE_HOME/build/disassembly-diff
+  romdiffsdir=$ROM_DISASSEMBLY_HOME/build/disassembly-diff
+  mmdiffsdir=$MANICMINER_HOME/build/disassembly-diff
+  jswdiffsdir=$JETSETWILLY_HOME/build/disassembly-diff
+  sddiffsdir=$SKOOLDAZE_HOME/build/disassembly-diff
+  btsdiffsdir=$BACKTOSKOOL_HOME/build/disassembly-diff
+  cscdiffsdir=$CONTACTSAMCRUISE_HOME/build/disassembly-diff
+  diffslog=diffs.log
+  DISASSEMBLY_DIFF="$TOOLS/disassembly-diff -r -t"
+
+  _build_tarball
+  for d in $romdiffsdir $hhdiffsdir $mmdiffsdir $jswdiffsdir $sddiffsdir $btsdiffsdir $cscdiffsdir; do
+    mkdir -p $d
+    rm -rf $d/disassembly-current-*
+  done
+
+  (cd $hhdiffsdir; $DISASSEMBLY_DIFF hh &> $diffslog) & PIDhh=$!
+  (cd $mmdiffsdir; $DISASSEMBLY_DIFF mm &> $diffslog) & PIDmm=$!
+  (cd $jswdiffsdir; $DISASSEMBLY_DIFF jsw &> $diffslog) & PIDjsw=$!
+  (cd $romdiffsdir; $DISASSEMBLY_DIFF rom &> $diffslog) & PIDrom=$!
+  (cd $sddiffsdir; $DISASSEMBLY_DIFF sd &> $diffslog) & PIDsd=$!
+  (cd $btsdiffsdir; $DISASSEMBLY_DIFF bts &> $diffslog) & PIDbts=$!
+  (cd $cscdiffsdir; $DISASSEMBLY_DIFF csc &> $diffslog) & PIDcsc=$!
+
+  _wait "Hungry Horace disassembly-diff" $PIDhh "(see $hhdiffsdir/$diffslog)"
+  _wait "Manic Miner disassembly-diff" $PIDmm "(see $mmdiffsdir/$diffslog)"
+  _wait "Jet Set Willy disassembly-diff" $PIDjsw "(see $jswdiffsdir/$diffslog)"
+  _wait "Spectrum ROM disassembly-diff" $PIDrom "(see $romdiffsdir/$diffslog)"
+  _wait "Skool Daze disassembly-diff" $PIDsd "(see $sddiffsdir/$diffslog)"
+  _wait "Back to Skool disassembly-diff" $PIDbts "(see $btsdiffsdir/$diffslog)"
+  _wait "Contact Sam Cruise disassembly-diff" $PIDcsc "(see $cscdiffsdir/$diffslog)"
+}
+
+###############################################################################
+# Run check-asms on the ROM/HH/MM/JSW/SD/BTS/CSC disassemblies
+###############################################################################
+check_asms() {
+  _require_skoolkit
+  _require_disassemblies
+
+  asmsubdir=build/disassembly-diff/disassembly-current-$VERSION/asm
+  hhasmdir=$HUNGRYHORACE_HOME/$asmsubdir
+  romasmdir=$ROM_DISASSEMBLY_HOME/$asmsubdir
+  mmasmdir=$MANICMINER_HOME/$asmsubdir
+  jswasmdir=$JETSETWILLY_HOME/$asmsubdir
+  sdasmdir=$SKOOLDAZE_HOME/$asmsubdir
+  btsasmdir=$BACKTOSKOOL_HOME/$asmsubdir
+  cscasmdir=$CONTACTSAMCRUISE_HOME/$asmsubdir
+  asmlog=asm.log
+  CHECK_ASMS=$TOOLS/check-asms
+
+  (cd $hhasmdir; $CHECK_ASMS hh &> $asmlog) & PIDhh=$!
+  (cd $mmasmdir; $CHECK_ASMS mm &> $asmlog) & PIDmm=$!
+  (cd $jswasmdir; $CHECK_ASMS jsw &> $asmlog) & PIDjsw=$!
+  (cd $romasmdir; $CHECK_ASMS rom &> $asmlog) & PIDrom=$!
+  (cd $sdasmdir; $CHECK_ASMS sd &> $asmlog) & PIDsd=$!
+  (cd $btsasmdir; $CHECK_ASMS bts &> $asmlog) & PIDbts=$!
+  (cd $cscasmdir; $CHECK_ASMS csc &> $asmlog) & PIDcsc=$!
+
+  _wait "Hungry Horace check-asms" $PIDhh "(see $hhasmdir/$asmlog)" _
+  _wait "Manic Miner check-asms" $PIDmm "(see $mmasmdir/$asmlog)" _
+  _wait "Jet Set Willy check-asms" $PIDjsw "(see $jswasmdir/$asmlog)" _
+  _wait "Spectrum ROM check-asms" $PIDrom "(see $romasmdir/$asmlog)" _
+  _wait "Skool Daze check-asms" $PIDsd "(see $sdasmdir/$asmlog)" _
+  _wait "Back to Skool check-asms" $PIDbts "(see $btsasmdir/$asmlog)" _
+  _wait "Contact Sam Cruise check-asms" $PIDcsc "(see $cscasmdir/$asmlog)" _
+}
+
+###############################################################################
+# Run check-bins on the HH/MM/JSW/ROM/SD/BTS/CSC disassemblies
+###############################################################################
+check_bins() {
+  _require_skoolkit
+  _require_disassemblies
+
+  asmsubdir=build/disassembly-diff/disassembly-current-$VERSION/asm
+  hhasmdir=$HUNGRYHORACE_HOME/$asmsubdir
+  mmasmdir=$MANICMINER_HOME/$asmsubdir
+  jswasmdir=$JETSETWILLY_HOME/$asmsubdir
+  romasmdir=$ROM_DISASSEMBLY_HOME/$asmsubdir
+  sdasmdir=$SKOOLDAZE_HOME/$asmsubdir
+  btsasmdir=$BACKTOSKOOL_HOME/$asmsubdir
+  cscasmdir=$CONTACTSAMCRUISE_HOME/$asmsubdir
+  binlog=bin.log
+  CHECK_BINS=$TOOLS/check-bins
+
+  (cd $hhasmdir; $CHECK_BINS hh &> $binlog) & PIDhh=$!
+  (cd $mmasmdir; $CHECK_BINS mm &> $binlog) & PIDmm=$!
+  (cd $jswasmdir; $CHECK_BINS jsw &> $binlog) & PIDjsw=$!
+  (cd $romasmdir; $CHECK_BINS rom &> $binlog) & PIDrom=$!
+  (cd $sdasmdir; $CHECK_BINS sd &> $binlog) & PIDsd=$!
+  (cd $btsasmdir; $CHECK_BINS bts &> $binlog) & PIDbts=$!
+  (cd $cscasmdir; $CHECK_BINS csc &> $binlog) & PIDcsc=$!
+
+  _wait "Hungry Horace check-bins" $PIDhh "(see $hhasmdir/$binlog)" _
+  _wait "Manic Miner check-bins" $PIDmm "(see $mmasmdir/$binlog)" _
+  _wait "Jet Set Willy check-bins" $PIDjsw "(see $jswasmdir/$binlog)" _
+  _wait "Spectrum ROM check-bins" $PIDrom "(see $romasmdir/$binlog)" _
+  _wait "Skool Daze check-bins" $PIDsd "(see $sdasmdir/$binlog)" _
+  _wait "Back to Skool check-bins" $PIDbts "(see $btsasmdir/$binlog)" _
+  _wait "Contact Sam Cruise check-bins" $PIDcsc "(see $cscasmdir/$binlog)" _
+}
+
+###############################################################################
+# Verify that 'pip install .' works
+###############################################################################
+_install_skoolkit() {
+  method=$1
+
+  tar xf $TARBALL -C $topdir
+  mv $topdir/skoolkit-$VERSION{,-release}
+  cd $topdir/skoolkit-$VERSION-release
+
+  if [[ "$method" = "2" ]]; then
+    _exec "Installing 'build' in virtual environment" "$venv/bin/python -m pip install build" $topdir/sdist.log
+    _exec "Building source distribution" "$venv/bin/python -m build --sdist" $topdir/sdist.log
+    tar xf dist/skoolkit-$VERSION.tar.gz -C $topdir
+    cd $topdir/skoolkit-$VERSION
+  fi
+
+  _exec "Installing SkoolKit" "$venv/bin/python -m pip install ." $topdir/install.log
+}
+
+verify_pip() {
+  method=$1
+
+  _require_skoolkit
+
+  _cd_tmpdir
+  topdir=$(pwd)
+  venv=$topdir/venv
+  _create_venv $venv
+  _build_tarball
+  _install_skoolkit $method
+  _check_commands $venv/bin $topdir
+  packagedir=$($venv/bin/skool2html.py -p)
+  _check_resources $packagedir/resources $topdir
+}
+
+###############################################################################
+# Build, install, verify and uninstall a DEB package
+###############################################################################
+build_deb() {
+  _require_skoolkit
+
+  debname=skoolkit_$VERSION-1_amd64.deb
+  deb=$SKOOLKIT_HOME/dist/$debname
+  logdir=$SKOOLKIT_HOME/dist
+  mkdir -p $logdir
+
+  sudo dpkg -r skoolkit &> /dev/null
+
+  _exec "Building $debname" "make -C $SKOOLKIT_HOME deb" $logdir/debuild.log
+  _exec "Installing $debname" "sudo dpkg -i $deb" $logdir/dpkg-i.log
+  _check_commands /usr/bin $logdir
+  _check_man_pages
+  _check_resources $(/usr/bin/skool2html.py -p)/resources $logdir
+  _check_examples /usr/share/skoolkit/examples $logdir
+  _exec "Uninstalling skoolkit" "sudo dpkg -r skoolkit" $logdir/dpkg-r.log
+}
+
+###############################################################################
+# Build, install, verify and uninstall an RPM package
+###############################################################################
+build_rpm() {
+  _require_skoolkit
+
+  rpmname=skoolkit-$VERSION-1.x86_64.rpm
+  rpm=$SKOOLKIT_HOME/dist/$rpmname
+  logdir=$SKOOLKIT_HOME/dist
+  mkdir -p $logdir
+
+  sudo rpm -e skoolkit &> /dev/null || true
+
+  _exec "Building $rpmname" "make -C $SKOOLKIT_HOME rpm" $logdir/rpmbuild.log
+  _exec "Installing $rpmname" "sudo rpm -i $rpm" $logdir/rpm-i.log
+  _check_commands /usr/bin $logdir
+  _check_man_pages
+  _check_resources $(/usr/bin/skool2html.py -p)/resources $logdir
+  _check_examples /usr/share/skoolkit/examples $logdir
+  _exec "Uninstalling skoolkit" "sudo rpm -e skoolkit" $logdir/rpm-e.log
+}
+
+###############################################################################
+# Prepare documentation on the gh-pages branch
+###############################################################################
+prepare_gh_pages() {
+  _require_skoolkit
+
+  _cd_tmpdir
+  logfile=$(pwd)/sphinx.log
+  echo -n "Cloning skoolkit repository: "
+  git clone -q git@github.com:skoolkid/skoolkit.git
+  echo "OK"
+  cd skoolkit
+  _exec "Building documentation" "make -C sphinx html SPHINXOPTS=-Dhtml_theme=sphinxdoc" $logfile
+  rm -rf sphinx/build/html/{.buildinfo,_sources/man,man,objects.inv}
+  git checkout -q gh-pages
+  rsync -ac sphinx/build/html/ . # compare files by checksum - important!
+  rm -rf skoolkit sphinx
+  echo
+  git status -bs
+  cat <<EOM
+
+Now:
+  \$ cd $(pwd)
+  # Remove any pages that are no longer used
+  # Add any new pages or files
+  \$ git commit -am "Update SkoolKit documentation to $VERSION"
+  \$ git push origin gh-pages
+EOM
+}
+
+###############################################################################
+# Build a source package and upload it to PyPI
+###############################################################################
+build_sdist() {
+  _require_skoolkit
+
+  [[ -f $TARBALL ]] && echo "Found $TARBALL" || _build_tarball
+  _cd_tmpdir
+  logfile=$(pwd)/sdist.log
+  tar xf $TARBALL
+  cd skoolkit-$VERSION
+  _exec "Building source package" "python3 -m build --sdist" $logfile
+  _exec "Uploading source package" "twine upload dist/skoolkit-$VERSION.tar.gz" $logfile
+}
+
+###############################################################################
+# Verify that SkoolKit can be installed from PyPI
+###############################################################################
+check_pypi() {
+  _cd_tmpdir
+  _create_venv
+  _exec "Installing SkoolKit from PyPI" "venv/bin/pip install skoolkit" $(pwd)/install.log
+}
+
+###############################################################################
+# Build and upload signed source package(s) to the SkoolKit PPA
+###############################################################################
+upload_ppa_source() {
+  _require_skoolkit
+
+  dputconf=$HOME/.dput.cf
+  if ! grep '^\[skoolkit-ppa\]$' $dputconf &> /dev/null; then
+    cat >> $dputconf <<EOF
+[skoolkit-ppa]
+fqdn = ppa.launchpad.net
+method = ftp
+incoming = ~rjdymond/ppa/ubuntu/
+login = anonymous
+allow_unsigned_uploads = 0
+EOF
+  fi
+
+  [[ -f $TARBALL ]] && echo "Found $TARBALL" || _build_tarball
+
+  for dist in jammy noble resolute; do
+    _cd_tmpdir
+    cp -p $TARBALL skoolkit_$VERSION.orig.tar.xz
+    tar xf skoolkit_$VERSION.orig.tar.xz
+    cd skoolkit-$VERSION
+    cp -a $SKOOLKIT_HOME/debian .
+    sed -i "s/(\($VERSION-.\)) unstable;/(\1+$dist) $dist;/" debian/changelog
+    debuild -S -k$SKOOLKIT_KEY
+    dput skoolkit-ppa ../skoolkit_$VERSION-*_source.changes
+  done
+}
+
+###############################################################################
+# Print usage information
+###############################################################################
+usage() {
+  cat >&2 <<EOM
+Usage: $(basename $0) COMMAND [COMMAND...]
+
+SkoolKit testing and release tool.
+
+Pre-release commands:
+  dtests - run the disassemblies (HH/ROM/MM/JSW/SD/BTS/CSC) tests
+  ddiffs - run disassembly-diff on the HH/ROM/MM/JSW/SD/BTS/CSC disassemblies
+  asmchk - run check-asms on the HH/ROM/MM/JSW/SD/BTS/CSC disassemblies
+  binchk - run check-bins on the HH/ROM/MM/JSW/SD/BTS/CSC disassemblies
+  pipin1 - verify that 'pip install .' works from a release tarball
+  pipin2 - verify that 'pip install .' works from an sdist tarball
+
+Post-release commands:
+  debpkg - build, install, verify and uninstall a DEB package
+  rpmpkg - build, install, verify and uninstall an RPM package
+  ghdocs - prepare documentation on the gh-pages branch
+  bsdist - build a source package and upload it to PyPI
+  ifpypi - verify that SkoolKit can be installed from PyPI
+  ppadeb - build and upload signed source package(s) to the SkoolKit PPA
+EOM
+}
+
+###############################################################################
+# Parse command line
+###############################################################################
+[[ -z "$1" ]] && usage
+numcommands=$#
+
+while [[ -n "$1" ]]; do
+  [[ $numcommands -ge 2 ]] && echo "*** Running command '$1' ***"
+  case "$1" in
+    dtests) test_disassemblies ;;
+    ddiffs) disassembly_diffs ;;
+    asmchk) check_asms ;;
+    binchk) check_bins ;;
+    pipin1) verify_pip 1 ;;
+    pipin2) verify_pip 2 ;;
+    debpkg) build_deb ;;
+    rpmpkg) build_rpm ;;
+    ghdocs) prepare_gh_pages ;;
+    bsdist) build_sdist ;;
+    ifpypi) check_pypi ;;
+    ppadeb) upload_ppa_source ;;
+         *) echo "*** Unknown command '$1' ***"; usage ;;
+  esac
+  shift
+done

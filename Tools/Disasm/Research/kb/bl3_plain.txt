@@ -1,0 +1,5590 @@
+6149 F3             DI
+614A 3E 50          LD A,$50
+614C ED 4F          LD R,A
+614E 21 5E 61       LD HL,$615E
+6151 01 D5 1B       LD BC,$1BD5
+6154 ED 5F          LD A,R
+6156 AE             XOR (HL)
+6157 77             LD (HL),A
+6158 23             INC HL
+6159 0B             DEC BC
+615A 78             LD A,B
+615B B1             OR C
+615C 20 F6          JR NZ,$6154
+615E 97             SUB A
+615F 41             LD B,C
+6160 05             DEC B
+6161 8A             ADC A,D
+6162 AD             XOR L
+6163 C4 FF CE       CALL NZ,$CEFF
+6166 F9             LD SP,HL
+6167 D8             RET C
+6168 CB EE          SET 5,(HL)
+616A 48             LD C,B
+616B AC             XOR H
+616C 87             ADD A,A
+616D 9E             SBC A,(HL)
+616E 91             SUB C
+616F B4             OR H
+6170 7E             LD A,(HL)
+6171 45             LD B,L
+6172 A8             XOR B
+6173 4E             LD C,(HL)
+6174 EF             RST $28
+6175 09             ADD HL,BC
+6176 D2 58 DB       JP NC,$DB58
+6179 6D             LD L,L
+617A 00             NOP
+617B 37             SCF
+617C 87             ADD A,A
+617D 51             LD D,C
+617E A1             AND C
+617F 1C             INC E
+6180 CD 60 30       CALL $3060
+6183 02             LD (BC),A
+6184 10 E3          DJNZ $6169
+6186 5D             LD E,L
+6187 F2 6E 58       JP P,$586E
+618A 5A             LD E,D
+618B B8             CP B
+618C 13             INC DE
+618D 85             ADD A,L
+618E F1             POP AF
+618F 2D             DEC L
+6190 14             INC D
+6191 21 D9 0D       LD HL,$0DD9
+6194 08             EX AF,AF'
+6195 92             SUB D
+6196 2D             DEC L
+6197 6B             LD L,E
+6198 59             LD E,C
+6199 5A             LD E,D
+619A 42             LD B,D
+619B A9             XOR C
+619C 63             LD H,E
+619D E6 5F          AND $5F
+619F CF             RST $08
+61A0 47             LD B,A
+61A1 15             DEC D
+61A2 E9             JP (HL)
+61A3 20 87          JR NZ,$612C
+61A5 C4 32 A8       CALL NZ,$A832
+61A8 F8             RET M
+61A9 06 FD          LD B,$FD
+61AB 28 28          JR Z,$61D5
+61AD 47             LD B,A
+61AE E9             JP (HL)
+61AF 43             LD B,E
+61B0 0E DE          LD C,$DE
+61B2 6A             LD L,D
+61B3 01 34 82       LD BC,$8234
+61B6 4E             LD C,(HL)
+61B7 8B             ADC A,E
+61B8 13             INC DE
+61B9 F6 DD          OR $DD
+61BB B8             CP B
+61BC 7D             LD A,L
+61BD F2 3C CC       JP P,$CC3C
+61C0 87             ADD A,A
+61C1 9E             SBC A,(HL)
+61C2 B9             CP C
+61C3 B8             CP B
+61C4 62             LD H,D
+61C5 8E             ADC A,(HL)
+61C6 9D             SBC A,L
+61C7 D8             RET C
+61C8 EF             RST $28
+61C9 E6 E1          AND $E1
+61CB F8             RET M
+61CC D3 C0          OUT ($C0),A
+61CE A9             XOR C
+61CF 00             NOP
+61D0 50             LD D,B
+61D1 AD             XOR L
+61D2 68             LD L,B
+61D3 71             LD (HL),C
+61D4 7A             LD A,D
+61D5 03             INC BC
+61D6 0C             INC C
+61D7 15             DEC D
+61D8 1E 27          LD E,$27
+61DA 30 39          JR NC,$6215
+61DC 42             LD B,D
+61DD 4B             LD C,E
+61DE 54             LD D,H
+61DF 5D             LD E,L
+61E0 66             LD H,(HL)
+61E1 6F             LD L,A
+61E2 78             LD A,B
+61E3 01 0A 13       LD BC,$130A
+61E6 1C             INC E
+61E7 25             DEC H
+61E8 2E 37          LD L,$37
+61EA 40             LD B,B
+61EB 49             LD C,C
+61EC 52             LD D,D
+61ED 5B             LD E,E
+61EE 64             LD H,H
+61EF 6D             LD L,L
+61F0 76             HALT
+61F1 7F             LD A,A
+61F2 08             EX AF,AF'
+61F3 11 1A 23       LD DE,$231A
+61F6 2C             INC L
+61F7 35             DEC (HL)
+61F8 3E 47          LD A,$47
+61FA 50             LD D,B
+61FB 59             LD E,C
+61FC 62             LD H,D
+61FD 6B             LD L,E
+61FE 74             LD (HL),H
+61FF 7D             LD A,L
+6200 06 0F          LD B,$0F
+6202 18 21          JR $6225
+6204 2A 33 3C       LD HL,($3C33)
+6207 45             LD B,L
+6208 4E             LD C,(HL)
+6209 57             LD D,A
+620A 60             LD H,B
+620B 69             LD L,C
+620C 72             LD (HL),D
+620D 7B             LD A,E
+620E 04             INC B
+620F 0D             DEC C
+6210 16 1F          LD D,$1F
+6212 28 31          JR Z,$6245
+6214 3A 43 4C       LD A,($4C43)
+6217 55             LD D,L
+6218 5E             LD E,(HL)
+6219 67             LD H,A
+621A 70             LD (HL),B
+621B 79             LD A,C
+621C 02             LD (BC),A
+621D 0B             DEC BC
+621E 14             INC D
+621F 1D             DEC E
+6220 26 2F          LD H,$2F
+6222 38 41          JR C,$6265
+6224 4A             LD C,D
+6225 53             LD D,E
+6226 5C             LD E,H
+6227 65             LD H,L
+6228 6E             LD L,(HL)
+6229 77             LD (HL),A
+622A 00             NOP
+622B 09             ADD HL,BC
+622C 12             LD (DE),A
+622D 1B             DEC DE
+622E 24             INC H
+622F 2D             DEC L
+6230 36 3F          LD (HL),$3F
+6232 48             LD C,B
+6233 51             LD D,C
+6234 5A             LD E,D
+6235 63             LD H,E
+6236 6C             LD L,H
+6237 75             LD (HL),L
+6238 7E             LD A,(HL)
+6239 07             RLCA
+623A 10 19          DJNZ $6255
+623C 22 2B 34       LD ($342B),HL
+623F 3D             DEC A
+6240 46             LD B,(HL)
+6241 4F             LD C,A
+6242 58             LD E,B
+6243 61             LD H,C
+6244 6A             LD L,D
+6245 73             LD (HL),E
+6246 7C             LD A,H
+6247 05             DEC B
+6248 0E 17          LD C,$17
+624A 20 29          JR NZ,$6275
+624C 32 3B 44       LD ($443B),A
+624F 4D             LD C,L
+6250 56             LD D,(HL)
+6251 5F             LD E,A
+6252 68             LD L,B
+6253 71             LD (HL),C
+6254 7A             LD A,D
+6255 03             INC BC
+6256 0C             INC C
+6257 15             DEC D
+6258 1E 27          LD E,$27
+625A 30 39          JR NC,$6295
+625C 42             LD B,D
+625D 4B             LD C,E
+625E 54             LD D,H
+625F 5D             LD E,L
+6260 66             LD H,(HL)
+6261 6F             LD L,A
+6262 78             LD A,B
+6263 01 0A 13       LD BC,$130A
+6266 1C             INC E
+6267 25             DEC H
+6268 2E 37          LD L,$37
+626A 40             LD B,B
+626B 49             LD C,C
+626C 52             LD D,D
+626D 5B             LD E,E
+626E 64             LD H,H
+626F 6D             LD L,L
+6270 76             HALT
+6271 7F             LD A,A
+6272 08             EX AF,AF'
+6273 11 1A 23       LD DE,$231A
+6276 2C             INC L
+6277 35             DEC (HL)
+6278 3E 47          LD A,$47
+627A 50             LD D,B
+627B 59             LD E,C
+627C 62             LD H,D
+627D 6B             LD L,E
+627E 74             LD (HL),H
+627F 7D             LD A,L
+6280 06 0F          LD B,$0F
+6282 18 21          JR $62A5
+6284 2A 33 3C       LD HL,($3C33)
+6287 45             LD B,L
+6288 4E             LD C,(HL)
+6289 57             LD D,A
+628A 60             LD H,B
+628B 69             LD L,C
+628C 72             LD (HL),D
+628D 7B             LD A,E
+628E 04             INC B
+628F 0D             DEC C
+6290 16 1F          LD D,$1F
+6292 28 31          JR Z,$62C5
+6294 3A 43 4C       LD A,($4C43)
+6297 55             LD D,L
+6298 5E             LD E,(HL)
+6299 67             LD H,A
+629A 70             LD (HL),B
+629B 79             LD A,C
+629C 02             LD (BC),A
+629D 0B             DEC BC
+629E 46             LD B,(HL)
+629F 5C             LD E,H
+62A0 6B             LD L,E
+62A1 6B             LD L,E
+62A2 6A             LD L,D
+62A3 08             EX AF,AF'
+62A4 1C             INC E
+62A5 16 1F          LD D,$1F
+62A7 21 2F 23       LD HL,$232F
+62AA 41             LD B,C
+62AB 3B             DEC SP
+62AC 32 3B 04       LD ($043B),A
+62AF 6E             LD L,(HL)
+62B0 7E             LD A,(HL)
+62B1 7A             LD A,D
+62B2 1A             LD A,(DE)
+62B3 18 17          JR $62CC
+62B5 24             INC H
+62B6 4C             LD C,H
+62B7 55             LD D,L
+62B8 3D             DEC A
+62B9 4F             LD C,A
+62BA 55             LD D,L
+62BB 4B             LD C,E
+62BC 76             HALT
+62BD 73             LD (HL),E
+62BE 60             LD H,B
+62BF 1D             DEC E
+62C0 66             LD H,(HL)
+62C1 0C             INC C
+62C2 08             EX AF,AF'
+62C3 33             INC SP
+62C4 2F             CPL
+62C5 20 5C          JR NZ,$6323
+62C7 25             DEC H
+62C8 2E 37          LD L,$37
+62CA 63             LD H,E
+62CB 79             LD A,C
+62CC 77             LD (HL),A
+62CD 69             LD L,C
+62CE 17             RLA
+62CF 02             LD (BC),A
+62D0 18 60          JR $6332
+62D2 48             LD C,B
+62D3 32 34 42       LD ($4234),A
+62D6 56             LD D,(HL)
+62D7 42             LD B,D
+62D8 5F             LD E,A
+62D9 69             LD L,C
+62DA 79             LD A,C
+62DB 7C             LD A,H
+62DC 01 06 13       LD BC,$1306
+62DF 0D             DEC C
+62E0 29             ADD HL,HL
+62E1 38 3D          JR C,$6320
+62E3 53             LD D,E
+62E4 35             DEC (HL)
+62E5 50             LD D,B
+62E6 4F             LD C,A
+62E7 71             LD (HL),C
+62E8 7C             LD A,H
+62E9 78             LD A,B
+62EA 05             DEC B
+62EB 07             RLCA
+62EC 1B             DEC DE
+62ED 1A             LD A,(DE)
+62EE 27             DAA
+62EF 3E 39          LD A,$39
+62F1 33             INC SP
+62F2 4C             LD C,H
+62F3 58             LD E,B
+62F4 5F             LD E,A
+62F5 71             LD (HL),C
+62F6 7F             LD A,A
+62F7 76             HALT
+62F8 56             LD D,(HL)
+62F9 22 31 3D       LD ($3D31),HL
+62FC 4C             LD C,H
+62FD 08             EX AF,AF'
+62FE 1B             DEC DE
+62FF 5D             LD E,L
+6300 45             LD B,L
+6301 5B             LD E,E
+6302 5D             LD E,L
+6303 79             LD A,C
+6304 7E             LD A,(HL)
+6305 13             INC DE
+6306 1C             INC E
+6307 65             LD H,L
+6308 6E             LD L,(HL)
+6309 14             INC D
+630A 2B             DEC HL
+630B 28 20          JR Z,$632D
+630D 2F             CPL
+630E 45             LD B,L
+630F 32 36 3F       LD ($3F36),A
+6312 6B             LD L,E
+6313 66             LD H,(HL)
+6314 7F             LD A,A
+6315 11 1B 1A       LD DE,$1A1B
+6318 17             RLA
+6319 29             ADD HL,HL
+631A 4F             LD C,A
+631B 3A 23 95       LD A,($9523)
+631E 76             HALT
+631F 0C             INC C
+6320 FB             EI
+6321 73             LD (HL),E
+6322 39             ADD HL,SP
+6323 48             LD C,B
+6324 4A             LD C,D
+6325 BE             CP (HL)
+6326 EC CA 5C       CALL PE,$5CCA
+6329 67             LD H,A
+632A 5D             LD E,L
+632B 07             RLCA
+632C 1C             INC E
+632D D6 37          SUB $37
+632F 10 FB          DJNZ $632C
+6331 0B             DEC BC
+6332 35             DEC (HL)
+6333 51             LD D,C
+6334 5A             LD E,D
+6335 90             SUB B
+6336 4D             LD C,L
+6337 E9             JP (HL)
+6338 1C             INC E
+6339 FE 31          CP $31
+633B 19             ADD HL,DE
+633C 42             LD B,D
+633D 3A 35 5D       LD A,($5D35)
+6340 70             LD (HL),B
+6341 2E 59          LD L,$59
+6343 61             LD H,C
+6344 6B             LD L,E
+6345 9E             SBC A,(HL)
+6346 CC 3B 6E       CALL Z,$6E3B
+6349 FA 67 C4       JP M,$C467
+634C 6C             LD L,H
+634D 05             DEC B
+634E 4C             LD C,H
+634F 80             ADD A,B
+6350 F7             RST $30
+6351 00             NOP
+6352 49             LD C,C
+6353 71             LD (HL),C
+6354 BA             CP D
+6355 12             LD (DE),A
+6356 0D             DEC C
+6357 D5             PUSH DE
+6358 1F             RRA
+6359 D8             RET C
+635A 0F             RRCA
+635B 0F             RRCA
+635C 42             LD B,D
+635D A6             AND (HL)
+635E E4 77 1E       CALL PO,$1E77
+6361 33             INC SP
+6362 5A             LD E,D
+6363 91             SUB C
+6364 7B             LD A,E
+6365 39             ADD HL,SP
+6366 65             LD H,L
+6367 79             LD A,C
+6368 0C             INC C
+6369 A5             AND L
+636A 31 A4 0D       LD SP,$0DA4
+636D 34             INC (HL)
+636E 03             INC BC
+636F 4F             LD C,A
+6370 E2 0E 36       JP PO,$360E
+6373 15             DEC D
+6374 D7             RST $10
+6375 82             ADD A,D
+6376 73             LD (HL),E
+6377 14             INC D
+6378 FC 25 41       CALL M,$4125
+637B 59             LD E,C
+637C A2             AND D
+637D A6             AND (HL)
+637E E6 0D          AND $0D
+6380 38 0C          JR C,$638E
+6382 D5             PUSH DE
+6383 80             ADD A,B
+6384 75             LD (HL),L
+6385 12             LD (DE),A
+6386 9B             SBC A,E
+6387 27             DAA
+6388 5F             LD E,A
+6389 57             LD D,A
+638A A0             AND B
+638B A4             AND H
+638C E0             RET PO
+638D 0B             DEC BC
+638E AB             XOR E
+638F C0             RET NZ
+6390 B7             OR A
+6391 40             LD B,B
+6392 09             ADD HL,BC
+6393 81             ADD A,C
+6394 58             LD E,B
+6395 52             LD D,D
+6396 7F             LD A,A
+6397 28 93          JR Z,$632C
+6399 F5             PUSH AF
+639A 00             NOP
+639B 58             LD E,B
+639C BB             CP E
+639D 69             LD L,C
+639E 05             DEC B
+639F E2 F0 E2       JP PO,$E2F0
+63A2 AA             XOR D
+63A3 31 74 57       LD SP,$5774
+63A6 91             SUB C
+63A7 BA             CP D
+63A8 1E BA          LD E,$BA
+63AA 00             NOP
+63AB EB             EX DE,HL
+63AC BD             CP L
+63AD D6 85          SUB $85
+63AF 72             LD (HL),D
+63B0 FB             EI
+63B1 2E 3B          LD L,$3B
+63B3 50             LD D,B
+63B4 5E             LD E,(HL)
+63B5 73             LD (HL),E
+63B6 7D             LD A,L
+63B7 63             LD H,E
+63B8 78             LD A,B
+63B9 39             ADD HL,SP
+63BA 55             LD D,L
+63BB D4 02 59       CALL NC,$5902
+63BE 35             DEC (HL)
+63BF 31 54 5E       LD SP,$5E54
+63C2 FB             EI
+63C3 1A             LD A,(DE)
+63C4 A7             AND A
+63C5 97             SUB A
+63C6 0C             INC C
+63C7 04             INC B
+63C8 06 03          LD B,$03
+63CA 31 9C 49       LD SP,$499C
+63CD F6 A0          OR $A0
+63CF 3D             DEC A
+63D0 57             LD D,A
+63D1 52             LD D,D
+63D2 7E             LD A,(HL)
+63D3 60             LD H,B
+63D4 AA             XOR D
+63D5 78             LD A,B
+63D6 C1             POP BC
+63D7 F1             POP AF
+63D8 6E             LD L,(HL)
+63D9 FA 11 0A       JP M,$0A11
+63DC 3E 86          LD A,$86
+63DE 35             DEC (HL)
+63DF 29             ADD HL,HL
+63E0 98             SBC A,B
+63E1 6C             LD L,H
+63E2 58             LD E,B
+63E3 0A             LD A,(BC)
+63E4 34             INC (HL)
+63E5 17             RLA
+63E6 D1             POP DE
+63E7 FA 5E FA       JP M,$FA5E
+63EA 40             LD B,B
+63EB AB             XOR E
+63EC 91             SUB C
+63ED F7             RST $30
+63EE 07             RLCA
+63EF 93             SUB E
+63F0 74             LD (HL),H
+63F1 BD             CP L
+63F2 D7             RST $10
+63F3 74             LD (HL),H
+63F4 D7             RST $10
+63F5 F5             PUSH AF
+63F6 41             LD B,C
+63F7 35             DEC (HL)
+63F8 3E 66          LD A,$66
+63FA 50             LD D,B
+63FB 99             SBC A,C
+63FC 73             LD (HL),E
+63FD 6B             LD L,E
+63FE 74             LD (HL),H
+63FF 7C             LD A,H
+6400 03             INC BC
+6401 07             RLCA
+6402 D5             PUSH DE
+6403 9D             SBC A,L
+6404 47             LD B,A
+6405 EE 1D          XOR $1D
+6407 45             LD B,L
+6408 8E             ADC A,(HL)
+6409 51             LD D,C
+640A 60             LD H,B
+640B B4             OR H
+640C 0C             INC C
+640D 7B             LD A,E
+640E B3             OR E
+640F 25             DEC H
+6410 05             DEC B
+6411 E1             POP HL
+6412 29             ADD HL,HL
+6413 19             ADD HL,DE
+6414 32 9E 32       LD ($329E),A
+6417 5D             LD E,L
+6418 A0             AND B
+6419 2A 50 78       LD HL,($7850)
+641C 06 1A          LD B,$1A
+641E 04             INC B
+641F 1D             DEC E
+6420 FB             EI
+6421 36 20          LD (HL),$20
+6423 A6             AND (HL)
+6424 32 E4 96       LD ($96E4),A
+6427 C9             RET
+6428 0D             DEC C
+6429 89             ADC A,C
+642A 01 C3 D9       LD BC,$D9C3
+642D 7F             LD A,A
+642E 16 A9          LD D,$A9
+6430 45             LD B,L
+6431 01 49 63       LD BC,$6349
+6434 DF             RST $18
+6435 10 A1          DJNZ $63D8
+6437 64             LD H,H
+6438 0D             DEC C
+6439 06 1C          LD B,$1C
+643B 1D             DEC E
+643C 33             INC SP
+643D 39             ADD HL,SP
+643E 3E 03          LD A,$03
+6440 40             LD B,B
+6441 82             ADD A,D
+6442 78             LD A,B
+6443 13             INC DE
+6444 6B             LD L,E
+6445 66             LD H,(HL)
+6446 74             LD (HL),H
+6447 14             INC D
+6448 39             ADD HL,SP
+6449 6D             LD L,L
+644A ED CD          DEFB $ED,$CD
+644C 42             LD B,D
+644D 3A 44 4D       LD A,($4D44)
+6450 47             LD B,A
+6451 55             LD D,L
+6452 7E             LD A,(HL)
+6453 4F             LD C,A
+6454 7C             LD A,H
+6455 CE 2C          ADC A,$2C
+6457 67             LD H,A
+6458 1F             RRA
+6459 24             INC H
+645A 32 28 44       LD ($4428),A
+645D 4A             LD C,D
+645E 89             ADC A,C
+645F 7C             LD A,H
+6460 9B             SBC A,E
+6461 13             INC DE
+6462 B5             OR L
+6463 A7             AND A
+6464 64             LD H,H
+6465 12             LD (DE),A
+6466 1F             RRA
+6467 31 3F 31       LD SP,$313F
+646A 41             LD B,C
+646B 94             SUB H
+646C 73             LD (HL),E
+646D A6             AND (HL)
+646E 18 A0          JR $6410
+6470 D0             RET NC
+6471 11 09 14       LD DE,$1409
+6474 0F             RRCA
+6475 32 1D 4F       LD ($4F1D),A
+6478 F3             DI
+6479 A3             AND E
+647A 20 94          JR NZ,$6410
+647C 25             DEC H
+647D 18 A9          JR $6428
+647F 5C             LD E,H
+6480 A0             AND B
+6481 73             LD (HL),E
+6482 D5             PUSH DE
+6483 40             LD B,B
+6484 5E             LD E,(HL)
+6485 CD 39 8F       CALL $8F39
+6488 E2 34 9E       JP PO,$9E34
+648B 68             LD L,B
+648C 52             LD D,D
+648D 62             LD H,D
+648E 3E 88          LD A,$88
+6490 65             LD H,L
+6491 E1             POP HL
+6492 29             ADD HL,HL
+6493 19             ADD HL,DE
+6494 D3 BD          OUT ($BD),A
+6496 5C             LD E,H
+6497 6D             LD L,L
+6498 59             LD E,C
+6499 B1             OR C
+649A 7F             LD A,A
+649B 4B             LD C,E
+649C 87             ADD A,A
+649D 78             LD A,B
+649E 0C             INC C
+649F B0             OR B
+64A0 18 2E          JR $64D0
+64A2 0A             LD A,(BC)
+64A3 C4 39 4B       CALL NZ,$4B39
+64A6 FA 9B 6A       JP M,$6A9B
+64A9 5F             LD E,A
+64AA E3             EX (SP),HL
+64AB F7             RST $30
+64AC 10 3B          DJNZ $64E9
+64AE 36 17          LD (HL),$17
+64B0 B3             OR E
+64B1 4C             LD C,H
+64B2 69             LD L,C
+64B3 D5             PUSH DE
+64B4 29             ADD HL,HL
+64B5 A5             AND L
+64B6 62             LD H,D
+64B7 CB 4E          BIT 1,(HL)
+64B9 C3 2C 2B       JP $2B2C
+64BC A7             AND A
+64BD 58             LD E,B
+64BE F7             RST $30
+64BF 70             LD (HL),B
+64C0 22 B1 5B       LD ($5BB1),HL
+64C3 49             LD C,C
+64C4 80             ADD A,B
+64C5 A5             AND L
+64C6 7A             LD A,D
+64C7 24             INC H
+64C8 8B             ADC A,E
+64C9 64             LD H,H
+64CA A6             AND (HL)
+64CB E4 18 48       CALL PO,$4818
+64CE 99             SBC A,C
+64CF A8             XOR B
+64D0 56             LD D,(HL)
+64D1 5F             LD E,A
+64D2 68             LD L,B
+64D3 90             SUB B
+64D4 9F             SBC A,A
+64D5 03             INC BC
+64D6 0C             INC C
+64D7 15             DEC D
+64D8 FF             RST $38
+64D9 36 ED          LD (HL),$ED
+64DB 65             LD H,L
+64DC 43             LD B,E
+64DD 43             LD B,E
+64DE 54             LD D,H
+64DF B0             OR B
+64E0 D6 51          SUB $51
+64E2 35             DEC (HL)
+64E3 33             INC SP
+64E4 EF             RST $28
+64E5 4F             LD C,A
+64E6 12             LD (DE),A
+64E7 2F             CPL
+64E8 E3             EX (SP),HL
+64E9 8B             ADC A,E
+64EA 2D             DEC L
+64EB 30 5C          JR NC,$6549
+64ED 53             LD D,E
+64EE A9             XOR C
+64EF D1             POP DE
+64F0 1B             DEC DE
+64F1 41             LD B,C
+64F2 0B             DEC BC
+64F3 DC BB 7C       CALL C,$7CBB
+64F6 C1             POP BC
+64F7 6E             LD L,(HL)
+64F8 D5             PUSH DE
+64F9 1B             DEC DE
+64FA 51             LD D,C
+64FB 5C             LD E,H
+64FC 63             LD H,E
+64FD 4A             LD C,D
+64FE 74             LD (HL),H
+64FF BA             CP D
+6500 CB B3          RES 6,E
+6502 75             LD (HL),L
+6503 00             NOP
+6504 2A F4 2D       LD HL,($2DF4)
+6507 BA             CP D
+6508 4E             LD C,(HL)
+6509 9A             SBC A,D
+650A 6B             LD L,E
+650B 1E DD          LD E,$DD
+650D B6             OR (HL)
+650E A5             AND L
+650F 52             LD D,D
+6510 FB             EI
+6511 44             LD B,H
+6512 DC 6D 04       CALL C,$046D
+6515 42             LD B,D
+6516 4C             LD C,H
+6517 55             LD D,L
+6518 5E             LD E,(HL)
+6519 66             LD H,(HL)
+651A 75             LD (HL),L
+651B 50             LD D,B
+651C 23             INC HL
+651D 0B             DEC BC
+651E D4 D0 9A       CALL NC,$9AD0
+6521 42             LD B,D
+6522 19             ADD HL,DE
+6523 41             LD B,C
+6524 8A             ADC A,D
+6525 42             LD B,D
+6526 05             DEC B
+6527 4D             LD C,L
+6528 A3             AND E
+6529 7C             LD A,H
+652A 77             LD (HL),A
+652B 37             SCF
+652C 13             INC DE
+652D D6 85          SUB $85
+652F 72             LD (HL),D
+6530 DB 64          IN A,($64)
+6532 BC             CP H
+6533 0D             DEC C
+6534 64             LD H,H
+6535 49             LD C,C
+6536 6C             LD L,H
+6537 75             LD (HL),L
+6538 7E             LD A,(HL)
+6539 06 15          LD B,$15
+653B 59             LD E,C
+653C 03             INC BC
+653D 2B             DEC HL
+653E F4 F0 FA       CALL P,$FAF0
+6541 22 79 61       LD ($6179),HL
+6544 AA             XOR D
+6545 62             LD H,D
+6546 93             SUB E
+6547 3A C3 1C       LD A,($1CC3)
+654A 57             LD D,A
+654B 17             RLA
+654C 39             ADD HL,SP
+654D F6 E5          OR $E5
+654F 12             LD (DE),A
+6550 BB             CP E
+6551 04             INC B
+6552 9C             SBC A,H
+6553 2D             DEC L
+6554 44             LD B,H
+6555 69             LD L,C
+6556 0C             INC C
+6557 15             DEC D
+6558 1E 26          LD E,$26
+655A 35             DEC (HL)
+655B 18 63          JR $65C0
+655D 4B             LD C,E
+655E 94             SUB H
+655F 90             SUB B
+6560 DA 02 59       JP C,$5902
+6563 01 CA 02       LD BC,$02CA
+6566 D3 05          OUT ($05),A
+6568 E3             EX (SP),HL
+6569 3C             INC A
+656A 37             SCF
+656B E6 9F          AND $9F
+656D FA 3B 4C       JP M,$4C3B
+6570 0B             DEC BC
+6571 1A             LD A,(DE)
+6572 19             ADD HL,DE
+6573 11 E5 22       LD DE,$22E5
+6576 4D             LD C,L
+6577 35             DEC (HL)
+6578 D3 F7          OUT ($F7),A
+657A 93             SUB E
+657B 59             LD E,C
+657C 9D             SBC A,L
+657D A6             AND (HL)
+657E AA             XOR D
+657F 10 06          DJNZ $6587
+6581 F6 39          OR $39
+6583 D9             EXX
+6584 48             LD C,B
+6585 22 E1 19       LD ($19E1),HL
+6588 4F             LD C,A
+6589 5E             LD E,(HL)
+658A 60             LD H,B
+658B 84             ADD A,H
+658C C2 D4 36       JP NZ,$36D4
+658F 1D             DEC E
+6590 4B             LD C,E
+6591 3E 76          LD A,$76
+6593 50             LD D,B
+6594 34             INC (HL)
+6595 4D             LD C,L
+6596 72             LD (HL),D
+6597 6A             LD L,D
+6598 B3             OR E
+6599 20 8D          JR NZ,$6528
+659B 58             LD E,B
+659C 38 57          JR C,$65F5
+659E 2A 1E CB       LD HL,($CB1E)
+65A1 79             LD A,C
+65A2 C3 8C 59       JP $598C
+65A5 6E             LD L,(HL)
+65A6 9F             SBC A,A
+65A7 3B             DEC SP
+65A8 0F             RRCA
+65A9 66             LD H,(HL)
+65AA A7             AND A
+65AB 79             LD A,C
+65AC 0A             LD A,(BC)
+65AD 18 35          JR $65E4
+65AF BC             CP H
+65B0 5B             LD E,E
+65B1 EA 85 40       JP PE,$4085
+65B4 29             ADD HL,HL
+65B5 42             LD B,D
+65B6 8C             ADC A,H
+65B7 2F             CPL
+65B8 6F             LD L,A
+65B9 E6 4A          AND $4A
+65BB 18 3D          JR $65FA
+65BD 2B             DEC HL
+65BE 02             LD (BC),A
+65BF 7F             LD A,A
+65C0 AB             XOR E
+65C1 FF             RST $38
+65C2 89             ADC A,C
+65C3 60             LD H,B
+65C4 6F             LD L,A
+65C5 64             LD H,H
+65C6 B1             OR C
+65C7 E1             POP HL
+65C8 7E             LD A,(HL)
+65C9 19             ADD HL,DE
+65CA 3F             CCF
+65CB 86             ADD A,(HL)
+65CC E9             JP (HL)
+65CD C5             PUSH BC
+65CE 6B             LD L,E
+65CF EC 76 A6       CALL PE,$A676
+65D2 C7             RST $00
+65D3 AA             XOR D
+65D4 84             ADD A,H
+65D5 2C             INC L
+65D6 AD             XOR L
+65D7 3D             DEC A
+65D8 E7             RST $20
+65D9 EE 30          XOR $30
+65DB FA 1C 2A       JP M,$2A1C
+65DE 54             LD D,H
+65DF F2 AB CE       JP P,$CEAB
+65E2 27             DAA
+65E3 CC 0A 62       CALL Z,$620A
+65E6 22 24 1C       LD ($1C24),HL
+65E9 02             LD (BC),A
+65EA 3D             DEC A
+65EB 84             ADD A,H
+65EC 61             LD H,C
+65ED 26 65          LD H,$65
+65EF 6D             LD L,L
+65F0 78             LD A,B
+65F1 6E             LD L,(HL)
+65F2 16 17          LD D,$17
+65F4 24             INC H
+65F5 65             LD H,L
+65F6 E1             POP HL
+65F7 15             DEC D
+65F8 4C             LD C,H
+65F9 46             LD B,(HL)
+65FA 53             LD D,E
+65FB 49             LD C,C
+65FC 73             LD (HL),E
+65FD 4A             LD C,D
+65FE 0F             RRCA
+65FF B0             OR B
+6600 E2 7F C5       JP PO,$C57F
+6603 00             NOP
+6604 6C             LD L,H
+6605 4F             LD C,A
+6606 F1             POP AF
+6607 24             INC H
+6608 3A A9 61       LD A,($61A9)
+660B A3             AND E
+660C DE 18          SBC A,$18
+660E F7             RST $30
+660F 3F             CCF
+6610 23             INC HL
+6611 62             LD H,D
+6612 E5             PUSH HL
+6613 31 4B 8E       LD SP,$8E4B
+6616 7F             LD A,A
+6617 28 5F          JR Z,$6678
+6619 77             LD (HL),A
+661A 70             LD (HL),B
+661B 68             LD L,B
+661C 0C             INC C
+661D 1D             DEC E
+661E 2A 1B EB       LD HL,($EB1B)
+6621 0F             RRCA
+6622 4A             LD C,D
+6623 8C             ADC A,H
+6624 CC 20 66       CALL Z,$6620
+6627 50             LD D,B
+6628 13             INC DE
+6629 89             ADC A,C
+662A 02             LD (BC),A
+662B 21 1B E5       LD HL,$E51B
+662E 23             INC HL
+662F 05             DEC B
+6630 33             INC SP
+6631 2E CF          LD L,$CF
+6633 2A 42 60       LD HL,($6042)
+6636 7D             LD A,L
+6637 0F             RRCA
+6638 05             DEC B
+6639 06 08          LD B,$08
+663B 0C             INC C
+663C EF             RST $28
+663D CF             RST $08
+663E 44             LD B,H
+663F 3C             INC A
+6640 5E             LD E,(HL)
+6641 59             LD E,C
+6642 49             LD C,C
+6643 F4 11 BE       CALL P,$BE11
+6646 98             SBC A,B
+6647 75             LD (HL),L
+6648 D3 36          OUT ($36),A
+664A 51             LD D,C
+664B 55             LD D,L
+664C FF             RST $38
+664D 5A             LD E,D
+664E 30 B3          JR NC,$6603
+6650 54             LD D,H
+6651 95             SUB L
+6652 B7             OR A
+6653 14             INC D
+6654 40             LD B,B
+6655 36 71          LD (HL),$71
+6657 28 2C          JR Z,$6685
+6659 16 49          LD D,$49
+665B F4 53 38       CALL P,$3853
+665E 55             LD D,L
+665F 55             LD D,L
+6660 6A             LD L,D
+6661 7E             LD A,(HL)
+6662 76             HALT
+6663 0B             DEC BC
+6664 34             INC (HL)
+6665 54             LD D,H
+6666 D1             POP DE
+6667 05             DEC B
+6668 5C             LD E,H
+6669 36 4E          LD (HL),$4E
+666B 47             LD B,A
+666C 43             LD B,E
+666D BB             CP E
+666E 1F             RRA
+666F A0             AND B
+6670 92             SUB D
+6671 0F             RRCA
+6672 D5             PUSH DE
+6673 30 9A          JR NC,$660F
+6675 5F             LD E,A
+6676 E1             POP HL
+6677 54             LD D,H
+6678 4A             LD C,D
+6679 B9             CP C
+667A 54             LD D,H
+667B 93             SUB E
+667C CE 08          ADC A,$08
+667E 46             LD B,(HL)
+667F 4F             LD C,A
+6680 7F             LD A,A
+6681 C2 09 52       JP NZ,$5209
+6684 2B             DEC HL
+6685 37             SCF
+6686 2C             INC L
+6687 54             LD D,H
+6688 58             LD E,B
+6689 51             LD D,C
+668A 5E             LD E,(HL)
+668B 2E BF          LD L,$BF
+668D 5B             LD E,E
+668E 76             HALT
+668F 37             SCF
+6690 27             DAA
+6691 66             LD H,(HL)
+6692 D6 30          SUB $30
+6694 12             LD (DE),A
+6695 4A             LD C,D
+6696 B2             OR D
+6697 53             LD D,E
+6698 76             HALT
+6699 62             LD H,D
+669A 61             LD H,C
+669B AD             XOR L
+669C 78             LD A,B
+669D 13             INC DE
+669E 17             RLA
+669F 0C             INC C
+66A0 F8             RET M
+66A1 55             LD D,L
+66A2 39             ADD HL,SP
+66A3 4B             LD C,E
+66A4 58             LD E,B
+66A5 9E             SBC A,(HL)
+66A6 B8             CP B
+66A7 15             DEC D
+66A8 6F             LD L,A
+66A9 64             LD H,H
+66AA 12             LD (DE),A
+66AB 18 FA          JR $66A7
+66AD 61             LD H,C
+66AE E9             JP (HL)
+66AF C9             RET
+66B0 46             LD B,(HL)
+66B1 1E 7B          LD E,$7B
+66B3 28 4B          JR Z,$6700
+66B5 57             LD D,A
+66B6 15             DEC D
+66B7 74             LD (HL),H
+66B8 76             HALT
+66B9 07             RLCA
+66BA 26 39          LD H,$39
+66BC CF             RST $08
+66BD 9B             SBC A,E
+66BE 02             LD (BC),A
+66BF 3D             DEC A
+66C0 47             LD B,A
+66C1 5E             LD E,(HL)
+66C2 4C             LD C,H
+66C3 BC             CP H
+66C4 4B             LD C,E
+66C5 40             LD B,B
+66C6 05             DEC B
+66C7 3B             DEC SP
+66C8 06 DA          LD B,$DA
+66CA 35             DEC (HL)
+66CB 46             LD B,(HL)
+66CC CC 35 8E       CALL Z,$8E35
+66CF E1             POP HL
+66D0 35             DEC (HL)
+66D1 7E             LD A,(HL)
+66D2 5B             LD E,E
+66D3 08             EX AF,AF'
+66D4 6B             LD L,E
+66D5 DE 50          SBC A,$50
+66D7 14             INC D
+66D8 16 27          LD D,$27
+66DA DD             DEFB $DD
+66DB 89             ADC A,C
+66DC 8F             ADC A,A
+66DD AE             XOR (HL)
+66DE 39             ADD HL,SP
+66DF 5D             LD E,L
+66E0 66             LD H,(HL)
+66E1 61             LD H,C
+66E2 72             LD (HL),D
+66E3 CC B6 7E       CALL Z,$7EB6
+66E6 D7             RST $10
+66E7 5C             LD E,H
+66E8 0E 1F          LD C,$1F
+66EA 8D             ADC A,L
+66EB 58             LD E,B
+66EC 21 5A 64       LD HL,$645A
+66EF 65             LD H,L
+66F0 67             LD H,A
+66F1 61             LD H,C
+66F2 0E 2F          LD C,$2F
+66F4 58             LD E,B
+66F5 EE 0C          XOR $0C
+66F7 47             LD B,A
+66F8 2F             CPL
+66F9 C3 2A 58       JP $582A
+66FC 60             LD H,B
+66FD 60             LD H,B
+66FE B9             CP C
+66FF 99             SBC A,C
+6700 76             HALT
+6701 D2 39 B6       JP NC,$B639
+6704 56             LD D,(HL)
+6705 FE 5D          CP $5D
+6707 31 B0 55       LD SP,$55B0
+670A AA             XOR D
+670B E8             RET PE
+670C 14             INC D
+670D 75             LD (HL),L
+670E 16 C0          LD D,$C0
+6710 AA             XOR D
+6711 72             LD (HL),D
+6712 E5             PUSH HL
+6713 20 49          JR NZ,$675E
+6715 8E             ADC A,(HL)
+6716 E2 30 64       JP PO,$6430
+6719 56             LD D,(HL)
+671A 09             ADD HL,BC
+671B BF             CP A
+671C 32 39 C5       LD ($C539),A
+671F 7F             LD A,A
+6720 07             RLCA
+6721 E4 5A 50       CALL PO,$505A
+6724 76             HALT
+6725 2A 91 F7       LD HL,($F791)
+6728 1E 4D          LD E,$4D
+672A 31 70 EC       LD SP,$EC70
+672D 1C             INC E
+672E E6 45          AND $45
+6730 51             LD D,C
+6731 E2 69 49       JP PO,$4969
+6734 20 42          JR NZ,$6778
+6736 74             LD (HL),H
+6737 0F             RRCA
+6738 78             LD A,B
+6739 1E CD          LD E,$CD
+673B 67             LD H,A
+673C 23             INC HL
+673D F6 A2          OR $A2
+673F 3D             DEC A
+6740 19             ADD HL,DE
+6741 59             LD E,C
+6742 58             LD E,B
+6743 AC             XOR H
+6744 58             LD E,B
+6745 02             LD (BC),A
+6746 A1             AND C
+6747 7B             LD A,E
+6748 0E 94          LD C,$94
+674A 6F             LD L,A
+674B 38 26          JR C,$6773
+674D 3B             DEC SP
+674E 89             ADC A,C
+674F 7F             LD A,A
+6750 27             DAA
+6751 24             INC H
+6752 DF             RST $18
+6753 51             LD D,C
+6754 7E             LD A,(HL)
+6755 C8             RET Z
+6756 2D             DEC L
+6757 0D             DEC C
+6758 19             ADD HL,DE
+6759 D9             EXX
+675A 24             INC H
+675B 19             ADD HL,DE
+675C 41             LD B,C
+675D 80             ADD A,B
+675E 6D             LD L,L
+675F 51             LD D,C
+6760 17             RLA
+6761 B2             OR D
+6762 5B             LD E,E
+6763 DC 29 30       CALL C,$3029
+6766 0C             INC C
+6767 F7             RST $30
+6768 14             INC D
+6769 05             DEC B
+676A 39             ADD HL,SP
+676B 58             LD E,B
+676C DA 48 9A       JP C,$9A48
+676F 6C             LD L,H
+6770 5E             LD E,(HL)
+6771 75             LD (HL),L
+6772 19             ADD HL,DE
+6773 B1             OR C
+6774 15             DEC D
+6775 DD 2E 1D       LD IXl,$1D
+6778 3D             DEC A
+6779 56             LD D,(HL)
+677A E8             RET PE
+677B 52             LD D,D
+677C 8F             ADC A,A
+677D 38 08          JR C,$6787
+677F 04             INC B
+6780 A9             XOR C
+6781 C2 B9 7E       JP NZ,$7EB9
+6784 10 01          DJNZ $6787
+6786 45             LD B,L
+6787 83             ADD A,E
+6788 7E             LD A,(HL)
+6789 65             LD H,L
+678A 7A             LD A,D
+678B 0A             LD A,(BC)
+678C 40             LD B,B
+678D 9F             SBC A,A
+678E 66             LD H,(HL)
+678F 2C             INC L
+6790 27             DAA
+6791 65             LD H,L
+6792 39             ADD HL,SP
+6793 03             INC BC
+6794 40             LD B,B
+6795 42             LD B,D
+6796 05             DEC B
+6797 3D             DEC A
+6798 68             LD L,B
+6799 67             LD H,A
+679A 9D             SBC A,L
+679B C9             RET
+679C 23             INC HL
+679D ED 76          IM 1
+679F 0C             INC C
+67A0 17             RLA
+67A1 55             LD D,L
+67A2 F5             PUSH AF
+67A3 D3 3A          OUT ($3A),A
+67A5 6D             LD L,L
+67A6 5D             LD E,L
+67A7 A8             XOR B
+67A8 CF             RST $08
+67A9 28 21          JR Z,$67CC
+67AB DD 70 0A       LD (IX+$0A),B
+67AE 24             INC H
+67AF ED FB          DEFB $ED,$FB
+67B1 AD             XOR L
+67B2 38 6F          JR C,$6823
+67B4 59             LD E,C
+67B5 AE             XOR (HL)
+67B6 CD 2A 5F       CALL $5F2A
+67B9 E8             RET PE
+67BA 72             LD (HL),D
+67BB 08             EX AF,AF'
+67BC 22 EC F9       LD ($F9EC),HL
+67BF AF             XOR A
+67C0 36 6E          LD (HL),$6E
+67C2 4B             LD C,E
+67C3 02             LD (BC),A
+67C4 7B             LD A,E
+67C5 69             LD L,C
+67C6 B7             OR A
+67C7 C8             RET Z
+67C8 9C             SBC A,H
+67C9 67             LD H,A
+67CA 01 F4 50       LD BC,$50F4
+67CD 2A AE 9F       LD HL,($9FAE)
+67D0 9B             SBC A,E
+67D1 CD 18 4F       CALL $4F18
+67D4 7C             LD A,H
+67D5 CE AD          ADC A,$AD
+67D7 4A             LD C,D
+67D8 3F             CCF
+67D9 26 53          LD H,$53
+67DB 28 42          JR Z,$681F
+67DD 8B             ADC A,E
+67DE 99             SBC A,C
+67DF CF             RST $08
+67E0 16 51          LD D,$51
+67E2 79             LD A,C
+67E3 F4 FF D5       CALL P,$D5FF
+67E6 15             DEC D
+67E7 E8             RET PE
+67E8 8F             ADC A,A
+67E9 68             LD L,B
+67EA B1             OR C
+67EB 8F             ADC A,A
+67EC 62             LD H,D
+67ED 69             LD L,C
+67EE 6B             LD L,E
+67EF 0E 57          LD C,$57
+67F1 7F             LD A,A
+67F2 C8             RET Z
+67F3 00             NOP
+67F4 1B             DEC DE
+67F5 E3             EX (SP),HL
+67F6 2D             DEC L
+67F7 CA 01 71       JP Z,$7101
+67FA 50             LD D,B
+67FB B4             OR H
+67FC D2 4A 7E       JP NC,$7E4A
+67FF 1E 17          LD E,$17
+6801 0F             RRCA
+6802 D8             RET C
+6803 EC B8 43       CALL PE,$43B8
+6806 CD 88 5B       CALL $5B88
+6809 20 5C          JR NZ,$6867
+680B 97             SUB A
+680C 77             LD (HL),A
+680D 5B             LD E,E
+680E D0             RET NC
+680F E0             RET PO
+6810 5D             LD E,L
+6811 6D             LD L,L
+6812 51             LD D,C
+6813 0F             RRCA
+6814 3B             DEC SP
+6815 8E             ADC A,(HL)
+6816 E8             RET PE
+6817 2D             DEC L
+6818 95             SUB L
+6819 99             SBC A,C
+681A 83             ADD A,E
+681B 78             LD A,B
+681C 02             LD (BC),A
+681D 0F             RRCA
+681E 05             DEC B
+681F 03             INC BC
+6820 28 11          JR Z,$6833
+6822 7D             LD A,L
+6823 8C             ADC A,H
+6824 6A             LD L,D
+6825 21 7D C4       LD HL,$C47D
+6828 36 66          LD (HL),$66
+682A A2             AND D
+682B 51             LD D,C
+682C 13             INC DE
+682D 06 24          LD B,$24
+682F 1B             DEC DE
+6830 76             HALT
+6831 D2 F8 70       JP NC,$70F8
+6834 1B             DEC DE
+6835 39             ADD HL,SP
+6836 7D             LD A,L
+6837 37             SCF
+6838 24             INC H
+6839 06 0D          LD B,$0D
+683B 19             ADD HL,DE
+683C 14             INC D
+683D 6B             LD L,E
+683E D9             EXX
+683F 8D             ADC A,L
+6840 E9             JP (HL)
+6841 7D             LD A,L
+6842 41             LD B,C
+6843 13             INC DE
+6844 C5             PUSH BC
+6845 BE             CP (HL)
+6846 A3             AND E
+6847 75             LD (HL),L
+6848 3C             INC A
+6849 C0             RET NZ
+684A 4C             LD C,H
+684B F4 13 0F       CALL P,$0F13
+684E 3E 6C          LD A,$6C
+6850 8A             ADC A,D
+6851 33             INC SP
+6852 6E             LD L,(HL)
+6853 75             LD (HL),L
+6854 BF             CP A
+6855 45             LD B,L
+6856 2F             CPL
+6857 36 3D          LD (HL),$3D
+6859 04             INC B
+685A 0A             LD A,(BC)
+685B EE 2E          XOR $2E
+685D 77             LD (HL),A
+685E 66             LD H,(HL)
+685F 8A             ADC A,D
+6860 0A             LD A,(BC)
+6861 8A             ADC A,D
+6862 BD             CP L
+6863 FC 2B E3       CALL M,$E32B
+6866 A3             AND E
+6867 23             INC HL
+6868 7E             LD A,(HL)
+6869 09             ADD HL,BC
+686A 50             LD D,B
+686B 84             ADD A,H
+686C F1             POP AF
+686D 2C             INC L
+686E B9             CP C
+686F 88             ADC A,B
+6870 8B             ADC A,E
+6871 9E             SBC A,(HL)
+6872 19             ADD HL,DE
+6873 00             NOP
+6874 1A             LD A,(DE)
+6875 DE 35          SBC A,$35
+6877 14             INC D
+6878 A0             AND B
+6879 8A             ADC A,D
+687A 6A             LD L,D
+687B 8E             ADC A,(HL)
+687C 0E A6          LD C,$A6
+687E A4             AND H
+687F 05             DEC B
+6880 17             RLA
+6881 2C             INC L
+6882 18 FC          JR $6880
+6884 33             INC SP
+6885 F2 2C 9F       JP P,$9F2C
+6888 AF             XOR A
+6889 96             SUB (HL)
+688A 70             LD (HL),B
+688B A1             AND C
+688C 53             LD D,E
+688D C4 68 33       CALL NZ,$3368
+6890 17             RLA
+6891 59             LD E,C
+6892 ED C4          DEFB $ED,$C4
+6894 2B             DEC HL
+6895 0C             INC C
+6896 4C             LD C,H
+6897 98             SBC A,B
+6898 6C             LD L,H
+6899 16 33          LD D,$33
+689B 7D             LD A,L
+689C DF             RST $18
+689D 2A 05 67       LD HL,($6705)
+68A0 37             SCF
+68A1 0C             INC C
+68A2 38 9C          JR C,$6840
+68A4 53             LD D,E
+68A5 43             LD B,E
+68A6 A0             AND B
+68A7 B8             CP B
+68A8 10 67          DJNZ $6911
+68AA B7             OR A
+68AB 29             ADD HL,HL
+68AC F5             PUSH AF
+68AD EA E5 F0       JP PE,$F0E5
+68B0 41             LD B,C
+68B1 2F             CPL
+68B2 58             LD E,B
+68B3 8F             ADC A,A
+68B4 79             LD A,C
+68B5 5F             LD E,A
+68B6 92             SUB D
+68B7 65             LD H,L
+68B8 5E             LD E,(HL)
+68B9 D0             RET NC
+68BA CD 38 16       CALL $1638
+68BD 51             LD D,C
+68BE 32 6D 9B       LD ($9B6D),A
+68C1 31 48 D6       LD SP,$D648
+68C4 4A             LD C,D
+68C5 62             LD H,D
+68C6 6D             LD L,L
+68C7 39             ADD HL,SP
+68C8 0E DA          LD C,$DA
+68CA 12             LD (DE),A
+68CB 58             LD E,B
+68CC 49             LD C,C
+68CD C5             PUSH BC
+68CE 4B             LD C,E
+68CF 75             LD (HL),L
+68D0 54             LD D,H
+68D1 41             LD B,C
+68D2 96             SUB (HL)
+68D3 6D             LD L,L
+68D4 A7             AND A
+68D5 70             LD (HL),B
+68D6 1C             INC E
+68D7 04             INC B
+68D8 3D             DEC A
+68D9 27             DAA
+68DA ED 20          DEFB $ED,$20
+68DC 52             LD D,D
+68DD A9             XOR C
+68DE 89             ADC A,C
+68DF 7C             LD A,H
+68E0 42             LD B,D
+68E1 EA 59 ED       JP PE,$ED59
+68E4 66             LD H,(HL)
+68E5 15             DEC D
+68E6 18 E0          JR $68C8
+68E8 68             LD L,B
+68E9 14             INC D
+68EA 63             LD H,E
+68EB 6A             LD L,D
+68EC 71             LD (HL),C
+68ED BE             CP (HL)
+68EE A1             AND C
+68EF B0             OR B
+68F0 93             SUB E
+68F1 82             ADD A,D
+68F2 29             ADD HL,HL
+68F3 E5             PUSH HL
+68F4 DE 25          SBC A,$25
+68F6 8C             ADC A,H
+68F7 0B             DEC BC
+68F8 32 8A F3       LD ($F38A),A
+68FB 2E 73          LD L,$73
+68FD 68             LD L,B
+68FE 74             LD (HL),H
+68FF B0             OR B
+6900 34             INC (HL)
+6901 7E             LD A,(HL)
+6902 5B             LD E,E
+6903 59             LD E,C
+6904 9D             SBC A,L
+6905 F9             LD SP,HL
+6906 5F             LD E,A
+6907 2C             INC L
+6908 7C             LD A,H
+6909 FA 0C B4       JP M,$B40C
+690C 50             LD D,B
+690D 51             LD D,C
+690E 6D             LD L,L
+690F C8             RET Z
+6910 D3 0E          OUT ($0E),A
+6912 D6 31          SUB $31
+6914 F7             RST $30
+6915 71             LD (HL),C
+6916 3D             DEC A
+6917 A8             XOR B
+6918 7F             LD A,A
+6919 CB 1C          RR H
+691B 02             LD (BC),A
+691C FF             RST $38
+691D 28 E9          JR Z,$6908
+691F 3E DB          LD A,$DB
+6921 91             SUB C
+6922 38 71          JR C,$6995
+6924 BD             CP L
+6925 AE             XOR (HL)
+6926 02             LD (BC),A
+6927 64             LD H,H
+6928 93             SUB E
+6929 56             LD D,(HL)
+692A 00             NOP
+692B 09             ADD HL,BC
+692C D3 DE          OUT ($DE),A
+692E 1E 80          LD E,$80
+6930 5A             LD E,D
+6931 AF             XOR A
+6932 0F             RRCA
+6933 29             ADD HL,HL
+6934 ED 4B 63 88    LD BC,($8863)
+6938 00             NOP
+6939 09             ADD HL,BC
+693A AB             XOR E
+693B 31 F6 2E       LD SP,$2EF6
+693E C9             RET
+693F 1E BB          LD E,$BB
+6941 6C             LD L,H
+6942 A5             AND L
+6943 42             LD B,D
+6944 72             LD (HL),D
+6945 9E             SBC A,(HL)
+6946 BD             CP L
+6947 D8             RET C
+6948 7D             LD A,L
+6949 19             ADD HL,DE
+694A 31 01 32       LD SP,$3201
+694D F6 76          OR $76
+694F 3C             INC A
+6950 2D             DEC L
+6951 99             SBC A,C
+6952 62             LD H,D
+6953 AC             XOR H
+6954 0D             DEC C
+6955 0C             INC C
+6956 D1             POP DE
+6957 23             INC HL
+6958 0E 27          LD C,$27
+695A F1             POP AF
+695B E4 61 96       CALL PO,$9661
+695E 77             LD (HL),A
+695F 80             ADD A,B
+6960 45             LD B,L
+6961 7F             LD A,A
+6962 D4 DC EB       CALL NC,$EBDC
+6965 D2 0D 3F       JP NC,$3F0D
+6968 2E EA          LD L,$EA
+696A 59             LD E,C
+696B 59             LD E,C
+696C D3 BA          OUT ($BA),A
+696E A5             AND L
+696F 68             LD L,B
+6970 B4             OR H
+6971 98             SBC A,B
+6972 60             LD H,B
+6973 CC 3B 47       CALL Z,$473B
+6976 B9             CP C
+6977 33             INC SP
+6978 0C             INC C
+6979 82             ADD A,D
+697A 41             LD B,C
+697B 5A             LD E,D
+697C 62             LD H,D
+697D A6             AND (HL)
+697E 46             LD B,(HL)
+697F 0C             INC C
+6980 1A             LD A,(DE)
+6981 D2 6B 21       JP NC,$216B
+6984 3B             DEC SP
+6985 3A 3C 88       LD A,($883C)
+6988 7C             LD A,H
+6989 26 7C          LD H,$7C
+698B B4             OR H
+698C 01 7A 15       LD BC,$157A
+698F 08             EX AF,AF'
+6990 16 C2          LD D,$C2
+6992 31 F0 2A       LD SP,$2AF0
+6995 A0             AND B
+6996 91             SUB C
+6997 74             LD (HL),H
+6998 05             DEC B
+6999 F1             POP AF
+699A 51             LD D,C
+699B 73             LD (HL),E
+699C 6F             LD L,A
+699D 1A             LD A,(DE)
+699E 12             LD (DE),A
+699F 1D             DEC E
+69A0 18 2E          JR $69D0
+69A2 F5             PUSH AF
+69A3 49             LD C,C
+69A4 32 8E 7D       LD ($7D8E),A
+69A7 6A             LD L,D
+69A8 F9             LD SP,HL
+69A9 56             LD D,(HL)
+69AA 1A             LD A,(DE)
+69AB 64             LD H,H
+69AC 03             INC BC
+69AD 1D             DEC E
+69AE 24             INC H
+69AF 13             INC DE
+69B0 34             INC (HL)
+69B1 F2 40 29       JP P,$2940
+69B4 87             ADD A,A
+69B5 42             LD B,D
+69B6 AF             XOR A
+69B7 E2 5F 2D       JP PO,$2D5F
+69BA 7D             LD A,L
+69BB 08             EX AF,AF'
+69BC 24             INC H
+69BD 2B             DEC HL
+69BE 0A             LD A,(BC)
+69BF 3E 8B          LD A,$8B
+69C1 47             LD B,A
+69C2 20 BC          JR NZ,$6980
+69C4 4B             LD C,E
+69C5 04             INC B
+69C6 E4 24 34       CALL PO,$3424
+69C9 7A             LD A,D
+69CA 31 2F 32       LD SP,$322F
+69CD 05             DEC B
+69CE 40             LD B,B
+69CF 80             ADD A,B
+69D0 5E             LD E,(HL)
+69D1 27             DAA
+69D2 79             LD A,C
+69D3 72             LD (HL),D
+69D4 7A             LD A,D
+69D5 CE 3E          ADC A,$3E
+69D7 64             LD H,H
+69D8 65             LD H,L
+69D9 1B             DEC DE
+69DA 02             LD (BC),A
+69DB A1             AND C
+69DC 3B             DEC SP
+69DD 86             ADD A,(HL)
+69DE ED 25          DEFB $ED,$25
+69E0 5C             LD E,H
+69E1 F7             RST $30
+69E2 01 CC AE       LD BC,$AECC
+69E5 6B             LD L,E
+69E6 62             LD H,D
+69E7 C3 11 1F       JP $1F11
+69EA 44             LD B,H
+69EB B7             OR A
+69EC 5B             LD E,E
+69ED 63             LD H,E
+69EE 8A             ADC A,D
+69EF A8             XOR B
+69F0 AB             XOR E
+69F1 9E             SBC A,(HL)
+69F2 0D             DEC C
+69F3 14             INC D
+69F4 17             RLA
+69F5 2E 16          LD L,$16
+69F7 AD             XOR L
+69F8 47             LD B,A
+69F9 8A             ADC A,D
+69FA F4 21 73       CALL P,$7321
+69FD F7             RST $30
+69FE 74             LD (HL),H
+69FF 7B             LD A,E
+6A00 03             INC BC
+6A01 01 1D EA       LD BC,$EA1D
+6A04 54             LD D,H
+6A05 13             INC DE
+6A06 EA 66 43       JP PE,$4366
+6A09 77             LD (HL),A
+6A0A 98             SBC A,B
+6A0B 70             LD (HL),B
+6A0C 62             LD H,D
+6A0D 88             ADC A,B
+6A0E D9             EXX
+6A0F E8             RET PE
+6A10 D7             RST $10
+6A11 F2 6B A7       JP P,$A76B
+6A14 43             LD B,E
+6A15 4E             LD C,(HL)
+6A16 41             LD B,C
+6A17 50             LD D,B
+6A18 5B             LD E,E
+6A19 5D             LD E,L
+6A1A E8             RET PE
+6A1B 00             NOP
+6A1C CF             RST $08
+6A1D AF             XOR A
+6A1E 6C             LD L,H
+6A1F 0C             INC C
+6A20 B8             CP B
+6A21 56             LD D,(HL)
+6A22 3E 44          LD A,$44
+6A24 8F             ADC A,A
+6A25 BE             CP (HL)
+6A26 FC 88 CE       CALL M,$CE88
+6A29 9A             SBC A,D
+6A2A A0             AND B
+6A2B E4 B2 F6       CALL PO,$F6B2
+6A2E 84             ADD A,H
+6A2F 2C             INC L
+6A30 AA             XOR D
+6A31 3F             CCF
+6A32 41             LD B,C
+6A33 90             SUB B
+6A34 4A             LD C,D
+6A35 8D             ADC A,L
+6A36 C3 47 A9       JP $A947
+6A39 6B             LD L,E
+6A3A CD 38 09       CALL $0938
+6A3D B2             OR D
+6A3E 15             DEC D
+6A3F 71             LD (HL),C
+6A40 2B             DEC HL
+6A41 49             LD C,C
+6A42 5C             LD E,H
+6A43 A4             AND H
+6A44 2C             INC L
+6A45 50             LD D,B
+6A46 5F             LD E,A
+6A47 26 2D          LD H,$2D
+6A49 2D             DEC L
+6A4A F7             RST $30
+6A4B 45             LD B,L
+6A4C 0E 09          LD C,$09
+6A4E 93             SUB E
+6A4F 21 B3 9A       LD HL,$9AB3
+6A52 A5             AND L
+6A53 C8             RET Z
+6A54 02             LD (BC),A
+6A55 39             ADD HL,SP
+6A56 DB 79          IN A,($79)
+6A58 D3 83          OUT ($83),A
+6A5A 48             LD C,B
+6A5B F2 3C 6B       JP P,$6B3C
+6A5E A7             AND A
+6A5F 23             INC HL
+6A60 80             ADD A,B
+6A61 50             LD D,B
+6A62 58             LD E,B
+6A63 EF             RST $28
+6A64 C1             POP BC
+6A65 ED B3          OTIR
+6A67 E8             RET PE
+6A68 F1             POP AF
+6A69 47             LD B,A
+6A6A 9D             SBC A,L
+6A6B 7F             LD A,A
+6A6C 52             LD D,D
+6A6D 5B             LD E,E
+6A6E B9             CP C
+6A6F 1C             INC E
+6A70 77             LD (HL),A
+6A71 A2             AND D
+6A72 78             LD A,B
+6A73 13             INC DE
+6A74 0B             DEC BC
+6A75 20 2C          JR NZ,$6AA3
+6A77 E8             RET PE
+6A78 27             DAA
+6A79 86             ADD A,(HL)
+6A7A 40             LD B,B
+6A7B 8C             ADC A,H
+6A7C 83             ADD A,E
+6A7D AA             XOR D
+6A7E 64             LD H,H
+6A7F BE             CP (HL)
+6A80 DB 2E          IN A,($2E)
+6A82 2B             DEC HL
+6A83 81             ADD A,C
+6A84 0B             DEC BC
+6A85 6F             LD L,A
+6A86 51             LD D,C
+6A87 EA 7C 80       JP PE,$807C
+6A8A 0C             INC C
+6A8B 6F             LD L,A
+6A8C 76             HALT
+6A8D BE             CP (HL)
+6A8E 3E DA          LD A,$DA
+6A90 7A             LD A,D
+6A91 23             INC HL
+6A92 1A             LD A,(DE)
+6A93 E6 56          AND $56
+6A95 05             DEC B
+6A96 6F             LD L,A
+6A97 76             HALT
+6A98 7D             LD A,L
+6A99 44             LD B,H
+6A9A 95             SUB L
+6A9B BC             CP H
+6A9C CF             RST $08
+6A9D B2             OR D
+6A9E 6C             LD L,H
+6A9F 27             DAA
+6AA0 F1             POP AF
+6AA1 43             LD B,E
+6AA2 F5             PUSH AF
+6AA3 E5             PUSH HL
+6AA4 32 98 22       LD ($2298),A
+6AA7 45             LD B,L
+6AA8 9D             SBC A,L
+6AA9 09             ADD HL,BC
+6AAA E6 36          AND $36
+6AAC EC 12 14       CALL PE,$1412
+6AAF C1             POP BC
+6AB0 FD             DEFB $FD
+6AB1 C1             POP BC
+6AB2 5E             LD E,(HL)
+6AB3 71             LD (HL),C
+6AB4 ED 43 6E 63    LD ($636E),BC
+6AB8 7E             LD A,(HL)
+6AB9 A8             XOR B
+6ABA DD             DEFB $DD
+6ABB C6 52          ADD A,$52
+6ABD F6 46          OR $46
+6ABF 3D             DEC A
+6AC0 9B             SBC A,E
+6AC1 3E 59          LD A,$59
+6AC3 BC             CP H
+6AC4 1A             LD A,(DE)
+6AC5 71             LD (HL),C
+6AC6 42             LD B,D
+6AC7 06 C3          LD B,$C3
+6AC9 C8             RET Z
+6ACA 50             LD D,B
+6ACB 38 CC          JR C,$6A99
+6ACD 3B             DEC SP
+6ACE 89             ADC A,C
+6ACF 7F             LD A,A
+6AD0 27             DAA
+6AD1 24             INC H
+6AD2 95             SUB L
+6AD3 50             LD D,B
+6AD4 04             INC B
+6AD5 C9             RET
+6AD6 E1             POP HL
+6AD7 5E             LD E,(HL)
+6AD8 C8             RET Z
+6AD9 4B             LD C,E
+6ADA 21 AF 42       LD HL,$42AF
+6ADD B6             OR (HL)
+6ADE 4D             LD C,L
+6ADF 4D             LD C,L
+6AE0 9A             SBC A,D
+6AE1 7E             LD A,(HL)
+6AE2 7E             LD A,(HL)
+6AE3 01 F7 0A       LD BC,$0AF7
+6AE6 E1             POP HL
+6AE7 9B             SBC A,E
+6AE8 2F             CPL
+6AE9 07             RLCA
+6AEA B9             CP C
+6AEB B4             OR H
+6AEC 1C             INC E
+6AED 5B             LD E,E
+6AEE 99             SBC A,C
+6AEF 33             INC SP
+6AF0 72             LD (HL),D
+6AF1 82             ADD A,D
+6AF2 5E             LD E,(HL)
+6AF3 14             INC D
+6AF4 D7             RST $10
+6AF5 11 5D C8       LD DE,$C85D
+6AF8 50             LD D,B
+6AF9 45             LD B,L
+6AFA AD             XOR L
+6AFB 3F             CCF
+6AFC 61             LD H,C
+6AFD 72             LD (HL),D
+6AFE DB B0          IN A,($B0)
+6B00 D9             EXX
+6B01 7F             LD A,A
+6B02 C5             PUSH BC
+6B03 50             LD D,B
+6B04 29             ADD HL,HL
+6B05 EE 49          XOR $49
+6B07 41             LD B,C
+6B08 93             SUB E
+6B09 23             INC HL
+6B0A 65             LD H,L
+6B0B 78             LD A,B
+6B0C 74             LD (HL),H
+6B0D 7B             LD A,E
+6B0E D9             EXX
+6B0F 14             INC D
+6B10 D7             RST $10
+6B11 1A             LD A,(DE)
+6B12 EA AA 50       JP PE,$50AA
+6B15 A2             AND D
+6B16 8D             ADC A,L
+6B17 50             LD D,B
+6B18 9C             SBC A,H
+6B19 EA 1A D6       JP PE,$D61A
+6B1C 30 DC          JR NC,$6AFA
+6B1E 78             LD A,B
+6B1F 3C             INC A
+6B20 CC FD 1A       CALL Z,$1AFD
+6B23 C1             POP BC
+6B24 21 8E 7D       LD HL,$7D8E
+6B27 EE CC          XOR $CC
+6B29 56             LD D,(HL)
+6B2A 6C             LD L,H
+6B2B 64             LD H,H
+6B2C 14             INC D
+6B2D 1F             RRA
+6B2E E1             POP HL
+6B2F 6B             LD L,E
+6B30 15             DEC D
+6B31 1C             INC E
+6B32 6B             LD L,E
+6B33 72             LD (HL),D
+6B34 60             LD H,B
+6B35 B4             OR H
+6B36 00             NOP
+6B37 49             LD C,C
+6B38 4C             LD C,H
+6B39 D0             RET NC
+6B3A 7C             LD A,H
+6B3B FC E7 E6       CALL M,$E6E7
+6B3E 8D             ADC A,L
+6B3F 45             LD B,L
+6B40 7C             LD A,H
+6B41 98             SBC A,B
+6B42 34             INC (HL)
+6B43 AC             XOR H
+6B44 CE 0B          ADC A,$0B
+6B46 B7             OR A
+6B47 7B             LD A,E
+6B48 2E E4          LD L,$E4
+6B4A 5E             LD E,(HL)
+6B4B CF             RST $08
+6B4C 0D             DEC C
+6B4D C5             PUSH BC
+6B4E 4D             LD C,L
+6B4F 7D             LD A,L
+6B50 BA             CP D
+6B51 94             SUB H
+6B52 96             SUB (HL)
+6B53 67             LD H,A
+6B54 5A             LD E,D
+6B55 B4             OR H
+6B56 2C             INC L
+6B57 17             RLA
+6B58 08             EX AF,AF'
+6B59 27             DAA
+6B5A 9F             SBC A,A
+6B5B F4 9D 3B       CALL P,$3B9D
+6B5E 89             ADC A,C
+6B5F 2F             CPL
+6B60 66             LD H,(HL)
+6B61 B2             OR D
+6B62 09             ADD HL,BC
+6B63 00             NOP
+6B64 D7             RST $10
+6B65 63             LD H,E
+6B66 1E F8          LD E,$F8
+6B68 CB CA          SET 1,D
+6B6A A1             AND C
+6B6B 58             LD E,B
+6B6C 55             LD D,L
+6B6D 5B             LD E,E
+6B6E 99             SBC A,C
+6B6F 74             LD (HL),H
+6B70 57             LD D,A
+6B71 89             ADC A,C
+6B72 C7             RST $00
+6B73 2B             DEC HL
+6B74 CD 4F E1       CALL $E14F
+6B77 E5             PUSH HL
+6B78 46             LD B,(HL)
+6B79 79             LD A,C
+6B7A 53             LD D,E
+6B7B 94             SUB H
+6B7C BD             CP L
+6B7D 1B             DEC DE
+6B7E 89             ADC A,C
+6B7F 5C             LD E,H
+6B80 06 0F          LD B,$0F
+6B82 E5             PUSH HL
+6B83 67             LD H,A
+6B84 2B             DEC HL
+6B85 CE 72          ADC A,$72
+6B87 47             LD B,A
+6B88 B3             OR E
+6B89 01 63 94       LD BC,$9463
+6B8C 2C             INC L
+6B8D 7F             LD A,A
+6B8E AB             XOR E
+6B8F C0             RET NZ
+6B90 C9             RET
+6B91 6F             LD L,A
+6B92 F5             PUSH AF
+6B93 41             LD B,C
+6B94 39             ADD HL,SP
+6B95 9E             SBC A,(HL)
+6B96 3D             DEC A
+6B97 51             LD D,C
+6B98 83             ADD A,E
+6B99 15             DEC D
+6B9A 75             LD (HL),L
+6B9B A4             AND H
+6B9C 71             LD (HL),C
+6B9D 0D             DEC C
+6B9E 2A 1E EB       LD HL,($EB1E)
+6BA1 F0             RET P
+6BA2 48             LD C,B
+6BA3 BC             CP H
+6BA4 7F             LD A,A
+6BA5 53             LD D,E
+6BA6 7C             LD A,H
+6BA7 6C             LD L,H
+6BA8 7F             LD A,A
+6BA9 72             LD (HL),D
+6BAA 00             NOP
+6BAB F4 0B E6       CALL P,$E60B
+6BAE 06 AD          LD B,$AD
+6BB0 5D             LD E,L
+6BB1 2E 5E          LD L,$5E
+6BB3 51             LD D,C
+6BB4 87             ADD A,A
+6BB5 7A             LD A,D
+6BB6 AD             XOR L
+6BB7 70             LD (HL),B
+6BB8 BC             CP H
+6BB9 3B             DEC SP
+6BBA 7B             LD A,E
+6BBB F8             RET M
+6BBC E3             EX (SP),HL
+6BBD 2E F6          LD L,$F6
+6BBF 13             INC DE
+6BC0 2D             DEC L
+6BC1 82             ADD A,D
+6BC2 E1             POP HL
+6BC3 19             ADD HL,DE
+6BC4 54             LD D,H
+6BC5 72             LD (HL),D
+6BC6 B1             OR C
+6BC7 A1             AND C
+6BC8 76             HALT
+6BC9 69             LD L,C
+6BCA EB             EX DE,HL
+6BCB 56             LD D,(HL)
+6BCC 12             LD (DE),A
+6BCD C8             RET Z
+6BCE A2             AND D
+6BCF 72             LD (HL),D
+6BD0 76             HALT
+6BD1 B0             OR B
+6BD2 85             ADD A,L
+6BD3 32 F2 7A       LD ($7AF2),A
+6BD6 32 14 2C       LD ($2C14),A
+6BD9 AD             XOR L
+6BDA 49             LD C,C
+6BDB F2 BC 5A       JP P,$5ABC
+6BDE 57             LD D,A
+6BDF 5D             LD E,L
+6BE0 AB             XOR E
+6BE1 5D             LD E,L
+6BE2 09             ADD HL,BC
+6BE3 1D             DEC E
+6BE4 71             LD (HL),C
+6BE5 21 8D 5C       LD HL,$5C8D
+6BE8 E3             EX (SP),HL
+6BE9 8E             ADC A,(HL)
+6BEA 38 32          JR C,$6C1E
+6BEC 9F             SBC A,A
+6BED FF             RST $38
+6BEE 1C             INC E
+6BEF 13             INC DE
+6BF0 BD             CP L
+6BF1 00             NOP
+6BF2 28 E5          JR Z,$6BD9
+6BF4 FC 1C 0C       CALL M,$0C1C
+6BF7 C5             PUSH BC
+6BF8 D3 04          OUT ($04),A
+6BFA DF             RST $18
+6BFB 20 5C          JR NZ,$6C59
+6BFD 94             SUB H
+6BFE 46             LD B,(HL)
+6BFF 64             LD H,H
+6C00 74             LD (HL),H
+6C01 C2 09 52       JP NZ,$5209
+6C04 85             ADD A,L
+6C05 FE E3          CP $E3
+6C07 35             DEC (HL)
+6C08 6F             LD L,A
+6C09 64             LD H,H
+6C0A 19             ADD HL,DE
+6C0B 78             LD A,B
+6C0C AF             XOR A
+6C0D 27             DAA
+6C0E 05             DEC B
+6C0F 05             DEC B
+6C10 16 F2          LD D,$F2
+6C12 98             SBC A,B
+6C13 FC DF 2E       CALL M,$2EDF
+6C16 4C             LD C,H
+6C17 55             LD D,L
+6C18 7F             LD A,A
+6C19 67             LD H,A
+6C1A 70             LD (HL),B
+6C1B 68             LD L,B
+6C1C 02             LD (BC),A
+6C1D 80             ADD A,B
+6C1E 1A             LD A,(DE)
+6C1F 16 EB          LD D,$EB
+6C21 93             SUB E
+6C22 55             LD D,L
+6C23 60             LD H,B
+6C24 79             LD A,C
+6C25 2A 4D B8       LD HL,($B84D)
+6C28 32 76 08       LD ($0876),A
+6C2B 09             ADD HL,BC
+6C2C FF             RST $38
+6C2D AB             XOR E
+6C2E 05             DEC B
+6C2F 1C             INC E
+6C30 4F             LD C,A
+6C31 2E B7          LD L,$B7
+6C33 51             LD D,C
+6C34 97             SUB A
+6C35 68             LD L,B
+6C36 1B             DEC DE
+6C37 98             SBC A,B
+6C38 25             DEC H
+6C39 EC 4C 38       CALL PE,$384C
+6C3C 13             INC DE
+6C3D 52             LD D,D
+6C3E 35             DEC (HL)
+6C3F 3B             DEC SP
+6C40 47             LD B,A
+6C41 82             ADD A,D
+6C42 E4 0C 4B       CALL PO,$4B0C
+6C45 42             LD B,D
+6C46 06 14          LD B,$14
+6C48 57             LD D,A
+6C49 3F             CCF
+6C4A ED 22          DEFB $ED,$22
+6C4C 45             LD B,L
+6C4D D6 1F          SUB $1F
+6C4F B9             CP C
+6C50 0A             LD A,(BC)
+6C51 61             LD H,C
+6C52 69             LD L,C
+6C53 71             LD (HL),C
+6C54 7A             LD A,D
+6C55 03             INC BC
+6C56 2D             DEC L
+6C57 24             INC H
+6C58 64             LD H,H
+6C59 26 36          LD H,$36
+6C5B 10 8F          DJNZ $6BEC
+6C5D F7             RST $30
+6C5E 39             ADD HL,SP
+6C5F 7C             LD A,H
+6C60 ED CD          DEFB $ED,$CD
+6C62 69             LD L,C
+6C63 EE 35          XOR $35
+6C65 DE 17          SBC A,$17
+6C67 52             LD D,D
+6C68 C3 6C B4       JP $B46C
+6C6B 15             DEC D
+6C6C 6C             LD L,H
+6C6D 71             LD (HL),C
+6C6E 64             LD H,H
+6C6F 6D             LD L,L
+6C70 76             HALT
+6C71 5E             LD E,(HL)
+6C72 83             ADD A,E
+6C73 B3             OR E
+6C74 1B             DEC DE
+6C75 25             DEC H
+6C76 6C             LD L,H
+6C77 F8             RET M
+6C78 82             ADD A,D
+6C79 2A 6E 58       LD HL,($586E)
+6C7C AF             XOR A
+6C7D CA 2B 5C       JP Z,$5C2B
+6C80 06 CF          LD B,$CF
+6C82 09             ADD HL,BC
+6C83 20 EA          JR NZ,$6C6F
+6C85 32 C3 7A       LD ($7AC3),A
+6C88 78             LD A,B
+6C89 57             LD D,A
+6C8A 8D             ADC A,L
+6C8B D9             EXX
+6C8C 53             LD D,E
+6C8D 7B             LD A,E
+6C8E C4 1C D9       CALL NZ,$D91C
+6C91 3F             CCF
+6C92 E5             PUSH HL
+6C93 3A 4D AE       LD A,($AE4D)
+6C96 17             RLA
+6C97 A1             AND C
+6C98 02             LD (BC),A
+6C99 59             LD E,C
+6C9A 1A             LD A,(DE)
+6C9B 79             LD A,C
+6C9C 02             LD (BC),A
+6C9D 0B             DEC BC
+6C9E 35             DEC (HL)
+6C9F 1D             DEC E
+6CA0 E6 2E          AND $2E
+6CA2 3E 60          LD A,$60
+6CA4 87             ADD A,A
+6CA5 EF             RST $28
+6CA6 31 44 B3       LD SP,$B344
+6CA9 2B             DEC HL
+6CAA C3 DD 76       JP $76DD
+6CAD 1B             DEC DE
+6CAE 59             LD E,C
+6CAF 2C             INC L
+6CB0 FE 3D          CP $3D
+6CB2 A9             XOR C
+6CB3 52             LD D,D
+6CB4 B1             OR C
+6CB5 67             LD H,A
+6CB6 96             SUB (HL)
+6CB7 70             LD (HL),B
+6CB8 81             ADD A,C
+6CB9 01 10 19       LD BC,$1910
+6CBC 22 2B 34       LD ($342B),HL
+6CBF 3C             INC A
+6CC0 47             LD B,A
+6CC1 4E             LD C,(HL)
+6CC2 5A             LD E,D
+6CC3 63             LD H,E
+6CC4 68             LD L,B
+6CC5 70             LD (HL),B
+6CC6 7F             LD A,A
+6CC7 01 0A 12       LD BC,$120A
+6CCA 26 2E          LD H,$2E
+6CCC 3A 32 44       LD A,($4432)
+6CCF 4D             LD C,L
+6CD0 56             LD D,(HL)
+6CD1 5F             LD E,A
+6CD2 68             LD L,B
+6CD3 71             LD (HL),C
+6CD4 7A             LD A,D
+6CD5 03             INC BC
+6CD6 0C             INC C
+6CD7 15             DEC D
+6CD8 1E 27          LD E,$27
+6CDA 01 43 58       LD BC,$5843
+6CDD 4B             LD C,E
+6CDE EB             EX DE,HL
+6CDF 20 72          JR NZ,$6D53
+6CE1 6F             LD L,A
+6CE2 03             INC BC
+6CE3 81             ADD A,C
+6CE4 1D             DEC E
+6CE5 13             INC DE
+6CE6 BC             CP H
+6CE7 A6             AND (HL)
+6CE8 25             DEC H
+6CE9 37             SCF
+6CEA 61             LD H,C
+6CEB CC 7B 5B       CALL Z,$5B7B
+6CEE 2F             CPL
+6CEF E4 44 7F       CALL PO,$7F44
+6CF2 57             LD D,A
+6CF3 9F             SBC A,A
+6CF4 04             INC B
+6CF5 23             INC HL
+6CF6 47             LD B,A
+6CF7 A4             AND H
+6CF8 19             ADD HL,DE
+6CF9 47             LD B,A
+6CFA 31 CC 68       LD SP,$68CC
+6CFD 6B             LD L,E
+6CFE E7             RST $20
+6CFF E8             RET PE
+6D00 09             ADD HL,BC
+6D01 0F             RRCA
+6D02 C6 B4          ADD A,$B4
+6D04 2D             DEC L
+6D05 33             INC SP
+6D06 3D             DEC A
+6D07 D3 5C          OUT ($5C),A
+6D09 57             LD D,A
+6D0A 3B             DEC SP
+6D0B FF             RST $38
+6D0C 7A             LD A,D
+6D0D 7B             LD A,E
+6D0E 8F             ADC A,A
+6D0F 9B             SBC A,E
+6D10 1F             RRA
+6D11 1F             RRA
+6D12 E9             JP (HL)
+6D13 A7             AND A
+6D14 3D             DEC A
+6D15 43             LD B,E
+6D16 A7             AND A
+6D17 C3 58 67       JP $6758
+6D1A 7F             LD A,A
+6D1B EE 07          XOR $07
+6D1D 0B             DEC BC
+6D1E 39             ADD HL,SP
+6D1F 8A             ADC A,D
+6D20 2C             INC L
+6D21 2F             CPL
+6D22 51             LD D,C
+6D23 D6 4D          SUB $4D
+6D25 53             LD D,E
+6D26 CF             RST $08
+6D27 F2 66 77       JP P,$7766
+6D2A C3 9E 19       JP $199E
+6D2D 1B             DEC DE
+6D2E 21 B5 30       LD HL,$30B5
+6D31 3F             CCF
+6D32 61             LD H,C
+6D33 C9             RET
+6D34 5C             LD E,H
+6D35 63             LD H,E
+6D36 21 ED 79       LD HL,$79ED
+6D39 07             RLCA
+6D3A 67             LD H,A
+6D3B 81             ADD A,C
+6D3C 2A 2B 93       LD HL,($932B)
+6D3F A5             AND L
+6D40 4E             LD C,(HL)
+6D41 4F             LD C,A
+6D42 8F             ADC A,A
+6D43 F9             LD SP,HL
+6D44 6D             LD L,L
+6D45 73             LD (HL),E
+6D46 7D             LD A,L
+6D47 9C             SBC A,H
+6D48 09             ADD HL,BC
+6D49 17             RLA
+6D4A 0B             DEC BC
+6D4B B0             OR B
+6D4C A4             AND H
+6D4D 3B             DEC SP
+6D4E A9             XOR C
+6D4F D7             RST $10
+6D50 C0             RET NZ
+6D51 5F             LD E,A
+6D52 C7             RST $00
+6D53 ED EC          DEFB $ED,$EC
+6D55 03             INC BC
+6D56 7D             LD A,L
+6D57 8B             ADC A,E
+6D58 88             ADC A,B
+6D59 27             DAA
+6D5A 03             INC BC
+6D5B 99             SBC A,C
+6D5C 56             LD D,(HL)
+6D5D 4B             LD C,E
+6D5E FF             RST $38
+6D5F FD             DEFB $FD
+6D60 78             LD A,B
+6D61 6F             LD L,A
+6D62 27             DAA
+6D63 A0             AND B
+6D64 14             INC D
+6D65 13             INC DE
+6D66 0F             RRCA
+6D67 87             ADD A,A
+6D68 3A 37 CB       LD A,($CB37)
+6D6B EB             EX DE,HL
+6D6C F2 5B 2F       JP P,$2F5B
+6D6F DD             DEFB $DD
+6D70 C2 7F CB       JP NZ,$CB7F
+6D73 AE             XOR (HL)
+6D74 A4             AND H
+6D75 23             INC HL
+6D76 3B             DEC SP
+6D77 E5             PUSH HL
+6D78 E8             RET PE
+6D79 47             LD B,A
+6D7A 71             LD (HL),C
+6D7B B9             CP C
+6D7C 38 7A          JR C,$6DF8
+6D7E 95             SUB L
+6D7F 27             DAA
+6D80 07             RLCA
+6D81 10 18          DJNZ $6D9B
+6D83 17             RLA
+6D84 68             LD L,B
+6D85 DE 8C          SBC A,$8C
+6D87 44             LD B,H
+6D88 4E             LD C,(HL)
+6D89 40             LD B,B
+6D8A 71             LD (HL),C
+6D8B F8             RET M
+6D8C 1F             RRA
+6D8D B6             OR (HL)
+6D8E E0             RET PO
+6D8F 7D             LD A,L
+6D90 DF             RST $18
+6D91 9D             SBC A,L
+6D92 C9             RET
+6D93 D3 9A          OUT ($9A),A
+6D95 E1             POP HL
+6D96 A0             AND B
+6D97 B7             OR A
+6D98 FB             EI
+6D99 47             LD B,A
+6D9A D4 D1 E3       CALL NC,$E3D1
+6D9D A1             AND C
+6D9E B1             OR C
+6D9F FF             RST $38
+6DA0 C5             PUSH BC
+6DA1 0F             RRCA
+6DA2 D9             EXX
+6DA3 61             LD H,C
+6DA4 E2 F0 BC       JP PO,$BCF0
+6DA7 CB C7          SET 0,A
+6DA9 57             LD D,A
+6DAA 2E 27          LD L,$27
+6DAC 3C             INC A
+6DAD 35             DEC (HL)
+6DAE 04             INC B
+6DAF 0D             DEC C
+6DB0 16 1F          LD D,$1F
+6DB2 48             LD C,B
+6DB3 71             LD (HL),C
+6DB4 7A             LD A,D
+6DB5 43             LD B,E
+6DB6 4C             LD C,H
+6DB7 55             LD D,L
+6DB8 5E             LD E,(HL)
+6DB9 27             DAA
+6DBA 30 19          JR NC,$6DD5
+6DBC D1             POP DE
+6DBD D6 15          SUB $15
+6DBF 07             RLCA
+6DC0 1A             LD A,(DE)
+6DC1 BA             CP D
+6DC2 66             LD H,(HL)
+6DC3 5E             LD E,(HL)
+6DC4 87             ADD A,A
+6DC5 34             INC (HL)
+6DC6 8D             ADC A,L
+6DC7 E8             RET PE
+6DC8 58             LD E,B
+6DC9 EC ED 3A       CALL PE,$3AED
+6DCC 0F             RRCA
+6DCD C8             RET Z
+6DCE 7A             LD A,D
+6DCF 2D             DEC L
+6DD0 BB             CP E
+6DD1 18 85          JR $6D58
+6DD3 2F             CPL
+6DD4 81             ADD A,C
+6DD5 CA C1 BC       JP Z,$BCC1
+6DD8 7B             LD A,E
+6DD9 19             ADD HL,DE
+6DDA 31 FA E3       LD SP,$E3FA
+6DDD 14             INC D
+6DDE 99             SBC A,C
+6DDF F3             DI
+6DE0 03             INC BC
+6DE1 4E             LD C,(HL)
+6DE2 86             ADD A,(HL)
+6DE3 FF             RST $38
+6DE4 C3 2D 51       JP $512D
+6DE7 37             SCF
+6DE8 ED 9E          DEFB $ED,$9E
+6DEA 25             DEC H
+6DEB 46             LD B,(HL)
+6DEC 0D             DEC C
+6DED 92             SUB D
+6DEE 81             ADD A,C
+6DEF B8             CP B
+6DF0 B3             OR E
+6DF1 8A             ADC A,D
+6DF2 F5             PUSH AF
+6DF3 F4 C7 C6       CALL P,$C6C7
+6DF6 06 AA          LD B,$AA
+6DF8 61             LD H,C
+6DF9 A2             AND D
+6DFA A5             AND L
+6DFB 67             LD H,A
+6DFC 61             LD H,C
+6DFD A6             AND (HL)
+6DFE AB             XOR E
+6DFF 0D             DEC C
+6E00 F7             RST $30
+6E01 FA D5 7A       JP M,$7AD5
+6E04 44             LD B,H
+6E05 32 C3 46       LD ($46C3),A
+6E08 F9             LD SP,HL
+6E09 7F             LD A,A
+6E0A 69             LD L,C
+6E0B A2             AND D
+6E0C 4A             LD C,D
+6E0D B0             OR B
+6E0E 1D             DEC E
+6E0F C6 EE          ADD A,$EE
+6E11 22 08 C6       LD ($C608),HL
+6E14 CB BE          RES 7,(HL)
+6E16 23             INC HL
+6E17 A8             XOR B
+6E18 78             LD A,B
+6E19 67             LD H,A
+6E1A 8D             ADC A,L
+6E1B 50             LD D,B
+6E1C FF             RST $38
+6E1D 22 E9 34       LD ($34E9),HL
+6E20 37             SCF
+6E21 2F             CPL
+6E22 87             ADD A,A
+6E23 BC             CP H
+6E24 53             LD D,E
+6E25 75             LD (HL),L
+6E26 54             LD D,H
+6E27 98             SBC A,B
+6E28 38 77          JR C,$6EA1
+6E2A 1E 09          LD E,$09
+6E2C 6F             LD L,A
+6E2D AC             XOR H
+6E2E 0C             INC C
+6E2F 2A FD 05       LD HL,($05FD)
+6E32 83             ADD A,E
+6E33 4A             LD C,D
+6E34 67             LD H,A
+6E35 43             LD B,E
+6E36 95             SUB L
+6E37 A8             XOR B
+6E38 00             NOP
+6E39 07             RLCA
+6E3A B0             OR B
+6E3B AB             XOR E
+6E3C FF             RST $38
+6E3D 5C             LD E,H
+6E3E 34             INC (HL)
+6E3F E0             RET PO
+6E40 38 4E          JR C,$6E90
+6E42 F9             LD SP,HL
+6E43 D2 B7 04       JP NC,$04B7
+6E46 7D             LD A,L
+6E47 D8             RET C
+6E48 2A EA 03       LD HL,($03EA)
+6E4B 0C             INC C
+6E4C 12             LD (DE),A
+6E4D E2 B5 80       JP PO,$80B5
+6E50 89             ADC A,C
+6E51 2F             CPL
+6E52 B5             OR L
+6E53 90             SUB B
+6E54 87             ADD A,A
+6E55 E2 FD D4       JP PO,$D4FD
+6E58 CF             RST $08
+6E59 C6 F9          ADD A,$F9
+6E5B 18 42          JR $6E9F
+6E5D 43             LD B,E
+6E5E 2C             INC L
+6E5F 96             SUB (HL)
+6E60 59             LD E,C
+6E61 A4             AND H
+6E62 65             LD H,L
+6E63 CA 35 D8       JP Z,$D835
+6E66 01 EE 11       LD BC,$11EE
+6E69 FC 5D FD       CALL M,$FD5D
+6E6C 55             LD D,L
+6E6D 5C             LD E,H
+6E6E 63             LD H,E
+6E6F 0A             LD A,(BC)
+6E70 0F             RRCA
+6E71 F8             RET M
+6E72 8F             ADC A,A
+6E73 90             SUB B
+6E74 9B             SBC A,E
+6E75 1F             RRA
+6E76 10 6A          DJNZ $6EE2
+6E78 F5             PUSH AF
+6E79 7C             LD A,H
+6E7A 9B             SBC A,E
+6E7B 62             LD H,D
+6E7C A9             XOR C
+6E7D 50             LD D,B
+6E7E 62             LD H,D
+6E7F 7D             LD A,L
+6E80 1F             RRA
+6E81 EA C5 C0       JP PE,$C0C5
+6E84 CC 34 53       CALL Z,$5334
+6E87 8C             ADC A,H
+6E88 AB             XOR E
+6E89 76             HALT
+6E8A BF             CP A
+6E8B 19             ADD HL,DE
+6E8C 50             LD D,B
+6E8D 85             ADD A,L
+6E8E 69             LD L,C
+6E8F 2F             CPL
+6E90 46             LD B,(HL)
+6E91 71             LD (HL),C
+6E92 E5             PUSH HL
+6E93 DF             RST $18
+6E94 57             LD D,A
+6E95 A2             AND D
+6E96 85             ADD A,L
+6E97 B0             OR B
+6E98 7F             LD A,A
+6E99 C6 2F          ADD A,$2F
+6E9B 5B             LD E,E
+6E9C FC 66 36       CALL M,$3666
+6E9F 4D             LD C,L
+6EA0 48             LD C,B
+6EA1 E2 D6 2C       JP PO,$2CD6
+6EA4 AB             XOR E
+6EA5 9A             SBC A,D
+6EA6 B9             CP C
+6EA7 B0             OR B
+6EA8 AB             XOR E
+6EA9 82             ADD A,D
+6EAA DD             DEFB $DD
+6EAB EC C7 DE       CALL PE,$DEC7
+6EAE E9             JP (HL)
+6EAF D7             RST $10
+6EB0 58             LD E,B
+6EB1 FA 9D 1A       JP M,$1A9D
+6EB4 5C             LD E,H
+6EB5 6B             LD L,E
+6EB6 87             ADD A,A
+6EB7 A8             XOR B
+6EB8 9B             SBC A,E
+6EB9 E6 D5          AND $D5
+6EBB CC 24 2B       CALL Z,$2B24
+6EBE D9             EXX
+6EBF 8D             ADC A,L
+6EC0 97             SUB A
+6EC1 8E             ADC A,(HL)
+6EC2 4C             LD C,H
+6EC3 71             LD (HL),C
+6EC4 9F             SBC A,A
+6EC5 96             SUB (HL)
+6EC6 A1             AND C
+6EC7 E4 DF D6       CALL PO,$D6DF
+6ECA 24             INC H
+6ECB 3C             INC A
+6ECC 12             LD (DE),A
+6ECD DB 85          IN A,($85)
+6ECF 25             DEC H
+6ED0 70             LD (HL),B
+6ED1 5F             LD E,A
+6ED2 41             LD B,C
+6ED3 58             LD E,B
+6ED4 53             LD D,E
+6ED5 2A 25 04       LD HL,($0425)
+6ED8 1E 7F          LD E,$7F
+6EDA 29             ADD HL,HL
+6EDB 3F             CCF
+6EDC 42             LD B,D
+6EDD 42             LD B,D
+6EDE 95             SUB L
+6EDF B6             OR (HL)
+6EE0 BB             CP E
+6EE1 8A             ADC A,D
+6EE2 99             SBC A,C
+6EE3 C4 DF 15       CALL NZ,$15DF
+6EE6 1C             INC E
+6EE7 C8             RET Z
+6EE8 9E             SBC A,(HL)
+6EE9 E6 AB          AND $AB
+6EEB 48             LD C,B
+6EEC 72             LD (HL),D
+6EED 5B             LD E,E
+6EEE 6D             LD L,L
+6EEF 86             ADD A,(HL)
+6EF0 B7             OR A
+6EF1 6F             LD L,A
+6EF2 F8             RET M
+6EF3 CC FB D2       CALL Z,$D2FB
+6EF6 ED E4          DEFB $ED,$E4
+6EF8 DF             RST $18
+6EF9 8E             ADC A,(HL)
+6EFA 95             SUB L
+6EFB 78             LD A,B
+6EFC 62             LD H,D
+6EFD 63             LD H,E
+6EFE 0C             INC C
+6EFF B6             OR (HL)
+6F00 39             ADD HL,SP
+6F01 C4 05 EA       CALL NZ,$EA05
+6F04 15             DEC D
+6F05 F8             RET M
+6F06 21 8E 71       LD HL,$718E
+6F09 9C             SBC A,H
+6F0A 7D             LD A,L
+6F0B DD 75 7C       LD (IX+$7C),L
+6F0E 03             INC BC
+6F0F 6A             LD L,D
+6F10 10 1F          DJNZ $6F31
+6F12 21 F0 F3       LD HL,$F3F0
+6F15 AE             XOR (HL)
+6F16 0F             RRCA
+6F17 F6 31          OR $31
+6F19 BA             CP D
+6F1A 52             LD D,D
+6F1B DC 6D 39       CALL C,$396D
+6F1E B3             OR E
+6F1F 72             LD (HL),D
+6F20 CB 6C          BIT 5,H
+6F22 EA 20 2D       JP PE,$2D20
+6F25 7D             LD A,L
+6F26 5C             LD E,H
+6F27 5F             LD E,A
+6F28 BB             CP E
+6F29 16 CB          LD D,$CB
+6F2B E6 20          AND $20
+6F2D CE 45          ADC A,$45
+6F2F D6 FB          SUB $FB
+6F31 BE             CP (HL)
+6F32 27             DAA
+6F33 9C             SBC A,H
+6F34 F2 0C 92       JP P,$920C
+6F37 7B             LD A,E
+6F38 5E             LD E,(HL)
+6F39 0B             DEC BC
+6F3A CD 38 F6       CALL $F638
+6F3D 4A             LD C,D
+6F3E E9             JP (HL)
+6F3F F6 47          OR $47
+6F41 E1             POP HL
+6F42 95             SUB L
+6F43 E0             RET PO
+6F44 05             DEC B
+6F45 BA             CP D
+6F46 82             ADD A,D
+6F47 08             EX AF,AF'
+6F48 26 E7          LD H,$E7
+6F4A DE 25          SBC A,$25
+6F4C 12             LD (DE),A
+6F4D 22 39 FA       LD ($FA39),HL
+6F50 7E             LD A,(HL)
+6F51 BE             CP (HL)
+6F52 45             LD B,L
+6F53 94             SUB H
+6F54 91             SUB C
+6F55 15             DEC D
+6F56 0C             INC C
+6F57 3F             CCF
+6F58 BB             CP E
+6F59 48             LD C,B
+6F5A 29             ADD HL,HL
+6F5B 0F             RRCA
+6F5C 62             LD H,D
+6F5D 61             LD H,C
+6F5E 86             ADD A,(HL)
+6F5F 3C             INC A
+6F60 4B             LD C,E
+6F61 4D             LD C,L
+6F62 AA             XOR D
+6F63 60             LD H,B
+6F64 EB             EX DE,HL
+6F65 0B             DEC BC
+6F66 D5             PUSH DE
+6F67 72             LD (HL),D
+6F68 53             LD D,E
+6F69 8B             ADC A,E
+6F6A 68             LD L,B
+6F6B 8E             ADC A,(HL)
+6F6C 28 BE          JR Z,$6F2C
+6F6E 8F             ADC A,A
+6F6F 7B             LD A,E
+6F70 76             HALT
+6F71 55             LD D,L
+6F72 AD             XOR L
+6F73 7E             LD A,(HL)
+6F74 03             INC BC
+6F75 54             LD D,H
+6F76 06 E7          LD B,$E7
+6F78 5F             LD E,A
+6F79 6B             LD L,E
+6F7A 72             LD (HL),D
+6F7B 8B             ADC A,E
+6F7C 03             INC BC
+6F7D 8A             ADC A,D
+6F7E 58             LD E,B
+6F7F 65             LD H,L
+6F80 A9             XOR C
+6F81 DA DD D4       JP C,$D4DD
+6F84 C7             RST $00
+6F85 68             LD L,B
+6F86 99             SBC A,C
+6F87 2A A3 1C       LD HL,($1CA3)
+6F8A C3 06 48       JP $4806
+6F8D DC 6B F8       CALL C,$F86B
+6F90 0C             INC C
+6F91 D2 A0 5F       JP NC,$5FA0
+6F94 CB 4F          BIT 1,A
+6F96 5F             LD E,A
+6F97 68             LD L,B
+6F98 7E             LD A,(HL)
+6F99 92             SUB D
+6F9A 4E             LD C,(HL)
+6F9B 59             LD E,C
+6F9C CF             RST $08
+6F9D 83             ADD A,E
+6F9E 7A             LD A,D
+6F9F EC E7 FE       CALL PE,$FEE7
+6FA2 F1             POP AF
+6FA3 41             LD B,C
+6FA4 4A             LD C,D
+6FA5 53             LD D,E
+6FA6 5C             LD E,H
+6FA7 65             LD H,L
+6FA8 8B             ADC A,E
+6FA9 B2             OR D
+6FAA 21 DC 73       LD HL,$73DC
+6FAD B4             OR H
+6FAE 16 25          LD D,$25
+6FB0 6A             LD L,D
+6FB1 05             DEC B
+6FB2 40             LD B,B
+6FB3 0D             DEC C
+6FB4 ED 4B 96 8B    LD BC,($8B96)
+6FB8 79             LD A,C
+6FB9 27             DAA
+6FBA 1A             LD A,(DE)
+6FBB 23             INC HL
+6FBC F7             RST $30
+6FBD 4A             LD C,D
+6FBE DA 7D 74       JP C,$747D
+6FC1 9A             SBC A,D
+6FC2 39             ADD HL,SP
+6FC3 79             LD A,C
+6FC4 82             ADD A,D
+6FC5 8D             ADC A,L
+6FC6 70             LD (HL),B
+6FC7 2D             DEC L
+6FC8 40             LD B,B
+6FC9 E9             JP (HL)
+6FCA 2D             DEC L
+6FCB 01 78 C5       LD BC,$C578
+6FCE 64             LD H,H
+6FCF 6D             LD L,L
+6FD0 50             LD D,B
+6FD1 94             SUB H
+6FD2 0E 51          LD C,$51
+6FD4 A2             AND D
+6FD5 1B             DEC DE
+6FD6 4C             LD C,H
+6FD7 EB             EX DE,HL
+6FD8 10 0F          DJNZ $6FE9
+6FDA 0C             INC C
+6FDB C7             RST $00
+6FDC 72             LD (HL),D
+6FDD 73             LD (HL),E
+6FDE 9A             SBC A,D
+6FDF A3             AND E
+6FE0 5C             LD E,H
+6FE1 5F             LD E,A
+6FE2 6A             LD L,D
+6FE3 CA 6C 33       JP Z,$336C
+6FE6 2C             INC L
+6FE7 EE 58          XOR $58
+6FE9 1F             RRA
+6FEA 6C             LD L,H
+6FEB 68             LD L,B
+6FEC B8             CP B
+6FED 34             INC (HL)
+6FEE 62             LD H,D
+6FEF 6D             LD L,L
+6FF0 39             ADD HL,SP
+6FF1 76             HALT
+6FF2 76             HALT
+6FF3 09             ADD HL,BC
+6FF4 38 E8          JR C,$6FDE
+6FF6 4A             LD C,D
+6FF7 15             DEC D
+6FF8 8A             ADC A,D
+6FF9 B9             CP C
+6FFA 11 61 D2       LD DE,$D261
+6FFD 95             SUB L
+6FFE 2F             CPL
+6FFF 45             LD B,L
+7000 0C             INC C
+7001 F1             POP AF
+7002 79             LD A,C
+7003 19             ADD HL,DE
+7004 82             ADD A,D
+7005 CD 47 75       CALL $7547
+7008 EA 81 40       JP PE,$4081
+700B A2             AND D
+700C 04             INC B
+700D 53             LD D,E
+700E 0C             INC C
+700F 2C             INC L
+7010 F5             PUSH AF
+7011 70             LD (HL),B
+7012 2E 31          LD L,$31
+7014 75             LD (HL),L
+7015 4A             LD C,D
+7016 32 94 BF       LD ($BF94),A
+7019 AE             XOR (HL)
+701A 2F             CPL
+701B E1             POP HL
+701C 9B             SBC A,E
+701D 96             SUB (HL)
+701E 8A             ADC A,D
+701F 8A             ADC A,D
+7020 BC             CP H
+7021 08             EX AF,AF'
+7022 10 68          DJNZ $708C
+7024 CA D2 CA       JP Z,$CAD2
+7027 E1             POP HL
+7028 EB             EX DE,HL
+7029 E3             EX (SP),HL
+702A 83             ADD A,E
+702B 9C             SBC A,H
+702C 9A             SBC A,D
+702D 92             SUB D
+702E AE             XOR (HL)
+702F A6             AND (HL)
+7030 BA             CP D
+7031 B2             OR D
+7032 C6 DE          ADD A,$DE
+7034 C5             PUSH BC
+7035 F3             DI
+7036 FD             DEFB $FD
+7037 E7             RST $20
+7038 ED 81          DEFB $ED,$81
+703A 92             SUB D
+703B 85             ADD A,L
+703C B9             CP C
+703D AC             XOR H
+703E D1             POP DE
+703F E8             RET PE
+7040 83             ADD A,E
+7041 BA             CP D
+7042 85             ADD A,L
+7043 84             ADD A,H
+7044 97             SUB A
+7045 96             SUB (HL)
+7046 B1             OR C
+7047 2E 23          LD L,$23
+7049 D8             RET C
+704A A5             AND L
+704B D4 D3 E6       CALL NC,$E6D3
+704E A5             AND L
+704F BC             CP H
+7050 97             SUB A
+7051 8E             ADC A,(HL)
+7052 89             ADC A,C
+7053 B8             CP B
+7054 9F             SBC A,A
+7055 D6 F9          SUB $F9
+7057 C8             RET Z
+7058 FB             EI
+7059 DA D5 F4       JP C,$F4D5
+705C E0             RET PO
+705D 66             LD H,(HL)
+705E A9             XOR C
+705F BC             CP H
+7060 BB             CP E
+7061 8E             ADC A,(HL)
+7062 89             ADC A,C
+7063 D0             RET NC
+7064 EB             EX DE,HL
+7065 DA C9 E0       JP C,$E0C9
+7068 DB 49          IN A,($49)
+706A 63             LD H,E
+706B 17             RLA
+706C 71             LD (HL),C
+706D 0D             DEC C
+706E 47             LD B,A
+706F 23             INC HL
+7070 55             LD D,L
+7071 39             ADD HL,SP
+7072 2B             DEC HL
+7073 F4 D7 98       CALL P,$98D7
+7076 06 D4          LD B,$D4
+7078 CF             RST $08
+7079 86             ADD A,(HL)
+707A 81             ADD A,C
+707B 90             SUB B
+707C B7             OR A
+707D AE             XOR (HL)
+707E 81             ADD A,C
+707F 98             SBC A,B
+7080 CB FE          SET 7,(HL)
+7082 33             INC SP
+7083 C0             RET NZ
+7084 5D             LD E,L
+7085 10 4F          DJNZ $70D6
+7087 66             LD H,(HL)
+7088 3C             INC A
+7089 74             LD (HL),H
+708A 11 4A 02       LD DE,$024A
+708D 58             LD E,B
+708E F5             PUSH AF
+708F CC C7 D6       CALL Z,$D6C7
+7092 FD             DEFB $FD
+7093 20 E7          JR NZ,$707C
+7095 1F             RRA
+7096 4D             LD C,L
+7097 5C             LD E,H
+7098 5E             LD E,(HL)
+7099 8A             ADC A,D
+709A C0             RET NZ
+709B D6 30          SUB $30
+709D 1B             DEC DE
+709E 49             LD C,C
+709F FC 28 21       CALL M,$2128
+70A2 06 42          LD B,$42
+70A4 89             ADC A,C
+70A5 EF             RST $28
+70A6 31 E7 8F       LD SP,$8FE7
+70A9 95             SUB L
+70AA A0             AND B
+70AB AB             XOR E
+70AC FE F9          CP $F9
+70AE 81             ADD A,C
+70AF 0D             DEC C
+70B0 92             SUB D
+70B1 97             SUB A
+70B2 A9             XOR C
+70B3 FB             EI
+70B4 FF             RST $38
+70B5 81             ADD A,C
+70B6 8F             ADC A,A
+70B7 55             LD D,L
+70B8 9F             SBC A,A
+70B9 27             DAA
+70BA F1             POP AF
+70BB B7             OR A
+70BC C3 C9 9A       JP $9AC9
+70BF D2 EB E7       JP NC,$E7EB
+70C2 B7             OR A
+70C3 CD C2 53       CALL $53C2
+70C6 52             LD D,D
+70C7 2B             DEC HL
+70C8 20 39          JR NZ,$7103
+70CA 20 1B          JR NZ,$70E7
+70CC EF             RST $28
+70CD 4B             LD C,E
+70CE C7             RST $00
+70CF 4A             LD C,D
+70D0 64             LD H,H
+70D1 81             ADD A,C
+70D2 18 DF          JR $70B3
+70D4 0D             DEC C
+70D5 20 07          JR NZ,$70DE
+70D7 6D             LD L,L
+70D8 AF             XOR A
+70D9 07             RLCA
+70DA D1             POP DE
+70DB F0             RET P
+70DC 42             LD B,D
+70DD 4B             LD C,E
+70DE 54             LD D,H
+70DF 90             SUB B
+70E0 C7             RST $00
+70E1 30 83          JR NC,$7066
+70E3 C8             RET Z
+70E4 DF             RST $18
+70E5 D6 E9          SUB $E9
+70E7 3F             CCF
+70E8 99             SBC A,C
+70E9 1F             RRA
+70EA 51             LD D,C
+70EB B7             OR A
+70EC 5F             LD E,A
+70ED 7B             LD A,E
+70EE 62             LD H,D
+70EF 7E             LD A,(HL)
+70F0 6C             LD L,H
+70F1 7B             LD A,E
+70F2 47             LD B,A
+70F3 09             ADD HL,BC
+70F4 1E EE          LD E,$EE
+70F6 A4             AND H
+70F7 5B             LD E,E
+70F8 32 54 48       LD ($4854),A
+70FB B2             OR D
+70FC 93             SUB E
+70FD AA             XOR D
+70FE A5             AND L
+70FF B4             OR H
+7100 E3             EX (SP),HL
+7101 DA DD 00       JP C,$00DD
+7104 2A 73 2D       LD HL,($2D73)
+7107 44             LD B,H
+7108 0E 61          LD C,$61
+710A 60             LD H,B
+710B 68             LD L,B
+710C 8D             ADC A,L
+710D 61             LD H,C
+710E E9             JP (HL)
+710F BD             CP L
+7110 D7             RST $10
+7111 CE C9          ADC A,$C9
+7113 F8             RET M
+7114 DF             RST $18
+7115 96             SUB (HL)
+7116 89             ADC A,C
+7117 A0             AND B
+7118 A5             AND L
+7119 A2             AND D
+711A 76             HALT
+711B 4B             LD C,E
+711C 74             LD (HL),H
+711D CE D9          ADC A,$D9
+711F 93             SUB E
+7120 24             INC H
+7121 EE 42          XOR $42
+7123 E2 B4 AC       JP PO,$ACB4
+7126 7C             LD A,H
+7127 60             LD H,B
+7128 7E             LD A,(HL)
+7129 85             ADD A,L
+712A C1             POP BC
+712B 19             ADD HL,DE
+712C FE EA          CP $EA
+712E E5             PUSH HL
+712F FC D7 F6       CALL M,$F6D7
+7132 AD             XOR L
+7133 94             SUB H
+7134 AF             XOR A
+7135 BE             CP (HL)
+7136 89             ADC A,C
+7137 98             SBC A,B
+7138 2D             DEC L
+7139 89             ADC A,C
+713A 61             LD H,C
+713B F4 69 BB       CALL P,$BB69
+713E 45             LD B,L
+713F 17             RLA
+7140 D4 3E 7A       CALL NC,$7A3E
+7143 F1             POP AF
+7144 1B             DEC DE
+7145 7A             LD A,D
+7146 31 41 24       LD SP,$2441
+7149 83             ADD A,E
+714A 51             LD D,C
+714B 0B             DEC BC
+714C A0             AND B
+714D 4A             LD C,D
+714E 4D             LD C,L
+714F 86             ADD A,(HL)
+7150 73             LD (HL),E
+7151 94             SUB H
+7152 7C             LD A,H
+7153 41             LD B,C
+7154 78             LD A,B
+7155 C8             RET Z
+7156 C9             RET
+7157 37             SCF
+7158 8A             ADC A,D
+7159 56             LD D,(HL)
+715A 7D             LD A,L
+715B 7D             LD A,L
+715C 9F             SBC A,A
+715D 6A             LD L,D
+715E DA 2C 47       JP C,$472C
+7161 6F             LD L,A
+7162 78             LD A,B
+7163 10 0A          DJNZ $716F
+7165 13             INC DE
+7166 22 35 F3       LD ($F335),HL
+7169 FC 40 6F       CALL M,$6F40
+716C 8F             ADC A,A
+716D 90             SUB B
+716E 65             LD H,L
+716F 7B             LD A,E
+7170 46             LD B,(HL)
+7171 7B             LD A,E
+7172 01 21 1B       LD BC,$1B21
+7175 30 11          JR NC,$7188
+7177 1D             DEC E
+7178 34             INC (HL)
+7179 8C             ADC A,H
+717A 75             LD (HL),L
+717B 92             SUB D
+717C 76             HALT
+717D A0             AND B
+717E 67             LD H,A
+717F B6             OR (HL)
+7180 14             INC D
+7181 17             RLA
+7182 FD             DEFB $FD
+7183 EA 56 1B       JP PE,$1B56
+7186 3D             DEC A
+7187 56             LD D,(HL)
+7188 93             SUB E
+7189 B6             OR (HL)
+718A 91             SUB C
+718B A8             XOR B
+718C 93             SUB E
+718D B2             OR D
+718E 04             INC B
+718F 0D             DEC C
+7190 16 1F          LD D,$1F
+7192 28 31          JR Z,$71C5
+7194 3A 43 76       LD A,($7643)
+7197 4C             LD C,H
+7198 2C             INC L
+7199 D0             RET NC
+719A B0             OR B
+719B A4             AND H
+719C 23             INC HL
+719D 11 66 C0       LD DE,$C066
+71A0 13             INC DE
+71A1 2F             CPL
+71A2 F8             RET M
+71A3 9C             SBC A,H
+71A4 7C             LD A,H
+71A5 53             LD D,E
+71A6 5A             LD E,D
+71A7 B8             CP B
+71A8 5B             LD E,E
+71A9 76             HALT
+71AA 20 3E          JR NZ,$71EA
+71AC CF             RST $08
+71AD 2D             DEC L
+71AE 25             DEC H
+71AF 25             DEC H
+71B0 37             SCF
+71B1 3D             DEC A
+71B2 5A             LD E,D
+71B3 47             LD B,A
+71B4 7C             LD A,H
+71B5 5D             LD E,L
+71B6 4C             LD C,H
+71B7 B8             CP B
+71B8 E9             JP (HL)
+71B9 69             LD L,C
+71BA 1C             INC E
+71BB 0C             INC C
+71BC 02             LD (BC),A
+71BD D2 0A 3B       JP NC,$3B0A
+71C0 8B             ADC A,E
+71C1 EE 07          XOR $07
+71C3 4B             LD C,E
+71C4 76             HALT
+71C5 01 7D 07       LD BC,$077D
+71C8 1C             INC E
+71C9 69             LD L,C
+71CA DE 24          SBC A,$24
+71CC 1A             LD A,(DE)
+71CD 2A BA FD       LD HL,($FDBA)
+71D0 76             HALT
+71D1 59             LD E,C
+71D2 56             LD D,(HL)
+71D3 8E             ADC A,(HL)
+71D4 48             LD C,B
+71D5 1A             LD A,(DE)
+71D6 7E             LD A,(HL)
+71D7 DC D3 B0       CALL C,$B0D3
+71DA 5E             LD E,(HL)
+71DB 1A             LD A,(DE)
+71DC 4E             LD C,(HL)
+71DD 53             LD D,E
+71DE BE             CP (HL)
+71DF 7E             LD A,(HL)
+71E0 44             LD B,H
+71E1 73             LD (HL),E
+71E2 0A             LD A,(BC)
+71E3 10 A8          DJNZ $718D
+71E5 53             LD D,E
+71E6 1A             LD A,(DE)
+71E7 2B             DEC HL
+71E8 EB             EX DE,HL
+71E9 DA 13 57       JP C,$5713
+71EC 20 8E          JR NZ,$717C
+71EE 85             ADD A,L
+71EF 49             LD C,C
+71F0 70             LD (HL),B
+71F1 78             LD A,B
+71F2 ED C4          DEFB $ED,$C4
+71F4 DF             RST $18
+71F5 22 30 35       LD ($3530),HL
+71F8 D3 F7          OUT ($F7),A
+71FA 91             SUB C
+71FB 88             ADC A,B
+71FC 83             ADD A,E
+71FD 7F             LD A,A
+71FE 50             LD D,B
+71FF 6D             LD L,L
+7200 F7             RST $30
+7201 25             DEC H
+7202 06 53          LD B,$53
+7204 57             LD D,A
+7205 F5             PUSH AF
+7206 1C             INC E
+7207 2A 7E 53       LD HL,($537E)
+720A 1C             INC E
+720B AF             XOR A
+720C 7A             LD A,D
+720D 1C             INC E
+720E E1             POP HL
+720F 0C             INC C
+7210 08             EX AF,AF'
+7211 1F             RRA
+7212 C5             PUSH BC
+7213 81             ADD A,C
+7214 EB             EX DE,HL
+7215 82             ADD A,D
+7216 5C             LD E,H
+7217 85             ADD A,L
+7218 97             SUB A
+7219 98             SBC A,B
+721A 72             LD (HL),D
+721B 78             LD A,B
+721C 02             LD (BC),A
+721D CB 14          RL H
+721F 1D             DEC E
+7220 CB 6C          BIT 5,H
+7222 FD             DEFB $FD
+7223 33             INC SP
+7224 A7             AND A
+7225 00             NOP
+7226 9B             SBC A,E
+7227 17             RLA
+7228 4F             LD C,A
+7229 A6             AND (HL)
+722A 72             LD (HL),D
+722B 0F             RRCA
+722C 1A             LD A,(DE)
+722D 0A             LD A,(BC)
+722E 2D             DEC L
+722F 2D             DEC L
+7230 41             LD B,C
+7231 26 58          LD H,$58
+7233 AD             XOR L
+7234 B7             OR A
+7235 28 A9          JR Z,$71E0
+7237 07             RLCA
+7238 A3             AND E
+7239 26 D9          LD H,$D9
+723B 6B             LD L,E
+723C 33             INC SP
+723D 2A 35 F0       LD HL,($F035)
+7240 E0             RET PO
+7241 21 62 A6       LD HL,$A662
+7244 18 7F          JR $72C5
+7246 CB 2D          SRA L
+7248 03             INC BC
+7249 CA 01 FB       JP Z,$FB01
+724C 40             LD B,B
+724D 2A 45 4C       LD HL,($4C45)
+7250 9B             SBC A,E
+7251 F9             LD SP,HL
+7252 06 4C          LD B,$4C
+7254 62             LD H,D
+7255 EC D1 34       CALL PE,$34D1
+7258 C5             PUSH BC
+7259 55             LD D,L
+725A 21 38 43       LD HL,$4338
+725D 86             ADD A,(HL)
+725E F2 33 8B       JP P,$8B33
+7261 24             INC H
+7262 BD             CP L
+7263 73             LD (HL),E
+7264 30 DB          JR NC,$7241
+7266 6E             LD L,(HL)
+7267 21 99 1F       LD HL,$1F99
+726A 71             LD (HL),C
+726B 94             SUB H
+726C 73             LD (HL),E
+726D BF             CP A
+726E 16 7C          LD D,$7C
+7270 77             LD (HL),A
+7271 7E             LD A,(HL)
+7272 C5             PUSH BC
+7273 B7             OR A
+7274 74             LD (HL),H
+7275 D6 16          SUB $16
+7277 F2 4C 4B       JP P,$4B4C
+727A E7             RST $20
+727B 71             LD (HL),C
+727C 6F             LD L,A
+727D B6             OR (HL)
+727E 55             LD D,L
+727F 75             LD (HL),L
+7280 75             LD (HL),L
+7281 1E 19          LD E,$19
+7283 20 E7          JR NZ,$726C
+7285 95             SUB L
+7286 52             LD D,D
+7287 78             LD A,B
+7288 56             LD D,(HL)
+7289 B8             CP B
+728A BD             CP L
+728B 48             LD C,B
+728C 96             SUB (HL)
+728D 09             ADD HL,BC
+728E 15             DEC D
+728F 0C             INC C
+7290 17             RLA
+7291 D2 8E 5F       JP NC,$5F8E
+7294 00             NOP
+7295 86             ADD A,(HL)
+7296 3E 1A          LD A,$1A
+7298 AF             XOR A
+7299 5A             LD E,D
+729A 68             LD L,B
+729B B2             OR D
+729C DF             RST $18
+729D 2A F9 6F       LD HL,($6FF9)
+72A0 37             SCF
+72A1 2E 39          LD L,$39
+72A3 8C             ADC A,H
+72A4 EC 3D 66       CALL PE,$663D
+72A7 A2             AND D
+72A8 1C             INC E
+72A9 7B             LD A,E
+72AA B7             OR A
+72AB 21 1F C6       LD HL,$C61F
+72AE 05             DEC B
+72AF DB 44          IN A,($44)
+72B1 2E 49          LD L,$49
+72B3 50             LD D,B
+72B4 97             SUB A
+72B5 C5             PUSH BC
+72B6 02             LD (BC),A
+72B7 48             LD C,B
+72B8 66             LD H,(HL)
+72B9 E8             RET PE
+72BA CD 38 DD       CALL $DD38
+72BD 59             LD E,C
+72BE 25             DEC H
+72BF 3C             INC A
+72C0 47             LD B,A
+72C1 82             ADD A,D
+72C2 FE 0F          CP $0F
+72C4 A3             AND E
+72C5 73             LD (HL),E
+72C6 7C             LD A,H
+72C7 05             DEC B
+72C8 0E 68          LD C,$68
+72CA FF             RST $38
+72CB 96             SUB (HL)
+72CC 8D             ADC A,L
+72CD 84             ADD A,H
+72CE DB 8D          IN A,($8D)
+72D0 29             ADD HL,HL
+72D1 5F             LD E,A
+72D2 97             SUB A
+72D3 8E             ADC A,(HL)
+72D4 85             ADD A,L
+72D5 FC F3 EA       CALL M,$EAF3
+72D8 1E D8          LD E,$D8
+72DA 30 C5          JR NC,$72A1
+72DC 54             LD D,H
+72DD E4 BB B2       CALL PO,$B2BB
+72E0 89             ADC A,C
+72E1 59             LD E,C
+72E2 84             ADD A,H
+72E3 01 12 0B       LD BC,$0B12
+72E6 04             INC B
+72E7 3D             DEC A
+72E8 36 2F          LD (HL),$2F
+72EA 58             LD E,B
+72EB 51             LD D,C
+72EC 52             LD D,D
+72ED 24             INC H
+72EE A4             AND H
+72EF F2 C9 C0       JP P,$C0C9
+72F2 B7             OR A
+72F3 CE 65          ADC A,$65
+72F5 23             INC HL
+72F6 D3 35          OUT ($35),A
+72F8 C1             POP BC
+72F9 B8             CP B
+72FA AF             XOR A
+72FB A6             AND (HL)
+72FC 9D             SBC A,L
+72FD 94             SUB H
+72FE 74             LD (HL),H
+72FF 81             ADD A,C
+7300 30 E0          JR NC,$72E2
+7302 F7             RST $30
+7303 CE 85          ADC A,$85
+7305 25             DEC H
+7306 C0             RET NZ
+7307 45             LD B,L
+7308 4E             LD C,(HL)
+7309 57             LD D,A
+730A 60             LD H,B
+730B 69             LD L,C
+730C 72             LD (HL),D
+730D 7B             LD A,E
+730E 04             INC B
+730F 0D             DEC C
+7310 16 25          LD D,$25
+7312 88             ADC A,B
+7313 6E             LD L,(HL)
+7314 CF             RST $08
+7315 7D             LD A,L
+7316 48             LD C,B
+7317 98             SBC A,B
+7318 FF             RST $38
+7319 38 51          JR C,$736C
+731B 79             LD A,C
+731C C2 1A 14       JP NZ,$141A
+731F 5D             LD E,L
+7320 27             DAA
+7321 2F             CPL
+7322 23             INC HL
+7323 AC             XOR H
+7324 FA A2 91       JP M,$91A2
+7327 C4 31 BE       CALL NZ,$BE31
+732A C5             PUSH BC
+732B 4E             LD C,(HL)
+732C CF             RST $08
+732D 3A D4 92       LD A,($92D4)
+7330 27             DAA
+7331 2F             CPL
+7332 48             LD C,B
+7333 8C             ADC A,H
+7334 43             LD B,E
+7335 BE             CP (HL)
+7336 12             LD (DE),A
+7337 7D             LD A,L
+7338 80             ADD A,B
+7339 4A             LD C,D
+733A 30 EE          JR NC,$732A
+733C FF             RST $38
+733D 55             LD D,L
+733E 34             INC (HL)
+733F C3 47 67       JP $6747
+7342 A8             XOR B
+7343 71             LD (HL),C
+7344 84             ADD A,H
+7345 B2             OR D
+7346 B5             OR L
+7347 3B             DEC SP
+7348 0B             DEC BC
+7349 25             DEC H
+734A 86             ADD A,(HL)
+734B 55             LD D,L
+734C 08             EX AF,AF'
+734D BE             CP (HL)
+734E 37             SCF
+734F 53             LD D,E
+7350 59             LD E,C
+7351 5E             LD E,(HL)
+7352 6C             LD L,H
+7353 75             LD (HL),L
+7354 8F             ADC A,A
+7355 C6 D9          ADD A,$D9
+7357 34             INC (HL)
+7358 9A             SBC A,D
+7359 54             LD D,H
+735A 8E             ADC A,(HL)
+735B 11 44 73       LD DE,$7344
+735E 50             LD D,B
+735F 8C             ADC A,H
+7360 A7             AND A
+7361 9E             SBC A,(HL)
+7362 B1             OR C
+7363 CC 20 60       CALL Z,$6020
+7366 02             LD (BC),A
+7367 2D             DEC L
+7368 F3             DI
+7369 49             LD C,C
+736A 40             LD B,B
+736B 84             ADD A,H
+736C DA 35 B9       JP C,$B935
+736F 4E             LD C,(HL)
+7370 7A             LD A,D
+7371 62             LD H,D
+7372 28 E5          JR Z,$7359
+7374 20 85          JR NZ,$72FB
+7376 50             LD D,B
+7377 09             ADD HL,BC
+7378 0C             INC C
+7379 E1             POP HL
+737A 2C             INC L
+737B 88             ADC A,B
+737C A3             AND E
+737D 9A             SBC A,D
+737E 70             LD (HL),B
+737F 41             LD B,C
+7380 1B             DEC DE
+7381 2F             CPL
+7382 C9             RET
+7383 E8             RET PE
+7384 2A 33 06       LD HL,($0633)
+7387 70             LD (HL),B
+7388 33             INC SP
+7389 10 65          DJNZ $73F0
+738B 78             LD A,B
+738C 8C             ADC A,H
+738D AD             XOR L
+738E 17             RLA
+738F 17             RLA
+7390 E8             RET PE
+7391 AF             XOR A
+7392 08             EX AF,AF'
+7393 CB 2A          SRA D
+7395 BB             CP E
+7396 5F             LD E,A
+7397 46             LD B,(HL)
+7398 5F             LD E,A
+7399 71             LD (HL),C
+739A 71             LD (HL),C
+739B 63             LD H,E
+739C FC BA DC       CALL M,$DCBA
+739F E3             EX (SP),HL
+73A0 2B             DEC HL
+73A1 07             RLCA
+73A2 3F             CCF
+73A3 8C             ADC A,H
+73A4 C2 3D 4F       JP NZ,$4F3D
+73A7 69             LD L,C
+73A8 76             HALT
+73A9 86             ADD A,(HL)
+73AA 13             INC DE
+73AB 07             RLCA
+73AC 04             INC B
+73AD 1F             RRA
+73AE 3C             INC A
+73AF C6 DB          ADD A,$DB
+73B1 64             LD H,H
+73B2 F6 27          OR $27
+73B4 B7             OR A
+73B5 28 AC          JR Z,$7363
+73B7 03             INC BC
+73B8 07             RLCA
+73B9 E1             POP HL
+73BA 17             RLA
+73BB 56             LD D,(HL)
+73BC 59             LD E,C
+73BD CD 33 AC       CALL $AC33
+73C0 6E             LD L,(HL)
+73C1 43             LD B,E
+73C2 60             LD H,B
+73C3 64             LD H,H
+73C4 A7             AND A
+73C5 EA 0A 1D       JP PE,$1D0A
+73C8 0B             DEC BC
+73C9 FA 64 E4       JP M,$E464
+73CC 46             LD B,(HL)
+73CD 4D             LD C,L
+73CE 99             SBC A,C
+73CF 6C             LD L,H
+73D0 94             SUB H
+73D1 29             ADD HL,HL
+73D2 95             SUB L
+73D3 50             LD D,B
+73D4 A0             AND B
+73D5 75             LD (HL),L
+73D6 E1             POP HL
+73D7 5E             LD E,(HL)
+73D8 DE 51          SBC A,$51
+73DA 0E 31          LD C,$31
+73DC B7             OR A
+73DD 86             ADD A,(HL)
+73DE BB             CP E
+73DF 2E AB          LD L,$AB
+73E1 79             LD A,C
+73E2 0C             INC C
+73E3 CC 1C 67       CALL Z,$671C
+73E6 D1             POP DE
+73E7 33             INC SP
+73E8 5A             LD E,D
+73E9 C6 44          ADD A,$44
+73EB 74             LD (HL),H
+73EC 72             LD (HL),D
+73ED B5             OR L
+73EE AD             XOR L
+73EF A8             XOR B
+73F0 57             LD D,A
+73F1 7F             LD A,A
+73F2 0A             LD A,(BC)
+73F3 69             LD L,C
+73F4 1D             DEC E
+73F5 E8             RET PE
+73F6 38 32          JR C,$742A
+73F8 F5             PUSH AF
+73F9 53             LD D,E
+73FA 9B             SBC A,E
+73FB 7D             LD A,L
+73FC A9             XOR C
+73FD 4F             LD C,A
+73FE BF             CP A
+73FF 59             LD E,C
+7400 7E             LD A,(HL)
+7401 E9             JP (HL)
+7402 1F             RRA
+7403 95             SUB L
+7404 4D             LD C,L
+7405 4B             LD C,E
+7406 3B             DEC SP
+7407 42             LD B,D
+7408 A8             XOR B
+7409 B7             OR A
+740A 0F             RRCA
+740B A2             AND D
+740C 4B             LD C,E
+740D B0             OR B
+740E 3D             DEC A
+740F C6 2F          ADD A,$2F
+7411 19             ADD HL,DE
+7412 28 38          JR Z,$744C
+7414 FB             EI
+7415 8A             ADC A,D
+7416 30 AB          JR NC,$73C3
+7418 06 57          LD B,$57
+741A 78             LD A,B
+741B 07             RLCA
+741C FF             RST $38
+741D AD             XOR L
+741E 14             INC D
+741F C0             RET NZ
+7420 90             SUB B
+7421 2F             CPL
+7422 4F             LD C,A
+7423 62             LD H,D
+7424 97             SUB A
+7425 70             LD (HL),B
+7426 A1             AND C
+7427 46             LD B,(HL)
+7428 A7             AND A
+7429 9A             SBC A,D
+742A 4B             LD C,E
+742B C9             RET
+742C 64             LD H,H
+742D 0A             LD A,(BC)
+742E D6 5B          SUB $5B
+7430 08             EX AF,AF'
+7431 37             SCF
+7432 8D             ADC A,L
+7433 A4             AND H
+7434 97             SUB A
+7435 8C             ADC A,H
+7436 1F             RRA
+7437 98             SBC A,B
+7438 DE EA          SBC A,$EA
+743A B0             OR B
+743B F4 82 DA       CALL P,$DA82
+743E F5             PUSH AF
+743F 39             ADD HL,SP
+7440 7B             LD A,E
+7441 6F             LD L,A
+7442 B7             OR A
+7443 A8             XOR B
+7444 87             ADD A,A
+7445 38 C2          JR C,$7409
+7447 73             LD (HL),E
+7448 1F             RRA
+7449 E5             PUSH HL
+744A 56             LD D,(HL)
+744B 17             RLA
+744C 3A FE B1       LD A,($B1FE)
+744F 80             ADD A,B
+7450 B9             CP C
+7451 2C             INC L
+7452 83             ADD A,E
+7453 9C             SBC A,H
+7454 DA EE AC       JP C,$ACEE
+7457 F8             RET M
+7458 BE             CP (HL)
+7459 CC C1 F8       CALL Z,$F8C1
+745C 46             LD B,(HL)
+745D 76             HALT
+745E 74             LD (HL),H
+745F B0             OR B
+7460 AF             XOR A
+7461 55             LD D,L
+7462 72             LD (HL),D
+7463 76             HALT
+7464 BD             CP L
+7465 3B             DEC SP
+7466 1F             RRA
+7467 E8             RET PE
+7468 B7             OR A
+7469 41             LD B,C
+746A 9D             SBC A,L
+746B 37             SCF
+746C 57             LD D,A
+746D BD             CP L
+746E 63             LD H,E
+746F A9             XOR C
+7470 02             LD (BC),A
+7471 09             ADD HL,BC
+7472 D5             PUSH DE
+7473 5F             LD E,A
+7474 1F             RRA
+7475 FE 6A          CP $6A
+7477 33             INC SP
+7478 D3 04          OUT ($04),A
+747A 90             SUB B
+747B 2F             CPL
+747C 8F             ADC A,A
+747D 28 CA          JR Z,$7449
+747F 0B             DEC BC
+7480 CB 26          SLA (HL)
+7482 6C             LD L,H
+7483 EC 58 46       CALL PE,$4658
+7486 C1             POP BC
+7487 67             LD H,A
+7488 71             LD (HL),C
+7489 21 D7 AD       LD HL,$ADD7
+748C B8             CP B
+748D 0E FF          LD C,$FF
+748F C0             RET NZ
+7490 64             LD H,H
+7491 6A             LD L,D
+7492 9F             SBC A,A
+7493 19             ADD HL,DE
+7494 0B             DEC BC
+7495 AE             XOR (HL)
+7496 07             RLCA
+7497 6A             LD L,D
+7498 28 1F          JR Z,$74B9
+749A C1             POP BC
+749B 59             LD E,C
+749C 0B             DEC BC
+749D F6 36          OR $36
+749F 22 50 E2       LD ($E250),HL
+74A2 F2 34 52       JP P,$5234
+74A5 65             LD H,L
+74A6 A1             AND C
+74A7 80             ADD A,B
+74A8 8F             ADC A,A
+74A9 9A             SBC A,D
+74AA 4B             LD C,E
+74AB 36 64          LD (HL),$64
+74AD AC             XOR H
+74AE C9             RET
+74AF 6F             LD L,A
+74B0 1E 15          LD E,$15
+74B2 B5             OR L
+74B3 B4             OR H
+74B4 A7             AND A
+74B5 49             LD C,C
+74B6 53             LD D,E
+74B7 03             INC BC
+74B8 B3             OR E
+74B9 CD 65 E4       CALL $E465
+74BC C3 D6 16       JP $16D6
+74BF 02             LD (BC),A
+74C0 30 82          JR NC,$7444
+74C2 92             SUB D
+74C3 14             INC D
+74C4 72             LD (HL),D
+74C5 65             LD H,L
+74C6 91             SUB C
+74C7 4E             LD C,(HL)
+74C8 31 61 58       LD SP,$5861
+74CB 98             SBC A,B
+74CC 1A             LD A,(DE)
+74CD 35             DEC (HL)
+74CE B9             CP C
+74CF 67             LD H,A
+74D0 69             LD L,C
+74D1 29             ADD HL,HL
+74D2 A5             AND L
+74D3 BB             CP E
+74D4 0F             RRCA
+74D5 02             LD (BC),A
+74D6 0C             INC C
+74D7 15             DEC D
+74D8 F3             DI
+74D9 64             LD H,H
+74DA 0F             RRCA
+74DB 4F             LD C,A
+74DC 34             INC (HL)
+74DD 96             SUB (HL)
+74DE B1             OR C
+74DF A0             AND B
+74E0 83             ADD A,E
+74E1 A2             AND D
+74E2 3C             INC A
+74E3 75             LD (HL),L
+74E4 C7             RST $00
+74E5 3A 68 E8       LD A,($E868)
+74E8 9E             SBC A,(HL)
+74E9 44             LD B,H
+74EA AD             XOR L
+74EB 02             LD (BC),A
+74EC 92             SUB D
+74ED 2D             DEC L
+74EE 89             ADC A,C
+74EF 2E C8          LD L,$C8
+74F1 09             ADD HL,BC
+74F2 F5             PUSH AF
+74F3 F0             RET P
+74F4 C7             RST $00
+74F5 C2 E1 27       JP NZ,$27E1
+74F8 48             LD C,B
+74F9 B9             CP C
+74FA 43             LD B,E
+74FB 79             LD A,C
+74FC 6A             LD L,D
+74FD A6             AND (HL)
+74FE 30 0B          JR NC,$750B
+7500 CB 53          BIT 2,E
+7502 6E             LD L,(HL)
+7503 39             ADD HL,SP
+7504 A0             AND B
+7505 CD 27 65       CALL $6527
+7508 4B             LD C,E
+7509 9A             SBC A,D
+750A 24             INC H
+750B 1F             RRA
+750C 6A             LD L,D
+750D FA FA 2E       JP M,$2EFA
+7510 36 16          LD (HL),$16
+7512 E5             PUSH HL
+7513 75             LD (HL),L
+7514 4C             LD C,H
+7515 8E             ADC A,(HL)
+7516 24             INC H
+7517 23             INC HL
+7518 9D             SBC A,L
+7519 E8             RET PE
+751A 04             INC B
+751B 87             ADD A,A
+751C 10 2B          DJNZ $7549
+751E 12             LD (DE),A
+751F D0             RET NC
+7520 7A             LD A,D
+7521 59             LD E,C
+7522 FB             EI
+7523 CE 3E          ADC A,$3E
+7525 AD             XOR L
+7526 7E             LD A,(HL)
+7527 45             LD B,L
+7528 68             LD L,B
+7529 BA             CP D
+752A 68             LD L,B
+752B 7F             LD A,A
+752C D1             POP DE
+752D 94             SUB H
+752E 50             LD D,B
+752F D3 27          OUT ($27),A
+7531 1F             RRA
+7532 41             LD B,C
+7533 9C             SBC A,H
+7534 06 15          LD B,$15
+7536 A1             AND C
+7537 25             DEC H
+7538 08             EX AF,AF'
+7539 C4 9F 6D       CALL NZ,$6D9F
+753C DC 32 14       CALL C,$1432
+753F 3B             DEC SP
+7540 8B             ADC A,E
+7541 1F             RRA
+7542 2E A2          LD L,$A2
+7544 E5             PUSH HL
+7545 07             RLCA
+7546 82             ADD A,D
+7547 24             INC H
+7548 2E 1E          LD L,$1E
+754A ED 41          OUT (C),B
+754C 44             LD B,H
+754D F6 14          OR $14
+754F 3B             DEC SP
+7550 95             SUB L
+7551 D0             RET NC
+7552 1C             INC E
+7553 8F             ADC A,A
+7554 5D             LD E,L
+7555 C1             POP BC
+7556 83             ADD A,E
+7557 61             LD H,C
+7558 D3 55          OUT ($55),A
+755A 45             LD B,L
+755B 8E             ADC A,(HL)
+755C 88             ADC A,B
+755D C4 20 A8       CALL NZ,$A820
+7560 AB             XOR E
+7561 A5             AND L
+7562 0D             DEC C
+7563 CC 4E 67       CALL Z,$674E
+7566 F1             POP AF
+7567 6E             LD L,(HL)
+7568 90             SUB B
+7569 41             LD B,C
+756A 9D             SBC A,L
+756B 38 57          JR C,$75C4
+756D 86             ADD A,(HL)
+756E 14             INC D
+756F 6B             LD L,E
+7570 87             ADD A,A
+7571 B6             OR (HL)
+7572 D5             PUSH DE
+7573 F4 E7 C2       CALL P,$C2E7
+7576 3D             DEC A
+7577 32 3E BA       LD ($BA3E),A
+757A 49             LD C,C
+757B 84             ADD A,H
+757C 24             INC H
+757D 6B             LD L,E
+757E B1             OR C
+757F 80             ADD A,B
+7580 68             LD L,B
+7581 0F             RRCA
+7582 D3 04          OUT ($04),A
+7584 E1             POP HL
+7585 16 F7          LD D,$F7
+7587 60             LD H,B
+7588 B3             OR E
+7589 31 61 A2       LD SP,$A261
+758C 56             LD D,(HL)
+758D B0             OR B
+758E 20 C6          JR NZ,$7556
+7590 32 E2 7E       LD ($7EE2),A
+7593 32 F1 61       LD ($61F1),A
+7596 87             ADD A,A
+7597 77             LD (HL),A
+7598 95             SUB L
+7599 45             LD B,L
+759A 8D             ADC A,L
+759B 27             DAA
+759C 00             NOP
+759D C0             RET NZ
+759E 37             SCF
+759F D6 05          SUB $05
+75A1 E4 1B AC       CALL PO,$AC1B
+75A4 01 93 2A       LD BC,$2A93
+75A7 1C             INC E
+75A8 D3 4F          OUT ($4F),A
+75AA 0A             LD A,(BC)
+75AB B2             OR D
+75AC 22 1C 5C       LD ($5C1C),HL
+75AF 91             SUB C
+75B0 0E 3C          LD C,$3C
+75B2 F2 69 54       JP P,$5469
+75B5 72             LD (HL),D
+75B6 68             LD L,B
+75B7 75             LD (HL),L
+75B8 83             ADD A,E
+75B9 1E D1          LD E,$D1
+75BB 09             ADD HL,BC
+75BC E3             EX (SP),HL
+75BD 84             ADD A,H
+75BE C9             RET
+75BF 1C             INC E
+75C0 46             LD B,(HL)
+75C1 4F             LD C,A
+75C2 91             SUB C
+75C3 A0             AND B
+75C4 B7             OR A
+75C5 0D             DEC C
+75C6 7C             LD A,H
+75C7 39             ADD HL,SP
+75C8 9E             SBC A,(HL)
+75C9 DE 06          SBC A,$06
+75CB 29             ADD HL,HL
+75CC CF             RST $08
+75CD 55             LD D,L
+75CE 45             LD B,L
+75CF 64             LD H,H
+75D0 7F             LD A,A
+75D1 76             HALT
+75D2 41             LD B,C
+75D3 58             LD E,B
+75D4 6B             LD L,E
+75D5 03             INC BC
+75D6 54             LD D,H
+75D7 0C             INC C
+75D8 08             EX AF,AF'
+75D9 27             DAA
+75DA CD 67 42       CALL $4267
+75DD 52             LD D,D
+75DE A9             XOR C
+75DF 23             INC HL
+75E0 65             LD H,L
+75E1 92             SUB D
+75E2 EE 00          XOR $00
+75E4 4D             LD C,L
+75E5 D6 F9          SUB $F9
+75E7 D8             RET C
+75E8 50             LD D,B
+75E9 35             DEC (HL)
+75EA BD             CP L
+75EB DF             RST $18
+75EC 52             LD D,D
+75ED 1C             INC E
+75EE 1A             LD A,(DE)
+75EF 3A 90 47       LD A,($4790)
+75F2 57             LD D,A
+75F3 6B             LD L,E
+75F4 FC 24 E7       CALL M,$E724
+75F7 0E F5          LD C,$F5
+75F9 7C             LD A,H
+75FA 9B             SBC A,E
+75FB 62             LD H,D
+75FC 65             LD H,L
+75FD 6C             LD L,H
+75FE 73             LD (HL),E
+75FF CE 59          ADC A,$59
+7601 75             LD (HL),L
+7602 FE E1          CP $E1
+7604 99             SBC A,C
+7605 44             LD B,H
+7606 1F             RRA
+7607 55             LD D,L
+7608 AB             XOR E
+7609 B6             OR (HL)
+760A 61             LD H,C
+760B 49             LD C,C
+760C 72             LD (HL),D
+760D 72             LD (HL),D
+760E C5             PUSH BC
+760F 1D             DEC E
+7610 C2 D6 E5       JP NZ,$E5D6
+7613 BF             CP A
+7614 38 38          JR C,$764E
+7616 B2             OR D
+7617 AA             XOR D
+7618 9E             SBC A,(HL)
+7619 BC             CP H
+761A 6F             LD L,A
+761B CE 2A          ADC A,$2A
+761D FF             RST $38
+761E DF             RST $18
+761F 7A             LD A,D
+7620 0E 2C          LD C,$2C
+7622 06 66          LD B,$66
+7624 83             ADD A,E
+7625 72             LD (HL),D
+7626 72             LD (HL),D
+7627 13             INC DE
+7628 4D             LD C,L
+7629 C9             RET
+762A 23             INC HL
+762B 29             ADD HL,HL
+762C E9             JP (HL)
+762D 65             LD H,L
+762E ED 25          DEFB $ED,$25
+7630 2D             DEC L
+7631 36 6B          LD (HL),$6B
+7633 50             LD D,B
+7634 78             LD A,B
+7635 66             LD H,(HL)
+7636 4D             LD C,L
+7637 71             LD (HL),C
+7638 67             LD H,A
+7639 01 01 1B       LD BC,$1B01
+763C 30 21          JR NC,$765F
+763E 27             DAA
+763F 3D             DEC A
+7640 46             LD B,(HL)
+7641 4F             LD C,A
+7642 58             LD E,B
+7643 61             LD H,C
+7644 50             LD D,B
+7645 CC 0A D8       CALL Z,$D80A
+7648 B0             OR B
+7649 15             DEC D
+764A E8             RET PE
+764B 14             INC D
+764C 00             NOP
+764D FA 32 84       JP M,$8432
+7650 6C             LD L,H
+7651 E0             RET PO
+7652 1E AC          LD E,$AC
+7654 C4 07 C4       CALL NZ,$C407
+7657 29             ADD HL,HL
+7658 2C             INC L
+7659 E6 46          AND $46
+765B F0             RET P
+765C 78             LD A,B
+765D F5             PUSH AF
+765E 22 80 D8       LD ($D880),HL
+7661 6E             LD L,(HL)
+7662 B0             OR B
+7663 3C             INC A
+7664 38 D3          JR C,$7639
+7666 6A             LD L,D
+7667 EC 14 89       CALL PE,$8914
+766A 36 94          LD (HL),$94
+766C EC 58 AC       CALL PE,$AC58
+766F 51             LD D,C
+7670 44             LD B,H
+7671 BF             CP A
+7672 7E             LD A,(HL)
+7673 D8             RET C
+7674 EF             RST $28
+7675 25             DEC H
+7676 3C             INC A
+7677 14             INC D
+7678 FC 31 B5       CALL M,$B531
+767B 88             ADC A,B
+767C A9             XOR C
+767D 55             LD D,L
+767E 57             LD D,A
+767F B6             OR (HL)
+7680 18 2C          JR $76AE
+7682 D3 3F          OUT ($3F),A
+7684 09             ADD HL,BC
+7685 03             INC BC
+7686 38 AE          JR C,$7636
+7688 85             ADD A,L
+7689 A9             XOR C
+768A 8B             ADC A,E
+768B 79             LD A,C
+768C 9F             SBC A,A
+768D 41             LD B,C
+768E 0E 7A          LD C,$7A
+7690 2A 2D 22       LD HL,($222D)
+7693 46             LD B,(HL)
+7694 CB 7E          BIT 7,(HL)
+7696 6C             LD L,H
+7697 89             ADC A,C
+7698 97             SUB A
+7699 92             SUB D
+769A 76             HALT
+769B 69             LD L,C
+769C 23             INC HL
+769D FA 62 F8       JP M,$F862
+76A0 F7             RST $30
+76A1 E4 1E 6A       CALL PO,$6A1E
+76A4 81             ADD A,C
+76A5 45             LD B,L
+76A6 77             LD (HL),A
+76A7 AE             XOR (HL)
+76A8 78             LD A,B
+76A9 5C             LD E,H
+76AA 30 0D          JR NC,$76B9
+76AC F9             LD SP,HL
+76AD D0             RET NC
+76AE E2 C6 26       JP PO,$26C6
+76B1 D2 72 5B       JP NC,$5B72
+76B4 2D             DEC L
+76B5 5E             LD E,(HL)
+76B6 5E             LD E,(HL)
+76B7 7F             LD A,A
+76B8 09             ADD HL,BC
+76B9 F6 2D          OR $2D
+76BB 39             ADD HL,SP
+76BC FE E2          CP $E2
+76BE 34             INC (HL)
+76BF 3D             DEC A
+76C0 46             LD B,(HL)
+76C1 4F             LD C,A
+76C2 58             LD E,B
+76C3 61             LD H,C
+76C4 6A             LD L,D
+76C5 0C             INC C
+76C6 7C             LD A,H
+76C7 05             DEC B
+76C8 30 17          JR NC,$76E1
+76CA 20 36          JR NZ,$7702
+76CC 32 3B 48       LD ($483B),A
+76CF 8D             ADC A,L
+76D0 56             LD D,(HL)
+76D1 5F             LD E,A
+76D2 58             LD E,B
+76D3 71             LD (HL),C
+76D4 7A             LD A,D
+76D5 0F             RRCA
+76D6 0C             INC C
+76D7 15             DEC D
+76D8 1E 27          LD E,$27
+76DA 30 46          JR NC,$7722
+76DC BD             CP L
+76DD 4B             LD C,E
+76DE 2B             DEC HL
+76DF A2             AND D
+76E0 66             LD H,(HL)
+76E1 10 87          DJNZ $766A
+76E3 81             ADD A,C
+76E4 15             DEC D
+76E5 EC DC 22       CALL PE,$22DC
+76E8 D1             POP DE
+76E9 D7             RST $10
+76EA 41             LD B,C
+76EB B6             OR (HL)
+76EC B1             OR C
+76ED DA 9B 92       JP C,$929B
+76F0 87             ADD A,A
+76F1 80             ADD A,B
+76F2 08             EX AF,AF'
+76F3 11 1A 23       LD DE,$231A
+76F6 2C             INC L
+76F7 35             DEC (HL)
+76F8 3E 47          LD A,$47
+76FA 50             LD D,B
+76FB 59             LD E,C
+76FC 62             LD H,D
+76FD 6B             LD L,E
+76FE 74             LD (HL),H
+76FF 7D             LD A,L
+7700 06 0F          LD B,$0F
+7702 18 21          JR $7725
+7704 2A 33 3C       LD HL,($3C33)
+7707 45             LD B,L
+7708 4E             LD C,(HL)
+7709 57             LD D,A
+770A 60             LD H,B
+770B 17             RLA
+770C 5D             LD E,L
+770D 0C             INC C
+770E 27             DAA
+770F 16 6C          LD D,$6C
+7711 AC             XOR H
+7712 08             EX AF,AF'
+7713 C6 F3          ADD A,$F3
+7715 B6             OR (HL)
+7716 7E             LD A,(HL)
+7717 F7             RST $30
+7718 29             ADD HL,HL
+7719 C8             RET Z
+771A BD             CP L
+771B D8             RET C
+771C 5D             LD E,L
+771D D6 35          SUB $35
+771F CB 4A          BIT 1,D
+7721 2E 3B          LD L,$3B
+7723 43             LD B,E
+7724 5B             LD E,E
+7725 70             LD (HL),B
+7726 5C             LD E,H
+7727 A8             XOR B
+7728 28 00          JR Z,$772A
+772A DD             DEFB $DD
+772B 28 F4          JR Z,$7721
+772D 77             LD (HL),A
+772E 25             DEC H
+772F 2C             INC L
+7730 37             SCF
+7731 2E 52          LD L,$52
+7733 51             LD D,C
+7734 97             SUB A
+7735 25             DEC H
+7736 1B             DEC DE
+7737 A8             XOR B
+7738 5F             LD E,A
+7739 F1             POP AF
+773A 7C             LD A,H
+773B 18 20          JR $775D
+773D 29             ADD HL,HL
+773E 25             DEC H
+773F 38 46          JR C,$7787
+7741 82             ADD A,D
+7742 1E 16          LD E,$16
+7744 9B             SBC A,E
+7745 BA             CP D
+7746 04             INC B
+7747 37             SCF
+7748 7A             LD A,D
+7749 60             LD H,B
+774A 59             LD E,C
+774B 1B             DEC DE
+774C 44             LD B,H
+774D 4C             LD C,H
+774E A9             XOR C
+774F 1E D1          LD E,$D1
+7751 28 79          JR Z,$77CC
+7753 75             LD (HL),L
+7754 7A             LD A,D
+7755 39             ADD HL,SP
+7756 AE             XOR (HL)
+7757 62             LD H,D
+7758 C3 3E 0D       JP $0D3E
+775B 19             ADD HL,DE
+775C B9             CP C
+775D 96             SUB (HL)
+775E 3A 5D BB       LD A,($BB5D)
+7761 09             ADD HL,BC
+7762 79             LD A,C
+7763 DC 44 11       CALL C,$1144
+7766 C1             POP BC
+7767 63             LD H,E
+7768 2D             DEC L
+7769 D2 BD A8       JP NC,$A8BD
+776C 97             SUB A
+776D A6             AND (HL)
+776E 2A 6C 8B       LD HL,($8B6C)
+7771 39             ADD HL,SP
+7772 0A             LD A,(BC)
+7773 07             RLCA
+7774 1A             LD A,(DE)
+7775 3D             DEC A
+7776 2C             INC L
+7777 F8             RET M
+7778 AF             XOR A
+7779 30 5C          JR NC,$77D7
+777B 44             LD B,H
+777C 42             LD B,D
+777D 92             SUB D
+777E 89             ADC A,C
+777F 33             INC SP
+7780 07             RLCA
+7781 0B             DEC BC
+7782 0D             DEC C
+7783 01 DA F2       LD BC,$F2DA
+7786 2D             DEC L
+7787 45             LD B,L
+7788 4E             LD C,(HL)
+7789 AA             XOR D
+778A 79             LD A,C
+778B 62             LD H,D
+778C 0A             LD A,(BC)
+778D CA 24 D1       JP Z,$D124
+7790 DF             RST $18
+7791 25             DEC H
+7792 88             ADC A,B
+7793 6E             LD L,(HL)
+7794 CF             RST $08
+7795 79             LD A,C
+7796 EE 22          XOR $22
+7798 93             SUB E
+7799 C3 08 B2       JP $B208
+779C FC FA D9       CALL M,$D9FA
+779F BC             CP H
+77A0 79             LD A,C
+77A1 E6 38          AND $38
+77A3 9C             SBC A,H
+77A4 AF             XOR A
+77A5 61             LD H,C
+77A6 97             SUB A
+77A7 12             LD (DE),A
+77A8 53             LD D,E
+77A9 45             LD B,L
+77AA D3 7E          OUT ($7E),A
+77AC 20 F2          JR NZ,$77A0
+77AE 53             LD D,E
+77AF 1F             RRA
+77B0 DD             DEFB $DD
+77B1 48             LD C,B
+77B2 B5             OR L
+77B3 73             LD (HL),E
+77B4 94             SUB H
+77B5 0F             RRCA
+77B6 52             LD D,D
+77B7 74             LD (HL),H
+77B8 B3             OR E
+77B9 D8             RET C
+77BA 60             LD H,B
+77BB 1C             INC E
+77BC 34             INC (HL)
+77BD 2B             DEC HL
+77BE 6C             LD L,H
+77BF 55             LD D,L
+77C0 8B             ADC A,E
+77C1 7D             LD A,L
+77C2 29             ADD HL,HL
+77C3 02             LD (BC),A
+77C4 76             HALT
+77C5 30 81          JR NC,$7748
+77C7 2F             CPL
+77C8 C0             RET NZ
+77C9 7B             LD A,E
+77CA 31 29 32       LD SP,$3229
+77CD C6 5D          ADD A,$5D
+77CF 5D             LD E,L
+77D0 AA             XOR D
+77D1 A2             AND D
+77D2 16 7E          LD D,$7E
+77D4 CD 2B 03       CALL $032B
+77D7 E8             RET PE
+77D8 07             RLCA
+77D9 03             INC BC
+77DA 4D             LD C,L
+77DB 85             ADD A,L
+77DC 72             LD (HL),D
+77DD B8             CP B
+77DE A9             XOR C
+77DF 77             LD (HL),A
+77E0 A8             XOR B
+77E1 03             INC BC
+77E2 5E             LD E,(HL)
+77E3 FE 12          CP $12
+77E5 E2 33 D8       JP PO,$D833
+77E8 59             LD E,C
+77E9 38 46          JR C,$7831
+77EB 49             LD C,C
+77EC 6C             LD L,H
+77ED 5A             LD E,D
+77EE A9             XOR C
+77EF B2             OR D
+77F0 06 82          LD B,$82
+77F2 46             LD B,(HL)
+77F3 11 B5 EE       LD DE,$EEB5
+77F6 F3             DI
+77F7 45             LD B,L
+77F8 E3             EX (SP),HL
+77F9 36 50          LD (HL),$50
+77FB 84             ADD A,H
+77FC 41             LD B,C
+77FD 96             SUB (HL)
+77FE 57             LD D,A
+77FF 6D             LD L,L
+7800 ED D2          DEFB $ED,$D2
+7802 2E 21          LD L,$21
+7804 2A EE DD       LD HL,($DDEE)
+7807 8C             ADC A,H
+7808 7C             LD A,H
+7809 2A 18 84       LD HL,($8418)
+780C 21 EE 7C       LD HL,$7CEE
+780F A2             AND D
+7810 24             INC H
+7811 C8             RET Z
+7812 44             LD B,H
+7813 37             SCF
+7814 3E 86          LD A,$86
+7816 76             HALT
+7817 82             ADD A,D
+7818 32 5B 42       LD ($425B),A
+781B AE             XOR (HL)
+781C 6E             LD L,(HL)
+781D 28 37          JR Z,$7856
+781F 5B             LD E,E
+7820 05             DEC B
+7821 0C             INC C
+7822 DD 84          ADD A,IXh
+7824 87             ADD A,A
+7825 EA 24 5F       JP PE,$5F24
+7828 B9             CP C
+7829 1B             DEC DE
+782A CD AD 6A       CALL $6AAD
+782D D0             RET NC
+782E 5A             LD E,D
+782F 0D             DEC C
+7830 C5             PUSH BC
+7831 41             LD B,C
+7832 AE             XOR (HL)
+7833 6E             LD L,(HL)
+7834 7A             LD A,D
+7835 8D             ADC A,L
+7836 A7             AND A
+7837 8B             ADC A,E
+7838 D1             POP DE
+7839 CA CF 69       JP Z,$69CF
+783C FF             RST $38
+783D 1D             DEC E
+783E 34             INC (HL)
+783F 3D             DEC A
+7840 9B             SBC A,E
+7841 3E 59          LD A,$59
+7843 BC             CP H
+7844 1A             LD A,(DE)
+7845 71             LD (HL),C
+7846 42             LD B,D
+7847 06 C3          LD B,$C3
+7849 C8             RET Z
+784A 50             LD D,B
+784B 38 CC          JR C,$7819
+784D 3B             DEC SP
+784E 89             ADC A,C
+784F 7F             LD A,A
+7850 27             DAA
+7851 A2             AND D
+7852 49             LD C,C
+7853 4F             LD C,A
+7854 B7             OR A
+7855 39             ADD HL,SP
+7856 DB 79          IN A,($79)
+7858 1F             RRA
+7859 15             DEC D
+785A 30 C4          JR NC,$7820
+785C 4B             LD C,E
+785D 76             HALT
+785E 74             LD (HL),H
+785F A6             AND (HL)
+7860 1D             DEC E
+7861 92             SUB D
+7862 5B             LD E,E
+7863 FC 29 EE       CALL M,$EE29
+7866 A2             AND D
+7867 24             INC H
+7868 1E C0          LD E,$C0
+786A BD             CP L
+786B 0F             RRCA
+786C 52             LD D,D
+786D 33             INC SP
+786E 99             SBC A,C
+786F 4C             LD C,H
+7870 A0             AND B
+7871 B9             CP C
+7872 19             ADD HL,DE
+7873 3B             DEC SP
+7874 1A             LD A,(DE)
+7875 DE 35          SBC A,$35
+7877 25             DEC H
+7878 C2 BA 2E       JP NZ,$2EBA
+787B 4B             LD C,E
+787C 9C             SBC A,H
+787D 6A             LD L,D
+787E 54             LD D,H
+787F B6             OR (HL)
+7880 FB             EI
+7881 41             LD B,C
+7882 38 DC          JR C,$7860
+7884 6C             LD L,H
+7885 12             LD (DE),A
+7886 93             SUB E
+7887 88             ADC A,B
+7888 91             SUB C
+7889 27             DAA
+788A BD             CP L
+788B 1C             INC E
+788C 71             LD (HL),C
+788D A6             AND (HL)
+788E 75             LD (HL),L
+788F 09             ADD HL,BC
+7890 CB 6F          BIT 5,A
+7892 2D             DEC L
+7893 F0             RET P
+7894 2B             DEC HL
+7895 45             LD B,L
+7896 4C             LD C,H
+7897 88             ADC A,B
+7898 47             LD B,A
+7899 62             LD H,D
+789A B2             OR D
+789B 5A             LD E,D
+789C 7A             LD A,D
+789D EA D5 18       JP PE,$18D5
+78A0 E4 3A 40       CALL PO,$403A
+78A3 88             ADC A,B
+78A4 9F             SBC A,A
+78A5 96             SUB (HL)
+78A6 9A             SBC A,D
+78A7 6C             LD L,H
+78A8 A3             AND E
+78A9 A8             XOR B
+78AA 70             LD (HL),B
+78AB 28 4D          JR Z,$78FA
+78AD A4             AND H
+78AE 35             DEC (HL)
+78AF 8C             ADC A,H
+78B0 36 3B          LD (HL),$3B
+78B2 51             LD D,C
+78B3 41             LD B,C
+78B4 A7             AND A
+78B5 6A             LD L,D
+78B6 AD             XOR L
+78B7 A4             AND H
+78B8 B7             OR A
+78B9 D2 01 83       JP NC,$8301
+78BC 22 E6 06       LD ($06E6),HL
+78BF 4C             LD C,H
+78C0 5A             LD E,D
+78C1 53             LD D,E
+78C2 44             LD B,H
+78C3 2A 7B 2E       LD HL,($2E7B)
+78C6 7C             LD A,H
+78C7 C8             RET Z
+78C8 3C             INC A
+78C9 66             LD H,(HL)
+78CA 3C             INC A
+78CB 35             DEC (HL)
+78CC 2E 78          LD L,$78
+78CE 95             SUB L
+78CF 84             ADD A,H
+78D0 8B             ADC A,E
+78D1 BA             CP D
+78D2 5A             LD E,D
+78D3 9E             SBC A,(HL)
+78D4 02             LD (BC),A
+78D5 21 FE 6D       LD HL,$6DFE
+78D8 0F             RRCA
+78D9 24             INC H
+78DA 30 F4          JR NC,$78D0
+78DC 70             LD (HL),B
+78DD 3A 48 41       LD A,($4148)
+78E0 25             DEC H
+78E1 AA             XOR D
+78E2 46             LD B,(HL)
+78E3 02             LD (BC),A
+78E4 C7             RST $00
+78E5 CC 6C 34       CALL Z,$346C
+78E8 D0             RET NC
+78E9 37             SCF
+78EA 8D             ADC A,L
+78EB 7B             LD A,E
+78EC 23             INC HL
+78ED 20 62          JR NZ,$7951
+78EF 6D             LD L,L
+78F0 AB             XOR E
+78F1 5E             LD E,(HL)
+78F2 08             EX AF,AF'
+78F3 11 0B B5       LD DE,$B50B
+78F6 2C             INC L
+78F7 E8             RET PE
+78F8 27             DAA
+78F9 57             LD D,A
+78FA AC             XOR H
+78FB 48             LD C,B
+78FC 64             LD H,H
+78FD 6B             LD L,E
+78FE A9             XOR C
+78FF 64             LD H,H
+7900 DB B1          IN A,($B1)
+7902 19             ADD HL,DE
+7903 11 D3 EE       LD DE,$EED3
+7906 7A             LD A,D
+7907 45             LD B,L
+7908 93             SUB E
+7909 09             ADD HL,BC
+790A 64             LD H,H
+790B B4             OR H
+790C 24             INC H
+790D 7E             LD A,(HL)
+790E C9             RET
+790F 3F             CCF
+7910 67             LD H,A
+7911 C2 46 33       JP NZ,$3346
+7914 E7             RST $20
+7915 25             DEC H
+7916 4F             LD C,A
+7917 4C             LD C,H
+7918 F1             POP AF
+7919 AA             XOR D
+791A AF             XOR A
+791B 09             ADD HL,BC
+791C FF             RST $38
+791D 7B             LD A,E
+791E 14             INC D
+791F E0             RET PO
+7920 53             LD D,E
+7921 2E C5          LD L,$C5
+7923 35             DEC (HL)
+7924 48             LD C,B
+7925 AE             XOR (HL)
+7926 7F             LD A,A
+7927 98             SBC A,B
+7928 4D             LD C,L
+7929 8A             ADC A,D
+792A 23             INC HL
+792B C8             RET Z
+792C 02             LD (BC),A
+792D A8             XOR B
+792E F9             LD SP,HL
+792F CC FF 3F       CALL Z,$3FFF
+7932 48             LD C,B
+7933 71             LD (HL),C
+7934 7A             LD A,D
+7935 43             LD B,E
+7936 4C             LD C,H
+7937 55             LD D,L
+7938 5E             LD E,(HL)
+7939 27             DAA
+793A 30 19          JR NC,$7955
+793C 22 2B 34       LD ($342B),HL
+793F 3D             DEC A
+7940 46             LD B,(HL)
+7941 4F             LD C,A
+7942 58             LD E,B
+7943 61             LD H,C
+7944 6A             LD L,D
+7945 73             LD (HL),E
+7946 7C             LD A,H
+7947 05             DEC B
+7948 0E 17          LD C,$17
+794A 20 29          JR NZ,$7975
+794C 32 3B 44       LD ($443B),A
+794F 4D             LD C,L
+7950 56             LD D,(HL)
+7951 5F             LD E,A
+7952 68             LD L,B
+7953 71             LD (HL),C
+7954 7A             LD A,D
+7955 03             INC BC
+7956 0C             INC C
+7957 15             DEC D
+7958 1E 27          LD E,$27
+795A 30 39          JR NC,$7995
+795C 42             LD B,D
+795D 4B             LD C,E
+795E 54             LD D,H
+795F 5D             LD E,L
+7960 66             LD H,(HL)
+7961 6F             LD L,A
+7962 78             LD A,B
+7963 01 0A 13       LD BC,$130A
+7966 1C             INC E
+7967 25             DEC H
+7968 2E 37          LD L,$37
+796A 40             LD B,B
+796B 49             LD C,C
+796C 52             LD D,D
+796D 5B             LD E,E
+796E 64             LD H,H
+796F 6D             LD L,L
+7970 76             HALT
+7971 7F             LD A,A
+7972 08             EX AF,AF'
+7973 11 1A 23       LD DE,$231A
+7976 2C             INC L
+7977 35             DEC (HL)
+7978 3E 47          LD A,$47
+797A 50             LD D,B
+797B 59             LD E,C
+797C 62             LD H,D
+797D 6B             LD L,E
+797E 74             LD (HL),H
+797F 7D             LD A,L
+7980 90             SUB B
+7981 0F             RRCA
+7982 8E             ADC A,(HL)
+7983 21 BC 33       LD HL,$33BC
+7986 AA             XOR D
+7987 45             LD B,L
+7988 4E             LD C,(HL)
+7989 57             LD D,A
+798A 60             LD H,B
+798B 69             LD L,C
+798C 72             LD (HL),D
+798D 7B             LD A,E
+798E 04             INC B
+798F 0D             DEC C
+7990 16 1F          LD D,$1F
+7992 28 31          JR Z,$79C5
+7994 3A 43 4C       LD A,($4C43)
+7997 55             LD D,L
+7998 5E             LD E,(HL)
+7999 67             LD H,A
+799A 70             LD (HL),B
+799B 79             LD A,C
+799C 02             LD (BC),A
+799D 0B             DEC BC
+799E 14             INC D
+799F 1D             DEC E
+79A0 26 2F          LD H,$2F
+79A2 38 41          JR C,$79E5
+79A4 4A             LD C,D
+79A5 53             LD D,E
+79A6 5C             LD E,H
+79A7 65             LD H,L
+79A8 6E             LD L,(HL)
+79A9 77             LD (HL),A
+79AA 00             NOP
+79AB 09             ADD HL,BC
+79AC 12             LD (DE),A
+79AD 1B             DEC DE
+79AE 24             INC H
+79AF 2D             DEC L
+79B0 36 3F          LD (HL),$3F
+79B2 48             LD C,B
+79B3 51             LD D,C
+79B4 5A             LD E,D
+79B5 63             LD H,E
+79B6 6C             LD L,H
+79B7 75             LD (HL),L
+79B8 7E             LD A,(HL)
+79B9 07             RLCA
+79BA 10 19          DJNZ $79D5
+79BC 22 2B 34       LD ($342B),HL
+79BF 3D             DEC A
+79C0 46             LD B,(HL)
+79C1 4F             LD C,A
+79C2 58             LD E,B
+79C3 61             LD H,C
+79C4 6A             LD L,D
+79C5 73             LD (HL),E
+79C6 7C             LD A,H
+79C7 05             DEC B
+79C8 0E 17          LD C,$17
+79CA 20 29          JR NZ,$79F5
+79CC 32 3B 44       LD ($443B),A
+79CF 4D             LD C,L
+79D0 56             LD D,(HL)
+79D1 5F             LD E,A
+79D2 68             LD L,B
+79D3 71             LD (HL),C
+79D4 7A             LD A,D
+79D5 03             INC BC
+79D6 0C             INC C
+79D7 15             DEC D
+79D8 1E 27          LD E,$27
+79DA 30 39          JR NC,$7A15
+79DC 42             LD B,D
+79DD 4B             LD C,E
+79DE 54             LD D,H
+79DF 5D             LD E,L
+79E0 66             LD H,(HL)
+79E1 6F             LD L,A
+79E2 78             LD A,B
+79E3 01 0A 13       LD BC,$130A
+79E6 1C             INC E
+79E7 25             DEC H
+79E8 2E 37          LD L,$37
+79EA 40             LD B,B
+79EB 49             LD C,C
+79EC 52             LD D,D
+79ED 5B             LD E,E
+79EE 64             LD H,H
+79EF 6D             LD L,L
+79F0 76             HALT
+79F1 7F             LD A,A
+79F2 08             EX AF,AF'
+79F3 11 1A 23       LD DE,$231A
+79F6 2C             INC L
+79F7 35             DEC (HL)
+79F8 3E 47          LD A,$47
+79FA 50             LD D,B
+79FB 59             LD E,C
+79FC 62             LD H,D
+79FD 6B             LD L,E
+79FE 74             LD (HL),H
+79FF 7D             LD A,L
+7A00 06 0F          LD B,$0F
+7A02 18 21          JR $7A25
+7A04 2A 33 3C       LD HL,($3C33)
+7A07 45             LD B,L
+7A08 4E             LD C,(HL)
+7A09 57             LD D,A
+7A0A 60             LD H,B
+7A0B 69             LD L,C
+7A0C 72             LD (HL),D
+7A0D 7B             LD A,E
+7A0E 04             INC B
+7A0F 0D             DEC C
+7A10 16 1F          LD D,$1F
+7A12 28 31          JR Z,$7A45
+7A14 3A 43 4C       LD A,($4C43)
+7A17 55             LD D,L
+7A18 5E             LD E,(HL)
+7A19 67             LD H,A
+7A1A 70             LD (HL),B
+7A1B 79             LD A,C
+7A1C 02             LD (BC),A
+7A1D 0B             DEC BC
+7A1E 14             INC D
+7A1F 1D             DEC E
+7A20 26 2F          LD H,$2F
+7A22 38 41          JR C,$7A65
+7A24 4A             LD C,D
+7A25 53             LD D,E
+7A26 5C             LD E,H
+7A27 65             LD H,L
+7A28 6E             LD L,(HL)
+7A29 77             LD (HL),A
+7A2A 00             NOP
+7A2B 09             ADD HL,BC
+7A2C 12             LD (DE),A
+7A2D 1B             DEC DE
+7A2E 24             INC H
+7A2F 2D             DEC L
+7A30 36 B2          LD (HL),$B2
+7A32 E8             RET PE
+7A33 F6 FA          OR $FA
+7A35 C7             RST $00
+7A36 6C             LD L,H
+7A37 FA DB E7       JP M,$E7DB
+7A3A B5             OR L
+7A3B BD             CP L
+7A3C 02             LD (BC),A
+7A3D 89             ADC A,C
+7A3E 94             SUB H
+7A3F 91             SUB C
+7A40 EE 6F          XOR $6F
+7A42 B9             CP C
+7A43 CE C2          ADC A,$C2
+7A45 92             SUB D
+7A46 D2 AF 03       JP NC,$03AF
+7A49 00             NOP
+7A4A 8E             ADC A,(HL)
+7A4B CB 99          RES 3,C
+7A4D 95             SUB L
+7A4E E2 E8 FB       JP PO,$FBE8
+7A51 F2 83 94       JP P,$9483
+7A54 5A             LD E,D
+7A55 AB             XOR E
+7A56 AF             XOR A
+7A57 F5             PUSH AF
+7A58 32 2A 30       LD ($302A),A
+7A5B 34             INC (HL)
+7A5C 56             LD D,(HL)
+7A5D E9             JP (HL)
+7A5E BF             CP A
+7A5F FC C3 8F       CALL M,$8FC3
+7A62 DD E3          EX (SP),IX
+7A64 AF             XOR A
+7A65 33             INC SP
+7A66 FE C6          CP $C6
+7A68 02             LD (BC),A
+7A69 17             RLA
+7A6A EA E7 B0       JP PE,$B0E7
+7A6D F5             PUSH AF
+7A6E 84             ADD A,H
+7A6F CD 99 72       CALL $7299
+7A72 1E B3          LD E,$B3
+7A74 BA             CP D
+7A75 C2 0C 9D       JP NZ,$9D0C
+7A78 93             SUB E
+7A79 A5             AND L
+7A7A F5             PUSH AF
+7A7B B9             CP C
+7A7C CA 8A 95       JP Z,$958A
+7A7F 9E             SBC A,(HL)
+7A80 A3             AND E
+7A81 ED 36          DEFB $ED,$36
+7A83 21 A2 90       LD HL,$90A2
+7A86 DC EB E4       CALL C,$E4EB
+7A89 77             LD (HL),A
+7A8A 81             ADD A,C
+7A8B 49             LD C,C
+7A8C 90             SUB B
+7A8D DB AE          IN A,($AE)
+7A8F A5             AND L
+7A90 BA             CP D
+7A91 3F             CCF
+7A92 80             ADD A,B
+7A93 9D             SBC A,L
+7A94 9F             SBC A,A
+7A95 EE E9          XOR $E9
+7A97 F9             LD SP,HL
+7A98 7E             LD A,(HL)
+7A99 84             ADD A,H
+7A9A D6 DC          SUB $DC
+7A9C 22 AE F5       LD ($F5AE),HL
+7A9F FF             RST $38
+7AA0 CA 0F 95       JP Z,$950F
+7AA3 E1             POP HL
+7AA4 6A             LD L,D
+7AA5 F7             RST $30
+7AA6 F4 84 C4       CALL P,$C484
+7AA9 D2 2E 04       JP NC,$042E
+7AAC 18 88          JR $7A36
+7AAE 89             ADC A,C
+7AAF 85             ADD A,L
+7AB0 D1             POP DE
+7AB1 DD             DEFB $DD
+7AB2 E6 F7          AND $F7
+7AB4 F2 81 80       JP P,$8081
+7AB7 55             LD D,L
+7AB8 DB A4          IN A,($A4)
+7ABA BE             CP (HL)
+7ABB 39             ADD HL,SP
+7ABC 86             ADD A,(HL)
+7ABD 8B             ADC A,E
+7ABE 99             SBC A,C
+7ABF 90             SUB B
+7AC0 AD             XOR L
+7AC1 EA 78 5E       JP PE,$5E78
+7AC4 67             LD H,A
+7AC5 73             LD (HL),E
+7AC6 71             LD (HL),C
+7AC7 0A             LD A,(BC)
+7AC8 8A             ADC A,D
+7AC9 B7             OR A
+7ACA 00             NOP
+7ACB 09             ADD HL,BC
+7ACC 12             LD (DE),A
+7ACD 1B             DEC DE
+7ACE 64             LD H,H
+7ACF 6D             LD L,L
+7AD0 DB FA          IN A,($FA)
+7AD2 8A             ADC A,D
+7AD3 71             LD (HL),C
+7AD4 E9             JP (HL)
+7AD5 A1             AND C
+7AD6 AC             XOR H
+7AD7 B3             OR E
+7AD8 BE             CP (HL)
+7AD9 82             ADD A,D
+7ADA 9C             SBC A,H
+7ADB D2 EB 4B       JP NC,$4BEB
+7ADE C7             RST $00
+7ADF FF             RST $38
+7AE0 C6 C9          ADD A,$C9
+7AE2 D8             RET C
+7AE3 A4             AND H
+7AE4 A6             AND (HL)
+7AE5 B3             OR E
+7AE6 F3             DI
+7AE7 25             DEC H
+7AE8 02             LD (BC),A
+7AE9 17             RLA
+7AEA EF             RST $28
+7AEB A9             XOR C
+7AEC FC B3 87       CALL M,$87B3
+7AEF 4D             LD C,L
+7AF0 D4 DF E9       CALL NC,$E9DF
+7AF3 1C             INC E
+7AF4 17             RLA
+7AF5 81             ADD A,C
+7AF6 8E             ADC A,(HL)
+7AF7 90             SUB B
+7AF8 DF             RST $18
+7AF9 A5             AND L
+7AFA F8             RET M
+7AFB 79             LD A,C
+7AFC 83             ADD A,E
+7AFD C9             RET
+7AFE DA D8 26       JP C,$26D8
+7B01 A7             AND A
+7B02 B4             OR H
+7B03 CE 04          ADC A,$04
+7B05 3E 31          LD A,$31
+7B07 48             LD C,B
+7B08 40             LD B,B
+7B09 5A             LD E,D
+7B0A 6A             LD L,D
+7B0B 32 31 1A       LD ($1A31),A
+7B0E 74             LD (HL),H
+7B0F 7E             LD A,(HL)
+7B10 3D             DEC A
+7B11 4C             LD C,H
+7B12 5D             LD E,L
+7B13 5C             LD E,H
+7B14 58             LD E,B
+7B15 2C             INC L
+7B16 20 08          JR NZ,$7B20
+7B18 7E             LD A,(HL)
+7B19 4A             LD C,D
+7B1A 50             LD D,B
+7B1B D7             RST $10
+7B1C E0             RET PO
+7B1D A1             AND C
+7B1E B4             OR H
+7B1F BA             CP D
+7B20 26 A5          LD H,$A5
+7B22 9D             SBC A,L
+7B23 ED 6A          ADC HL,HL
+7B25 F1             POP AF
+7B26 B7             OR A
+7B27 45             LD B,L
+7B28 8B             ADC A,E
+7B29 D9             EXX
+7B2A E2 A1 F0       JP PO,$F0A1
+7B2D BE             CP (HL)
+7B2E 04             INC B
+7B2F 8F             ADC A,A
+7B30 98             SBC A,B
+7B31 96             SUB (HL)
+7B32 AA             XOR D
+7B33 F9             LD SP,HL
+7B34 7A             LD A,D
+7B35 C1             POP BC
+7B36 4C             LD C,H
+7B37 94             SUB H
+7B38 9C             SBC A,H
+7B39 E7             RST $20
+7B3A B0             OR B
+7B3B B4             OR H
+7B3C C1             POP BC
+7B3D 0B             DEC BC
+7B3E 98             SBC A,B
+7B3F 95             SUB L
+7B40 A2             AND D
+7B41 E1             POP HL
+7B42 FA 41 55       JP M,$5541
+7B45 7E             LD A,(HL)
+7B46 7C             LD A,H
+7B47 08             EX AF,AF'
+7B48 0A             LD A,(BC)
+7B49 95             SUB L
+7B4A CB 09          RRC C
+7B4C 96             SUB (HL)
+7B4D 95             SUB L
+7B4E EF             RST $28
+7B4F EB             EX DE,HL
+7B50 FB             EI
+7B51 B4             OR H
+7B52 48             LD C,B
+7B53 D3 91          OUT ($91),A
+7B55 A2             AND D
+7B56 EC B5 FC       CALL PE,$FCB5
+7B59 CB 10          RL B
+7B5B 97             SUB A
+7B5C E6 E6          AND $E6
+7B5E FA FE C8       JP M,$C8FE
+7B61 4F             LD C,A
+7B62 D0             RET NC
+7B63 A6             AND (HL)
+7B64 2A B1 B2       LD HL,($B2B1)
+7B67 C4 C2 9B       CALL NZ,$9BC2
+7B6A E8             RET PE
+7B6B 44             LD B,H
+7B6C 5D             LD E,L
+7B6D F4 C1 8D       CALL P,$8DC1
+7B70 97             SUB A
+7B71 D1             POP DE
+7B72 A6             AND (HL)
+7B73 BC             CP H
+7B74 BA             CP D
+7B75 85             ADD A,L
+7B76 89             ADC A,C
+7B77 9C             SBC A,H
+7B78 10 47          DJNZ $7BC1
+7B7A CF             RST $08
+7B7B 79             LD A,C
+7B7C C0             RET NZ
+7B7D 80             ADD A,B
+7B7E D5             PUSH DE
+7B7F D5             PUSH DE
+7B80 E6 AF          AND $AF
+7B82 F6 01          OR $01
+7B84 8F             ADC A,A
+7B85 96             SUB (HL)
+7B86 3C             INC A
+7B87 DA 6E F5       JP C,$F56E
+7B8A 8B             ADC A,E
+7B8B C8             RET Z
+7B8C DA 9B A4       JP C,$A49B
+7B8F E3             EX (SP),HL
+7B90 36 BA          LD (HL),$BA
+7B92 8B             ADC A,E
+7B93 9F             SBC A,A
+7B94 3A DC 6C       LD A,($6CDC)
+7B97 FB             EI
+7B98 BC             CP H
+7B99 CD D0 DE       CALL $DED0
+7B9C E9             JP (HL)
+7B9D A9             XOR C
+7B9E B4             OR H
+7B9F F3             DI
+7BA0 C7             RST $00
+7BA1 C3 38 CC       JP $CC38
+7BA4 EA B4 FC       JP PE,$FCB4
+7BA7 87             ADD A,A
+7BA8 82             ADD A,D
+7BA9 57             LD D,A
+7BAA AD             XOR L
+7BAB A7             AND A
+7BAC B0             OR B
+7BAD F8             RET M
+7BAE CA 0D 9E       JP Z,$9E0D
+7BB1 9C             SBC A,H
+7BB2 A8             XOR B
+7BB3 B2             OR D
+7BB4 5A             LD E,D
+7BB5 EC 8C DB       CALL PE,$DB8C
+7BB8 DA A9 BB       JP C,$BBA9
+7BBB BF             CP A
+7BBC 8A             ADC A,D
+7BBD C9             RET
+7BBE D8             RET C
+7BBF 1D             DEC E
+7BC0 E9             JP (HL)
+7BC1 AF             XOR A
+7BC2 FD             DEFB $FD
+7BC3 81             ADD A,C
+7BC4 C8             RET Z
+7BC5 D3 D1          OUT ($D1),A
+7BC7 A8             XOR B
+7BC8 ED F9          DEFB $ED,$F9
+7BCA 00             NOP
+7BCB 81             ADD A,C
+7BCC 91             SUB C
+7BCD DB A7          IN A,($A7)
+7BCF 4D             LD C,L
+7BD0 D9             EXX
+7BD1 F1             POP AF
+7BD2 CA 93 D4       JP Z,$D493
+7BD5 E3             EX (SP),HL
+7BD6 A4             AND H
+7BD7 F7             RST $30
+7BD8 F2 07 79       JP P,$7907
+7BDB 77             LD (HL),A
+7BDC 16 19          LD D,$19
+7BDE 1B             DEC DE
+7BDF 5D             LD E,L
+7BE0 F4 CA D7       CALL P,$D7CA
+7BE3 A4             AND H
+7BE4 EA FF 3C       JP PE,$3CFF
+7BE7 87             ADD A,A
+7BE8 C5             PUSH BC
+7BE9 96             SUB (HL)
+7BEA E5             PUSH HL
+7BEB A9             XOR C
+7BEC F7             RST $30
+7BED B9             CP C
+7BEE C1             POP BC
+7BEF 60             LD H,B
+7BF0 7B             LD A,E
+7BF1 9C             SBC A,H
+7BF2 E8             RET PE
+7BF3 BF             CP A
+7BF4 B8             CP B
+7BF5 86             ADD A,(HL)
+7BF6 81             ADD A,C
+7BF7 D9             EXX
+7BF8 1E A6          LD E,$A6
+7BFA FB             EI
+7BFB F7             RST $30
+7BFC C4 C6 DA       CALL NZ,$DAC6
+7BFF 9C             SBC A,H
+7C00 E4 A7 15       CALL PO,$15A7
+7C03 21 27 21       LD HL,$2127
+7C06 B3             OR E
+7C07 A5             AND L
+7C08 E0             RET PO
+7C09 B6             OR (HL)
+7C0A 82             ADD A,D
+7C0B C7             RST $00
+7C0C DB 76          IN A,($76)
+7C0E 16 83          LD D,$83
+7C10 B7             OR A
+7C11 F4 CF 9C       CALL P,$9CCF
+7C14 D1             POP DE
+7C15 EA 41 47       JP PE,$4741
+7C18 CC 87 93       CALL Z,$9387
+7C1B DD             DEFB $DD
+7C1C AF             XOR A
+7C1D E0             RET PO
+7C1E BD             CP L
+7C1F 10 26          DJNZ $7C47
+7C21 22 36 C3       LD ($C336),HL
+7C24 EF             RST $28
+7C25 B3             OR E
+7C26 F1             POP AF
+7C27 86             ADD A,(HL)
+7C28 8C             ADC A,H
+7C29 9B             SBC A,E
+7C2A E1             POP HL
+7C2B E6 32          AND $32
+7C2D B6             OR (HL)
+7C2E 84             ADD A,H
+7C2F 8A             ADC A,D
+7C30 96             SUB (HL)
+7C31 9B             SBC A,E
+7C32 48             LD C,B
+7C33 52             LD D,D
+7C34 7A             LD A,D
+7C35 E1             POP HL
+7C36 8C             ADC A,H
+7C37 CA 38 91       JP Z,$9138
+7C3A 16 0B          LD D,$0B
+7C3C 39             ADD HL,SP
+7C3D 38 32          JR C,$7C71
+7C3F 29             ADD HL,HL
+7C40 5D             LD E,L
+7C41 5A             LD E,D
+7C42 51             LD D,C
+7C43 77             LD (HL),A
+7C44 7D             LD A,L
+7C45 64             LD H,H
+7C46 75             LD (HL),L
+7C47 05             DEC B
+7C48 0E FA          LD C,$FA
+7C4A 7C             LD A,H
+7C4B 79             LD A,C
+7C4C 26 3A          LD H,$3A
+7C4E 45             LD B,L
+7C4F 4B             LD C,E
+7C50 5C             LD E,H
+7C51 56             LD D,(HL)
+7C52 69             LD L,C
+7C53 7C             LD A,H
+7C54 7F             LD A,A
+7C55 0C             INC C
+7C56 0D             DEC C
+7C57 06 1B          LD B,$1B
+7C59 32 31 20       LD ($2031),A
+7C5C 47             LD B,A
+7C5D 50             LD D,B
+7C5E 55             LD D,L
+7C5F 42             LD B,D
+7C60 63             LD H,E
+7C61 66             LD H,(HL)
+7C62 7E             LD A,(HL)
+7C63 0C             INC C
+7C64 00             NOP
+7C65 1C             INC E
+7C66 1A             LD A,(DE)
+7C67 36 24          LD (HL),$24
+7C69 22 46 50       LD ($5046),HL
+7C6C 58             LD E,B
+7C6D 40             LD B,B
+7C6E 62             LD H,D
+7C6F 72             LD (HL),D
+7C70 7C             LD A,H
+7C71 7D             LD A,L
+7C72 88             ADC A,B
+7C73 11 F5 9C       LD DE,$9CF5
+7C76 8C             ADC A,H
+7C77 99             SBC A,C
+7C78 2C             INC L
+7C79 52             LD D,D
+7C7A 4C             LD C,H
+7C7B 4F             LD C,A
+7C7C 70             LD (HL),B
+7C7D 7D             LD A,L
+7C7E 68             LD L,B
+7C7F 6A             LD L,D
+7C80 02             LD (BC),A
+7C81 4F             LD C,A
+7C82 9A             SBC A,D
+7C83 E1             POP HL
+7C84 95             SUB L
+7C85 4B             LD C,E
+7C86 B0             OR B
+7C87 48             LD C,B
+7C88 5F             LD E,A
+7C89 43             LD B,E
+7C8A 72             LD (HL),D
+7C8B 64             LD H,H
+7C8C 60             LD H,B
+7C8D 6F             LD L,A
+7C8E 17             RLA
+7C8F 00             NOP
+7C90 05             DEC B
+7C91 0B             DEC BC
+7C92 3C             INC A
+7C93 3B             DEC SP
+7C94 2F             CPL
+7C95 55             LD D,L
+7C96 5A             LD E,D
+7C97 57             LD D,A
+7C98 5E             LD E,(HL)
+7C99 27             DAA
+7C9A 9D             SBC A,L
+7C9B F9             LD SP,HL
+7C9C 58             LD E,B
+7C9D 79             LD A,C
+7C9E 1F             RRA
+7C9F 13             INC DE
+7CA0 28 20          JR Z,$7CC2
+7CA2 29             ADD HL,HL
+7CA3 4F             LD C,A
+7CA4 5E             LD E,(HL)
+7CA5 5C             LD E,H
+7CA6 59             LD E,C
+7CA7 65             LD H,L
+7CA8 6E             LD L,(HL)
+7CA9 17             RLA
+7CAA BF             CP A
+7CAB 17             RLA
+7CAC 37             SCF
+7CAD 18 26          JR $7CD5
+7CAF 2B             DEC HL
+7CB0 35             DEC (HL)
+7CB1 39             ADD HL,SP
+7CB2 4A             LD C,D
+7CB3 58             LD E,B
+7CB4 59             LD E,C
+7CB5 65             LD H,L
+7CB6 78             LD A,B
+7CB7 7C             LD A,H
+7CB8 6B             LD L,E
+7CB9 04             INC B
+7CBA 04             INC B
+7CBB 1F             RRA
+7CBC 37             SCF
+7CBD 28 21          JR Z,$7CE0
+7CBF 34             INC (HL)
+7CC0 50             LD D,B
+7CC1 4D             LD C,L
+7CC2 5C             LD E,H
+7CC3 6B             LD L,E
+7CC4 6F             LD L,A
+7CC5 71             LD (HL),C
+7CC6 79             LD A,C
+7CC7 0F             RRCA
+7CC8 08             EX AF,AF'
+7CC9 15             DEC D
+7CCA 26 23          LD H,$23
+7CCC 35             DEC (HL)
+7CCD 39             ADD HL,SP
+7CCE 43             LD B,E
+7CCF 47             LD B,A
+7CD0 5E             LD E,(HL)
+7CD1 5D             LD E,L
+7CD2 60             LD H,B
+7CD3 7B             LD A,E
+7CD4 73             LD (HL),E
+7CD5 01 05 1F       LD BC,$1F05
+7CD8 14             INC D
+7CD9 25             DEC H
+7CDA 3A 33 49       LD A,($4933)
+7CDD 49             LD C,C
+7CDE 5F             LD E,A
+7CDF 57             LD D,A
+7CE0 6A             LD L,D
+7CE1 6D             LD L,L
+7CE2 74             LD (HL),H
+7CE3 0B             DEC BC
+7CE4 07             RLCA
+7CE5 11 11 2F       LD DE,$2F11
+7CE8 20 35          JR NZ,$7D1F
+7CEA 4E             LD C,(HL)
+7CEB 43             LD B,E
+7CEC 5D             LD E,L
+7CED 59             LD E,C
+7CEE 6B             LD L,E
+7CEF 67             LD H,A
+7CF0 66             LD H,(HL)
+7CF1 7D             LD A,L
+7CF2 18 1B          JR $7D0F
+7CF4 0B             DEC BC
+7CF5 21 3D 3F       LD HL,$3F3D
+7CF8 2C             INC L
+7CF9 45             LD B,L
+7CFA 42             LD B,D
+7CFB 53             LD D,E
+7CFC 71             LD (HL),C
+7CFD 14             INC D
+7CFE 8B             ADC A,E
+7CFF 83             ADD A,E
+7D00 79             LD A,C
+7D01 F0             RET P
+7D02 E6 61          AND $61
+7D04 2A 31 7C       LD HL,($7C31)
+7D07 45             LD B,L
+7D08 4C             LD C,H
+7D09 17             RLA
+7D0A 70             LD (HL),B
+7D0B 6B             LD L,E
+7D0C 32 6B 06       LD ($066B),A
+7D0F 4D             LD C,L
+7D10 2E 1D          LD L,$1D
+7D12 68             LD L,B
+7D13 4D             LD C,L
+7D14 38 03          JR C,$7D19
+7D16 30 57          JR NC,$7D6F
+7D18 1E 5F          LD E,$5F
+7D1A 72             LD (HL),D
+7D1B 39             ADD HL,SP
+7D1C 12             LD (DE),A
+7D1D 09             ADD HL,BC
+7D1E 54             LD D,H
+7D1F 0D             DEC C
+7D20 24             INC H
+7D21 6F             LD L,A
+7D22 38 43          JR C,$7D67
+7D24 0A             LD A,(BC)
+7D25 53             LD D,E
+7D26 5E             LD E,(HL)
+7D27 1A             LD A,(DE)
+7D28 91             SUB C
+7D29 89             ADC A,C
+7D2A 7F             LD A,A
+7D2B F6 EC          OR $EC
+7D2D 2B             DEC HL
+7D2E 14             INC D
+7D2F 1D             DEC E
+7D30 06 0F          LD B,$0F
+7D32 78             LD A,B
+7D33 00             NOP

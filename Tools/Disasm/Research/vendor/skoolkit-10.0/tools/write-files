@@ -1,0 +1,156 @@
+#!/usr/bin/env bash
+
+. $(dirname $0)/ddiffs-functions
+
+run_cmd() {
+  cmd=$1
+  outfile=$2
+  error_out=$(mktemp)
+  mkdir -p $(dirname $outfile)
+  echo -n "Writing $outfile..."
+  echo "$cmd" > $error_out
+  if $cmd > $outfile 2>> $error_out; then
+    if grep -q ^WARNING: $error_out; then
+      echo "done (with warnings; see $error_out)"
+    else
+      echo "done"
+      rm -f $error_out
+    fi
+  else
+    echo "done (with errors; see $error_out)"
+  fi
+}
+
+write_asms() {
+  for name in $GAME load save start; do
+    skool=src/$name.skool
+    if [ ! -f "$skool" ]; then
+      continue
+    fi
+    for b in '' '-D' '-H'; do
+      for c in '' '-l' '-u'; do
+        for fix in '' '1' '2' '3'; do
+          if [ -n "$fix" ]; then
+            f="-f $fix"
+            infix="-f$fix"
+          else
+            f=""
+            infix=""
+          fi
+          for p in '' '-s' '-r'; do
+            run_cmd "./skool2asm.py -q $b $c $f $p $skool" asm/$name$b$c$infix$p.asm
+          done
+        done
+      done
+    done
+  done
+}
+
+dump_bin() {
+  bin=$1
+
+  [[ $GAME = rom ]] || offset=$(( 65536 - $(du -b $bin | cut -f1) ))
+  hexdump -v -e '/1 "%_ad "' -e '/1 "%u\n"' $bin | while read addr byte; do
+    [[ $GAME = rom ]] && printf "$%04X $%02X\n" $addr $byte || echo $(( addr + offset )) $byte
+  done
+}
+
+write_bins() {
+  for m in '' '-i' '-s' '-r' '-o' '-b' '-R' '-d'; do
+    bin=bin/$GAME$m.bin
+    [[ -n $SKOOL2BIN_END ]] && endopt="-E $SKOOL2BIN_END"
+    run_cmd "./skool2bin.py $m -S $SKOOL2BIN_START $endopt $skoolfile -" $bin
+    [ -f $bin ] && run_cmd "dump_bin $bin" bin/$GAME$m.dump
+  done
+}
+
+write_ctls() {
+  for b in '' '-h' '-l' '-b' '-k'; do
+    run_cmd "./skool2ctl.py $b $skoolfile" ctl/$GAME$b.ctl
+  done
+}
+
+write_dot() {
+  ctl=/tmp/${GAME}-abs.ctl
+  ./skool2ctl.py -w abs $skoolfile > $ctl
+  run_cmd "./snapinfo.py -c $ctl -g $snapshot_opts $SNAPSHOT" dot/$GAME.dot
+}
+
+write_genctls() {
+  profile="$SNAPSHOT.profile"
+  for b in '' '-l' '-h'; do
+    run_cmd "./sna2ctl.py $snapshot_opts $b $SNAPSHOT" genctl/$GAME$b.ctl
+    [[ -f $profile ]] && run_cmd "./sna2ctl.py $snapshot_opts $b -m $profile $SNAPSHOT" genctl/$GAME-m$b.ctl
+  done
+}
+
+write_html() {
+  for b in '' '-D' '-H'; do
+    for c in '' '-u' '-l'; do
+      for e in '' '-1' '-a'; do
+        gamedir=$GAME$b$c$e
+        options=""
+        reffile=""
+        if [[ -z $c ]] && [[ -z $e ]]; then
+          [[ $b == -D ]] && options="-c Config/InitModule=:publish --var pub=1" && reffile=publish.ref
+          [[ $b == -H ]] && options="-c Config/InitModule=:publish --var pub=2" && reffile=publish.ref
+        fi
+        echo -n "Writing $gamedir HTML disassembly..."
+        ./skool2html.py $b $c $e -q -d html -c Config/GameDir=$gamedir $options $skoolfile $reffile
+        echo "done"
+      done
+    done
+  done
+}
+
+write_skools() {
+  ctl=/tmp/${GAME}.ctl
+  ./skool2ctl.py $skoolfile > $ctl
+  for b in '' '-H'; do
+    for c in '' '-l'; do
+      run_cmd "./sna2skool.py $snapshot_opts -c $ctl $b $c $SNAPSHOT" skool/$GAME$b$c.skool
+    done
+  done
+  rm -f $ctl
+}
+
+usage() {
+  echo "Usage: $(basename $0) $GAMES TYPE [TYPE...]"
+  echo ""
+  echo "  TYPE can be one of: asm bin ctl dot genctl html skool all"
+  exit 1
+}
+
+###############################################################################
+# Begin...
+###############################################################################
+[ -z "$2" ] && usage
+
+GAME=$1
+read_ddiffsrc $GAME
+skoolfile=src/$GAME.skool
+[ "$GAME" = "rom" ] && snapshot_opts="-o 0"
+
+shift
+while [ "$1" != "" ]; do
+  case "$1" in
+    asm) write_asms ;;
+    bin) write_bins ;;
+    ctl) write_ctls ;;
+    dot) write_dot ;;
+    genctl) write_genctls ;;
+    html) write_html ;;
+    skool) write_skools ;;
+    all)
+      write_asms
+      write_bins
+      write_ctls
+      write_dot
+      write_genctls
+      write_html
+      write_skools
+      ;;
+    *) echo "Skipping unknown file type: '$1'" ;;
+  esac
+  shift
+done

@@ -1,0 +1,958 @@
+
+ROUTINE 7196
+InterruptTick
+7196 3a 19 72        LD A,($7219)
+7199 b7              OR A
+719A c0              RET NZ
+719B dd 21 1a 72     LD IX,$721A
+719F dd 35 00        DEC (IX+$00)
+71A2 c0              RET NZ
+71A3 dd 36 00 06     LD (IX+$00),$06
+71A7 dd 35 01        DEC (IX+$01)
+71AA 20 37           JR NZ,$71E3
+71AC dd 36 01 08     LD (IX+$01),$08
+71B0 01 02 12        LD BC,$1202
+71B3 16 26           LD D,$26
+71B5 3e 20           LD A,$20
+71B7 cd 97 6e        CALL $6E97
+71BA 0c              INC C
+71BB 15              DEC D
+71BC 20 f9           JR NZ,$71B7
+71BE 3e 06           LD A,$06
+71C0 cd a1 5f        CALL $5FA1
+71C3 2a 1c 72        LD HL,($721C)
+71C6 01 02 12        LD BC,$1202
+71C9 7e              LD A,(HL)
+71CA fe 0d           CP $0D
+71CC 28 11           JR Z,$71DF
+71CE fe b0           CP $B0
+71D0 20 06           JR NZ,$71D8
+71D2 3e ff           LD A,$FF
+71D4 32 19 72        LD ($7219),A
+71D7 c9              RET
+71D8 cd 97 6e        CALL $6E97
+71DB 23              INC HL
+71DC 0c              INC C
+71DD 18 ea           JR $71C9
+71DF 23              INC HL
+71E0 22 1c 72        LD ($721C),HL
+71E3 11 a2 40        LD DE,$40A2
+71E6 06 0e           LD B,$0E
+71E8 c5              PUSH BC
+71E9 ed 53 1e 72     LD ($721E),DE
+71ED d5              PUSH DE
+71EE e1              POP HL
+71EF 24              INC H
+71F0 06 07           LD B,$07
+71F2 e5              PUSH HL
+71F3 d5              PUSH DE
+71F4 c5              PUSH BC
+71F5 01 1c 00        LD BC,$001C
+71F8 ed b0           LDIR
+71FA c1              POP BC
+71FB d1              POP DE
+71FC e1              POP HL
+71FD 14              INC D
+71FE 24              INC H
+71FF 10 f1           DJNZ $71F2
+7201 2a 1e 72        LD HL,($721E)
+7204 7d              LD A,L
+7205 c6 20           ADD A,$20
+7207 6f              LD L,A
+7208 30 04           JR NC,$720E
+720A 7c              LD A,H
+720B c6 08           ADD A,$08
+720D 67              LD H,A
+720E e5              PUSH HL
+720F 01 1e 00        LD BC,$001E
+7212 ed b0           LDIR
+7214 d1              POP DE
+7215 c1              POP BC
+7216 10 d0           DJNZ $71E8
+7218 c9              RET
+
+ROUTINE 7220
+процедура #7220
+7220 ed 43 c5 72     LD ($72C5),BC
+7224 ed 53 c7 72     LD ($72C7),DE
+7228 21 d1 72        LD HL,$72D1
+722B 06 08           LD B,$08
+722D 11 09 00        LD DE,$0009
+7230 77              LD (HL),A
+7231 19              ADD HL,DE
+7232 10 fc           DJNZ $7230
+7234 ed 4b c5 72     LD BC,($72C5)
+7238 dd 21 c9 72     LD IX,$72C9
+723C 11 01 01        LD DE,$0101
+723F cd a6 6e        CALL $6EA6
+7242 3a c7 72        LD A,($72C7)
+7245 0c              INC C
+7246 b7              OR A
+7247 28 0d           JR Z,$7256
+7249 dd 21 d2 72     LD IX,$72D2
+724D 11 01 01        LD DE,$0101
+7250 cd a6 6e        CALL $6EA6
+7253 3d              DEC A
+7254 18 ef           JR $7245
+7256 dd 21 db 72     LD IX,$72DB
+725A 11 01 01        LD DE,$0101
+725D cd a6 6e        CALL $6EA6
+7260 ed 4b c5 72     LD BC,($72C5)
+7264 3a c8 72        LD A,($72C8)
+7267 04              INC B
+7268 b7              OR A
+7269 28 31           JR Z,$729C
+726B dd 21 e4 72     LD IX,$72E4
+726F 11 01 01        LD DE,$0101
+7272 cd a6 6e        CALL $6EA6
+7275 f5              PUSH AF
+7276 3a c7 72        LD A,($72C7)
+7279 0c              INC C
+727A b7              OR A
+727B 28 0d           JR Z,$728A
+727D dd 21 08 73     LD IX,$7308
+7281 11 01 01        LD DE,$0101
+7284 cd a6 6e        CALL $6EA6
+7287 3d              DEC A
+7288 18 ef           JR $7279
+728A dd 21 e4 72     LD IX,$72E4
+728E 11 01 01        LD DE,$0101
+7291 cd a6 6e        CALL $6EA6
+7294 3a c5 72        LD A,($72C5)
+7297 4f              LD C,A
+7298 f1              POP AF
+7299 3d              DEC A
+729A 18 cb           JR $7267
+729C dd 21 ed 72     LD IX,$72ED
+72A0 11 01 01        LD DE,$0101
+72A3 cd a6 6e        CALL $6EA6
+72A6 3a c7 72        LD A,($72C7)
+72A9 0c              INC C
+72AA b7              OR A
+72AB 28 0d           JR Z,$72BA
+72AD dd 21 f6 72     LD IX,$72F6
+72B1 11 01 01        LD DE,$0101
+72B4 cd a6 6e        CALL $6EA6
+72B7 3d              DEC A
+72B8 18 ef           JR $72A9
+72BA dd 21 ff 72     LD IX,$72FF
+72BE 11 01 01        LD DE,$0101
+72C1 cd a6 6e        CALL $6EA6
+72C4 c9              RET
+
+ROUTINE 7311
+процедура #7311
+7311 3a a0 5f        LD A,($5FA0)
+7314 f5              PUSH AF
+7315 3e 04           LD A,$04
+7317 cd a1 5f        CALL $5FA1
+731A 21 00 c0        LD HL,$C000
+731D 11 00 40        LD DE,$4000
+7320 01 00 1b        LD BC,$1B00
+7323 ed b0           LDIR
+7325 f1              POP AF
+7326 cd a1 5f        CALL $5FA1
+7329 c9              RET
+
+ROUTINE 732A
+процедура #732A
+732A c5              PUSH BC
+732B 47              LD B,A
+732C dd 21 f0 bf     LD IX,$BFF0
+7330 11 10 00        LD DE,$0010
+7333 dd 19           ADD IX,DE
+7335 dd 7e 08        LD A,(IX+$08)
+7338 fe 4d           CP $4D
+733A 20 f7           JR NZ,$7333
+733C dd 7e 00        LD A,(IX+$00)
+733F fe 01           CP $01
+7341 28 f0           JR Z,$7333
+7343 10 ee           DJNZ $7333
+7345 c1              POP BC
+7346 c9              RET
+
+ROUTINE 7347
+процедура #7347
+7347 3e 05           LD A,$05
+7349 32 a6 7c        LD ($7CA6),A
+734C 3a 85 73        LD A,($7385)
+734F 1e 0f           LD E,$0F
+7351 01 04 04        LD BC,$0404
+7354 f5              PUSH AF
+7355 c5              PUSH BC
+7356 d5              PUSH DE
+7357 21 84 73        LD HL,$7384
+735A be              CP (HL)
+735B 28 06           JR Z,$7363
+735D 38 04           JR C,$7363
+735F d1              POP DE
+7360 c1              POP BC
+7361 f1              POP AF
+7362 c9              RET
+7363 cd 2a 73        CALL $732A
+7366 1e 08           LD E,$08
+7368 dd 7e 00        LD A,(IX+$00)
+736B cd 88 6e        CALL $6E88
+736E dd 23           INC IX
+7370 0c              INC C
+7371 1d              DEC E
+7372 20 f4           JR NZ,$7368
+7374 3a a6 7c        LD A,($7CA6)
+7377 3c              INC A
+7378 32 a6 7c        LD ($7CA6),A
+737B d1              POP DE
+737C c1              POP BC
+737D f1              POP AF
+737E 04              INC B
+737F 3c              INC A
+7380 1d              DEC E
+7381 20 d1           JR NZ,$7354
+7383 c9              RET
+
+ROUTINE 7386
+процедура #7386
+7386 3a 35 7d        LD A,($7D35)
+7389 47              LD B,A
+738A 05              DEC B
+738B 11 fe d6        LD DE,$D6FE
+738E 13              INC DE
+738F 1a              LD A,(DE)
+7390 fe b0           CP $B0
+7392 20 fa           JR NZ,$738E
+7394 10 f8           DJNZ $738E
+7396 13              INC DE
+7397 13              INC DE
+7398 01 16 01        LD BC,$0116
+739B 1a              LD A,(DE)
+739C fe b1           CP $B1
+739E c8              RET Z
+739F fe 0d           CP $0D
+73A1 28 07           JR Z,$73AA
+73A3 cd 88 6e        CALL $6E88
+73A6 13              INC DE
+73A7 0c              INC C
+73A8 18 f1           JR $739B
+73AA 13              INC DE
+73AB 0e 16           LD C,$16
+73AD 04              INC B
+73AE 18 eb           JR $739B
+
+ROUTINE 73B0
+процедура #73B0
+73B0 ed 5b be 76     LD DE,($76BE)
+73B4 ed 4b c0 76     LD BC,($76C0)
+73B8 79              LD A,C
+73B9 e6 07           AND $07
+73BB 4f              LD C,A
+73BC 7b              LD A,E
+73BD e6 07           AND $07
+73BF 91              SUB C
+73C0 28 0c           JR Z,$73CE
+73C2 38 05           JR C,$73C9
+73C4 cd 99 76        CALL $7699
+73C7 18 05           JR $73CE
+73C9 ed 44           NEG
+73CB cd 74 76        CALL $7674
+73CE dd 21 c2 76     LD IX,$76C2
+73D2 fd 21 da 76     LD IY,$76DA
+73D6 ed 4b c0 76     LD BC,($76C0)
+73DA 3e 08           LD A,$08
+73DC f5              PUSH AF
+73DD cd ef 73        CALL $73EF
+73E0 cd 16 74        CALL $7416
+73E3 cd 16 74        CALL $7416
+73E6 cd 16 74        CALL $7416
+73E9 f1              POP AF
+73EA 04              INC B
+73EB 3d              DEC A
+73EC 20 ee           JR NZ,$73DC
+73EE c9              RET
+
+ROUTINE 73EF
+процедура #73EF
+73EF c5              PUSH BC
+73F0 21 00 02        LD HL,$0200
+73F3 78              LD A,B
+73F4 07              RLCA
+73F5 cb 14           RL H
+73F7 07              RLCA
+73F8 cb 14           RL H
+73FA cb 24           SLA H
+73FC cb 24           SLA H
+73FE cb 24           SLA H
+7400 78              LD A,B
+7401 e6 07           AND $07
+7403 b4              OR H
+7404 67              LD H,A
+7405 78              LD A,B
+7406 07              RLCA
+7407 07              RLCA
+7408 e6 e0           AND $E0
+740A 6f              LD L,A
+740B cb 39           SRL C
+740D cb 39           SRL C
+740F cb 39           SRL C
+7411 06 00           LD B,$00
+7413 09              ADD HL,BC
+7414 c1              POP BC
+7415 c9              RET
+
+ROUTINE 7416
+процедура #7416
+7416 7c              LD A,H
+7417 fe 58           CP $58
+7419 30 08           JR NC,$7423
+741B 7e              LD A,(HL)
+741C fd a6 00        AND (IY+$00)
+741F dd b6 00        OR (IX+$00)
+7422 77              LD (HL),A
+7423 23              INC HL
+7424 dd 23           INC IX
+7426 fd 23           INC IY
+7428 c9              RET
+
+ROUTINE 7429
+процедура #7429
+7429 ed 4b c0 76     LD BC,($76C0)
+742D 11 f2 76        LD DE,$76F2
+7430 3e 08           LD A,$08
+7432 c5              PUSH BC
+7433 f5              PUSH AF
+7434 cd ef 73        CALL $73EF
+7437 ed a0           LDI
+7439 ed a0           LDI
+743B ed a0           LDI
+743D f1              POP AF
+743E c1              POP BC
+743F 04              INC B
+7440 3d              DEC A
+7441 20 ef           JR NZ,$7432
+7443 c9              RET
+
+ROUTINE 7444
+процедура #7444
+7444 ed 4b be 76     LD BC,($76BE)
+7448 11 f2 76        LD DE,$76F2
+744B 3e 08           LD A,$08
+744D c5              PUSH BC
+744E f5              PUSH AF
+744F cd ef 73        CALL $73EF
+7452 eb              EX DE,HL
+7453 ed a0           LDI
+7455 ed a0           LDI
+7457 ed a0           LDI
+7459 eb              EX DE,HL
+745A f1              POP AF
+745B c1              POP BC
+745C 04              INC B
+745D 3d              DEC A
+745E 20 ed           JR NZ,$744D
+7460 c9              RET
+
+ROUTINE 7461
+процедура #7461
+7461 3a 0a 77        LD A,($770A)
+7464 b7              OR A
+7465 28 03           JR Z,$746A
+7467 cd 99 76        CALL $7699
+746A dd 7e 05        LD A,(IX+$05)
+746D e6 07           AND $07
+746F c4 74 76        CALL NZ,$7674
+7472 dd 4e 05        LD C,(IX+$05)
+7475 dd 46 06        LD B,(IX+$06)
+7478 ed 43 c0 76     LD ($76C0),BC
+747C ed 43 be 76     LD ($76BE),BC
+7480 cd 29 74        CALL $7429
+7483 cd 72 75        CALL $7572
+7486 fd 22 3f 76     LD ($763F),IY
+748A b7              OR A
+748B c4 ca 75        CALL NZ,$75CA
+748E fb              EI
+748F cd 72 75        CALL $7572
+7492 b7              OR A
+7493 28 31           JR Z,$74C6
+7495 ed 4b 3f 76     LD BC,($763F)
+7499 78              LD A,B
+749A b1              OR C
+749B 20 09           JR NZ,$74A6
+749D fd 22 3f 76     LD ($763F),IY
+74A1 cd ca 75        CALL $75CA
+74A4 18 36           JR $74DC
+74A6 fd e5           PUSH IY
+74A8 e1              POP HL
+74A9 ed 4b 3f 76     LD BC,($763F)
+74AD b7              OR A
+74AE ed 42           SBC HL,BC
+74B0 28 2a           JR Z,$74DC
+74B2 fd e5           PUSH IY
+74B4 fd 2a 3f 76     LD IY,($763F)
+74B8 cd ca 75        CALL $75CA
+74BB fd e1           POP IY
+74BD fd 22 3f 76     LD ($763F),IY
+74C1 cd ca 75        CALL $75CA
+74C4 18 16           JR $74DC
+74C6 ed 4b 3f 76     LD BC,($763F)
+74CA 78              LD A,B
+74CB b1              OR C
+74CC 28 0e           JR Z,$74DC
+74CE fd 2a 3f 76     LD IY,($763F)
+74D2 cd ca 75        CALL $75CA
+74D5 01 00 00        LD BC,$0000
+74D8 ed 43 3f 76     LD ($763F),BC
+74DC 76              HALT
+74DD dd e5           PUSH IX
+74DF fd e5           PUSH IY
+74E1 cd 44 74        CALL $7444
+74E4 cd 29 74        CALL $7429
+74E7 cd b0 73        CALL $73B0
+74EA ed 4b c0 76     LD BC,($76C0)
+74EE ed 43 be 76     LD ($76BE),BC
+74F2 fd e1           POP IY
+74F4 dd e1           POP IX
+74F6 cd 12 76        CALL $7612
+74F9 fe 13           CP $13
+74FB 20 08           JR NZ,$7505
+74FD cd 44 76        CALL $7644
+7500 cd 5c 76        CALL $765C
+7503 18 8a           JR $748F
+7505 fe 1b           CP $1B
+7507 20 05           JR NZ,$750E
+7509 cd 44 76        CALL $7644
+750C 18 81           JR $748F
+750E fe 23           CP $23
+7510 20 09           JR NZ,$751B
+7512 cd 44 76        CALL $7644
+7515 cd 68 76        CALL $7668
+7518 c3 8f 74        JP $748F
+751B fe 12           CP $12
+751D 20 06           JR NZ,$7525
+751F cd 5c 76        CALL $765C
+7522 c3 8f 74        JP $748F
+7525 fe 22           CP $22
+7527 20 06           JR NZ,$752F
+7529 cd 68 76        CALL $7668
+752C c3 8f 74        JP $748F
+752F fe 11           CP $11
+7531 20 09           JR NZ,$753C
+7533 cd 5c 76        CALL $765C
+7536 cd 50 76        CALL $7650
+7539 c3 8f 74        JP $748F
+753C fe 19           CP $19
+753E 20 06           JR NZ,$7546
+7540 cd 50 76        CALL $7650
+7543 c3 8f 74        JP $748F
+7546 fe 21           CP $21
+7548 20 09           JR NZ,$7553
+754A cd 68 76        CALL $7668
+754D cd 50 76        CALL $7650
+7550 c3 8f 74        JP $748F
+7553 fe 27           CP $27
+7555 c2 8f 74        JP NZ,$748F
+7558 cd 72 75        CALL $7572
+755B b7              OR A
+755C ca 8f 74        JP Z,$748F
+755F f5              PUSH AF
+7560 cd ca 75        CALL $75CA
+7563 cd 44 74        CALL $7444
+7566 ed 4b be 76     LD BC,($76BE)
+756A dd 71 05        LD (IX+$05),C
+756D dd 70 06        LD (IX+$06),B
+7570 f1              POP AF
+7571 c9              RET
+
+ROUTINE 7572
+процедура #7572
+7572 dd e5           PUSH IX
+7574 fd e1           POP IY
+7576 11 07 00        LD DE,$0007
+7579 fd 19           ADD IY,DE
+757B dd 46 00        LD B,(IX+$00)
+757E c5              PUSH BC
+757F fd 6e 00        LD L,(IY+$00)
+7582 cb 25           SLA L
+7584 cb 25           SLA L
+7586 cb 25           SLA L
+7588 fd 66 01        LD H,(IY+$01)
+758B cb 24           SLA H
+758D cb 24           SLA H
+758F cb 24           SLA H
+7591 fd 56 03        LD D,(IY+$03)
+7594 cb 22           SLA D
+7596 cb 22           SLA D
+7598 cb 22           SLA D
+759A fd 5e 02        LD E,(IY+$02)
+759D cb 23           SLA E
+759F cb 23           SLA E
+75A1 cb 23           SLA E
+75A3 ed 4b c0 76     LD BC,($76C0)
+75A7 79              LD A,C
+75A8 bd              CP L
+75A9 38 0a           JR C,$75B5
+75AB bb              CP E
+75AC 30 07           JR NC,$75B5
+75AE 78              LD A,B
+75AF bc              CP H
+75B0 38 03           JR C,$75B5
+75B2 ba              CP D
+75B3 38 0e           JR C,$75C3
+75B5 11 04 00        LD DE,$0004
+75B8 fd 19           ADD IY,DE
+75BA c1              POP BC
+75BB 10 c1           DJNZ $757E
+75BD af              XOR A
+75BE fd 21 00 00     LD IY,$0000
+75C2 c9              RET
+75C3 c1              POP BC
+75C4 dd 7e 00        LD A,(IX+$00)
+75C7 3c              INC A
+75C8 90              SUB B
+75C9 c9              RET
+
+ROUTINE 75CA
+процедура #75CA
+75CA 26 00           LD H,$00
+75CC fd 6e 01        LD L,(IY+$01)
+75CF 29              ADD HL,HL
+75D0 29              ADD HL,HL
+75D1 29              ADD HL,HL
+75D2 29              ADD HL,HL
+75D3 29              ADD HL,HL
+75D4 11 00 58        LD DE,$5800
+75D7 19              ADD HL,DE
+75D8 16 00           LD D,$00
+75DA fd 5e 00        LD E,(IY+$00)
+75DD 19              ADD HL,DE
+75DE fd 7e 03        LD A,(IY+$03)
+75E1 fd 96 01        SUB (IY+$01)
+75E4 47              LD B,A
+75E5 c5              PUSH BC
+75E6 e5              PUSH HL
+75E7 fd 7e 02        LD A,(IY+$02)
+75EA fd 96 00        SUB (IY+$00)
+75ED 47              LD B,A
+75EE 7e              LD A,(HL)
+75EF 57              LD D,A
+75F0 e6 38           AND $38
+75F2 5f              LD E,A
+75F3 7a              LD A,D
+75F4 e6 07           AND $07
+75F6 cb 3b           SRL E
+75F8 cb 3b           SRL E
+75FA cb 3b           SRL E
+75FC 07              RLCA
+75FD 07              RLCA
+75FE 07              RLCA
+75FF b3              OR E
+7600 5f              LD E,A
+7601 7a              LD A,D
+7602 e6 c0           AND $C0
+7604 b3              OR E
+7605 77              LD (HL),A
+7606 23              INC HL
+7607 10 e5           DJNZ $75EE
+7609 e1              POP HL
+760A 01 20 00        LD BC,$0020
+760D 09              ADD HL,BC
+760E c1              POP BC
+760F 10 d4           DJNZ $75E5
+7611 c9              RET
+
+ROUTINE 7612
+процедура #7612
+7612 cd 8e 02        CALL $028E
+7615 7b              LD A,E
+7616 fe ff           CP $FF
+7618 c0              RET NZ
+7619 db 1f           IN A,($1F)
+761B b7              OR A
+761C 28 f4           JR Z,$7612
+761E cb 67           BIT 4,A
+7620 28 03           JR Z,$7625
+7622 3e 27           LD A,$27
+7624 c9              RET
+7625 21 2e 76        LD HL,$762E
+7628 23              INC HL
+7629 be              CP (HL)
+762A 23              INC HL
+762B 20 fb           JR NZ,$7628
+762D 7e              LD A,(HL)
+762E c9              RET
+
+ROUTINE 7644
+процедура #7644
+7644 3a bf 76        LD A,($76BF)
+7647 dd be 02        CP (IX+$02)
+764A c8              RET Z
+764B 3d              DEC A
+764C 32 c1 76        LD ($76C1),A
+764F c9              RET
+
+ROUTINE 7650
+процедура #7650
+7650 3a bf 76        LD A,($76BF)
+7653 dd be 04        CP (IX+$04)
+7656 c8              RET Z
+7657 3c              INC A
+7658 32 c1 76        LD ($76C1),A
+765B c9              RET
+
+ROUTINE 765C
+процедура #765C
+765C 3a be 76        LD A,($76BE)
+765F dd be 01        CP (IX+$01)
+7662 c8              RET Z
+7663 3d              DEC A
+7664 32 c0 76        LD ($76C0),A
+7667 c9              RET
+
+ROUTINE 7668
+процедура #7668
+7668 3a be 76        LD A,($76BE)
+766B dd be 03        CP (IX+$03)
+766E c8              RET Z
+766F 3c              INC A
+7670 32 c0 76        LD ($76C0),A
+7673 c9              RET
+
+ROUTINE 7674
+процедура #7674
+7674 f5              PUSH AF
+7675 06 10           LD B,$10
+7677 21 c2 76        LD HL,$76C2
+767A e5              PUSH HL
+767B d1              POP DE
+767C cb 3e           SRL (HL)
+767E 23              INC HL
+767F cb 1e           RR (HL)
+7681 23              INC HL
+7682 cb 1e           RR (HL)
+7684 23              INC HL
+7685 30 04           JR NC,$768B
+7687 eb              EX DE,HL
+7688 cb fe           SET 7,(HL)
+768A eb              EX DE,HL
+768B 10 ed           DJNZ $767A
+768D 3a 0a 77        LD A,($770A)
+7690 3c              INC A
+7691 32 0a 77        LD ($770A),A
+7694 f1              POP AF
+7695 3d              DEC A
+7696 20 dc           JR NZ,$7674
+7698 c9              RET
+
+ROUTINE 7699
+процедура #7699
+7699 f5              PUSH AF
+769A 06 10           LD B,$10
+769C 21 f1 76        LD HL,$76F1
+769F e5              PUSH HL
+76A0 d1              POP DE
+76A1 cb 26           SLA (HL)
+76A3 2b              DEC HL
+76A4 cb 16           RL (HL)
+76A6 2b              DEC HL
+76A7 cb 16           RL (HL)
+76A9 2b              DEC HL
+76AA 30 04           JR NC,$76B0
+76AC eb              EX DE,HL
+76AD cb c6           SET 0,(HL)
+76AF eb              EX DE,HL
+76B0 10 ed           DJNZ $769F
+76B2 3a 0a 77        LD A,($770A)
+76B5 3d              DEC A
+76B6 32 0a 77        LD ($770A),A
+76B9 f1              POP AF
+76BA 3d              DEC A
+76BB 20 dc           JR NZ,$7699
+76BD c9              RET
+
+ROUTINE 770B
+процедура #770B
+770B 7e              LD A,(HL)
+770C 2f              CPL
+770D 77              LD (HL),A
+770E 23              INC HL
+770F 1b              DEC DE
+7710 7a              LD A,D
+7711 b3              OR E
+7712 20 f7           JR NZ,$770B
+7714 c9              RET
+
+ROUTINE 7715
+процедура #7715
+7715 f5              PUSH AF
+7716 32 a2 77        LD ($77A2),A
+7719 af              XOR A
+771A cd a1 5f        CALL $5FA1
+771D dd 21 d6 6c     LD IX,$6CD6
+7721 01 03 02        LD BC,$0203
+7724 11 23 00        LD DE,$0023
+7727 cd 46 77        CALL $7746
+772A dd 21 e6 6c     LD IX,$6CE6
+772E 01 01 01        LD BC,$0101
+7731 11 1a 00        LD DE,$001A
+7734 cd 46 77        CALL $7746
+7737 dd 21 f6 6c     LD IX,$6CF6
+773B 01 02 02        LD BC,$0202
+773E 11 05 00        LD DE,$0005
+7741 cd 46 77        CALL $7746
+7744 f1              POP AF
+7745 c9              RET
+
+ROUTINE 7746
+процедура #7746
+7746 78              LD A,B
+7747 32 74 77        LD ($7774),A
+774A 79              LD A,C
+774B 32 76 77        LD ($7776),A
+774E ed 53 87 77     LD ($7787),DE
+7752 11 04 00        LD DE,$0004
+7755 3a a2 77        LD A,($77A2)
+7758 dd 19           ADD IX,DE
+775A 3d              DEC A
+775B 20 fb           JR NZ,$7758
+775D dd 6e 00        LD L,(IX+$00)
+7760 dd 66 01        LD H,(IX+$01)
+7763 dd 4e 02        LD C,(IX+$02)
+7766 dd 46 03        LD B,(IX+$03)
+7769 e5              PUSH HL
+776A fd e1           POP IY
+776C c5              PUSH BC
+776D fd 4e 01        LD C,(IY+$01)
+7770 fd 46 02        LD B,(IY+$02)
+7773 16 00           LD D,$00
+7775 1e 00           LD E,$00
+7777 cd 91 77        CALL $7791
+777A 0c              INC C
+777B 1d              DEC E
+777C 20 f9           JR NZ,$7777
+777E fd 4e 01        LD C,(IY+$01)
+7781 04              INC B
+7782 15              DEC D
+7783 20 f0           JR NZ,$7775
+7785 c1              POP BC
+7786 11 00 00        LD DE,$0000
+7789 fd 19           ADD IY,DE
+778B 0b              DEC BC
+778C 78              LD A,B
+778D b1              OR C
+778E 20 dc           JR NZ,$776C
+7790 c9              RET
+
+ROUTINE 7791
+процедура #7791
+7791 3a a0 5f        LD A,($5FA0)
+7794 f5              PUSH AF
+7795 3a a2 77        LD A,($77A2)
+7798 cd a4 78        CALL $78A4
+779B cb fe           SET 7,(HL)
+779D f1              POP AF
+779E cd a1 5f        CALL $5FA1
+77A1 c9              RET
+
+ROUTINE 77A3
+процедура #77A3
+77A3 dd e5           PUSH IX
+77A5 32 cb 77        LD ($77CB),A
+77A8 3d              DEC A
+77A9 32 d3 77        LD ($77D3),A
+77AC 32 e9 77        LD ($77E9),A
+77AF 32 eb 77        LD ($77EB),A
+77B2 fd 22 ce 6c     LD ($6CCE),IY
+77B6 3e 01           LD A,$01
+77B8 cd df 70        CALL $70DF
+77BB 05              DEC B
+77BC 16 00           LD D,$00
+77BE 58              LD E,B
+77BF 68              LD L,B
+77C0 cd 32 71        CALL $7132
+77C3 63              LD H,E
+77C4 1c              INC E
+77C5 43              LD B,E
+77C6 fd 2a ce 6c     LD IY,($6CCE)
+77CA 11 00 00        LD DE,$0000
+77CD fd 19           ADD IY,DE
+77CF 10 fc           DJNZ $77CD
+77D1 fd 7e 0f        LD A,(IY+$0F)
+77D4 b7              OR A
+77D5 28 0f           JR Z,$77E6
+77D7 fd 19           ADD IY,DE
+77D9 24              INC H
+77DA 7d              LD A,L
+77DB bc              CP H
+77DC 30 f3           JR NC,$77D1
+77DE fd 2a ce 6c     LD IY,($6CCE)
+77E2 26 ff           LD H,$FF
+77E4 18 f1           JR $77D7
+77E6 2f              CPL
+77E7 fd 77 0f        LD (IY+$0F),A
+77EA 06 00           LD B,$00
+77EC 3e 01           LD A,$01
+77EE cd df 70        CALL $70DF
+77F1 fd 4e 00        LD C,(IY+$00)
+77F4 af              XOR A
+77F5 cd df 70        CALL $70DF
+77F8 dd 71 00        LD (IX+$00),C
+77FB dd 23           INC IX
+77FD fd 23           INC IY
+77FF 10 eb           DJNZ $77EC
+7801 dd 36 00 00     LD (IX+$00),$00
+7805 dd e1           POP IX
+7807 c9              RET
+
+ROUTINE 7808
+процедура #7808
+7808 32 7d 78        LD ($787D),A
+780B ed 53 95 78     LD ($7895),DE
+780F af              XOR A
+7810 32 d7 6c        LD ($6CD7),A
+7813 06 04           LD B,$04
+7815 c5              PUSH BC
+7816 3a d7 6c        LD A,($6CD7)
+7819 3c              INC A
+781A 32 d7 6c        LD ($6CD7),A
+781D 23              INC HL
+781E 23              INC HL
+781F 46              LD B,(HL)
+7820 23              INC HL
+7821 23              INC HL
+7822 e5              PUSH HL
+7823 c5              PUSH BC
+7824 cd b9 78        CALL $78B9
+7827 3a d7 6c        LD A,($6CD7)
+782A cd a4 78        CALL $78A4
+782D cb 7e           BIT 7,(HL)
+782F 20 f3           JR NZ,$7824
+7831 7e              LD A,(HL)
+7832 e6 3f           AND $3F
+7834 20 ee           JR NZ,$7824
+7836 cb fe           SET 7,(HL)
+7838 af              XOR A
+7839 cd df 70        CALL $70DF
+783C dd 36 00 00     LD (IX+$00),$00
+7840 dd 71 01        LD (IX+$01),C
+7843 dd 70 02        LD (IX+$02),B
+7846 3e 03           LD A,$03
+7848 cd df 70        CALL $70DF
+784B 11 fe 00        LD DE,$00FE
+784E cd 32 71        CALL $7132
+7851 fd 21 3e cd     LD IY,$CD3E
+7855 3a d7 6c        LD A,($6CD7)
+7858 01 32 00        LD BC,$0032
+785B fd 09           ADD IY,BC
+785D 3d              DEC A
+785E 20 fb           JR NZ,$785B
+7860 7b              LD A,E
+7861 fd 23           INC IY
+7863 fd 23           INC IY
+7865 fd be 01        CP (IY+$01)
+7868 30 f7           JR NC,$7861
+786A fd 46 00        LD B,(IY+$00)
+786D 68              LD L,B
+786E fd 21 d6 c6     LD IY,$C6D6
+7872 11 2a 00        LD DE,$002A
+7875 fd 19           ADD IY,DE
+7877 10 fc           DJNZ $7875
+7879 fd 7e 12        LD A,(IY+$12)
+787C fe 01           CP $01
+787E 20 cb           JR NZ,$784B
+7880 fd 4e 20        LD C,(IY+$20)
+7883 fd 46 21        LD B,(IY+$21)
+7886 af              XOR A
+7887 cd df 70        CALL $70DF
+788A dd 75 03        LD (IX+$03),L
+788D dd 71 04        LD (IX+$04),C
+7890 dd 70 05        LD (IX+$05),B
+7893 c1              POP BC
+7894 11 06 00        LD DE,$0006
+7897 dd 19           ADD IX,DE
+7899 05              DEC B
+789A c2 23 78        JP NZ,$7823
+789D e1              POP HL
+789E c1              POP BC
+789F 05              DEC B
+78A0 c2 15 78        JP NZ,$7815
+78A3 c9              RET
+
+ROUTINE 78A4
+процедура #78A4
+78A4 d5              PUSH DE
+78A5 c5              PUSH BC
+78A6 c6 09           ADD A,$09
+78A8 cd df 70        CALL $70DF
+78AB 21 5f bf        LD HL,$BF5F
+78AE 11 a1 00        LD DE,$00A1
+78B1 04              INC B
+78B2 19              ADD HL,DE
+78B3 10 fd           DJNZ $78B2
+78B5 09              ADD HL,BC
+78B6 c1              POP BC
+78B7 d1              POP DE
+78B8 c9              RET
+
+ROUTINE 78B9
+процедура #78B9
+78B9 d5              PUSH DE
+78BA 11 9a 00        LD DE,$009A
+78BD cd 32 71        CALL $7132
+78C0 1c              INC E
+78C1 1c              INC E
+78C2 1c              INC E
+78C3 4b              LD C,E
+78C4 11 5d 00        LD DE,$005D
+78C7 cd 32 71        CALL $7132
+78CA 1c              INC E
+78CB 1c              INC E
+78CC 1c              INC E
+78CD 43              LD B,E
+78CE d1              POP DE
+78CF c9              RET
+
+ROUTINE 78D0
+процедура #78D0
+78D0 dd e5           PUSH IX
+78D2 32 ef 78        LD ($78EF),A
+78D5 22 f2 78        LD ($78F2),HL
+78D8 11 03 00        LD DE,$0003
+78DB cd 32 71        CALL $7132
+78DE 1c              INC E
+78DF 1c              INC E
+78E0 43              LD B,E
+78E1 c5              PUSH BC
+78E2 3e 03           LD A,$03
+78E4 cd df 70        CALL $70DF
+78E7 11 fe 00        LD DE,$00FE
+78EA cd 32 71        CALL $7132
+78ED 7b              LD A,E
+78EE 06 00           LD B,$00
+78F0 dd 21 00 00     LD IX,$0000
+78F4 11 96 00        LD DE,$0096
+78F7 dd 19           ADD IX,DE
+78F9 10 fc           DJNZ $78F7
+78FB 11 06 00        LD DE,$0006
+78FE dd 19           ADD IX,DE
+7900 dd be 01        CP (IX+$01)
+7903 30 f9           JR NC,$78FE
+7905 dd 46 00        LD B,(IX+$00)
+7908 dd 5e 04        LD E,(IX+$04)
+790B dd 56 05        LD D,(IX+$05)
+790E cd 32 71        CALL $7132
+7911 dd 6e 02        LD L,(IX+$02)
+7914 dd 66 03        LD H,(IX+$03)
+7917 19              ADD HL,DE
+7918 af              XOR A
+7919 cd df 70        CALL $70DF
+791C fd 70 00        LD (IY+$00),B
+791F fd 75 01        LD (IY+$01),L
+7922 fd 74 02        LD (IY+$02),H
+7925 fd 23           INC IY
+7927 fd 23           INC IY
+7929 fd 23           INC IY
+792B c1              POP BC
+792C 10 b3           DJNZ $78E1
+792E dd e1           POP IX
+7930 c9              RET
+
+ROUTINE 7D33
+процедура #7D33
+7D33 00              NOP

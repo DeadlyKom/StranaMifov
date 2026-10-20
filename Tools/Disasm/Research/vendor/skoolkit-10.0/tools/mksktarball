@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+set -e # Abort on errors
+
+usage() {
+  cat <<EOF
+Usage: $(basename $0) [options]
+
+  Create a release tarball and zip archive of SkoolKit.
+
+Options:
+  -h  Show this help
+  -n  Omit documentation and man pages
+  -q  Be quiet
+  -t  Write only the release tarball
+EOF
+  exit 1
+}
+
+info() {
+  if [ $VERBOSE -eq 1 ]; then
+    echo $*
+  fi
+}
+
+if [ -z "$SKOOLKIT_HOME" ]; then
+  echo "Error: SKOOLKIT_HOME not defined."
+  exit 1
+fi
+if [ ! -d "$SKOOLKIT_HOME" ]; then
+  echo "Error: directory not found: $SKOOLKIT_HOME"
+  exit 1
+fi
+
+cd $SKOOLKIT_HOME
+VERSION=$(./skool2html.py -V 2>&1 | cut -f2 -d' ')
+PKGNAME=skoolkit-$VERSION
+PKGDIR=$PKGNAME
+
+VERBOSE=1
+WRITE_ZIP=1
+INCLUDE_DOCS=1
+
+while getopts ":hnpqt" opt; do
+  case $opt in
+    h) usage ;;
+    n) INCLUDE_DOCS=0 ;;
+    q) VERBOSE=0 ;;
+    t) WRITE_ZIP=0 ;;
+  esac
+done
+
+DISTDIR=$SKOOLKIT_HOME/dist
+mkdir -p $DISTDIR
+ABSDIR=${DISTDIR}/${PKGDIR}
+rm -rf ${ABSDIR}
+
+rsync -aR \
+  {bin2{sna,tap},rzx{info,play},skool2{asm,bin,ctl,html},sna2{ctl,img,skool},snap{info,mod},tap{2sna,info},trace}.py \
+  skoolkit/{__init__,audio,ay,basic,bin2{sna,tap},cmiosimulator,comment,components,config,ctlparser,defaults,disassembler,graphics,image,kbtracer,loadsample,loadtracer,opcodes,pagingtracer,pngwriter,refparser,rst,rzx{info,play},screen,sim{tables,utils},simulator,skool{{,2}{asm,ctl,html},2bin,macro,parser,utils},sna2img,sna{,2}{ctl,skool},snap{info,mod,shot},tap{2sna,e,info},textutils,trace,traceutils,z80}.py \
+  examples/hungry_horace.{ctl,ref,t2s} \
+  skoolkit/resources/{{{128,plus2}-{0,1},48}.rom,skoolkit{,-dark,-green,-plum,-wide}.css} \
+  tests/{{macro,skoolkit}test,test_{audio,ay,basic,bin2{sna,tap},cmiosimulator,comment,ctlparser,disassembler,graphics,image,kbtracer,pagingtracer,refparser,rzx{info,play},screen,simulator,skool{{,2}{asm,ctl,html},2bin,macro,parser,utils},skoolkit,sna2{ctl,img},sna{2,}skool,snap{info,mod,shot},tap{2sna,e,info},textutils,trace,traceutils,z80}}.py \
+  c/csimulator.c \
+  COPYING MANIFEST.in long_description.rst pyproject.toml setup.cfg setup.py \
+  $ABSDIR
+
+if [[ $INCLUDE_DOCS == 1 ]]; then
+  cd $SKOOLKIT_HOME/sphinx
+
+  # Build man pages from clean (to prevent double dashes from being converted
+  # into en-dashes)
+  if ! make clean man &> /dev/null; then
+    echo "*** Error building man pages; aborting"
+    exit 1
+  fi
+  MANDIR=${ABSDIR}/man/man1
+  mkdir -p $MANDIR
+  rsync -a build/man/*.py.1 $MANDIR
+
+  # Build HTML documentation from clean (to ensure that double dashes are
+  # converted into en-dashes)
+  if ! make clean html &> /dev/null; then
+    echo "*** Error building documentation; aborting"
+    exit 1
+  fi
+  DOCSDIR=${ABSDIR}/docs
+  mkdir -p $DOCSDIR
+  rsync -a --exclude=.buildinfo --exclude=objects.inv build/html/ $DOCSDIR
+fi
+
+cd $DISTDIR
+
+info "Creating ${DISTDIR}/${PKGNAME}.tar.xz"
+tar acf ${PKGNAME}.tar.xz $PKGDIR
+
+if [ $WRITE_ZIP -eq 1 ]; then
+  info "Creating ${DISTDIR}/${PKGNAME}.zip"
+  zip -9qr ${PKGNAME}.zip $PKGDIR
+fi

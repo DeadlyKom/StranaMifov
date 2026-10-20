@@ -1,0 +1,88 @@
+[
+  {
+    "logical_bank": 0,
+    "file": "NAEMARMY",
+    "destination": 59482,
+    "call": 25450
+  },
+  {
+    "logical_bank": 14,
+    "file": "BL1",
+    "destination": 49152,
+    "call": 25469
+  },
+  {
+    "logical_bank": 15,
+    "file": "BL2",
+    "destination": 49152,
+    "call": 25488
+  },
+  {
+    "logical_bank": 4,
+    "file": "SPR1",
+    "destination": 49152,
+    "call": 25502
+  },
+  {
+    "logical_bank": 4,
+    "file": "IPn",
+    "destination": 61232,
+    "call": 25519,
+    "selection": "n=byte(#69ED)"
+  },
+  {
+    "logical_bank": 6,
+    "file": "SPR2",
+    "destination": 49152,
+    "call": 25533
+  },
+  {
+    "logical_bank": 7,
+    "file": "SPR3",
+    "destination": 49152,
+    "call": 25547
+  },
+  {
+    "logical_bank": 10,
+    "file": "KARTAn",
+    "destination": 49152,
+    "call": 25569,
+    "selection": "n=byte(#6A2D)"
+  },
+  {
+    "logical_bank": 3,
+    "file": "SOLDIERS",
+    "destination": 49152,
+    "call": 25617
+  },
+  {
+    "logical_bank": 3,
+    "file": "DATA1",
+    "destination": 50202,
+    "call": 25626
+  },
+  {
+    "logical_bank": 3,
+    "file": "bitwa.co",
+    "destination": 53845,
+    "call": 25635
+  },
+  {
+    "logical_bank": 12,
+    "file": "OVR1",
+    "destination": 49152,
+    "call": 25654
+  },
+  {
+    "logical_bank": 13,
+    "file": "OVR2",
+    "destination": 49152,
+    "call": 25673
+  },
+  {
+    "logical_bank": 11,
+    "file": "DATA2",
+    "destination": 57552,
+    "call": 25687
+  }
+]

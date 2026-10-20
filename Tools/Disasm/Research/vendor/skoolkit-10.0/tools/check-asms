@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+# Runs pasmo over groups of ASM files created by 'write-files' to check for
+# differences in output.
+
+. $(dirname $0)/ddiffs-functions
+
+check() {
+  baseasm=$1.asm
+  if [ ! -f $baseasm ]; then
+    echo "*** Base asm file $baseasm not found; skipping group: $*" 1>&2
+    return
+  fi
+
+  fails=""
+  for a in $*; do
+    asmfile=$a.asm
+    if [ ! -f $asmfile ]; then
+      echo "*** $asmfile not found" 1>&2
+      continue
+    fi
+    binfile=$a.bin
+    echo -n "Writing $binfile..."
+    if pasmo $asmfile $binfile &> /dev/null; then
+      echo "done"
+    else
+      echo "FAILED"
+      fails="$fails $asmfile"
+      rm -f $binfile
+    fi
+  done
+
+  base=$1.bin
+  if [ ! -f $base ]; then
+    echo "*** Base bin file $base not found; skipping comparisons" 1>&2
+    return
+  fi
+  shift
+  diffs=""
+  for b in $*; do
+    binfile=$b.bin
+    if [ ! -f $binfile ]; then
+      echo "*** $binfile not found; skipping comparison" 1>&2
+      continue
+    fi
+    echo -n "Comparing $binfile with $base..."
+    if cmp -s $base $binfile; then
+      echo "same"
+    else
+      echo "DIFFERENT"
+      diffs="$diffs $binfile"
+    fi
+  done
+}
+
+usage() {
+  echo "Usage: $(basename $0) $GAMES"
+  echo ""
+  echo "  Assembles all the ASM files for a disassembly and checks that the output is"
+  echo "  identical where expected (e.g. between decimal and hexadecimal versions)."
+  exit 1
+}
+
+###############################################################################
+# Begin...
+###############################################################################
+game=$1
+read_ddiffsrc $game
+
+for suffix in '' '-load' '-save' '-start'; do
+  [ -f "$game$suffix.asm" ] || continue
+  for f in '' -f{1,2}; do
+    check $game$suffix{,-H,-D}{,-l,-u}$f{,-s}
+    echo ""
+    [ -n "$fails" ] && allfails="$allfails $fails"
+    [ -n "$diffs" ] && alldiffs="$alldiffs\n  $base:$diffs"
+  done
+done
+for suffix in '' '-load' '-save' '-start'; do
+  [ -f "$game$suffix.asm" ] || continue
+  for f in -f{1,2,3}; do
+    check $game$suffix{,-H,-D}{,-l,-u}$f-r
+    echo ""
+    [ -n "$fails" ] && allfails="$allfails $fails"
+    [ -n "$diffs" ] && alldiffs="$alldiffs\n  $base:$diffs"
+  done
+done
+
+echo "------------------------------------ SUMMARY -----------------------------------"
+code=0
+if [ -n "$allfails" ]; then
+  let code+=1
+  echo "Failed to assemble:"
+  for f in $allfails; do
+    echo "  $f"
+  done
+else
+  echo "Failed to assemble: None"
+fi
+if [ -n "$alldiffs" ]; then
+  let code+=2
+  echo -e "Differences:$alldiffs"
+else
+  echo "Differences: None"
+fi
+exit $code

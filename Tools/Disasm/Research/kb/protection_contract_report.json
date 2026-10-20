@@ -1,0 +1,13 @@
+{
+  "protectionEntries": 17,
+  "protectionMissingFields": 0,
+  "bl3InputFieldsAdded": 4,
+  "bl3CorruptFieldsAdded": 9,
+  "bl3MissingContracts": {},
+  "factualCorrections": [
+    "first BL3 refresh key54",
+    "ClearScreen preservesA but changesF"
+  ],
+  "assemblerRun": false,
+  "finalOutputsTouched": false
+}

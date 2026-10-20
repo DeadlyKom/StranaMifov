@@ -1,0 +1,498 @@
+[
+  {
+    "name": "FSoldier",
+    "size": 42,
+    "purpose": "описатель типа существа, SOLDIERS, 25 записей",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 12,
+        "name": "Name",
+        "meaning": "имя CP866, дополненное пробелами",
+        "evidence": "SOLDIERS, меню #62D8",
+        "confidence": "proven"
+      },
+      {
+        "offset": 12,
+        "size": 1,
+        "name": "NameEnd",
+        "meaning": "нулевой терминатор имени",
+        "evidence": "SOLDIERS, #7117",
+        "confidence": "proven"
+      },
+      {
+        "offset": 13,
+        "size": 1,
+        "name": "MoveFlags",
+        "meaning": "первый байт способностей, младшие 3 бита копируются в боевые флаги",
+        "evidence": "head #7AEF, #883A",
+        "confidence": "proven"
+      },
+      {
+        "offset": 14,
+        "size": 1,
+        "name": "ExtraFlags",
+        "meaning": "второй байт флагов, возвращаемый в D без назначения всех битов",
+        "evidence": "head #7AEF",
+        "confidence": "proven"
+      },
+      {
+        "offset": 15,
+        "size": 1,
+        "name": "Actions",
+        "meaning": "исходное число действий на раунд",
+        "evidence": "head #883A, battle #F578",
+        "confidence": "proven"
+      },
+      {
+        "offset": 16,
+        "size": 1,
+        "name": "ActionStock",
+        "meaning": "запас расходуемого дальнего действия",
+        "evidence": "head #883A, battle #D5BB",
+        "confidence": "proven"
+      },
+      {
+        "offset": 17,
+        "size": 1,
+        "name": "SectID",
+        "meaning": "секта типа, 0 без поправки, 5 либо совпадение с сектой героя повышает совместимость",
+        "evidence": "head #896D/#89C7..#89D7, O03",
+        "confidence": "proven"
+      },
+      {
+        "offset": 18,
+        "size": 1,
+        "name": "SpawnClass",
+        "meaning": "категория 1..4 при выборе начального типа",
+        "evidence": "BL3 #7808",
+        "confidence": "proven"
+      },
+      {
+        "offset": 19,
+        "size": 1,
+        "name": "UpgradeID",
+        "meaning": "ID замены по служебному порогу участия",
+        "evidence": "head #9EF8..#9F18",
+        "confidence": "proven"
+      },
+      {
+        "offset": 20,
+        "size": 1,
+        "name": "DegradeID",
+        "meaning": "ID замены при утрате квалификации, 0 запрещает замену",
+        "evidence": "head #9F5B..#9F75",
+        "confidence": "proven"
+      },
+      {
+        "offset": 21,
+        "size": 1,
+        "name": "SpecialFlags",
+        "meaning": "особые способности, ограничение восстановления и участие в перевозке",
+        "evidence": "battle #F2F1/#F337, O11:B200",
+        "confidence": "proven"
+      },
+      {
+        "offset": 22,
+        "size": 2,
+        "name": "UnitValue",
+        "meaning": "вес одного воина в оценке армии и цене найма корабля",
+        "evidence": "battle #E8AD, O02:B7EB",
+        "confidence": "proven"
+      },
+      {
+        "offset": 24,
+        "size": 2,
+        "name": "Upkeep",
+        "meaning": "расходы на содержание одного воина",
+        "evidence": "head #9E86, включение в расходы #95F7",
+        "confidence": "proven"
+      },
+      {
+        "offset": 26,
+        "size": 2,
+        "name": "BattleValue",
+        "meaning": "вес одного воина в общей оценке армии при начале и завершении боя",
+        "evidence": "battle #F4A3, #FAAF, head #89E0",
+        "confidence": "proven"
+      },
+      {
+        "offset": 28,
+        "size": 4,
+        "name": "Unknown1C",
+        "meaning": "четыре сохраняемых байта",
+        "evidence": "исходная запись +#1C..+#1F",
+        "confidence": "proven"
+      },
+      {
+        "offset": 32,
+        "size": 2,
+        "name": "SpawnCount",
+        "meaning": "начальная численность создаваемой шестибайтовой группы",
+        "evidence": "BL3 #7808 и потребитель генерации",
+        "confidence": "proven"
+      },
+      {
+        "offset": 34,
+        "size": 2,
+        "name": "DamageSpread",
+        "meaning": "слово разброса урона, удваивается только младший байт E без переноса в D",
+        "evidence": "battle #F15C..#F162, #F210..#F216, #F3AA..#F3B0",
+        "confidence": "proven"
+      },
+      {
+        "offset": 36,
+        "size": 2,
+        "name": "DamageDivisor",
+        "meaning": "делитель базовой формулы урона",
+        "evidence": "battle #F166..#F16C, #F21A..#F220, #F38B",
+        "confidence": "proven"
+      },
+      {
+        "offset": 38,
+        "size": 1,
+        "name": "SiteGrowthDiv",
+        "meaning": "делитель недельного прироста в строениях и гарнизонах",
+        "evidence": "head #A136 -> #A204",
+        "confidence": "proven"
+      },
+      {
+        "offset": 39,
+        "size": 1,
+        "name": "ArmyGrowthDiv",
+        "meaning": "делитель недельного прироста внешней армии и армии героя",
+        "evidence": "head #A190 -> #A204",
+        "confidence": "proven"
+      },
+      {
+        "offset": 40,
+        "size": 1,
+        "name": "UpgradeLimit",
+        "meaning": "порог служебного счётчика для первой замены",
+        "evidence": "head #9F01",
+        "confidence": "proven"
+      },
+      {
+        "offset": 41,
+        "size": 1,
+        "name": "DegradeDays",
+        "meaning": "порог дней без боя, исходная ветвь требует также ненулевой DegradeID",
+        "evidence": "head #9F64, скрытый редактор SOLDIERS",
+        "confidence": "proven"
+      }
+    ]
+  },
+  {
+    "name": "FBattleUnit",
+    "size": 18,
+    "purpose": "рабочий отряд боя, две армии по 5 записей",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 1,
+        "name": "UnitID",
+        "meaning": "ID типа, 0 завершает плотный список",
+        "evidence": "head #883A, battle #F864",
+        "confidence": "proven"
+      },
+      {
+        "offset": 1,
+        "size": 1,
+        "name": "Affinity",
+        "meaning": "знаковая совместимость состава от -2 до 2, для выбора поправки прибавляется 3",
+        "evidence": "head #896D, battle #D485..#D49B, #F17C..#F192",
+        "confidence": "proven"
+      },
+      {
+        "offset": 2,
+        "size": 5,
+        "name": "Quantity",
+        "meaning": "пятибайтовое число ROM, сохраняет дробные потери",
+        "evidence": "head #883A, battle #F0A0",
+        "confidence": "proven"
+      },
+      {
+        "offset": 7,
+        "size": 1,
+        "name": "BaseActions",
+        "meaning": "число действий в начале раунда",
+        "evidence": "head #883A, battle #F578",
+        "confidence": "proven"
+      },
+      {
+        "offset": 8,
+        "size": 1,
+        "name": "ActionStock",
+        "meaning": "остаток расходуемого дальнего действия",
+        "evidence": "battle #D5BB, #E117",
+        "confidence": "proven"
+      },
+      {
+        "offset": 9,
+        "size": 1,
+        "name": "Flags",
+        "meaning": "способности и временные отметки раунда, цели и контроля",
+        "evidence": "battle #F556, #E0E8, #E7A5, #F62D",
+        "confidence": "proven"
+      },
+      {
+        "offset": 10,
+        "size": 1,
+        "name": "X",
+        "meaning": "колонка 0..7",
+        "evidence": "battle #F65E",
+        "confidence": "proven"
+      },
+      {
+        "offset": 11,
+        "size": 1,
+        "name": "Y",
+        "meaning": "строка 0..4",
+        "evidence": "battle #F65E",
+        "confidence": "proven"
+      },
+      {
+        "offset": 12,
+        "size": 1,
+        "name": "ActionsLeft",
+        "meaning": "оставшиеся действия текущего раунда",
+        "evidence": "battle #D2B5, #F578",
+        "confidence": "proven"
+      },
+      {
+        "offset": 13,
+        "size": 1,
+        "name": "Effect",
+        "meaning": "старшая тетрада вид эффекта, младшая оставшаяся длительность",
+        "evidence": "battle #F5FF",
+        "confidence": "proven"
+      },
+      {
+        "offset": 14,
+        "size": 2,
+        "name": "InitialCount",
+        "meaning": "исходное целое количество, ограничивает восстановление",
+        "evidence": "head #883A, battle #F337",
+        "confidence": "proven"
+      },
+      {
+        "offset": 16,
+        "size": 2,
+        "name": "Unknown10",
+        "meaning": "два сохраняемых служебных байта",
+        "evidence": "обнуление #883A и копирование записей #F864",
+        "confidence": "proven"
+      }
+    ]
+  },
+  {
+    "name": "FMenuRect",
+    "size": 4,
+    "purpose": "прямоугольник пункта меню в знакоместах",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 1,
+        "name": "Left",
+        "meaning": "левая включённая граница",
+        "evidence": "head #787E",
+        "confidence": "proven"
+      },
+      {
+        "offset": 1,
+        "size": 1,
+        "name": "Top",
+        "meaning": "верхняя включённая граница",
+        "evidence": "head #787E",
+        "confidence": "proven"
+      },
+      {
+        "offset": 2,
+        "size": 1,
+        "name": "Right",
+        "meaning": "правая исключённая граница",
+        "evidence": "head #787E",
+        "confidence": "proven"
+      },
+      {
+        "offset": 3,
+        "size": 1,
+        "name": "Bottom",
+        "meaning": "нижняя исключённая граница",
+        "evidence": "head #787E",
+        "confidence": "proven"
+      }
+    ]
+  },
+  {
+    "name": "FMenuHeader",
+    "size": 7,
+    "purpose": "фиксированная часть меню, далее N записей FMenuRect",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 1,
+        "name": "Count",
+        "meaning": "число пунктов меню",
+        "evidence": "head #77A1/#787E",
+        "confidence": "proven"
+      },
+      {
+        "offset": 1,
+        "size": 1,
+        "name": "MinX",
+        "meaning": "минимальная X указателя",
+        "evidence": "head #77A1",
+        "confidence": "proven"
+      },
+      {
+        "offset": 2,
+        "size": 1,
+        "name": "MinY",
+        "meaning": "минимальная Y указателя",
+        "evidence": "head #77A1",
+        "confidence": "proven"
+      },
+      {
+        "offset": 3,
+        "size": 1,
+        "name": "MaxX",
+        "meaning": "максимальная X указателя",
+        "evidence": "head #77A1",
+        "confidence": "proven"
+      },
+      {
+        "offset": 4,
+        "size": 1,
+        "name": "MaxY",
+        "meaning": "максимальная Y указателя",
+        "evidence": "head #77A1",
+        "confidence": "proven"
+      },
+      {
+        "offset": 5,
+        "size": 1,
+        "name": "CursorX",
+        "meaning": "сохраняемая пиксельная X указателя",
+        "evidence": "head #77A1/#791E",
+        "confidence": "proven"
+      },
+      {
+        "offset": 6,
+        "size": 1,
+        "name": "CursorY",
+        "meaning": "сохраняемая пиксельная Y указателя",
+        "evidence": "head #77A1/#791E",
+        "confidence": "proven"
+      }
+    ]
+  },
+  {
+    "name": "FTile32",
+    "size": 144,
+    "purpose": "непрозрачный тайл или портрет 32 на 32 пикселя",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 128,
+        "name": "Pixels",
+        "meaning": "32 строки по 4 байта пикселей, бит 7 слева",
+        "evidence": "head #7545/#75E1",
+        "confidence": "proven"
+      },
+      {
+        "offset": 128,
+        "size": 16,
+        "name": "Attributes",
+        "meaning": "4 строки по 4 атрибута знакомест",
+        "evidence": "head #7545/#75E1",
+        "confidence": "proven"
+      }
+    ]
+  },
+  {
+    "name": "FMasked32",
+    "size": 256,
+    "purpose": "маскированный кадр 32 на 32 пикселя",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 128,
+        "name": "Pixels",
+        "meaning": "передний слой INK, 32 строки по 4 байта",
+        "evidence": "head #75A2/#7649",
+        "confidence": "proven"
+      },
+      {
+        "offset": 128,
+        "size": 128,
+        "name": "Mask",
+        "meaning": "маска, единица сохраняет соответствующий бит фона",
+        "evidence": "head #75A2/#7649",
+        "confidence": "proven"
+      }
+    ]
+  },
+  {
+    "name": "FPictureHeader",
+    "size": 5,
+    "purpose": "заголовок RLE-изображения HERIMG, BL1 и BL2",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 2,
+        "name": "NextOffset",
+        "meaning": "следующий заголовок равен текущий адрес +1+NextOffset",
+        "evidence": "распаковщик +#21..+#25",
+        "confidence": "proven"
+      },
+      {
+        "offset": 2,
+        "size": 1,
+        "name": "FirstThird",
+        "meaning": "начальная треть экрана 0..2",
+        "evidence": "распаковщик +#32",
+        "confidence": "proven"
+      },
+      {
+        "offset": 3,
+        "size": 1,
+        "name": "ThirdCount",
+        "meaning": "число третей 1..3",
+        "evidence": "распаковщик +#3D",
+        "confidence": "proven"
+      },
+      {
+        "offset": 4,
+        "size": 1,
+        "name": "Flags",
+        "meaning": "бит 0 задаёт порядок обхода пикселей, биты 2/3 рабочие",
+        "evidence": "распаковщик +#42, +#80, +#E4",
+        "confidence": "proven"
+      }
+    ]
+  },
+  {
+    "name": "FFrameRef",
+    "size": 3,
+    "purpose": "ссылка на кадр в расширенной памяти",
+    "fields": [
+      {
+        "offset": 0,
+        "size": 1,
+        "name": "Bank",
+        "meaning": "логический банк графического ресурса",
+        "evidence": "head #7366/#8104",
+        "confidence": "proven"
+      },
+      {
+        "offset": 1,
+        "size": 2,
+        "name": "Address",
+        "meaning": "адрес кадра в окне памяти",
+        "evidence": "head #7366/#8104",
+        "confidence": "proven"
+      }
+    ]
+  }
+]

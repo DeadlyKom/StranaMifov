@@ -1,0 +1,98 @@
+8000 F3             DI
+8001 3E AC          LD A,$AC
+8003 ED 4F          LD R,A
+8005 AF             XOR A
+8006 D3 FE          OUT ($FE),A
+8008 21 00 40       LD HL,$4000
+800B 11 01 40       LD DE,$4001
+800E 01 FF 1A       LD BC,$1AFF
+8011 77             LD (HL),A
+8012 ED B0          LDIR
+8014 21 4F 80       LD HL,$804F
+8017 11 6D 00       LD DE,$006D
+801A ED 5F          LD A,R
+801C AE             XOR (HL)
+801D AC             XOR H
+801E AD             XOR L
+801F AB             XOR E
+8020 77             LD (HL),A
+8021 22 3D 5C       LD ($5C3D),HL
+8024 EB             EX DE,HL
+8025 22 08 5C       LD ($5C08),HL
+8028 01 FD 1F       LD BC,$1FFD
+802B 3E 10          LD A,$10
+802D ED 79          OUT (C),A
+802F 21 DB E2       LD HL,$E2DB
+8032 11 DC E2       LD DE,$E2DC
+8035 01 65 06       LD BC,$0665
+8038 36 C7          LD (HL),$C7
+803A ED B0          LDIR
+803C 2A 08 5C       LD HL,($5C08)
+803F EB             EX DE,HL
+8040 2A 3D 5C       LD HL,($5C3D)
+8043 01 FD 1F       LD BC,$1FFD
+8046 AF             XOR A
+8047 ED 79          OUT (C),A
+8049 23             INC HL
+804A 1B             DEC DE
+804B 7B             LD A,E
+804C B2             OR D
+804D 20 CB          JR NZ,$801A
+804F 21 8A 80       LD HL,$808A
+8052 11 32 00       LD DE,$0032
+8055 ED 5F          LD A,R
+8057 AE             XOR (HL)
+8058 AC             XOR H
+8059 AD             XOR L
+805A AA             XOR D
+805B 77             LD (HL),A
+805C 22 3D 5C       LD ($5C3D),HL
+805F EB             EX DE,HL
+8060 22 08 5C       LD ($5C08),HL
+8063 01 FD 1F       LD BC,$1FFD
+8066 3E 10          LD A,$10
+8068 ED 79          OUT (C),A
+806A 21 DB E2       LD HL,$E2DB
+806D 11 DC E2       LD DE,$E2DC
+8070 01 75 06       LD BC,$0675
+8073 36 C7          LD (HL),$C7
+8075 ED B0          LDIR
+8077 2A 08 5C       LD HL,($5C08)
+807A EB             EX DE,HL
+807B 2A 3D 5C       LD HL,($5C3D)
+807E 01 FD 1F       LD BC,$1FFD
+8081 AF             XOR A
+8082 ED 79          OUT (C),A
+8084 23             INC HL
+8085 1B             DEC DE
+8086 7B             LD A,E
+8087 B2             OR D
+8088 20 CB          JR NZ,$8055
+808A 21 71 61       LD HL,$6171
+808D E5             PUSH HL
+808E 01 FD 7F       LD BC,$7FFD
+8091 3E 10          LD A,$10
+8093 ED 79          OUT (C),A
+8095 06 16          LD B,$16
+8097 CD A2 80       CALL $80A2
+809A 21 00 E0       LD HL,$E000
+809D 06 0C          LD B,$0C
+809F C3 A2 80       JP $80A2
+80A2 C5             PUSH BC
+80A3 E5             PUSH HL
+80A4 ED 5B F4 5C    LD DE,($5CF4)
+80A8 0E 05          LD C,$05
+80AA CD 13 3D       CALL $3D13
+80AD E1             POP HL
+80AE C1             POP BC
+80AF 0E 00          LD C,$00
+80B1 7E             LD A,(HL)
+80B2 AC             XOR H
+80B3 AD             XOR L
+80B4 77             LD (HL),A
+80B5 23             INC HL
+80B6 0B             DEC BC
+80B7 78             LD A,B
+80B8 B1             OR C
+80B9 20 F6          JR NZ,$80B1
+80BB C9             RET

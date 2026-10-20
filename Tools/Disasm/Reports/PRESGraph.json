@@ -1,0 +1,3525 @@
+{
+  "instructions": [
+    {
+      "address": 57856,
+      "hex": "ed5bc85c",
+      "op": "LD DE,($5CC8)"
+    },
+    {
+      "address": 57860,
+      "hex": "ed5358e6",
+      "op": "LD ($E658),DE"
+    },
+    {
+      "address": 57864,
+      "hex": "ed5bc95c",
+      "op": "LD DE,($5CC9)"
+    },
+    {
+      "address": 57868,
+      "hex": "ed535ae6",
+      "op": "LD ($E65A),DE"
+    },
+    {
+      "address": 57872,
+      "hex": "ed5f",
+      "op": "LD A,R"
+    },
+    {
+      "address": 57874,
+      "hex": "5f",
+      "op": "LD E,A"
+    },
+    {
+      "address": 57875,
+      "hex": "57",
+      "op": "LD D,A"
+    },
+    {
+      "address": 57876,
+      "hex": "ed535ce6",
+      "op": "LD ($E65C),DE"
+    },
+    {
+      "address": 57880,
+      "hex": "dd2110e7",
+      "op": "LD IX,$E710"
+    },
+    {
+      "address": 57884,
+      "hex": "0664",
+      "op": "LD B,$64"
+    },
+    {
+      "address": 57886,
+      "hex": "11bf00",
+      "op": "LD DE,$00BF"
+    },
+    {
+      "address": 57889,
+      "hex": "cdfae5",
+      "op": "CALL $E5FA"
+    },
+    {
+      "address": 57892,
+      "hex": "63",
+      "op": "LD H,E"
+    },
+    {
+      "address": 57893,
+      "hex": "11ff00",
+      "op": "LD DE,$00FF"
+    },
+    {
+      "address": 57896,
+      "hex": "cdfae5",
+      "op": "CALL $E5FA"
+    },
+    {
+      "address": 57899,
+      "hex": "6b",
+      "op": "LD L,E"
+    },
+    {
+      "address": 57900,
+      "hex": "eb",
+      "op": "EX DE,HL"
+    },
+    {
+      "address": 57901,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 57903,
+      "hex": "dd2110e7",
+      "op": "LD IX,$E710"
+    },
+    {
+      "address": 57907,
+      "hex": "3e64",
+      "op": "LD A,$64"
+    },
+    {
+      "address": 57909,
+      "hex": "dd6e01",
+      "op": "LD L,(IX+$01)"
+    },
+    {
+      "address": 57912,
+      "hex": "dd6600",
+      "op": "LD H,(IX+$00)"
+    },
+    {
+      "address": 57915,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 57916,
+      "hex": "ed52",
+      "op": "SBC HL,DE"
+    },
+    {
+      "address": 57918,
+      "hex": "2004",
+      "op": "JR NZ,$E244"
+    },
+    {
+      "address": 57920,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 57922,
+      "hex": "18da",
+      "op": "JR $E21E"
+    },
+    {
+      "address": 57924,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 57926,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 57928,
+      "hex": "3d",
+      "op": "DEC A"
+    },
+    {
+      "address": 57929,
+      "hex": "20ea",
+      "op": "JR NZ,$E235"
+    },
+    {
+      "address": 57931,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 57933,
+      "hex": "dd7200",
+      "op": "LD (IX+$00),D"
+    },
+    {
+      "address": 57936,
+      "hex": "dd7301",
+      "op": "LD (IX+$01),E"
+    },
+    {
+      "address": 57939,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 57941,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 57943,
+      "hex": "10c5",
+      "op": "DJNZ $E21E"
+    },
+    {
+      "address": 57945,
+      "hex": "cdbce3",
+      "op": "CALL $E3BC"
+    },
+    {
+      "address": 57948,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 57951,
+      "hex": "112018",
+      "op": "LD DE,$1820"
+    },
+    {
+      "address": 57954,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 57955,
+      "hex": "cd0ce5",
+      "op": "CALL $E50C"
+    },
+    {
+      "address": 57958,
+      "hex": "cd56e5",
+      "op": "CALL $E556"
+    },
+    {
+      "address": 57961,
+      "hex": "dd213fe3",
+      "op": "LD IX,$E33F"
+    },
+    {
+      "address": 57965,
+      "hex": "0601",
+      "op": "LD B,$01"
+    },
+    {
+      "address": 57967,
+      "hex": "cda7e3",
+      "op": "CALL $E3A7"
+    },
+    {
+      "address": 57970,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 57972,
+      "hex": "cd8ee4",
+      "op": "CALL $E48E"
+    },
+    {
+      "address": 57975,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 57978,
+      "hex": "feff",
+      "op": "CP $FF"
+    },
+    {
+      "address": 57980,
+      "hex": "20f6",
+      "op": "JR NZ,$E274"
+    },
+    {
+      "address": 57982,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 57984,
+      "hex": "0603",
+      "op": "LD B,$03"
+    },
+    {
+      "address": 57986,
+      "hex": "cda7e3",
+      "op": "CALL $E3A7"
+    },
+    {
+      "address": 57989,
+      "hex": "cdbae4",
+      "op": "CALL $E4BA"
+    },
+    {
+      "address": 57992,
+      "hex": "cd56e5",
+      "op": "CALL $E556"
+    },
+    {
+      "address": 57995,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 57998,
+      "hex": "feff",
+      "op": "CP $FF"
+    },
+    {
+      "address": 58000,
+      "hex": "20f3",
+      "op": "JR NZ,$E285"
+    },
+    {
+      "address": 58002,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58004,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 58007,
+      "hex": "fefe",
+      "op": "CP $FE"
+    },
+    {
+      "address": 58009,
+      "hex": "20d2",
+      "op": "JR NZ,$E26D"
+    },
+    {
+      "address": 58011,
+      "hex": "1e00",
+      "op": "LD E,$00"
+    },
+    {
+      "address": 58013,
+      "hex": "3eae",
+      "op": "LD A,$AE"
+    },
+    {
+      "address": 58015,
+      "hex": "32f4e5",
+      "op": "LD ($E5F4),A"
+    },
+    {
+      "address": 58018,
+      "hex": "2110e7",
+      "op": "LD HL,$E710"
+    },
+    {
+      "address": 58021,
+      "hex": "cb23",
+      "op": "SLA E"
+    },
+    {
+      "address": 58023,
+      "hex": "1600",
+      "op": "LD D,$00"
+    },
+    {
+      "address": 58025,
+      "hex": "19",
+      "op": "ADD HL,DE"
+    },
+    {
+      "address": 58026,
+      "hex": "46",
+      "op": "LD B,(HL)"
+    },
+    {
+      "address": 58027,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 58028,
+      "hex": "4e",
+      "op": "LD C,(HL)"
+    },
+    {
+      "address": 58029,
+      "hex": "cda2e5",
+      "op": "CALL $E5A2"
+    },
+    {
+      "address": 58032,
+      "hex": "76",
+      "op": "HALT"
+    },
+    {
+      "address": 58033,
+      "hex": "cb3b",
+      "op": "SRL E"
+    },
+    {
+      "address": 58035,
+      "hex": "1c",
+      "op": "INC E"
+    },
+    {
+      "address": 58036,
+      "hex": "7b",
+      "op": "LD A,E"
+    },
+    {
+      "address": 58037,
+      "hex": "fe64",
+      "op": "CP $64"
+    },
+    {
+      "address": 58039,
+      "hex": "20e9",
+      "op": "JR NZ,$E2A2"
+    },
+    {
+      "address": 58041,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 58044,
+      "hex": "112018",
+      "op": "LD DE,$1820"
+    },
+    {
+      "address": 58047,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 58048,
+      "hex": "cd0ce5",
+      "op": "CALL $E50C"
+    },
+    {
+      "address": 58051,
+      "hex": "010003",
+      "op": "LD BC,$0300"
+    },
+    {
+      "address": 58054,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58055,
+      "hex": "111700",
+      "op": "LD DE,$0017"
+    },
+    {
+      "address": 58058,
+      "hex": "cdfae5",
+      "op": "CALL $E5FA"
+    },
+    {
+      "address": 58061,
+      "hex": "43",
+      "op": "LD B,E"
+    },
+    {
+      "address": 58062,
+      "hex": "111f00",
+      "op": "LD DE,$001F"
+    },
+    {
+      "address": 58065,
+      "hex": "cdfae5",
+      "op": "CALL $E5FA"
+    },
+    {
+      "address": 58068,
+      "hex": "4b",
+      "op": "LD C,E"
+    },
+    {
+      "address": 58069,
+      "hex": "ed433de3",
+      "op": "LD ($E33D),BC"
+    },
+    {
+      "address": 58073,
+      "hex": "68",
+      "op": "LD L,B"
+    },
+    {
+      "address": 58074,
+      "hex": "2600",
+      "op": "LD H,$00"
+    },
+    {
+      "address": 58076,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58077,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58078,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58079,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58080,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58081,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 58083,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58084,
+      "hex": "010058",
+      "op": "LD BC,$5800"
+    },
+    {
+      "address": 58087,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58088,
+      "hex": "7e",
+      "op": "LD A,(HL)"
+    },
+    {
+      "address": 58089,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 58090,
+      "hex": "20db",
+      "op": "JR NZ,$E2C7"
+    },
+    {
+      "address": 58092,
+      "hex": "3a3ee3",
+      "op": "LD A,($E33E)"
+    },
+    {
+      "address": 58095,
+      "hex": "47",
+      "op": "LD B,A"
+    },
+    {
+      "address": 58096,
+      "hex": "26b8",
+      "op": "LD H,$B8"
+    },
+    {
+      "address": 58098,
+      "hex": "2ee0",
+      "op": "LD L,$E0"
+    },
+    {
+      "address": 58100,
+      "hex": "04",
+      "op": "INC B"
+    },
+    {
+      "address": 58101,
+      "hex": "7d",
+      "op": "LD A,L"
+    },
+    {
+      "address": 58102,
+      "hex": "c620",
+      "op": "ADD A,$20"
+    },
+    {
+      "address": 58104,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 58105,
+      "hex": "3004",
+      "op": "JR NC,$E2FF"
+    },
+    {
+      "address": 58107,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 58108,
+      "hex": "c608",
+      "op": "ADD A,$08"
+    },
+    {
+      "address": 58110,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 58111,
+      "hex": "10f4",
+      "op": "DJNZ $E2F5"
+    },
+    {
+      "address": 58113,
+      "hex": "3a3de3",
+      "op": "LD A,($E33D)"
+    },
+    {
+      "address": 58116,
+      "hex": "4f",
+      "op": "LD C,A"
+    },
+    {
+      "address": 58117,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58118,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58119,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 58120,
+      "hex": "d680",
+      "op": "SUB $80"
+    },
+    {
+      "address": 58122,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 58123,
+      "hex": "eb",
+      "op": "EX DE,HL"
+    },
+    {
+      "address": 58124,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58125,
+      "hex": "0608",
+      "op": "LD B,$08"
+    },
+    {
+      "address": 58127,
+      "hex": "7e",
+      "op": "LD A,(HL)"
+    },
+    {
+      "address": 58128,
+      "hex": "12",
+      "op": "LD (DE),A"
+    },
+    {
+      "address": 58129,
+      "hex": "24",
+      "op": "INC H"
+    },
+    {
+      "address": 58130,
+      "hex": "14",
+      "op": "INC D"
+    },
+    {
+      "address": 58131,
+      "hex": "10fa",
+      "op": "DJNZ $E30F"
+    },
+    {
+      "address": 58133,
+      "hex": "ed4b3de3",
+      "op": "LD BC,($E33D)"
+    },
+    {
+      "address": 58137,
+      "hex": "68",
+      "op": "LD L,B"
+    },
+    {
+      "address": 58138,
+      "hex": "2600",
+      "op": "LD H,$00"
+    },
+    {
+      "address": 58140,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58141,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58142,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58143,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58144,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58145,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 58147,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58148,
+      "hex": "0100d8",
+      "op": "LD BC,$D800"
+    },
+    {
+      "address": 58151,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58152,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58153,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 58154,
+      "hex": "d680",
+      "op": "SUB $80"
+    },
+    {
+      "address": 58156,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 58157,
+      "hex": "eb",
+      "op": "EX DE,HL"
+    },
+    {
+      "address": 58158,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58159,
+      "hex": "eda0",
+      "op": "LDI"
+    },
+    {
+      "address": 58161,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58162,
+      "hex": "cd6ee4",
+      "op": "CALL $E46E"
+    },
+    {
+      "address": 58165,
+      "hex": "3805",
+      "op": "JR C,$E33C"
+    },
+    {
+      "address": 58167,
+      "hex": "0b",
+      "op": "DEC BC"
+    },
+    {
+      "address": 58168,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 58169,
+      "hex": "b1",
+      "op": "OR C"
+    },
+    {
+      "address": 58170,
+      "hex": "208a",
+      "op": "JR NZ,$E2C6"
+    },
+    {
+      "address": 58172,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58279,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 58281,
+      "hex": "1632",
+      "op": "LD D,$32"
+    },
+    {
+      "address": 58283,
+      "hex": "cd6ee4",
+      "op": "CALL $E46E"
+    },
+    {
+      "address": 58286,
+      "hex": "3809",
+      "op": "JR C,$E3B9"
+    },
+    {
+      "address": 58288,
+      "hex": "76",
+      "op": "HALT"
+    },
+    {
+      "address": 58289,
+      "hex": "cd80e5",
+      "op": "CALL $E580"
+    },
+    {
+      "address": 58292,
+      "hex": "15",
+      "op": "DEC D"
+    },
+    {
+      "address": 58293,
+      "hex": "20f4",
+      "op": "JR NZ,$E3AB"
+    },
+    {
+      "address": 58295,
+      "hex": "10f0",
+      "op": "DJNZ $E3A9"
+    },
+    {
+      "address": 58297,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 58299,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58300,
+      "hex": "dd21d8e7",
+      "op": "LD IX,$E7D8"
+    },
+    {
+      "address": 58304,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 58307,
+      "hex": "feb1",
+      "op": "CP $B1"
+    },
+    {
+      "address": 58309,
+      "hex": "2804",
+      "op": "JR Z,$E3CB"
+    },
+    {
+      "address": 58311,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58313,
+      "hex": "18f5",
+      "op": "JR $E3C0"
+    },
+    {
+      "address": 58315,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58317,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 58320,
+      "hex": "feff",
+      "op": "CP $FF"
+    },
+    {
+      "address": 58322,
+      "hex": "c8",
+      "op": "RET Z"
+    },
+    {
+      "address": 58323,
+      "hex": "3213e4",
+      "op": "LD ($E413),A"
+    },
+    {
+      "address": 58326,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58328,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 58331,
+      "hex": "3232e4",
+      "op": "LD ($E432),A"
+    },
+    {
+      "address": 58334,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58336,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 58339,
+      "hex": "112018",
+      "op": "LD DE,$1820"
+    },
+    {
+      "address": 58342,
+      "hex": "3e45",
+      "op": "LD A,$45"
+    },
+    {
+      "address": 58344,
+      "hex": "cd0ce5",
+      "op": "CALL $E50C"
+    },
+    {
+      "address": 58347,
+      "hex": "cd56e5",
+      "op": "CALL $E556"
+    },
+    {
+      "address": 58350,
+      "hex": "0601",
+      "op": "LD B,$01"
+    },
+    {
+      "address": 58352,
+      "hex": "cda7e3",
+      "op": "CALL $E3A7"
+    },
+    {
+      "address": 58355,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 58358,
+      "hex": "feb1",
+      "op": "CP $B1"
+    },
+    {
+      "address": 58360,
+      "hex": "2837",
+      "op": "JR Z,$E431"
+    },
+    {
+      "address": 58362,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 58364,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 58366,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 58369,
+      "hex": "fe0d",
+      "op": "CP $0D"
+    },
+    {
+      "address": 58371,
+      "hex": "2805",
+      "op": "JR Z,$E40A"
+    },
+    {
+      "address": 58373,
+      "hex": "04",
+      "op": "INC B"
+    },
+    {
+      "address": 58374,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58376,
+      "hex": "18f4",
+      "op": "JR $E3FE"
+    },
+    {
+      "address": 58378,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 58380,
+      "hex": "3e20",
+      "op": "LD A,$20"
+    },
+    {
+      "address": 58382,
+      "hex": "90",
+      "op": "SUB B"
+    },
+    {
+      "address": 58383,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 58385,
+      "hex": "4f",
+      "op": "LD C,A"
+    },
+    {
+      "address": 58386,
+      "hex": "0604",
+      "op": "LD B,$04"
+    },
+    {
+      "address": 58388,
+      "hex": "dd7e00",
+      "op": "LD A,(IX+$00)"
+    },
+    {
+      "address": 58391,
+      "hex": "fe0d",
+      "op": "CP $0D"
+    },
+    {
+      "address": 58393,
+      "hex": "280b",
+      "op": "JR Z,$E426"
+    },
+    {
+      "address": 58395,
+      "hex": "57",
+      "op": "LD D,A"
+    },
+    {
+      "address": 58396,
+      "hex": "1e46",
+      "op": "LD E,$46"
+    },
+    {
+      "address": 58398,
+      "hex": "cd38e4",
+      "op": "CALL $E438"
+    },
+    {
+      "address": 58401,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58403,
+      "hex": "0c",
+      "op": "INC C"
+    },
+    {
+      "address": 58404,
+      "hex": "18ee",
+      "op": "JR $E414"
+    },
+    {
+      "address": 58406,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58408,
+      "hex": "3a13e4",
+      "op": "LD A,($E413)"
+    },
+    {
+      "address": 58411,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 58412,
+      "hex": "3213e4",
+      "op": "LD ($E413),A"
+    },
+    {
+      "address": 58415,
+      "hex": "18c2",
+      "op": "JR $E3F3"
+    },
+    {
+      "address": 58417,
+      "hex": "0612",
+      "op": "LD B,$12"
+    },
+    {
+      "address": 58419,
+      "hex": "cda7e3",
+      "op": "CALL $E3A7"
+    },
+    {
+      "address": 58422,
+      "hex": "1888",
+      "op": "JR $E3C0"
+    },
+    {
+      "address": 58424,
+      "hex": "fe20",
+      "op": "CP $20"
+    },
+    {
+      "address": 58426,
+      "hex": "c8",
+      "op": "RET Z"
+    },
+    {
+      "address": 58427,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58428,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58429,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58430,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58431,
+      "hex": "110101",
+      "op": "LD DE,$0101"
+    },
+    {
+      "address": 58434,
+      "hex": "3e46",
+      "op": "LD A,$46"
+    },
+    {
+      "address": 58436,
+      "hex": "cdeae4",
+      "op": "CALL $E4EA"
+    },
+    {
+      "address": 58439,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58440,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58441,
+      "hex": "cd4fe4",
+      "op": "CALL $E44F"
+    },
+    {
+      "address": 58444,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58445,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58446,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58447,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58448,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58449,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58450,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58451,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 58452,
+      "hex": "2600",
+      "op": "LD H,$00"
+    },
+    {
+      "address": 58454,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58455,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58456,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58457,
+      "hex": "1100da",
+      "op": "LD DE,$DA00"
+    },
+    {
+      "address": 58460,
+      "hex": "19",
+      "op": "ADD HL,DE"
+    },
+    {
+      "address": 58461,
+      "hex": "eb",
+      "op": "EX DE,HL"
+    },
+    {
+      "address": 58462,
+      "hex": "cd3be5",
+      "op": "CALL $E53B"
+    },
+    {
+      "address": 58465,
+      "hex": "0608",
+      "op": "LD B,$08"
+    },
+    {
+      "address": 58467,
+      "hex": "1a",
+      "op": "LD A,(DE)"
+    },
+    {
+      "address": 58468,
+      "hex": "77",
+      "op": "LD (HL),A"
+    },
+    {
+      "address": 58469,
+      "hex": "13",
+      "op": "INC DE"
+    },
+    {
+      "address": 58470,
+      "hex": "24",
+      "op": "INC H"
+    },
+    {
+      "address": 58471,
+      "hex": "10fa",
+      "op": "DJNZ $E463"
+    },
+    {
+      "address": 58473,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58474,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58475,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 58476,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58477,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58478,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 58480,
+      "hex": "fde5",
+      "op": "PUSH IY"
+    },
+    {
+      "address": 58482,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58483,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58484,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58485,
+      "hex": "cd8e02",
+      "op": "CALL $028E"
+    },
+    {
+      "address": 58488,
+      "hex": "7b",
+      "op": "LD A,E"
+    },
+    {
+      "address": 58489,
+      "hex": "feff",
+      "op": "CP $FF"
+    },
+    {
+      "address": 58491,
+      "hex": "2008",
+      "op": "JR NZ,$E485"
+    },
+    {
+      "address": 58493,
+      "hex": "db1f",
+      "op": "IN A,($1F)"
+    },
+    {
+      "address": 58495,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 58496,
+      "hex": "2003",
+      "op": "JR NZ,$E485"
+    },
+    {
+      "address": 58498,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 58499,
+      "hex": "1801",
+      "op": "JR $E486"
+    },
+    {
+      "address": 58501,
+      "hex": "37",
+      "op": "SCF"
+    },
+    {
+      "address": 58502,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58503,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 58504,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58505,
+      "hex": "fde1",
+      "op": "POP IY"
+    },
+    {
+      "address": 58507,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 58509,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58510,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58511,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58512,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58513,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58514,
+      "hex": "dd5600",
+      "op": "LD D,(IX+$00)"
+    },
+    {
+      "address": 58517,
+      "hex": "dd4e01",
+      "op": "LD C,(IX+$01)"
+    },
+    {
+      "address": 58520,
+      "hex": "dd4602",
+      "op": "LD B,(IX+$02)"
+    },
+    {
+      "address": 58523,
+      "hex": "dd7e03",
+      "op": "LD A,(IX+$03)"
+    },
+    {
+      "address": 58526,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 58527,
+      "hex": "280c",
+      "op": "JR Z,$E4AD"
+    },
+    {
+      "address": 58529,
+      "hex": "5f",
+      "op": "LD E,A"
+    },
+    {
+      "address": 58530,
+      "hex": "cd5ee6",
+      "op": "CALL $E65E"
+    },
+    {
+      "address": 58533,
+      "hex": "cd80e5",
+      "op": "CALL $E580"
+    },
+    {
+      "address": 58536,
+      "hex": "0c",
+      "op": "INC C"
+    },
+    {
+      "address": 58537,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58539,
+      "hex": "18ee",
+      "op": "JR $E49B"
+    },
+    {
+      "address": 58541,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58543,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58545,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58547,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58549,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58550,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58551,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 58552,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58553,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58554,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58555,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58556,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58557,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58558,
+      "hex": "dd4e01",
+      "op": "LD C,(IX+$01)"
+    },
+    {
+      "address": 58561,
+      "hex": "dd4602",
+      "op": "LD B,(IX+$02)"
+    },
+    {
+      "address": 58564,
+      "hex": "1e00",
+      "op": "LD E,$00"
+    },
+    {
+      "address": 58566,
+      "hex": "1c",
+      "op": "INC E"
+    },
+    {
+      "address": 58567,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58569,
+      "hex": "dd7e02",
+      "op": "LD A,(IX+$02)"
+    },
+    {
+      "address": 58572,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 58573,
+      "hex": "20f7",
+      "op": "JR NZ,$E4C6"
+    },
+    {
+      "address": 58575,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58577,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58579,
+      "hex": "dd23",
+      "op": "INC IX"
+    },
+    {
+      "address": 58581,
+      "hex": "cb23",
+      "op": "SLA E"
+    },
+    {
+      "address": 58583,
+      "hex": "1603",
+      "op": "LD D,$03"
+    },
+    {
+      "address": 58585,
+      "hex": "cb21",
+      "op": "SLA C"
+    },
+    {
+      "address": 58587,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 58588,
+      "hex": "cb27",
+      "op": "SLA A"
+    },
+    {
+      "address": 58590,
+      "hex": "80",
+      "op": "ADD A,B"
+    },
+    {
+      "address": 58591,
+      "hex": "47",
+      "op": "LD B,A"
+    },
+    {
+      "address": 58592,
+      "hex": "3e45",
+      "op": "LD A,$45"
+    },
+    {
+      "address": 58594,
+      "hex": "cd0ce5",
+      "op": "CALL $E50C"
+    },
+    {
+      "address": 58597,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58598,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58599,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 58600,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58601,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58602,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58603,
+      "hex": "2600",
+      "op": "LD H,$00"
+    },
+    {
+      "address": 58605,
+      "hex": "68",
+      "op": "LD L,B"
+    },
+    {
+      "address": 58606,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58607,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58608,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58609,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58610,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58611,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 58613,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58614,
+      "hex": "010058",
+      "op": "LD BC,$5800"
+    },
+    {
+      "address": 58617,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58618,
+      "hex": "42",
+      "op": "LD B,D"
+    },
+    {
+      "address": 58619,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58620,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58621,
+      "hex": "43",
+      "op": "LD B,E"
+    },
+    {
+      "address": 58622,
+      "hex": "77",
+      "op": "LD (HL),A"
+    },
+    {
+      "address": 58623,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 58624,
+      "hex": "10fc",
+      "op": "DJNZ $E4FE"
+    },
+    {
+      "address": 58626,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58627,
+      "hex": "012000",
+      "op": "LD BC,$0020"
+    },
+    {
+      "address": 58630,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58631,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58632,
+      "hex": "10f1",
+      "op": "DJNZ $E4FB"
+    },
+    {
+      "address": 58634,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58635,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58636,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58637,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58638,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58639,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58640,
+      "hex": "cd3be5",
+      "op": "CALL $E53B"
+    },
+    {
+      "address": 58643,
+      "hex": "42",
+      "op": "LD B,D"
+    },
+    {
+      "address": 58644,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58645,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58646,
+      "hex": "0608",
+      "op": "LD B,$08"
+    },
+    {
+      "address": 58648,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58649,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58650,
+      "hex": "43",
+      "op": "LD B,E"
+    },
+    {
+      "address": 58651,
+      "hex": "3600",
+      "op": "LD (HL),$00"
+    },
+    {
+      "address": 58653,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 58654,
+      "hex": "10fb",
+      "op": "DJNZ $E51B"
+    },
+    {
+      "address": 58656,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58657,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58658,
+      "hex": "24",
+      "op": "INC H"
+    },
+    {
+      "address": 58659,
+      "hex": "10f3",
+      "op": "DJNZ $E518"
+    },
+    {
+      "address": 58661,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58662,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58663,
+      "hex": "7d",
+      "op": "LD A,L"
+    },
+    {
+      "address": 58664,
+      "hex": "c620",
+      "op": "ADD A,$20"
+    },
+    {
+      "address": 58666,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 58667,
+      "hex": "3004",
+      "op": "JR NC,$E531"
+    },
+    {
+      "address": 58669,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 58670,
+      "hex": "c608",
+      "op": "ADD A,$08"
+    },
+    {
+      "address": 58672,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 58673,
+      "hex": "10e1",
+      "op": "DJNZ $E514"
+    },
+    {
+      "address": 58675,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58676,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58677,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 58678,
+      "hex": "cdeae4",
+      "op": "CALL $E4EA"
+    },
+    {
+      "address": 58681,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58682,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58683,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58684,
+      "hex": "210008",
+      "op": "LD HL,$0800"
+    },
+    {
+      "address": 58687,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 58688,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 58690,
+      "hex": "cb1d",
+      "op": "RR L"
+    },
+    {
+      "address": 58692,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 58694,
+      "hex": "cb1d",
+      "op": "RR L"
+    },
+    {
+      "address": 58696,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 58698,
+      "hex": "cb1d",
+      "op": "RR L"
+    },
+    {
+      "address": 58700,
+      "hex": "b4",
+      "op": "OR H"
+    },
+    {
+      "address": 58701,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 58702,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 58703,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 58704,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 58705,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 58707,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58708,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58709,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58710,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58711,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58712,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58713,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58714,
+      "hex": "3eb6",
+      "op": "LD A,$B6"
+    },
+    {
+      "address": 58716,
+      "hex": "32f4e5",
+      "op": "LD ($E5F4),A"
+    },
+    {
+      "address": 58719,
+      "hex": "210058",
+      "op": "LD HL,$5800"
+    },
+    {
+      "address": 58722,
+      "hex": "110158",
+      "op": "LD DE,$5801"
+    },
+    {
+      "address": 58725,
+      "hex": "3645",
+      "op": "LD (HL),$45"
+    },
+    {
+      "address": 58727,
+      "hex": "01ff02",
+      "op": "LD BC,$02FF"
+    },
+    {
+      "address": 58730,
+      "hex": "edb0",
+      "op": "LDIR"
+    },
+    {
+      "address": 58732,
+      "hex": "2110e7",
+      "op": "LD HL,$E710"
+    },
+    {
+      "address": 58735,
+      "hex": "1664",
+      "op": "LD D,$64"
+    },
+    {
+      "address": 58737,
+      "hex": "46",
+      "op": "LD B,(HL)"
+    },
+    {
+      "address": 58738,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 58739,
+      "hex": "4e",
+      "op": "LD C,(HL)"
+    },
+    {
+      "address": 58740,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 58741,
+      "hex": "cda2e5",
+      "op": "CALL $E5A2"
+    },
+    {
+      "address": 58744,
+      "hex": "15",
+      "op": "DEC D"
+    },
+    {
+      "address": 58745,
+      "hex": "20f6",
+      "op": "JR NZ,$E571"
+    },
+    {
+      "address": 58747,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58748,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58749,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 58750,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58751,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58752,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58753,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58754,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58755,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58756,
+      "hex": "3eae",
+      "op": "LD A,$AE"
+    },
+    {
+      "address": 58758,
+      "hex": "32f4e5",
+      "op": "LD ($E5F4),A"
+    },
+    {
+      "address": 58761,
+      "hex": "2110e7",
+      "op": "LD HL,$E710"
+    },
+    {
+      "address": 58764,
+      "hex": "1664",
+      "op": "LD D,$64"
+    },
+    {
+      "address": 58766,
+      "hex": "46",
+      "op": "LD B,(HL)"
+    },
+    {
+      "address": 58767,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 58768,
+      "hex": "4e",
+      "op": "LD C,(HL)"
+    },
+    {
+      "address": 58769,
+      "hex": "cda2e5",
+      "op": "CALL $E5A2"
+    },
+    {
+      "address": 58772,
+      "hex": "0d",
+      "op": "DEC C"
+    },
+    {
+      "address": 58773,
+      "hex": "71",
+      "op": "LD (HL),C"
+    },
+    {
+      "address": 58774,
+      "hex": "cda2e5",
+      "op": "CALL $E5A2"
+    },
+    {
+      "address": 58777,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 58778,
+      "hex": "15",
+      "op": "DEC D"
+    },
+    {
+      "address": 58779,
+      "hex": "20f1",
+      "op": "JR NZ,$E58E"
+    },
+    {
+      "address": 58781,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58782,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58783,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 58784,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58785,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58786,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58787,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58788,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58789,
+      "hex": "2600",
+      "op": "LD H,$00"
+    },
+    {
+      "address": 58791,
+      "hex": "68",
+      "op": "LD L,B"
+    },
+    {
+      "address": 58792,
+      "hex": "cb3d",
+      "op": "SRL L"
+    },
+    {
+      "address": 58794,
+      "hex": "cb3d",
+      "op": "SRL L"
+    },
+    {
+      "address": 58796,
+      "hex": "cb3d",
+      "op": "SRL L"
+    },
+    {
+      "address": 58798,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58799,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58800,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58801,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58802,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58803,
+      "hex": "79",
+      "op": "LD A,C"
+    },
+    {
+      "address": 58804,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 58806,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 58808,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 58810,
+      "hex": "85",
+      "op": "ADD A,L"
+    },
+    {
+      "address": 58811,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 58812,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 58813,
+      "hex": "c658",
+      "op": "ADD A,$58"
+    },
+    {
+      "address": 58815,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 58816,
+      "hex": "7e",
+      "op": "LD A,(HL)"
+    },
+    {
+      "address": 58817,
+      "hex": "fe45",
+      "op": "CP $45"
+    },
+    {
+      "address": 58819,
+      "hex": "2031",
+      "op": "JR NZ,$E5F6"
+    },
+    {
+      "address": 58821,
+      "hex": "210002",
+      "op": "LD HL,$0200"
+    },
+    {
+      "address": 58824,
+      "hex": "cb20",
+      "op": "SLA B"
+    },
+    {
+      "address": 58826,
+      "hex": "cb14",
+      "op": "RL H"
+    },
+    {
+      "address": 58828,
+      "hex": "cb20",
+      "op": "SLA B"
+    },
+    {
+      "address": 58830,
+      "hex": "cb14",
+      "op": "RL H"
+    },
+    {
+      "address": 58832,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 58833,
+      "hex": "e6e0",
+      "op": "AND $E0"
+    },
+    {
+      "address": 58835,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 58836,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 58837,
+      "hex": "0f",
+      "op": "RRCA"
+    },
+    {
+      "address": 58838,
+      "hex": "0f",
+      "op": "RRCA"
+    },
+    {
+      "address": 58839,
+      "hex": "e607",
+      "op": "AND $07"
+    },
+    {
+      "address": 58841,
+      "hex": "cb24",
+      "op": "SLA H"
+    },
+    {
+      "address": 58843,
+      "hex": "cb24",
+      "op": "SLA H"
+    },
+    {
+      "address": 58845,
+      "hex": "cb24",
+      "op": "SLA H"
+    },
+    {
+      "address": 58847,
+      "hex": "b4",
+      "op": "OR H"
+    },
+    {
+      "address": 58848,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 58849,
+      "hex": "79",
+      "op": "LD A,C"
+    },
+    {
+      "address": 58850,
+      "hex": "e607",
+      "op": "AND $07"
+    },
+    {
+      "address": 58852,
+      "hex": "cb39",
+      "op": "SRL C"
+    },
+    {
+      "address": 58854,
+      "hex": "cb39",
+      "op": "SRL C"
+    },
+    {
+      "address": 58856,
+      "hex": "cb39",
+      "op": "SRL C"
+    },
+    {
+      "address": 58858,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 58860,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58861,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 58862,
+      "hex": "47",
+      "op": "LD B,A"
+    },
+    {
+      "address": 58863,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 58864,
+      "hex": "37",
+      "op": "SCF"
+    },
+    {
+      "address": 58865,
+      "hex": "1f",
+      "op": "RRA"
+    },
+    {
+      "address": 58866,
+      "hex": "10fd",
+      "op": "DJNZ $E5F1"
+    },
+    {
+      "address": 58868,
+      "hex": "ae",
+      "op": "XOR (HL)"
+    },
+    {
+      "address": 58869,
+      "hex": "77",
+      "op": "LD (HL),A"
+    },
+    {
+      "address": 58870,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58871,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58872,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58873,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58874,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58875,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58876,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58877,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 58879,
+      "hex": "ed5356e6",
+      "op": "LD ($E656),DE"
+    },
+    {
+      "address": 58883,
+      "hex": "ed4b58e6",
+      "op": "LD BC,($E658)"
+    },
+    {
+      "address": 58887,
+      "hex": "2a5ae6",
+      "op": "LD HL,($E65A)"
+    },
+    {
+      "address": 58890,
+      "hex": "2258e6",
+      "op": "LD ($E658),HL"
+    },
+    {
+      "address": 58893,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58894,
+      "hex": "4d",
+      "op": "LD C,L"
+    },
+    {
+      "address": 58895,
+      "hex": "44",
+      "op": "LD B,H"
+    },
+    {
+      "address": 58896,
+      "hex": "2a5ce6",
+      "op": "LD HL,($E65C)"
+    },
+    {
+      "address": 58899,
+      "hex": "225ae6",
+      "op": "LD ($E65A),HL"
+    },
+    {
+      "address": 58902,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58903,
+      "hex": "cb25",
+      "op": "SLA L"
+    },
+    {
+      "address": 58905,
+      "hex": "cb14",
+      "op": "RL H"
+    },
+    {
+      "address": 58907,
+      "hex": "3002",
+      "op": "JR NC,$E61F"
+    },
+    {
+      "address": 58909,
+      "hex": "cbc5",
+      "op": "SET 0,L"
+    },
+    {
+      "address": 58911,
+      "hex": "225ce6",
+      "op": "LD ($E65C),HL"
+    },
+    {
+      "address": 58914,
+      "hex": "4d",
+      "op": "LD C,L"
+    },
+    {
+      "address": 58915,
+      "hex": "44",
+      "op": "LD B,H"
+    },
+    {
+      "address": 58916,
+      "hex": "dd2156e6",
+      "op": "LD IX,$E656"
+    },
+    {
+      "address": 58920,
+      "hex": "210000",
+      "op": "LD HL,$0000"
+    },
+    {
+      "address": 58923,
+      "hex": "110000",
+      "op": "LD DE,$0000"
+    },
+    {
+      "address": 58926,
+      "hex": "3e10",
+      "op": "LD A,$10"
+    },
+    {
+      "address": 58928,
+      "hex": "ddcb0026",
+      "op": "SLA (IX+$00)"
+    },
+    {
+      "address": 58932,
+      "hex": "ddcb0116",
+      "op": "RL (IX+$01)"
+    },
+    {
+      "address": 58936,
+      "hex": "3004",
+      "op": "JR NC,$E63E"
+    },
+    {
+      "address": 58938,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 58939,
+      "hex": "3001",
+      "op": "JR NC,$E63E"
+    },
+    {
+      "address": 58941,
+      "hex": "13",
+      "op": "INC DE"
+    },
+    {
+      "address": 58942,
+      "hex": "3d",
+      "op": "DEC A"
+    },
+    {
+      "address": 58943,
+      "hex": "280a",
+      "op": "JR Z,$E64B"
+    },
+    {
+      "address": 58945,
+      "hex": "cb25",
+      "op": "SLA L"
+    },
+    {
+      "address": 58947,
+      "hex": "cb14",
+      "op": "RL H"
+    },
+    {
+      "address": 58949,
+      "hex": "cb13",
+      "op": "RL E"
+    },
+    {
+      "address": 58951,
+      "hex": "cb12",
+      "op": "RL D"
+    },
+    {
+      "address": 58953,
+      "hex": "18e5",
+      "op": "JR $E630"
+    },
+    {
+      "address": 58955,
+      "hex": "cb7c",
+      "op": "BIT 7,H"
+    },
+    {
+      "address": 58957,
+      "hex": "2801",
+      "op": "JR Z,$E650"
+    },
+    {
+      "address": 58959,
+      "hex": "13",
+      "op": "INC DE"
+    },
+    {
+      "address": 58960,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 58962,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 58963,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 58964,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 58965,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 58974,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 58975,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58976,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 58977,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 58978,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 58980,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 58981,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 58982,
+      "hex": "cb27",
+      "op": "SLA A"
+    },
+    {
+      "address": 58984,
+      "hex": "80",
+      "op": "ADD A,B"
+    },
+    {
+      "address": 58985,
+      "hex": "2600",
+      "op": "LD H,$00"
+    },
+    {
+      "address": 58987,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 58988,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58989,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58990,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58991,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58992,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 58993,
+      "hex": "79",
+      "op": "LD A,C"
+    },
+    {
+      "address": 58994,
+      "hex": "cb27",
+      "op": "SLA A"
+    },
+    {
+      "address": 58996,
+      "hex": "85",
+      "op": "ADD A,L"
+    },
+    {
+      "address": 58997,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 58998,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 58999,
+      "hex": "c658",
+      "op": "ADD A,$58"
+    },
+    {
+      "address": 59001,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 59002,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 59003,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 59005,
+      "hex": "dd7200",
+      "op": "LD (IX+$00),D"
+    },
+    {
+      "address": 59008,
+      "hex": "dd7201",
+      "op": "LD (IX+$01),D"
+    },
+    {
+      "address": 59011,
+      "hex": "dd7220",
+      "op": "LD (IX+$20),D"
+    },
+    {
+      "address": 59014,
+      "hex": "dd7221",
+      "op": "LD (IX+$21),D"
+    },
+    {
+      "address": 59017,
+      "hex": "dd7240",
+      "op": "LD (IX+$40),D"
+    },
+    {
+      "address": 59020,
+      "hex": "dd7241",
+      "op": "LD (IX+$41),D"
+    },
+    {
+      "address": 59023,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 59024,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 59025,
+      "hex": "80",
+      "op": "ADD A,B"
+    },
+    {
+      "address": 59026,
+      "hex": "47",
+      "op": "LD B,A"
+    },
+    {
+      "address": 59027,
+      "hex": "cb21",
+      "op": "SLA C"
+    },
+    {
+      "address": 59029,
+      "hex": "210008",
+      "op": "LD HL,$0800"
+    },
+    {
+      "address": 59032,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 59033,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 59035,
+      "hex": "cb1d",
+      "op": "RR L"
+    },
+    {
+      "address": 59037,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 59039,
+      "hex": "cb1d",
+      "op": "RR L"
+    },
+    {
+      "address": 59041,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 59043,
+      "hex": "cb1d",
+      "op": "RR L"
+    },
+    {
+      "address": 59045,
+      "hex": "b4",
+      "op": "OR H"
+    },
+    {
+      "address": 59046,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 59047,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 59048,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 59049,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 59050,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 59052,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 59053,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 59054,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 59056,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 59057,
+      "hex": "2600",
+      "op": "LD H,$00"
+    },
+    {
+      "address": 59059,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 59060,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 59061,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 59062,
+      "hex": "0100da",
+      "op": "LD BC,$DA00"
+    },
+    {
+      "address": 59065,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 59066,
+      "hex": "0608",
+      "op": "LD B,$08"
+    },
+    {
+      "address": 59068,
+      "hex": "7e",
+      "op": "LD A,(HL)"
+    },
+    {
+      "address": 59069,
+      "hex": "cdfae6",
+      "op": "CALL $E6FA"
+    },
+    {
+      "address": 59072,
+      "hex": "cdd3e6",
+      "op": "CALL $E6D3"
+    },
+    {
+      "address": 59075,
+      "hex": "cdd3e6",
+      "op": "CALL $E6D3"
+    },
+    {
+      "address": 59078,
+      "hex": "cdd3e6",
+      "op": "CALL $E6D3"
+    },
+    {
+      "address": 59081,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 59082,
+      "hex": "10f0",
+      "op": "DJNZ $E6BC"
+    },
+    {
+      "address": 59084,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 59086,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 59087,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 59088,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 59089,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 59090,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 59091,
+      "hex": "dd7200",
+      "op": "LD (IX+$00),D"
+    },
+    {
+      "address": 59094,
+      "hex": "dd7301",
+      "op": "LD (IX+$01),E"
+    },
+    {
+      "address": 59097,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 59098,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 59100,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 59101,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 59102,
+      "hex": "e607",
+      "op": "AND $07"
+    },
+    {
+      "address": 59104,
+      "hex": "fe07",
+      "op": "CP $07"
+    },
+    {
+      "address": 59106,
+      "hex": "2803",
+      "op": "JR Z,$E6E7"
+    },
+    {
+      "address": 59108,
+      "hex": "24",
+      "op": "INC H"
+    },
+    {
+      "address": 59109,
+      "hex": "180e",
+      "op": "JR $E6F5"
+    },
+    {
+      "address": 59111,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 59112,
+      "hex": "e6f8",
+      "op": "AND $F8"
+    },
+    {
+      "address": 59114,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 59115,
+      "hex": "7d",
+      "op": "LD A,L"
+    },
+    {
+      "address": 59116,
+      "hex": "c620",
+      "op": "ADD A,$20"
+    },
+    {
+      "address": 59118,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 59119,
+      "hex": "3004",
+      "op": "JR NC,$E6F5"
+    },
+    {
+      "address": 59121,
+      "hex": "7c",
+      "op": "LD A,H"
+    },
+    {
+      "address": 59122,
+      "hex": "c608",
+      "op": "ADD A,$08"
+    },
+    {
+      "address": 59124,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 59125,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 59126,
+      "hex": "dde1",
+      "op": "POP IX"
+    },
+    {
+      "address": 59128,
+      "hex": "e1",
+      "op": "POP HL"
+    },
+    {
+      "address": 59129,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 59130,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 59131,
+      "hex": "0608",
+      "op": "LD B,$08"
+    },
+    {
+      "address": 59133,
+      "hex": "cb23",
+      "op": "SLA E"
+    },
+    {
+      "address": 59135,
+      "hex": "cb12",
+      "op": "RL D"
+    },
+    {
+      "address": 59137,
+      "hex": "cb23",
+      "op": "SLA E"
+    },
+    {
+      "address": 59139,
+      "hex": "cb12",
+      "op": "RL D"
+    },
+    {
+      "address": 59141,
+      "hex": "07",
+      "op": "RLCA"
+    },
+    {
+      "address": 59142,
+      "hex": "3004",
+      "op": "JR NC,$E70C"
+    },
+    {
+      "address": 59144,
+      "hex": "cbc3",
+      "op": "SET 0,E"
+    },
+    {
+      "address": 59146,
+      "hex": "cbcb",
+      "op": "SET 1,E"
+    },
+    {
+      "address": 59148,
+      "hex": "10ef",
+      "op": "DJNZ $E6FD"
+    },
+    {
+      "address": 59150,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 59151,
+      "hex": "c9",
+      "op": "RET"
+    }
+  ],
+  "calls": {
+    "58874": [
+      57889,
+      57896,
+      58058,
+      58065
+    ],
+    "58300": [
+      57945
+    ],
+    "58636": [
+      57955,
+      58048,
+      58594,
+      58344
+    ],
+    "58710": [
+      57958,
+      57992,
+      58347
+    ],
+    "58279": [
+      57967,
+      57986,
+      58352,
+      58419
+    ],
+    "58510": [
+      57972
+    ],
+    "58554": [
+      57989
+    ],
+    "58786": [
+      58029,
+      58741,
+      58769,
+      58774
+    ],
+    "58478": [
+      58162,
+      58283
+    ],
+    "654": [
+      58485
+    ],
+    "58683": [
+      58640,
+      58462
+    ],
+    "58602": [
+      58678,
+      58436
+    ],
+    "58752": [
+      58289,
+      58533
+    ],
+    "58974": [
+      58530
+    ],
+    "59130": [
+      59069
+    ],
+    "59091": [
+      59072,
+      59075,
+      59078
+    ],
+    "58424": [
+      58398
+    ],
+    "58447": [
+      58441
+    ]
+  }
+}

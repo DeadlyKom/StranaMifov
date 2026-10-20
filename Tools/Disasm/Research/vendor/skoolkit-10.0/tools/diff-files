@@ -1,0 +1,182 @@
+#!/usr/bin/env bash
+RM_EMPTY_DIFFS=1
+DEF_PREFIX="X-"
+PREFIX=$DEF_PREFIX
+USED_EXP_DIFFS=used-exp-diffs
+
+UTILS=$(dirname $0)
+[[ ${UTILS:0:1} = "/" ]] || UTILS=$(pwd)/$UTILS
+
+check_diffs() {
+  diff_type=$1
+  ofile=$2
+
+  if [ $RM_EMPTY_DIFFS -eq 1 ] && [ ! -s $ofile ]; then
+    rm $ofile
+  fi
+  if [ $CHECK_DIFFS -eq 1 ] && [ -f $ofile ]; then
+    xdiff=$(dirname $ofile)/$PREFIX$(basename $ofile)
+    used_exp_diffs=$(dirname $ofile)/$USED_EXP_DIFFS-$(basename $ofile .diff).txt
+    exp_diffs_file=$DIFFS_DIR/exp-diffs-${diff_type}.txt
+    $UTILS/check-diffs.py $exp_diffs_file $ofile > $xdiff 2> $used_exp_diffs
+    if [ $RM_EMPTY_DIFFS -eq 1 ] && [ ! -s $xdiff ]; then
+      rm $xdiff
+    fi
+  fi
+}
+
+diff_files() {
+  diff_type=$1
+  old=$2
+  new=$3
+  file_type=${4:-$diff_type}
+  out=diffs-$diff_type
+
+  rm -rf $out
+  mkdir -p $out
+  echo -n "Writing diffs to $out..."
+  if ! ls $old/$diff_type/*.$file_type 2>&1 > /dev/null; then
+    echo "no $file_type files in $old/$diff_type"
+    return
+  fi
+
+  diff_file=$out/$diff_type.diff
+  for a in $old/$diff_type/*.$file_type; do
+    b=$(basename $a)
+    diff -Naur $a $new/$diff_type/$b >> $diff_file
+    echo >> $diff_file
+  done
+  check_diffs $diff_type $diff_file
+
+  $UTILS/unique-diffs.py $out/$USED_EXP_DIFFS-*.$file_type.txt > $out/$USED_EXP_DIFFS.txt
+  echo "done"
+}
+
+diff_html() {
+  old=$1/html
+  new=$2/html
+  out=diffs-html
+
+  rm -rf $out
+  mkdir -p $out
+  echo -n "Writing diffs to $out..."
+
+  diff_file=$out/html.diff
+  for d in $(ls -1 $new); do
+    diff -Naur -x '*.png' -x '*.wav' $old/$d $new/$d >> $diff_file
+    echo >> $diff_file
+  done
+  check_diffs html $diff_file
+
+  $UTILS/unique-diffs.py $out/$USED_EXP_DIFFS-*.html.txt > $out/$USED_EXP_DIFFS.txt
+  echo "done"
+}
+
+diff_media() {
+  mtype=$1 # png/wav
+  old=$2
+  new=$3
+
+  out=diffs-${mtype}
+  echo -n "Writing diffs to $out..."
+  rm -rf $old/${mtype} $new/${mtype}
+  game=$(ls -1 $new/html | head -1)
+  find $old/html/$game -name "*.${mtype}" | while read old_media; do
+    media_path=${old_media#$old/}
+    if [ -f $new/$media_path ] && ! cmp -s $old_media $new/$media_path; then
+      for d in $old $new; do
+        dump_file=$d/${mtype}/${media_path#html/$game}.dump
+        mkdir -p $(dirname $dump_file)
+        $UTILS/analyse-${mtype}.py --dump $d/$media_path > $dump_file
+      done
+    fi
+  done
+
+  rm -rf $out
+  mkdir -p $out
+  diff_file=$out/${mtype}.diff
+  if [ -e $new/${mtype} ]; then
+    diff -Naur $old/${mtype} $new/${mtype} > $diff_file
+    check_diffs ${mtype} $diff_file
+  fi
+  $UTILS/unique-diffs.py $out/$USED_EXP_DIFFS-*.${mtype}.txt > $out/$USED_EXP_DIFFS.txt
+  echo "done"
+}
+
+print_usage() {
+  cat >&2 << EOM
+Usage: $(basename $0) [options] DIR1 DIR2 TYPE [TYPE...]
+
+  Runs 'diff' on the ASM, BIN, CTL, DOT, HTML, PNG, SKOOL or WAV files in two
+  directories and outputs the results to suitably named files.
+
+  TYPE can be one of: asm bin ctl dot genctl html png skool wav all
+
+Options:
+  -d DIR     Filter diff files through check-diffs.py using exp-diffs-TYPE.txt
+             files in this directory
+  -k         Do not remove empty diff files
+  -p PREFIX  Name filtered diff files with this prefix (default: '$DEF_PREFIX')
+EOM
+  exit 1
+}
+
+###############################################################################
+# Begin...
+###############################################################################
+CHECK_DIFFS=0
+while getopts ":cd:e:p:k" opt; do
+  case $opt in
+    d) CHECK_DIFFS=1; DIFFS_DIR=$OPTARG ;;
+    p) PREFIX=$OPTARG ;;
+    k) RM_EMPTY_DIFFS=0 ;;
+    *) print_usage ;;
+  esac
+done
+
+if [ $# -lt 3 ]; then
+  print_usage
+fi
+
+shift $(($OPTIND - 1))
+
+OLD=$1
+NEW=$2
+
+if [ ! -d $OLD ]; then
+  echo "$OLD: directory not found"
+  exit 1
+fi
+if [ ! -d $NEW ]; then
+  echo "$NEW: directory not found"
+  exit 1
+fi
+
+shift 2
+
+while [ "$1" != "" ]; do
+  case "$1" in
+    asm) diff_files asm $OLD $NEW ;;
+    bin) diff_files bin $OLD $NEW dump ;;
+    ctl) diff_files ctl $OLD $NEW ;;
+    dot) diff_files dot $OLD $NEW ;;
+    genctl) diff_files genctl $OLD $NEW ctl ;;
+    html) diff_html $OLD $NEW ;;
+    png) diff_media png $OLD $NEW;;
+    skool) diff_files skool $OLD $NEW ;;
+    wav) diff_media wav $OLD $NEW;;
+    all)
+      diff_files asm $OLD $NEW
+      diff_bins bin $OLD $NEW
+      diff_files ctl $OLD $NEW
+      diff_files dot $OLD $NEW
+      diff_files genctl $OLD $NEW ctl
+      diff_html $OLD $NEW
+      diff_media png $OLD $NEW
+      diff_files skool $OLD $NEW
+      diff_media wav $OLD $NEW
+      ;;
+    *) echo "Skipping unknown file type: '$1'" ;;
+  esac
+  shift
+done

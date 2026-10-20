@@ -1,0 +1,37 @@
+{
+  "requestedEntryAndDirectCalls": 63,
+  "annotations": 72,
+  "missing": [],
+  "additionalCodeSeeds": [
+    58849,
+    59005,
+    59042,
+    59079,
+    59116,
+    59153,
+    59190,
+    59227,
+    59264,
+    64391
+  ],
+  "confirmedDataRanges": [
+    [
+      56228,
+      57363
+    ],
+    [
+      58937,
+      58989
+    ],
+    [
+      58989,
+      59005
+    ],
+    [
+      64696,
+      65428
+    ]
+  ],
+  "verification": "static source and original HELP only, no assembler, no full-game runtime",
+  "note": "адреса относятся к логическому банку боя 3, сборка и полный запуск игры не выполнялись"
+}

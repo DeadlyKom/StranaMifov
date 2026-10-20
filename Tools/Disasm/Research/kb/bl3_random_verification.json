@@ -1,0 +1,59 @@
+{
+  "mode": "bounded individual routine simulation, no build/full game",
+  "fixtures": [
+    {
+      "x": 1,
+      "y": 2,
+      "z": 3,
+      "limit": 0,
+      "result": 0,
+      "newz": 12,
+      "instructions": 186
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "z": 3,
+      "limit": 1,
+      "result": 0,
+      "newz": 12,
+      "instructions": 188
+    },
+    {
+      "x": 123,
+      "y": 456,
+      "z": 789,
+      "limit": 10,
+      "result": 0,
+      "newz": 2736,
+      "instructions": 190
+    },
+    {
+      "x": 65535,
+      "y": 65535,
+      "z": 65535,
+      "limit": 65535,
+      "result": 65530,
+      "newz": 65531,
+      "instructions": 234
+    },
+    {
+      "x": 33059,
+      "y": 32767,
+      "z": 39321,
+      "limit": 1000,
+      "result": 209,
+      "newz": 13687,
+      "instructions": 202
+    },
+    {
+      "x": 0,
+      "y": 0,
+      "z": 1,
+      "limit": 65000,
+      "result": 2,
+      "newz": 2,
+      "instructions": 209
+    }
+  ]
+}

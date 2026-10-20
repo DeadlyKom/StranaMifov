@@ -1,0 +1,10 @@
+{
+  "removed_header_evidence_lines": 842,
+  "removed_generic_comments": 6027,
+  "renamed_definitions": 1865,
+  "semantic_comments_added": 664,
+  "named_field_operands": 450,
+  "field_offset_comments": 553,
+  "removed_generic_right_comments": 155,
+  "moved_field_comments_to_right": 993
+}

@@ -1,0 +1,5636 @@
+{
+  "schema_version": 1,
+  "symbols": [
+    {
+      "module": "S10",
+      "address": 24926,
+      "hex": "#615E",
+      "name": "MainEntry",
+      "kind": "function",
+      "meaning": "передать управление инициализации игры",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24926,
+          "hex": "#615E",
+          "operation": "безусловный переход на #6335, файл содержит открытый машинный код"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 24929,
+      "hex": "#6161",
+      "name": "Interrupt",
+      "kind": "function",
+      "meaning": "обработать маскируемое прерывание IM 2",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24929,
+          "hex": "#6161",
+          "operation": "сохраняет основные и альтернативные регистры, IX, IY, текущий банк и изменяемые адреса вызова в #703B и #708D, увеличивает 16-битный счётчик #6561, при бите 5 #6566 обновляет анимацию символов #F2..#F5 через #70D4, при бите 2 вызывает #8104, затем ROM #386E и проверку #6BB0, восстанавливает состояние, EI, RETI"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 25372,
+      "hex": "#631C",
+      "name": "LoadRamDrive",
+      "kind": "function",
+      "meaning": "загрузить RAMDRIVE в служебную область #5FA0",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25372,
+          "hex": "#631C",
+          "operation": "копирует 9 байт имени RAMDRIVEC из #62A7 в #5CDD и вызывает TR-DOS через #6D15, адрес загрузки #5FA0"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 25397,
+      "hex": "#6335",
+      "name": "Initialize",
+      "kind": "function",
+      "meaning": "инициализировать стек, IM 2, ресурсы и главный цикл",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25397,
+          "hex": "#6335",
+          "operation": "SP=#62A5, #6000..#6100 заполнены #61, I=#60, IM 2, загружаются ресурсы по именам из таблицы #62A7..#631B, в конце #6470 начинается цикл игры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 25712,
+      "hex": "#6470",
+      "name": "MainLoop",
+      "kind": "function",
+      "meaning": "обновлять экран и обрабатывать ввод основного режима",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25712,
+          "hex": "#6470",
+          "operation": "#82D5, HALT, #8A2C, поиск пары в таблице #653A, загрузка оверлея #6C3B и CALL #B200, при отсутствии клавиши обработка #9704/#8DDA/#92CB и событий карты через #8CD1/#8D6E"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27533,
+      "hex": "#6B8D",
+      "name": "ClearBank8",
+      "kind": "function",
+      "meaning": "очистить рабочую область логического банка 8",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27533,
+          "hex": "#6B8D",
+          "operation": "сохраняет банк, включает 8, заполняет нулём #C000..#D8EF включительно, восстанавливает банк, регистры HL, DE, BC, AF сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27568,
+      "hex": "#6BB0",
+      "name": "CheckCalls",
+      "kind": "function",
+      "meaning": "проверить неизменность трёх инструкций CALL #6B8D",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27568,
+          "hex": "#6BB0",
+          "operation": "таблица адресов #6BE3 содержит #634D, #9455, #9587, в каждом месте проверяются opcode #CD и адрес #6B8D, нарушение ведёт на #0000, это явная встроенная проверка целостности"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27625,
+      "hex": "#6BE9",
+      "name": "Wait20Frames",
+      "kind": "function",
+      "meaning": "выдержать двадцать прерываний",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27625,
+          "hex": "#6BE9",
+          "operation": "B=20 и цикл HALT/DJNZ, исходный BC сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27633,
+      "hex": "#6BF1",
+      "name": "ReadInput",
+      "kind": "function",
+      "meaning": "прочитать клавиатуру или Kempston",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27633,
+          "hex": "#6BF1",
+          "operation": "вызывает ROM #028E, E=#FF означает отсутствие клавиши, затем десять раз опрашивает порт #1F и объединяет результаты, fire возвращает код #27, направления преобразуются таблицей #6C2B, carry установлен при распознанном вводе"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27707,
+      "hex": "#6C3B",
+      "name": "LoadOverlay",
+      "kind": "function",
+      "meaning": "скопировать выбранный оверлей в #B200",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27707,
+          "hex": "#6C3B",
+          "operation": "номер A сохраняется в #655E, #6C89 выбирает логический банк 12 либо 13, номер >=14 уменьшается на13, #6C97 возвращает исходный адрес и длину, LDIR копирует блок вместе с конечным маркером overlay"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27747,
+      "hex": "#6C63",
+      "name": "SaveOverlay",
+      "kind": "function",
+      "meaning": "сохранить изменённую рабочую копию оверлея в банк хранения",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27747,
+          "hex": "#6C63",
+          "operation": "обратное направление #6C3B, адреса меняются EX DE,HL перед LDIR, номер берётся из #655E, сохраняются самoизменяемые поля рабочего модуля"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27785,
+      "hex": "#6C89",
+      "name": "OverlayBank",
+      "kind": "function",
+      "meaning": "выбрать банк хранения по номеру оверлея",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27785,
+          "hex": "#6C89",
+          "operation": "номер <14 выбирает логический банк12, остальные банк13"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27799,
+      "hex": "#6C97",
+      "name": "FindOverlay",
+      "kind": "function",
+      "meaning": "найти исходный адрес и размер оверлея",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27799,
+          "hex": "#6C97",
+          "operation": "HL начинается с #C000, пропускает A-1 блоков по маркеру overlay, затем находит конец текущего блока, возвращает HL началом, BC длиной, длина включает семибайтный конечный маркер"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27824,
+      "hex": "#6CB0",
+      "name": "FindOverlayEnd",
+      "kind": "function",
+      "meaning": "найти следующий семибайтный маркер overlay",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27824,
+          "hex": "#6CB0",
+          "operation": "сканирует память по байту, сравнивая с #6CC1, HL возвращает адрес сразу после маркера, верхней границы поиска нет"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27848,
+      "hex": "#6CC8",
+      "name": "LoadFile",
+      "kind": "function",
+      "meaning": "загрузить именованный файл через TR-DOS",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27848,
+          "hex": "#6CC8",
+          "operation": "HL адрес девятибайтного имени с типом, DE адрес загрузки, имя переносится в #5CDD, #5D10=0, HL=адрес назначения, C=#0E, A=3, переход на #6D15"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27925,
+      "hex": "#6D15",
+      "name": "CallTrdos",
+      "kind": "function",
+      "meaning": "вызвать TR-DOS с временным режимом IM 1",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27925,
+          "hex": "#6D15",
+          "operation": "DI, IY=#5C3A, I=#3F, IM1, EI, CALL #3D13, после возврата DI, I=#60, IM2, EI, RET"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27951,
+      "hex": "#6D2F",
+      "name": "PageEI",
+      "kind": "function",
+      "meaning": "переключить логический банк и разрешить прерывания",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27951,
+          "hex": "#6D2F",
+          "operation": "CALL #5FA1, EI, RET, собственный формат номера банка реализует RAMDRIVE"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27956,
+      "hex": "#6D34",
+      "name": "StopView",
+      "kind": "function",
+      "meaning": "выключить обработку объектов в прерывании",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27956,
+          "hex": "#6D34",
+          "operation": "сбрасывает бит2 в #6566, AF сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27967,
+      "hex": "#6D3F",
+      "name": "ResetViewFlags",
+      "kind": "function",
+      "meaning": "сбросить младшие шесть флагов 48 записей объектов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27967,
+          "hex": "#6D3F",
+          "operation": "первая запись #6571, шаг20, каждая маскируется #C0, HL, DE, BC, AF сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 27991,
+      "hex": "#6D57",
+      "name": "StartView",
+      "kind": "function",
+      "meaning": "включить обработку объектов в прерывании",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27991,
+          "hex": "#6D57",
+          "operation": "устанавливает бит2 #6566, AF сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28002,
+      "hex": "#6D62",
+      "name": "StackBC",
+      "kind": "function",
+      "meaning": "передать целое BC на стек калькулятора ROM",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28002,
+          "hex": "#6D62",
+          "operation": "вызов ROM #2D2B с сохранением основных регистров, IX и IY"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28022,
+      "hex": "#6D76",
+      "name": "PopBC",
+      "kind": "function",
+      "meaning": "извлечь результат калькулятора ROM в BC",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28022,
+          "hex": "#6D76",
+          "operation": "вызов ROM #2DA2, остальные явно сохраняемые регистры восстановлены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28040,
+      "hex": "#6D88",
+      "name": "StackA",
+      "kind": "function",
+      "meaning": "передать байт A на стек калькулятора ROM",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28040,
+          "hex": "#6D88",
+          "operation": "вызов ROM #2D28 с сохранением основных регистров, IX и IY"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28060,
+      "hex": "#6D9C",
+      "name": "PopA",
+      "kind": "function",
+      "meaning": "извлечь байтовое целое из калькулятора ROM",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28060,
+          "hex": "#6D9C",
+          "operation": "ROM #2DD5 возвращает численный результат в A, в #7227 используется для получения отдельной десятичной цифры, HL,DE,BC,IX,IY сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28078,
+      "hex": "#6DAE",
+      "name": "StackFloat5",
+      "kind": "function",
+      "meaning": "передать пятибайтное число по HL на стек калькулятора",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28078,
+          "hex": "#6DAE",
+          "operation": "читает пять байтов в A,E,D,C,B и вызывает ROM #2ABB, возвращает HL после числа, DE,BC,AF сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28100,
+      "hex": "#6DC4",
+      "name": "StoreFloat5",
+      "kind": "function",
+      "meaning": "сохранить вершину калькулятора в пятибайтное поле по HL",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28100,
+          "hex": "#6DC4",
+          "operation": "ROM #2BF1 возвращает A,E,D,C,B, они записываются последовательно, HL увеличен на5, DE,BC,AF сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28122,
+      "hex": "#6DDA",
+      "name": "FloatSignZero",
+      "kind": "function",
+      "meaning": "определить знак и нулевое значение результата калькулятора",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28122,
+          "hex": "#6DDA",
+          "operation": "начинается RST #28 с токеном03 и END38, результат сохраняется в #6E09, бит7 #6E0A задаёт carry, OR пяти байт задаёт zero, название отражает только проверенные тесты"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28715,
+      "hex": "#702B",
+      "name": "DrawGlyph",
+      "kind": "function",
+      "meaning": "нарисовать восьмистрочный символ шрифта",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28715,
+          "hex": "#702B",
+          "operation": "использует логический банк11 и восемь байт на символ из #DFD0, вычисляет сдвиг и маску, меняет два соседних экранных байта на каждой из8 строк, переход строки INC IXH соответствует ZX Spectrum"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28824,
+      "hex": "#7098",
+      "name": "GlyphAddress",
+      "kind": "function",
+      "meaning": "вычислить экранный адрес и сдвиг символа",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28824,
+          "hex": "#7098",
+          "operation": "B участвует в нелинейном вычислении экранной строки, C задаёт X=6*C+2, IX получает адрес экранного байта, L=X AND7"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28869,
+      "hex": "#70C5",
+      "name": "DrawGlyphEI",
+      "kind": "function",
+      "meaning": "вывести символ с обычной процедурой переключения банка",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28869,
+          "hex": "#70C5",
+          "operation": "патчит операнды CALL в #703B и #708D на #6D2F, затем вызывает #702B"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28884,
+      "hex": "#70D4",
+      "name": "DrawGlyphDI",
+      "kind": "function",
+      "meaning": "вывести символ из прерывания с сохранением режима DI",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28884,
+          "hex": "#70D4",
+          "operation": "патчит операнды CALL в #703B и #708D на #5FA1, затем вызывает #702B, обработчик прерывания сохраняет прежние значения этих операндов"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28899,
+      "hex": "#70E3",
+      "name": "DrawNumber",
+      "kind": "function",
+      "meaning": "преобразовать число и вывести символы подряд",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28899,
+          "hex": "#70E3",
+          "operation": "#7227 формирует строку в #710C, ставится нулевой терминатор, затем #70C5 для каждого символа с INC C"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28951,
+      "hex": "#7117",
+      "name": "PrintMessage",
+      "kind": "function",
+      "meaning": "разобрать строку сообщения с управляющими кодами",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28951,
+          "hex": "#7117",
+          "operation": "DE строка, IX указатель разбора, #0E вставляет строку по 16-битному адресу, #0F вставляет целое, #10 вставляет пятибайтное число, #11 меняет формат, #0D завершает строку, 0 завершает сообщение, промежуточный буфер #72B3"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31732,
+      "hex": "#7BF4",
+      "name": "WaitOrInput",
+      "kind": "function",
+      "meaning": "выдержать паузу с досрочным выходом по вводу",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31732,
+          "hex": "#7BF4",
+          "operation": "сначала #6BE9, затем до B периодов по50 HALT, после каждого опрос #6BF1, carry завершает ожидание"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31757,
+      "hex": "#7C0D",
+      "name": "RandomScaled",
+      "kind": "function",
+      "meaning": "получить масштабированное псевдослучайное число",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31757,
+          "hex": "#7C0D",
+          "operation": "состояние из трёх слов #7C6B/#7C6D/#7C6F обновляется сложениями и циклическим сдвигом, затем16шаговое умножение нового16битного состояния на исходноеDE, возвращается старшее слово произведения, увеличенное на1если бит15младшего слова установлен, тоесть округление к ближайшему целому, результатDE"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32942,
+      "hex": "#80AE",
+      "name": "SelectMapBank",
+      "kind": "function",
+      "meaning": "выбрать логический банк10 с текущей картой",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32942,
+          "hex": "#80AE",
+          "operation": "A=10, CALL #6D2F"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32948,
+      "hex": "#80B4",
+      "name": "MapCellAddress",
+      "kind": "function",
+      "meaning": "вычислить адрес клетки карты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32948,
+          "hex": "#80B4",
+          "operation": "HL=#C000+161*B+C, строки хранятся с шагом161, DE и BC сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32964,
+      "hex": "#80C4",
+      "name": "ReadMapCell",
+      "kind": "function",
+      "meaning": "прочитать байт клетки текущей карты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32964,
+          "hex": "#80C4",
+          "operation": "сохраняет банк, выбирает банк10, вызывает #80B4, возвращает A=(HL), банк восстановлен"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34713,
+      "hex": "#8799",
+      "name": "RunOverlay20",
+      "kind": "function",
+      "meaning": "выполнить оверлей20 и продолжить подсчётом записей",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34713,
+          "hex": "#8799",
+          "operation": "A=20, #6C3B, CALL #B200, затем выполнение без RET продолжается в #87A1"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34721,
+      "hex": "#87A1",
+      "name": "CountOwnCastles",
+      "kind": "function",
+      "meaning": "подсчитать записи банка0 по флагу и полю #13",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34721,
+          "hex": "#87A1",
+          "operation": "просматривает80 записей с шагом35 от #C000, запись учитывается, если бит0 флагов сброшен и поле+19 равно0, результат C"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34817,
+      "hex": "#8801",
+      "name": "ShowScene",
+      "kind": "function",
+      "meaning": "выбрать и показать картинку из BL1 либо BL2",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34817,
+          "hex": "#8801",
+          "operation": "A<6 выбирает логический банк14 и индекс A, A>=6 выбирает15 и индекс A-5, индекс пишется в #C002, вызывается процедура #C000, экран предварительно очищается через #73CF"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34874,
+      "hex": "#883A",
+      "name": "BuildArmy",
+      "kind": "function",
+      "meaning": "преобразовать состав армии в пять боевых записей по18 байт",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34874,
+          "hex": "#883A",
+          "operation": "целевые записи IY сначала очищаются на90 байт, исходные записи IX имеют шаг3, пятибайтное количество записывается в+2..6, координаты из HL в+10/+11, характеристики из описателя #8036 в+7,+8,+9"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 25914,
+      "hex": "#653A",
+      "name": "OverlayKeys",
+      "kind": "table",
+      "meaning": "таблица соответствия кодов клавиш и номеров оверлеев",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25914,
+          "hex": "#653A",
+          "operation": "11 пар байтов, нулевой терминатор #6550, поиск в #647A..#648F, буквенные клавиши сопоставлены оригинальной справке с фактической последовательностью обработчиков"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 25936,
+      "hex": "#6550",
+      "name": "ObjectOverlays",
+      "kind": "table",
+      "meaning": "таблица оверлеев для типов объектов карты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25936,
+          "hex": "#6550",
+          "operation": "байты 0,1,2,3,4,4,4,4,5,6,18,19, индекс C из #8CD1, загружаемый номер берётся в #64D5..#64DF"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32822,
+      "hex": "#8036",
+      "name": "UnitDesc",
+      "kind": "function",
+      "meaning": "получить описатель типа отряда",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32822,
+          "hex": "#8036",
+          "operation": "выбирает логический банк3, IX=#BFD6+42*A, ID1 соответствует первому элементу SOLDIERS по #C000, A сохраняется, нулевой ID не допускается из-за DJNZ"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32846,
+      "hex": "#804E",
+      "name": "RulerDesc",
+      "kind": "function",
+      "meaning": "получить описатель одного из пятнадцати вражеских правителей",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32846,
+          "hex": "#804E",
+          "operation": "банк3, IX=#CCAF+28*A, ID1 соответствует #CCCB, записи содержат21байт имени и0, затем16битные текущую магическую силу+22, максимум+24 и восстановление+26, имена и вывод владельца подтверждены оверлеями1/2/17/21, поля пополняются #A082"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32870,
+      "hex": "#8066",
+      "name": "SpellDesc",
+      "kind": "function",
+      "meaning": "получить описатель одного из десяти заклинаний",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32870,
+          "hex": "#8066",
+          "operation": "банк3, IX=#CE58+23*A, ID1 соответствует #CE6F, имя20байт и0, стоимость магической силы в+21/+22, бой #D993 читает эту стоимость и передаёт #DB75 для списания, названия Заморозка, Ослепление, Шаровая молния и другие"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32894,
+      "hex": "#807E",
+      "name": "CompactArmy",
+      "kind": "function",
+      "meaning": "сжать список трёхбайтных записей армии",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32894,
+          "hex": "#807E",
+          "operation": "HL начало списка, B число записей, непустые записи с ID!=0 копируются в начало через LDI, свободный хвост заполняется нулями, C число непустых записей"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29505,
+      "hex": "#7341",
+      "name": "ViewCellAddr",
+      "kind": "function",
+      "meaning": "найти экранный объект клетки и связанное численное поле",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29505,
+          "hex": "#7341",
+          "operation": "IX=#6571+160*B+20*C, HL=#6931+16*B+2*C, экранная сетка8столбцов на6строк, DE,BC,AF сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29542,
+      "hex": "#7366",
+      "name": "SetUnitPicture",
+      "kind": "function",
+      "meaning": "создать четырёхкадровый экранный объект",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29542,
+          "hex": "#7366",
+          "operation": "сначала #7341, затем #80DB выбирает исходный ресурс, тип4, счётчик1, задержка9, кадров4, фоновый банк4 по #C000, четыре трёхбайтных кадра получают C и адреса HL с шагом256"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29613,
+      "hex": "#73AD",
+      "name": "FillAttributes",
+      "kind": "function",
+      "meaning": "заполнить прямоугольник атрибутов цветом A",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29613,
+          "hex": "#73AD",
+          "operation": "B строка, C столбец в знакоместах, D высота, E ширина, адрес #5800+32*B+C, строки с шагом32"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29647,
+      "hex": "#73CF",
+      "name": "ClearRectangle",
+      "kind": "function",
+      "meaning": "обнулить пиксели прямоугольника и заполнить его атрибуты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29647,
+          "hex": "#73CF",
+          "operation": "BC начало в знакоместах, D высота, E ширина, восемь пиксельных строк на знакоместо, после очистки #73AD пишет атрибутA"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29694,
+      "hex": "#73FE",
+      "name": "DrawFrame",
+      "kind": "function",
+      "meaning": "нарисовать рамку окна из восьми одноклеточных элементов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29694,
+          "hex": "#73FE",
+          "operation": "BC левый верхний угол, E внутренняя ширина, D внутренняя высота, A атрибут, углы и границы из #74AF..#74ED, центр пустой элемент #74EE, вывод через #7545"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29943,
+      "hex": "#74F7",
+      "name": "GrabTile4x4",
+      "kind": "function",
+      "meaning": "сохранить прямоугольник экрана4на4знакоместа в буфер DE",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29943,
+          "hex": "#74F7",
+          "operation": "BC экранная позиция, копирует128байт пикселей в порядке8строк каждого ряда знакомест, затем16байт атрибутов, общий размер144байта"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30021,
+      "hex": "#7545",
+      "name": "DrawRawSprite",
+      "kind": "function",
+      "meaning": "вывести непрозрачный спрайт с атрибутами",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30021,
+          "hex": "#7545",
+          "operation": "IX источник, BC позиция в знакоместах, D высота, E ширина, сначала8*D*E пиксельных байтов, затем D*E атрибутов, ограничение экраном отсутствует"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30114,
+      "hex": "#75A2",
+      "name": "DrawMask",
+      "kind": "function",
+      "meaning": "вывести пиксельный спрайт по маске",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30114,
+          "hex": "#75A2",
+          "operation": "IX пиксели, IY маска, BC позиция в знакоместах, D высота, E ширина, формула экран=(экран AND маска) OR пиксели, атрибуты не изменяются"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30177,
+      "hex": "#75E1",
+      "name": "DrawRawMirrored",
+      "kind": "function",
+      "meaning": "вывести непрозрачный спрайт с горизонтальным отражением",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30177,
+          "hex": "#75E1",
+          "operation": "вариант #7545, байты каждой строки идут справа налево, каждый пиксельный байт отражается через #76AE, атрибуты также пишутся справа налево"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30281,
+      "hex": "#7649",
+      "name": "DrawMaskFlip",
+      "kind": "function",
+      "meaning": "вывести маскированный спрайт с горизонтальным отражением",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30281,
+          "hex": "#7649",
+          "operation": "вариант #75A2, байты маски и пикселей отражаются через #76AE и строки пишутся справа налево, атрибуты не изменяются"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30355,
+      "hex": "#7693",
+      "name": "CellAddress",
+      "kind": "function",
+      "meaning": "вычислить ZX-адрес верхней пиксельной строки знакоместа",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30355,
+          "hex": "#7693",
+          "operation": "B строка знакомест, C столбец, HL экранный адрес в нелинейной области #4000..#57FF, BC сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30382,
+      "hex": "#76AE",
+      "name": "ReverseBits",
+      "kind": "function",
+      "meaning": "отразить восемь бит байта A",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30382,
+          "hex": "#76AE",
+          "operation": "восемь раз SLA A и RR C, возвращает A с обратным порядком бит, BC сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 33028,
+      "hex": "#8104",
+      "name": "RenderObjects",
+      "kind": "function",
+      "meaning": "обновить48экранных объектов сетки8на6",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 33028,
+          "hex": "#8104",
+          "operation": "записи #6571 шаг20, каждая занимает4на4знакоместа, типы1 и2 выводят разные форматы, тип3 фон и маску, тип4 анимирован, биты7/6 выбирают горизонтальное отражение, бит5 включает численную подпись через #827A"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 33348,
+      "hex": "#8244",
+      "name": "DrawBackLayer",
+      "kind": "function",
+      "meaning": "нарисовать фон объекта4на4знакоместа",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 33348,
+          "hex": "#8244",
+          "operation": "HL ресурс, A=0 вызывает #7545, A!=0 вызывает зеркальный #75E1"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 33371,
+      "hex": "#825B",
+      "name": "DrawMaskLayer",
+      "kind": "function",
+      "meaning": "нарисовать маскированный слой объекта4на4знакоместа",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 33371,
+          "hex": "#825B",
+          "operation": "HL пиксели, маска следует через128байт, A=0 вызывает #75A2, A!=0 вызывает зеркальный #7649"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 33402,
+      "hex": "#827A",
+      "name": "DrawCountDI",
+      "kind": "function",
+      "meaning": "вывести беззнаковое число из HL при обработке прерывания",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 33402,
+          "hex": "#827A",
+          "operation": "последовательные вычитания10000,1000,100,10,1 из таблицы #82CB, ведущие нули подавляются самомодификацией условного JP #82B1, вывод символов #70D4"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 33493,
+      "hex": "#82D5",
+      "name": "UpdateLocalView",
+      "kind": "function",
+      "meaning": "отметить открытые клетки вокруг героя и подготовить экранные объекты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "позиция #6A2E, область5на5 от позиции-2 до+2, в логическом банке11 карты посещения имеют шаг2100байт на континент и21байт на строку, устанавливает соответствующие биты, затем читает карту банка10 и формирует объекты от #6611"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35372,
+      "hex": "#8A2C",
+      "name": "HandleMapInput",
+      "kind": "function",
+      "meaning": "получить команду главного режима и обработать движение",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35372,
+          "hex": "#8A2C",
+          "operation": "ожидает carry от #6BF1, восемь кодов направлений меняют BC относительно #6A2E, остальные проверяются таблицей #653A, движение возвращает0 в A, команды возвращают код, дальше проверяются режим и клетка назначения"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28174,
+      "hex": "#6E0E",
+      "name": "EditText",
+      "kind": "function",
+      "meaning": "редактировать строку с анимированным курсором",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28174,
+          "hex": "#6E0E",
+          "operation": "BC экранная позиция, IX буфер, A максимальная длина, сохраняет состояние в #6E9B..#6E9F, бит5 #6566 включает курсор, #0C удаляет символ, #0D/#0E завершают ввод, вводимый символ записывается в буфер с ограничением длины"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28281,
+      "hex": "#6E79",
+      "name": "DrawEditText",
+      "kind": "function",
+      "meaning": "перерисовать поле редактирования",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28281,
+          "hex": "#6E79",
+          "operation": "длина из #6E9F, буфер из #6E9D, экранная позиция #6E9B, по #70C5 выводит все символы и завершающий пробел"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28320,
+      "hex": "#6EA0",
+      "name": "ReadTextChar",
+      "kind": "function",
+      "meaning": "прочитать и преобразовать символ текстового ввода",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28320,
+          "hex": "#6EA0",
+          "operation": "ждёт LAST_K #5C08, #07 меняет бит6 #6566, #06 меняет бит1, бит4 ограничивает ввод цифрами, бит1 меняет регистр латиницы, бит6 включает таблицу русского алфавита"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28453,
+      "hex": "#6F25",
+      "name": "RemapKey",
+      "kind": "function",
+      "meaning": "заменить специальные коды клавиатуры по таблице",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28453,
+          "hex": "#6F25",
+          "operation": "семь пар байтов #6F42, совпавший код заменяется вторым байтом пары"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 28608,
+      "hex": "#6FC0",
+      "name": "EditNumber",
+      "kind": "function",
+      "meaning": "ввести число из не более пяти цифр",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 28608,
+          "hex": "#6FC0",
+          "operation": "ставит бит4 #6566, пять пробелов в #7025, вызывает #6E0E с длиной5, #0E либо пустое поле означают отмену, цифры разбираются через ROM калькулятор с десятичным масштабированием, при успешном вводе A=#0D"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29223,
+      "hex": "#7227",
+      "name": "NumberToDecimal",
+      "kind": "function",
+      "meaning": "преобразовать число калькулятора в десятичные цифры",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29223,
+          "hex": "#7227",
+          "operation": "DE буфер назначения, использует пятьбайтное поле #72DE и десятьбайтный массив цифр #72E3, через калькулятор последовательно получает десять разрядов, подавляет ведущие нули, записывает ASCII0..9 без нулевого терминатора, DE после последней цифры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 29421,
+      "hex": "#72ED",
+      "name": "GrabUnitTile",
+      "kind": "function",
+      "meaning": "сохранить фон и создать анимированный объект4на4знакоместа",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 29421,
+          "hex": "#72ED",
+          "operation": "BC индекс объекта, умножается на4 для #74F7, DE буфер фона, #7341 возвращает объект, задаются тип4 и четыре кадра из ресурса #80DB, в+5 сохраняется текущий банк, +6/+7 адрес фона"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30396,
+      "hex": "#76BC",
+      "name": "DrawMenuCursor",
+      "kind": "function",
+      "meaning": "нарисовать указатель меню с пиксельным смещением",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30396,
+          "hex": "#76BC",
+          "operation": "разница младших3бит X прежней позиции #79CA и новой #79CC определяет циклический сдвиг пикселей и маски #7980/#79A5, затем8строк по3байта рисуются #7722"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30459,
+      "hex": "#76FB",
+      "name": "PixelAddress",
+      "kind": "function",
+      "meaning": "вычислить адрес байта экрана по пиксельным координатам",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30459,
+          "hex": "#76FB",
+          "operation": "B строка пикселей, C X, HL=#4000+((B AND#C0)*32)+((B AND7)*256)+((B AND#38)*4)+(C>>3), BC сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30498,
+      "hex": "#7722",
+      "name": "CursorMaskByte",
+      "kind": "function",
+      "meaning": "наложить один байт указателя в пределах пиксельной области",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30498,
+          "hex": "#7722",
+          "operation": "при H<#58 экран=(экран AND(IY)) OR(IX), затем HL,IX,IY увеличиваются даже для пропущенного байта"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30517,
+      "hex": "#7735",
+      "name": "SaveCursor",
+      "kind": "function",
+      "meaning": "сохранить фон под указателем меню",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30517,
+          "hex": "#7735",
+          "operation": "позиция #79CC, восемь пиксельных строк по3байта копируются в #79FE, всего24байта"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30544,
+      "hex": "#7750",
+      "name": "RestoreCursor",
+      "kind": "function",
+      "meaning": "восстановить фон под старой позицией указателя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30544,
+          "hex": "#7750",
+          "operation": "позиция #79CA, восемь пиксельных строк по3байта берутся из #79FE"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30573,
+      "hex": "#776D",
+      "name": "SelectMenuItem",
+      "kind": "function",
+      "meaning": "управлять указателем и выбрать прямоугольный пункт меню",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30573,
+          "hex": "#776D",
+          "operation": "IX описатель меню, +0 число областей, +1..4 границы перемещения, +5/+6 начальная пиксельная позиция, с+7 идут прямоугольники по4байта в знакоместах, #787E определяет активный пункт, #78D6 меняет его атрибуты, ввод через #791E, сохранение фона через #7735/#7750"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30846,
+      "hex": "#787E",
+      "name": "HitTestMenu",
+      "kind": "function",
+      "meaning": "найти прямоугольник меню под пиксельным указателем",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30846,
+          "hex": "#787E",
+          "operation": "IX+7 начало четырёхбайтных прямоугольников [left,top,right,bottom] в знакоместах, #79CC позиция в пикселях, границы слева/сверху включены, справа/снизу исключены, A номер1..N и IY прямоугольник, при отсутствии A=0,IY=0"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 30934,
+      "hex": "#78D6",
+      "name": "InvertMenuItem",
+      "kind": "function",
+      "meaning": "поменять местами INK и PAPER прямоугольного пункта меню",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 30934,
+          "hex": "#78D6",
+          "operation": "IY [left,top,right,bottom] в знакоместах, для каждого атрибута сохраняет FLASH/BRIGHT и меняет младшую и среднюю тройки бит, повторный вызов восстанавливает исходный цвет"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31006,
+      "hex": "#791E",
+      "name": "WaitMenuInput",
+      "kind": "function",
+      "meaning": "дождаться клавиши либо Kempston для меню",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31006,
+          "hex": "#791E",
+          "operation": "ROM #028E возвращает E, #FF означает отсутствие клавиши, затем порт#1F, fire возвращает#27, направления ищутся в таблице #793B, при неизвестном ненулевом значении поиск не ограничен"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31056,
+      "hex": "#7950",
+      "name": "CursorUp",
+      "kind": "function",
+      "meaning": "сдвинуть указатель меню на пиксель вверх",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31056,
+          "hex": "#7950",
+          "operation": "старый Y=#79CB, сравнивается с верхней границей IX+2, при допустимости новый Y-1 сохраняется #79CD"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31068,
+      "hex": "#795C",
+      "name": "CursorDown",
+      "kind": "function",
+      "meaning": "сдвинуть указатель меню на пиксель вниз",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31068,
+          "hex": "#795C",
+          "operation": "старый Y=#79CB, сравнивается с нижней границей IX+4, при допустимости новый Y+1 сохраняется #79CD"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31080,
+      "hex": "#7968",
+      "name": "CursorLeft",
+      "kind": "function",
+      "meaning": "сдвинуть указатель меню на пиксель влево",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31080,
+          "hex": "#7968",
+          "operation": "старый X=#79CA, сравнивается с левой границей IX+1, при допустимости новый X-1 сохраняется #79CC"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31092,
+      "hex": "#7974",
+      "name": "CursorRight",
+      "kind": "function",
+      "meaning": "сдвинуть указатель меню на пиксель вправо",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31092,
+          "hex": "#7974",
+          "operation": "старый X=#79CA, сравнивается с правой границей IX+3, при допустимости новый X+1 сохраняется #79CC"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31104,
+      "hex": "#7980",
+      "name": "ShiftCursorR",
+      "kind": "function",
+      "meaning": "циклически сдвинуть вправо24битные строки указателя и маски",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31104,
+          "hex": "#7980",
+          "operation": "A число сдвигов,16строк по3байта в #79CE..#79FD, крайний правый бит возвращается слева, #7A16 увеличивается на каждый выполненный сдвиг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31141,
+      "hex": "#79A5",
+      "name": "ShiftCursorL",
+      "kind": "function",
+      "meaning": "циклически сдвинуть влево24битные строки указателя и маски",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31141,
+          "hex": "#79A5",
+          "operation": "A число сдвигов,16строк по3байта #79CE..#79FD в обратном порядке, крайний левый бит возвращается справа, #7A16 уменьшается на каждый сдвиг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31255,
+      "hex": "#7A17",
+      "name": "SumArmyPower",
+      "kind": "function",
+      "meaning": "сложить произведения количества отрядов на поле силы типа",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31255,
+          "hex": "#7A17",
+          "operation": "стек калькулятора получает0, для каждой трёхбайтной записи берётся беззнаковое16битное количество и16битное поле22/23описателя SOLDIERS, токен04умножает,0Fприбавляет, нулевойID завершает раньше B, #9193 использует результат для сравнения сил армий, поле силы названо по проверенному потребителю"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31310,
+      "hex": "#7A4E",
+      "name": "SelectThreshold",
+      "kind": "function",
+      "meaning": "определить одну из четырёх категорий по порогам",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31310,
+          "hex": "#7A4E",
+          "operation": "IX база таблицы, читает три16битных порога со смещений4,8,12, сравнивает HL с каждым, возвращает A=1..4, HL и IX сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31348,
+      "hex": "#7A74",
+      "name": "IndexFourBytes",
+      "kind": "function",
+      "meaning": "сместить IX к четырёхбайтной записи с индексом A",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31348,
+          "hex": "#7A74",
+          "operation": "IX=IX+4*A, BC сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31360,
+      "hex": "#7A80",
+      "name": "NthName",
+      "kind": "function",
+      "meaning": "найти строку имени в списке с нулевыми разделителями",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31360,
+          "hex": "#7A80",
+          "operation": "таблица начинается после #69BB, A номер1.., пропускается Aнулевых терминаторов, DE возвращает начало следующей строки, HL,BC,AF сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31380,
+      "hex": "#7A94",
+      "name": "ClearTwoFlags",
+      "kind": "function",
+      "meaning": "обнулить два связанных байта таблиц",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31380,
+          "hex": "#7A94",
+          "operation": "#7AA4 даёт IX=#6A72+A, записывает0поIX и IX+25, IX сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31396,
+      "hex": "#7AA4",
+      "name": "IndexFlagArray",
+      "kind": "function",
+      "meaning": "получить указатель IX=#6A72+A",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31396,
+          "hex": "#7AA4",
+          "operation": "BC сохранён, индекс A расширяется нулём в B"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31408,
+      "hex": "#7AB0",
+      "name": "ArmyRating",
+      "kind": "function",
+      "meaning": "рассчитать оценку армии из суммы взвешенных количеств",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31408,
+          "hex": "#7AB0",
+          "operation": "на стек сначала100, до5записей #6A1E добавляют количество*поле22/23описателя/100, затем токены27,31 дают floor результата и его копию, формула floor(100+sum(количество*сила/100)), #957C использует показатель в панели с рейтингом"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31471,
+      "hex": "#7AEF",
+      "name": "UnitFlags",
+      "kind": "function",
+      "meaning": "прочитать пару флагов описателя отряда",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31471,
+          "hex": "#7AEF",
+          "operation": "A ID, возвращает DE из полей13/14описателя SOLDIERS, сохраняет исходный банк, IX,BC,AF"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31499,
+      "hex": "#7B0B",
+      "name": "MarkMapObjects",
+      "kind": "function",
+      "meaning": "пометить занятые клетки карты для групп объектов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31499,
+          "hex": "#7B0B",
+          "operation": "последовательно выбирает банки0/1 и группы указателей #6B79,#6AE9,#6AF9,#6B09,#6B19,#6B29 и др, задаёт размеры области BC и шаг записиDE, вызывает #7B97 для текущего континента"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31639,
+      "hex": "#7B97",
+      "name": "MarkObjectGroup",
+      "kind": "function",
+      "meaning": "установить бит7карты под активными записями группы",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31639,
+          "hex": "#7B97",
+          "operation": "A=#6A2D выбирает четырёхбайтную запись группы, оттуда указатель и количество, объекты с бит0поля0сброшенным размечаются прямоугольником заданного размера через #7BE3, адресная структура и размеры записаны в самомодифицируемые операнды #7BC6/#7BC8/#7BD9"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31715,
+      "hex": "#7BE3",
+      "name": "MarkMapCell",
+      "kind": "function",
+      "meaning": "установить бит7байта клетки стратегической карты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31715,
+          "hex": "#7BE3",
+          "operation": "BC координаты, сохраняет банк, выбирает карту #80AE, адрес #80B4, SET7,(HL), восстанавливает банк"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 31857,
+      "hex": "#7C71",
+      "name": "GetDirection",
+      "kind": "function",
+      "meaning": "определить одно из восьми направлений от BC к DE",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31857,
+          "hex": "#7C71",
+          "operation": "разности E-C и D-B сохраняются #7D1A/#7D1B, знак и отношение абсолютных разностей обрабатываются с ROM калькулятором, A возвращает код направления, DE адрес соответствующего названия в списке после #7D1B, HL,BC,IX,IY сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32107,
+      "hex": "#7D6B",
+      "name": "CountWord",
+      "kind": "function",
+      "meaning": "выбрать словесное описание величины HL",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32107,
+          "hex": "#7D6B",
+          "operation": "таблица16битных порогов после #7D94, A увеличивается до порога не меньше HL, затем выбирается одно из нуль-терминированных названий после #7DAF, DE адрес текста, HL и IX сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32341,
+      "hex": "#7E55",
+      "name": "PrintArmyBrief",
+      "kind": "function",
+      "meaning": "вывести краткий список состава армии",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32341,
+          "hex": "#7E55",
+          "operation": "IY трёхбайтные записи, A число записей, BC место вывода, для каждой непустой записи количество передаётся #7D6B для словесной оценки, #7EA7 формирует имя отряда, #7117 печатает сообщение #7E9F, следующая строка увеличивает B"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32423,
+      "hex": "#7EA7",
+      "name": "FormatUnitName",
+      "kind": "function",
+      "meaning": "сформировать имя типа отряда со специальным окончанием",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32423,
+          "hex": "#7EA7",
+          "operation": "A ID описателя #8036, в #7EE9 копируется первая часть имени до последнего символа перед пробелом либо0, затем добавляется строка-окончание из списка #7EF7 по ID, буфер заканчивается0"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32576,
+      "hex": "#7F40",
+      "name": "MoveToTarget",
+      "kind": "function",
+      "meaning": "преобразовать направление к цели в команду движения героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32576,
+          "hex": "#7F40",
+          "operation": "BC=#6A2E текущая позиция, DE=#69D5 цель, #7C71 возвращает направление A, код из таблицы #7F56 передаётся обработчику #8A31"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32607,
+      "hex": "#7F5F",
+      "name": "NearestObject",
+      "kind": "function",
+      "meaning": "найти ближайшую активную запись выбранной группы",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32607,
+          "hex": "#7F5F",
+          "operation": "D выбирает16байтный блок указателей от #6AD9, E континент через #7A74, A шаг исходной записи, BC опорные координаты, HL координаты исключаемой записи, сравнивает квадрат расстояния dx²+dy², IX ближайшая запись, минимум #7FEC и указатель #7FEE"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32752,
+      "hex": "#7FF0",
+      "name": "FloorDistance",
+      "kind": "function",
+      "meaning": "вычислить целую часть евклидова расстояния",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32752,
+          "hex": "#7FF0",
+          "operation": "BC и DE координаты, абсолютные8битные разности возводятся #801F в квадрат,16битная сумма передаётся калькулятору, токены28,27 означают квадратный корень и округление вниз, #6D76 возвращает BC, для карты161на100 сумма не переполняет16бит, вне этого диапазона сумма усечётся"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32799,
+      "hex": "#801F",
+      "name": "SquareByte",
+      "kind": "function",
+      "meaning": "возвести беззнаковый байт A в квадрат",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32799,
+          "hex": "#801F",
+          "operation": "8шаговое умножение shift-add, HL=A*A, DE и BC сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 32987,
+      "hex": "#80DB",
+      "name": "UnitSpriteAddr",
+      "kind": "function",
+      "meaning": "выбрать банк и начало четырёхкадрового графического ресурса",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32987,
+          "hex": "#80DB",
+          "operation": "A<10 даёт C=6, HL=#D700+1024*A, A>=10 даёт C=7, HL=#BC00+1024*(A-9), функция сохраняет DE,BC,AF кроме выходного C"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34029,
+      "hex": "#84ED",
+      "name": "PlaceViewLayer",
+      "kind": "function",
+      "meaning": "поставить графический слой только на текущем континенте и в области обзора",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34029,
+          "hex": "#84ED",
+          "operation": "A должен совпасть #6A2D, BC должен быть в #853F..#8542, иначе RET без размещения, входH/L задают банк/смещение данных, IY графический адрес, DE задаёт маскуE и флагиD, вычисляет запись от #655D со смещениями160*(B-top+1)+20*(C-left+1), поле0=(поле0 AND E) OR D, затем по смещениюL записывает байтH и двухбайтный графический адрес из входногоIY, операнды #852D/#8534/#8536 являются рабочими параметрами, IX принудительно=#6A2D"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34115,
+      "hex": "#8543",
+      "name": "PlaceGroup",
+      "kind": "function",
+      "meaning": "разместить прямоугольные объекты группы в локальном окне",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34115,
+          "hex": "#8543",
+          "operation": "входIX группа указателей, DE шаг записей, B высота и C ширина объекта, HL начало графических блоков по144байта, для каждой записи с бит0флага сброшенным перебирает прямоугольник от+1/+2, видимые клетки получают тип1, банк4 и адрес текущего144байтного блока, после каждой клетки HL+=144, проверка #8652 исключает клетки вне локальногоокна, размеры/шаг/начало хранятся в изменяемых операндах"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34256,
+      "hex": "#85D0",
+      "name": "PlaceCells",
+      "kind": "function",
+      "meaning": "разместить одноклеточные записи группы в локальном окне",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34256,
+          "hex": "#85D0",
+          "operation": "входIX группа указателей, DE шаг записи, HL графика при сброшенном бите5 исходных флагов, BC графика при установленном бите5, активная видимая запись добавляет маскированный слой: поле0экранного объекта OR #03 OR исходныйбит6, поле8=4(банк графики), поля9/10адрес выбранного изображения, фоновая часть объекта сохраняется"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34386,
+      "hex": "#8652",
+      "name": "InLocalView",
+      "kind": "function",
+      "meaning": "проверить попадание координат BC в прямоугольник локального окна",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34386,
+          "hex": "#8652",
+          "operation": "левая/верхняя границы #853F/#8540, правая/нижняя #8541/#8542, все границы включены, carry=1 внутри, carry=0 снаружи"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34418,
+      "hex": "#8672",
+      "name": "RunOwnCastle",
+      "kind": "function",
+      "meaning": "загрузить и выполнить обработчик своего замка",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34418,
+          "hex": "#8672",
+          "operation": "A=21, #6C3B переносит модуль, CALL #B200"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34429,
+      "hex": "#867D",
+      "name": "TerrainMask",
+      "kind": "function",
+      "meaning": "преобразовать младшие шесть бит байта местности по таблице порогов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34429,
+          "hex": "#867D",
+          "operation": "A AND#3F, пары порог/результат после #868A, выбирается результат первого порога строго больше A, HL сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34455,
+      "hex": "#8697",
+      "name": "TerrainBattle",
+      "kind": "function",
+      "meaning": "преобразовать местность по второй таблице порогов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34455,
+          "hex": "#8697",
+          "operation": "A AND#3F, пары порог/результат после #86A4, выбирается результат первого порога строго больше A, HL сохранён"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34481,
+      "hex": "#86B1",
+      "name": "FreeCapacity",
+      "kind": "function",
+      "meaning": "вычислить остаток допустимого количества выбранного типа отряда",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34481,
+          "hex": "#86B1",
+          "operation": "#86EA возвращает floor(лидерство/коэффициент типа), среди5записей #6A1E ищется совпадающий ID, из предела вычитается его существующее16битное количество, при заёме результат насыщается0, BC возвращает сколько ещё можно добавить, прочие основные и индексные регистры восстановлены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34538,
+      "hex": "#86EA",
+      "name": "ControlLimit",
+      "kind": "function",
+      "meaning": "рассчитать численный предел типа отряда из поля героя и таблицы",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34538,
+          "hex": "#86EA",
+          "operation": "BC=#6A02 передаётся ROM, байт по #6AD3+A второй операнд, последовательность калькулятора #05,#27,#38, #6D76 возвращает BC, остальные сохранённые регистры восстановлены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34578,
+      "hex": "#8712",
+      "name": "BottomFrame",
+      "kind": "function",
+      "meaning": "нарисовать окно в нижней части экрана",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34578,
+          "hex": "#8712",
+          "operation": "BC=#0E00, DE=#081E, #73FE строит рамку с атрибутомA"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34588,
+      "hex": "#871C",
+      "name": "NeedMoreMoney",
+      "kind": "function",
+      "meaning": "вывести сообщение о нехватке денег",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34588,
+          "hex": "#871C",
+          "operation": "A=#42 для #8712, затем #7117 печатает по BC=#1208 строку #872B «Денежки, денежки-то где ?»"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 34769,
+      "hex": "#87D1",
+      "name": "HasOwnerCastle",
+      "kind": "function",
+      "meaning": "найти активную запись с заданным владельцем",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34769,
+          "hex": "#87D1",
+          "operation": "вход B сравнивается с полем+19, до80записей по35байт в логическом банке0 от #C000, проверяется сброшенный бит0поля0, zero отражает найденное совпадение, все изменённые регистры явно восстанавливаются, указатель IX наружу не возвращается"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35066,
+      "hex": "#88FA",
+      "name": "StoreArmy",
+      "kind": "function",
+      "meaning": "преобразовать боевые записи обратно в исходный состав армии",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35066,
+          "hex": "#88FA",
+          "operation": "IX до5боевых записей по18байт в банке3, IY целевой массив записей по3байта в банкеC, сначала очищает Bисходных записей, ID переносится напрямую, пятибайтное количество преобразуется ROM в BC и записывается +1/+2, исходный банк восстановлен"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35181,
+      "hex": "#896D",
+      "name": "ArmyMood",
+      "kind": "function",
+      "meaning": "оценить совместимость типа отряда с составом армии",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35181,
+          "hex": "#896D",
+          "operation": "B ID оцениваемого отряда, C дополнительный параметр, HL список до5ID, DE шаг записей, в банке3 используется матрица от #CA40 со строкой25байт и индексомID, значение#FF завершает с результатом#FF, нулевое значение снижает базовый результат, поле17описателя может увеличить либо уменьшить итог, A оценка настроения"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35296,
+      "hex": "#89E0",
+      "name": "LoseLeadership",
+      "kind": "function",
+      "meaning": "уменьшить16битное поле героя #6A02 с насыщением0",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35296,
+          "hex": "#89E0",
+          "operation": "ROM формула использует число2 и пятибайтные поля #656C,#6567, токены #05,#04,#27, результатBC вычитается из #6A02, при заёме записывается0"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35336,
+      "hex": "#8A08",
+      "name": "GainLeadership",
+      "kind": "function",
+      "meaning": "увеличить16битное поле героя #6A02 с насыщением#FFFF",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35336,
+          "hex": "#8A08",
+          "operation": "ROM формула использует число2 и поля #6567,#656C в обратном порядке к #89E0, токены#05,#04,#27, результатBC прибавляется, при переносе записывается#FFFF"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35377,
+      "hex": "#8A31",
+      "name": "ApplyMoveCode",
+      "kind": "function",
+      "meaning": "применить уже полученный код движения к позиции героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35377,
+          "hex": "#8A31",
+          "operation": "входA, BC загружается #6A2E, восемь кодов направлений вызывают ограничивающие процедуры #8BDD/#8BF2/#8BF9/#8C15, затем общая проверка #8AA5, используется и автодвижением #7F40"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35805,
+      "hex": "#8BDD",
+      "name": "MapMoveUp",
+      "kind": "function",
+      "meaning": "уменьшить строку героя в пределах рабочей части карты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35805,
+          "hex": "#8BDD",
+          "operation": "при B=2 переход #8BE4 обрабатывает запрет шага, иначе DEC B, нижняя допустимая строка2"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35826,
+      "hex": "#8BF2",
+      "name": "MapMoveDown",
+      "kind": "function",
+      "meaning": "увеличить строку героя в пределах рабочей части карты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35826,
+          "hex": "#8BF2",
+          "operation": "при B=#61 переход #8BE4, иначе INC B, верхняя допустимая строка97"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35833,
+      "hex": "#8BF9",
+      "name": "MapMoveLeft",
+      "kind": "function",
+      "meaning": "уменьшить столбец героя и повернуть его влево",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35833,
+          "hex": "#8BF9",
+          "operation": "при C=2 переход #8BE4, иначе DEC C, в #6A33 сбрасывается бит3, при режиме1 также сбрасывается бит4"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35861,
+      "hex": "#8C15",
+      "name": "MapMoveRight",
+      "kind": "function",
+      "meaning": "увеличить столбец героя и повернуть его вправо",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35861,
+          "hex": "#8C15",
+          "operation": "при C=#9E переход #8BE4, иначе INC C, в #6A33 ставится бит3, при режиме1 также ставится бит4"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35889,
+      "hex": "#8C31",
+      "name": "MoveMask",
+      "kind": "function",
+      "meaning": "получить маску по текущему байту местности",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35889,
+          "hex": "#8C31",
+          "operation": "A=#8BD9, преобразование #867D, результатL"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 35897,
+      "hex": "#8C39",
+      "name": "FilterArmy",
+      "kind": "function",
+      "meaning": "отфильтровать армию по маске местности и обновить записи",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35897,
+          "hex": "#8C39",
+          "operation": "L=0 даёт обычный RET, иначе маска патчится в AND #8C5F/#8C81, если #8CD1 нашёл объект в текущей клетке, несовместимые по флагамE #7AEF ID армии обнуляются и список уплотняется, если объекта нет, первая несовместимая запись вызывает диалог «Мы туда не пойдём!», затем POP HL отбрасывает адрес возврата, обновляется вид #82D5 и управление переходит JP #8A2C, эта ветвь не возвращается вызывающей процедуре"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 36049,
+      "hex": "#8CD1",
+      "name": "FindMapObject",
+      "kind": "function",
+      "meaning": "определить тип объекта в координатах #8D29",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36049,
+          "hex": "#8CD1",
+          "operation": "проверяет специальные позиции #6A44/#6A4B для текущего континента, возвращает C=10/11 при совпадении, иначе бит7карты и девять групп из таблицы #8D41, #8D6E ищет запись, C=1..9 тип группы, C=0 отсутствие объекта"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 36206,
+      "hex": "#8D6E",
+      "name": "FindRecord",
+      "kind": "function",
+      "meaning": "найти активную запись группы, покрывающую координату HL",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36206,
+          "hex": "#8D6E",
+          "operation": "сначала бит7карты по HL, затем IX указатели текущего континента и количество, DE шаг, B/C размеры записи на карте, сравниваются координаты+1/+2 с областью, при совпадении A!=0 и IX запись, иначе A=0"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 36314,
+      "hex": "#8DDA",
+      "name": "StepArmies",
+      "kind": "function",
+      "meaning": "сближение, отступление и разделение внешних армий около героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "Для континентальной таблицы #6B79 в банке 1, шаг 22, вычисляет включительный прямоугольник ±3 вокруг #6A2E с обрезкой x=0..160, y=0..99. Пропускает записи при (flags AND #11)!=0, уменьшает задержку (flags AND #0E) на 2 ещё до проверки радиуса. Требует совпадения бита 5 флагов с режимом героя 0/1. #9193 сравнивает R=S героя/S группы, суммы количества*слова +22/+23 описателя SOLDIERS, смещения десятичные. При R<2 выбирает три шага к герою, при R>=2 три противоположных шага. Кандидаты требуют x=3..157, y=3..96, совпадение суши/воды, отсутствие занятого объекта кроме находки типа 8. Находка сразу помечается использованной, ещё до проверки совместимости армии с местностью. Ненулевая маска местности требует совместимости с флагами отрядов. При сближении несовместимость может отделить совместимые максимум 4 отряда в свободную запись, если отношение сил к этой части также <2. Переносит 12 байтов временной армии, удаляет их из источника и продолжает остальные кандидаты. Поля новой записи +3..+6 не инициализирует. При отступлении деления нет, проходимость требуется для всей группы. Перенос снимает старый бит 7 карты, обновляет координаты/ориентацию и ставит новый бит 7. Бит 4 блокирует повторную обработку новых/исходных записей внутри прохода, в конце очищается у всех. Боевой вызов и объединение существующих групп отсутствуют, встреча через оверлей 7 возникает позже в main #64E8..#6506."
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37235,
+      "hex": "#9173",
+      "name": "InNearbyRect",
+      "kind": "function",
+      "meaning": "проверить координаты DE относительно ближайшей области героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37235,
+          "hex": "#9173",
+          "operation": "нижние границы #9292/#9293, верхние #9294/#9295, все включены, carry=1 внутри, carry=0 снаружи"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37267,
+      "hex": "#9193",
+      "name": "CompareArmies",
+      "kind": "function",
+      "meaning": "сопоставить взвешенные величины двух составов армии",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37267,
+          "hex": "#9193",
+          "operation": "Sгероя=sum5записей#6A1E(количество*поле22/23), Sвход=sumBзаписейHL, токен05получает Sгероя/Sвход, затем на стек2и #6DDA вычитает, carry отражает отношение<2, zero отношение=2, деление на нулевую силу входной армии явно не защищено, IX/IY сохранены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37302,
+      "hex": "#91B6",
+      "name": "SumArmyBank1",
+      "kind": "function",
+      "meaning": "вычислить сумму полей армии из банка1",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37302,
+          "hex": "#91B6",
+          "operation": "A=1, #6D2F, затем #7A17, входHL/B задаёт список трёхбайтных записей"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37311,
+      "hex": "#91BF",
+      "name": "SetFacing",
+      "kind": "function",
+      "meaning": "изменить бит6флагов объекта по коду направления",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37311,
+          "hex": "#91BF",
+          "operation": "A=1 либо5 сохраняет флаг, A2..4 устанавливает бит6 IX+0, A6..8 сбрасывает бит6"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37329,
+      "hex": "#91D1",
+      "name": "StepsUp",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага вверх",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37329,
+          "hex": "#91D1",
+          "operation": "IY массив трёх записей [0,X,Y], уменьшает байты+2,+4,+5,+8 и увеличивает+7, получается центрвверх и две соседние диагонали"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37345,
+      "hex": "#91E1",
+      "name": "StepsUpRight",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага вверх-вправо",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37345,
+          "hex": "#91E1",
+          "operation": "изменяет байты кандидатов IY+1(+1),+2(-1),+5(-1),+7(+1), три направления вокруг диагонали"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37358,
+      "hex": "#91EE",
+      "name": "StepsRight",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага вправо",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37358,
+          "hex": "#91EE",
+          "operation": "увеличивает IY+1,+4,+7,+8 и уменьшает+5"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37374,
+      "hex": "#91FE",
+      "name": "StepsDownRight",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага вниз-вправо",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37374,
+          "hex": "#91FE",
+          "operation": "увеличивает IY+1,+2,+4,+8"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37387,
+      "hex": "#920B",
+      "name": "StepsDown",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага вниз",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37387,
+          "hex": "#920B",
+          "operation": "увеличивает IY+2,+5,+7,+8 и уменьшает+4"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37403,
+      "hex": "#921B",
+      "name": "StepsDownLeft",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага вниз-влево",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37403,
+          "hex": "#921B",
+          "operation": "уменьшает IY+1,+4 и увеличивает+2,+8"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37416,
+      "hex": "#9228",
+      "name": "StepsLeft",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага влево",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37416,
+          "hex": "#9228",
+          "operation": "уменьшает IY+1,+4,+5,+7 и увеличивает+8"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37432,
+      "hex": "#9238",
+      "name": "StepsUpLeft",
+      "kind": "function",
+      "meaning": "сформировать три варианта шага вверх-влево",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37432,
+          "hex": "#9238",
+          "operation": "уменьшает IY+1,+2,+5,+7"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37445,
+      "hex": "#9245",
+      "name": "MakeSteps",
+      "kind": "function",
+      "meaning": "построить три возможных шага объекта и вызвать обработчик направления",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37445,
+          "hex": "#9245",
+          "operation": "A1..8, IY база таблицы слов, выбирает адрес по IY+2*A, кладёт в стек сначала #9270 затем выбранный адрес, создаёт три записи [0,IX+1,IX+2] по #92B6, IY=#92B6, RET передаёт управление выбранному обработчику, его RET возвращается в #9270"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37488,
+      "hex": "#9270",
+      "name": "ClassifySteps",
+      "kind": "function",
+      "meaning": "заполнить тип местности у трёх возможных шагов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37488,
+          "hex": "#9270",
+          "operation": "продолжение стекового диспетчера #9245, три записи [тип,C,B] по #92B6, #80C4 читает карту по координатам+1/+2, #867D преобразует байт местности в маску, она записывается в поле0, IY шагает по3байта"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37579,
+      "hex": "#92CB",
+      "name": "StepMapTroops",
+      "kind": "function",
+      "meaning": "перемещение шестибайтовых объектов из континентальной таблицы #6B69",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "Выбирает список текущего континента по #6B69, банк 0, шаг 6 байтов. Формирует включительный прямоугольник ±3 вокруг героя с обрезкой x=0..160, y=0..99. Пропускает записи с битом 0, вне прямоугольника, на клетке героя либо с битом 5, не соответствующим режиму героя 0/1. Направление к герою вычисляет #7C71, таблица #92A4 и стековый диспетчер #9245 формируют три кандидата. Требует x=3..157, y=3..96. Для объекта с битом 5 разрешён только класс #FF, без бита 5 класс #FF запрещён. #8CD1 различает свободную клетку, находку типа 8 и остальные занятые клетки. Свободная клетка дополнительно требует снятого бита 7 карты. Находка типа 8 сразу получает бит 0 использованной записи, а у её байта карты снимается именно бит 0. Для ненулевого класса кандидат требует пересечения маски местности с E, возвращённым #7AEF для ID объекта из +3. При успехе снимает бит 7 старой клетки, пишет координаты +1/+2 и ориентацию через #91BF, ставит бит 7 новой клетки и завершает перебор кандидатов данной записи. После трёх отказов сохраняет исходную позицию. Конкретное игровое название этого вида объектов по одному списку не устанавливается."
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37962,
+      "hex": "#944A",
+      "name": "RefreshPanels",
+      "kind": "function",
+      "meaning": "перерисовать верхнюю строку и боковую панель игры",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37962,
+          "hex": "#944A",
+          "operation": "верхняя рамка #73FE, обязательная проверяемая очистка #6B8D, строка #9525 по BC=#0112, дата через #9468, подробности героя через #957C"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 37992,
+      "hex": "#9468",
+      "name": "PrintDate",
+      "kind": "function",
+      "meaning": "разобрать счётчик дней и вывести календарную дату",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37992,
+          "hex": "#9468",
+          "operation": "поле #6A36, повторные вычитания#0162 и таблица длин периодов #94BB, печать числа дня по BC=#010C и названия через #70E3/#94C8, точные имена периодов зависят от встроенной таблицы"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 38088,
+      "hex": "#94C8",
+      "name": "PrintZeroText",
+      "kind": "function",
+      "meaning": "вывести строку с нулевым терминатором",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38088,
+          "hex": "#94C8",
+          "operation": "DE адрес, BC положение, каждый байт выводится #70C5, C и DE увеличиваются, нулевой байт завершает"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 38098,
+      "hex": "#94D2",
+      "name": "PrintU16",
+      "kind": "function",
+      "meaning": "вывести16битное число HL без ведущих нулей",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38098,
+          "hex": "#94D2",
+          "operation": "при HL=0 выводит0, иначе последовательные вычитания10000,1000,100,10,1 из #951B, самомодифицируемый JP #9503 подавляет первые нули, символы через #70C5, C сдвигается по каждому разряду"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 38268,
+      "hex": "#957C",
+      "name": "RefreshHero",
+      "kind": "function",
+      "meaning": "обновить боковую панель героя, расходы и рейтинг",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38268,
+          "hex": "#957C",
+          "operation": "рамка BC=#0414, обязательная #6B8D, портрет144байта из логического банка4 по #EF30, сообщения #96AE/#96F6, вывод включает «Расход», «Наличные», «Рейтинг», численные расчёты через калькулятор и #ADBF"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 38660,
+      "hex": "#9704",
+      "name": "TickTime",
+      "kind": "function",
+      "meaning": "продвинуть время игры и выполнить периодические расчёты",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прибавляет стоимость шага #69D7 к дробной части #6A35, перенос увеличивает дни #6A36, без нового дня вызывает #A5AE сA=0, при новом дне продолжается восстановление ресурсов, расчёты армии, регулярные расходы и события, строки #9CD0..#9E5C описывают жалование, корабль и пожертвования"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 40557,
+      "hex": "#9E6D",
+      "name": "ClearLeftPanel",
+      "kind": "function",
+      "meaning": "очистить основную область слева от боковой панели",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 40557,
+          "hex": "#9E6D",
+          "operation": "BC=#0400, DE=#1414, A=0, #73CF обнуляет пиксели и атрибуты"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 40568,
+      "hex": "#9E78",
+      "name": "StackTroopCost",
+      "kind": "function",
+      "meaning": "передать стоимость отряда на стек калькулятора",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 40568,
+          "hex": "#9E78",
+          "operation": "IY трёхбайтная запись армии, поID читается16битное поле24/25описателя SOLDIERS, умножается на количество+1/+2 токеном04, токен31 дублирует результат, регистры восстановлены"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 40613,
+      "hex": "#9EA5",
+      "name": "SumExpenses",
+      "kind": "function",
+      "meaning": "сложить отмеченные статьи расходов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 40613,
+          "hex": "#9EA5",
+          "operation": "семь записей по6байт от #9C7F, бит7первого байта включает следующее пятибайтное число в сумму, на стеке сначала0, токен0F сложение, результат сохраняется в #9C6B"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 40650,
+      "hex": "#9ECA",
+      "name": "DevelopTroops",
+      "kind": "function",
+      "meaning": "повышать либо понижать типы отрядов по счётчикам",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 40650,
+          "hex": "#9ECA",
+          "operation": "при бите7 #6565 выходит, иначе увеличивает счётчики #6A72+ID, для пяти записей армии сравнивает второй счётчик+25 с полем40описателя и основной счётчик с полем41, поля19/20задают новыйID, исходная запись обнуляется, количество переносится #A056, показываются разные сообщения о долгих странствиях/битвах либо отсутствии сражений"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 41046,
+      "hex": "#A056",
+      "name": "AddTroops",
+      "kind": "function",
+      "meaning": "добавить количество BC к типу отряда A в армии героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41046,
+          "hex": "#A056",
+          "operation": "уплотняет пять записей #6A1E через #807E, находит совпадающийID либо первую пустую запись, для новогоID #7A94 очищает два счётчика, записываетID и прибавляет16битное количествоBC"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 41090,
+      "hex": "#A082",
+      "name": "RegenMana",
+      "kind": "function",
+      "meaning": "пополнить численные запасы с ограничением максимума",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41090,
+          "hex": "#A082",
+          "operation": "герой #6A04 +=#6A08 с максимумом#6A06, затем744активные записи по22байта в банке1 от #C000, поля+3/+4 увеличиваются на+5/+6 с пределом15000, далее15записей по28байт от #CCCB банка3, текущие+22/+23 увеличиваются на+26/+27 с максимумом+24/+25, общий ограничитель #A0FC"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 41212,
+      "hex": "#A0FC",
+      "name": "AddClampedU16",
+      "kind": "function",
+      "meaning": "прибавить BC к HL с верхней границей DE",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41212,
+          "hex": "#A0FC",
+          "operation": "если сложение переносит16бит либо сумма>=DE, HL=DE, иначе HLсумма, при сравнении carry от ADD равен0"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 41223,
+      "hex": "#A107",
+      "name": "WeekEvent",
+      "kind": "function",
+      "meaning": "обработать наступление новой недели и связанное изменение типа существ",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41223,
+          "hex": "#A107",
+          "operation": "выбирает ID=(BC mod19)+7, тоесть7..25, показывает сообщение новой недели, поле38описателя служит делителем прироста города/замкового гарнизона, поле39делителем прироста внешних армий и армии героя, #A205 добавляет floor(исходное количество/делитель) только совпадающему ID, обход включает30записей выбранной таблицы найма, гарнизоны текущего континента, внешние армии #6B79 и5записей героя, нулевой делитель не проверяется"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 41477,
+      "hex": "#A205",
+      "name": "GrowTroop",
+      "kind": "function",
+      "meaning": "увеличить количество заданного типа в трёхбайтной записи",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41477,
+          "hex": "#A205",
+          "operation": "если IDпоIX совпадает #A203, количествоHL увеличивается на частное от деления исходного количества на #A204 через повторное вычитание, запись+1/+2 обновляется, IX всегда сдвигается на3"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 41525,
+      "hex": "#A235",
+      "name": "RefreshTowns",
+      "kind": "function",
+      "meaning": "обновить армии объектов группы #6AF9",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41525,
+          "hex": "#A235",
+          "operation": "активные города текущего континента из #6AF9, независимый RandomScaled(1) определяет обновление, очищаются9байт гарнизона по смещению17, RandomScaled(3) выбирает0..3отряда, ID выбирается по порогам #A2DA с отбрасыванием уже выбранных ID, количество=10+RandomScaled(40), старший байт количества0, шаг города26, выбор0оставляет гарнизон пустым"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 41696,
+      "hex": "#A2E0",
+      "name": "CheckRevolt",
+      "kind": "function",
+      "meaning": "проверить превышение контроля и обработать доплату либо бой с отделившимся отрядом",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41696,
+          "hex": "#A2E0",
+          "operation": "пять плотных записей от 6A1E, ID0 завершает процедуру, CAP=floor(word[6A02]/byte[6AD3+ID]), конфликт требует Q>CAP и RandomScaled(3)=3, то есть нового слова генератора >=54614, доплата D=Q*word(описатель8036+22), при M<D сразу бой, при M>=D ответ меню1 вычитает D и сохраняет отряд, другой ответ вызывает RandomScaled(2), результат0 сохраняет деньги и отряд, результаты1/2 ведут к бою, перед боем запись копируется в A475, исходная обнуляется, армия уплотняется, D255 вызывается с DE=0,IX=A475,BC=0500, тип поля6 при (6A33 AND3)=1 либо по80C4/8697, A=0 показывает успех, A!=0 вызывает89E0 для насыщенного вычитания floor(2*float[656C]/float[6567]) из6A02, мирного удаления отряда без боя нет, оплата не меняет предел контроля, ветки оплаты, тихого отказа и победы вызывают957C без сохраненияIY и потому не гарантируют правильного продолжения обхода"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 42414,
+      "hex": "#A5AE",
+      "name": "TickCastle",
+      "kind": "function",
+      "meaning": "обновить угрозу замку, автоматически разрешить штурм либо подготовить перенос героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "каждый вход сохраняет A в #A700 и ставит #69D8=1. U=#6AAA равен0, новая угроза требует сброшенного бита7 #6565 и R(200)<число своих активных замков, выбирает случайный порядковый номер своего замка, затем ближайший другой замок определяет владельца атакующей стороны, владелец0 отменяет создание, #FF трактуется отдельными сообщениями о бандах. T=#6AAB=20+R(15), W=#A720=0. Состав2..4типов берётся из ближайших групп4..7 на континенте замка, количества из NAEMARMY по сложности и текущему континенту героя. При U!=0 T=(T-A)AND255, для T>=5 R(400)=0 отменяет угрозу, для1..4 однократно показывается предупреждение. На T=0 перенос допустим при бите0 #6A0D, сброшенном бите7 #6565, томже континенте и магии не меньше100*floor(расстояние), пункт2меню отменяет перенос. При согласии списывается цена, сохраняются прежние режим/координаты/армия, герой ставится внутрь замка, армия временно очищается, U и T=0 сохраняются для O21. Иначе автоматический штурм: пустой гарнизон либо сила атаки>2*силы гарнизона дают захват, остальное успешную защиту. Сила атаки включает текущую магию правителя при U!=#FF. Успешная защита уменьшает количества на один случайный процент по сложности, захват уменьшает #6A02 на40 с насыщением0, меняет владельца и копирует15байт армии атаки в гарнизон. Обе автоматические ветви очищают U. Сам обработчик #D255 не вызывает"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 44152,
+      "hex": "#AC78",
+      "name": "RepopulateSites",
+      "kind": "function",
+      "meaning": "восстановить население опустевших объектов по ближайшему населённому объекту",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 44152,
+          "hex": "#AC78",
+          "operation": "одинразна4вызова, группы #6B19/#6B29/#6B39/#6B49, активные записи6байт с количеством+4/+5равным0, #7A4E определяет континент по адресу записи, #7F5F ищет ближайшую другую запись тойже группы, если у неё количество ненулевое, копируется IDтипа+3, количество инициализируется полем32/33описателя типа, случайного генератора здесь нет"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 44337,
+      "hex": "#AD31",
+      "name": "MoveSitesC",
+      "kind": "function",
+      "meaning": "случайно переместить записи группы #6B39 в соседнюю свободную клетку",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 44337,
+          "hex": "#AD31",
+          "operation": "активные6байтные записи текущего континента, сначала проверяет наличие свободной клетки типа0в окрестности3на3, если таких нет, запись остаётся, иначе выбирает Xold-1+RandomScaled(2) и Yold-1+RandomScaled(2) до свободной клетки типа0, меняет координаты существующей записи, ставит бит7новой клетки карты и снимает бит7старой, новые записи не создаются"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 44479,
+      "hex": "#ADBF",
+      "name": "SumCastleIncome",
+      "kind": "function",
+      "meaning": "сложить доход принадлежащих герою замков на четырёх континентах",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 44479,
+          "hex": "#ADBF",
+          "operation": "начальное0на стеке калькулятора, группа #6AE9, активные записи с владельцем+19равным0 считаются своими, #AE1A возвращает доходBC каждой, токен0F суммирует, возвращается число калькулятора"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "S10",
+      "address": 44570,
+      "hex": "#AE1A",
+      "name": "CastleIncome",
+      "kind": "function",
+      "meaning": "рассчитать доход замка с учётом ближайших городов",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 44570,
+          "hex": "#AE1A",
+          "operation": "IY запись замка, A континент, группа городов #6AF9, базовый доход100, города учитываются при абсолютной разнице координат<=17пообеимосям, отдельная проверка бита1поля+1 и поля17 может исключить город, добавляется350либо450взависимости от полей15/16, результатBC"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 24480,
+      "hex": "#5FA0",
+      "name": "Bank",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "текущий логический банк",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24929,
+          "hex": "#6161",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 27533,
+          "hex": "#6B8D",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 27707,
+          "hex": "#6C3B",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 27747,
+          "hex": "#6C63",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 29421,
+          "hex": "#72ED",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 31255,
+          "hex": "#7A17",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 31471,
+          "hex": "#7AEF",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 31715,
+          "hex": "#7BE3",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 32341,
+          "hex": "#7E55",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 32964,
+          "hex": "#80C4",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 34721,
+          "hex": "#87A1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 34769,
+          "hex": "#87D1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 34874,
+          "hex": "#883A",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35066,
+          "hex": "#88FA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35181,
+          "hex": "#896D",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 24481,
+      "hex": "#5FA1",
+      "name": "BankDriver",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "установленная точка переключения банков, исполняемый код",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24481,
+          "hex": "#5FA1",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25950,
+      "hex": "#655E",
+      "name": "Overlay",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "номер загруженного рабочего оверлея",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27707,
+          "hex": "#6C3B",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 27747,
+          "hex": "#6C63",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 27785,
+          "hex": "#6C89",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25951,
+      "hex": "#655F",
+      "name": "CursorDelay",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "счётчик кадров до смены символа курсора",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24929,
+          "hex": "#6161",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25952,
+      "hex": "#6560",
+      "name": "CursorGlyph",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "текущий символ анимации курсора#F2..#F5",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24929,
+          "hex": "#6161",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25953,
+      "hex": "#6561",
+      "name": "FrameCount",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "число маскируемых прерываний по модулю65536",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24929,
+          "hex": "#6161",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25955,
+      "hex": "#6563",
+      "name": "CursorPos",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "позиция BC анимируемого символа",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24929,
+          "hex": "#6161",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 28174,
+          "hex": "#6E0E",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25957,
+      "hex": "#6565",
+      "name": "EventFlags",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "бит7 временно запрещает ряд мировых событий и развития отрядов, остальные биты не именуются",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 40650,
+          "hex": "#9ECA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25958,
+      "hex": "#6566",
+      "name": "ViewFlags",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "бит2 разрешает #8104 из прерывания, бит5 включает анимируемый символ",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 24929,
+          "hex": "#6161",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 27956,
+          "hex": "#6D34",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 27991,
+          "hex": "#6D57",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 28174,
+          "hex": "#6E0E",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 28320,
+          "hex": "#6EA0",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 28608,
+          "hex": "#6FC0",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 25959,
+      "hex": "#6567",
+      "name": "FloatA",
+      "kind": "equ",
+      "size": 5,
+      "meaning": "первое пятибайтное рабочее число калькулятора, используется расчётами лидерства и боя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25959,
+          "hex": "#6567",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "partial"
+    },
+    {
+      "module": "State",
+      "address": 25964,
+      "hex": "#656C",
+      "name": "FloatB",
+      "kind": "equ",
+      "size": 5,
+      "meaning": "второе пятибайтное рабочее число калькулятора, используется расчётами лидерства и боя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25964,
+          "hex": "#656C",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "partial"
+    },
+    {
+      "module": "State",
+      "address": 25969,
+      "hex": "#6571",
+      "name": "ViewObjects",
+      "kind": "equ",
+      "size": 960,
+      "meaning": "48 экранных записей по20байт, формат уточняется графическими метаданными",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25969,
+          "hex": "#6571",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27093,
+      "hex": "#69D5",
+      "name": "MoveTarget",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "целевая клетка автоматического движения",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 32576,
+          "hex": "#7F40",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35377,
+          "hex": "#8A31",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27095,
+      "hex": "#69D7",
+      "name": "StepCost",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "прибавляемая стоимость шага в долях1/256дня",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35377,
+          "hex": "#8A31",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27096,
+      "hex": "#69D8",
+      "name": "EventMarker",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "#A5AE пишет1, более узкий смысл не установлен",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "partial"
+    },
+    {
+      "module": "State",
+      "address": 27117,
+      "hex": "#69ED",
+      "name": "Game",
+      "kind": "equ",
+      "size": 256,
+      "meaning": "FGameState",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25397,
+          "hex": "#6335",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27118,
+      "hex": "#69EE",
+      "name": "Difficulty",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "сложность1..3",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27119,
+      "hex": "#69EF",
+      "name": "SaveName",
+      "kind": "equ",
+      "size": 9,
+      "meaning": "имя файла сохранения с0",
+      "evidence": [
+        {
+          "module": "S04",
+          "address": 26289,
+          "hex": "#66B1",
+          "operation": "ввод имени по#7933"
+        },
+        {
+          "module": "S10",
+          "address": 38582,
+          "hex": "#96B6",
+          "operation": "панель содержит указатель#69EF"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27128,
+      "hex": "#69F8",
+      "name": "Hero",
+      "kind": "equ",
+      "size": 245,
+      "meaning": "FPerson",
+      "evidence": [
+        {
+          "module": "S04",
+          "address": 26400,
+          "hex": "#6720",
+          "operation": "PERSONn загружается в #793C"
+        },
+        {
+          "module": "S10",
+          "address": 25432,
+          "hex": "#6358",
+          "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+        },
+        {
+          "module": "S10",
+          "address": 38574,
+          "hex": "#96AE",
+          "operation": "строка панели содержит указатель#69F8"
+        },
+        {
+          "module": "S04",
+          "address": 26400,
+          "hex": "#6720",
+          "operation": "PERSONn загружается в #793C"
+        },
+        {
+          "module": "S10",
+          "address": 25432,
+          "hex": "#6358",
+          "operation": "соответствие #7931→#69ED через сектор состояния, PERSON+0 соответствует #69F8"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27138,
+      "hex": "#6A02",
+      "name": "Leadership",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "лидерство",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34538,
+          "hex": "#86EA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35296,
+          "hex": "#89E0",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35336,
+          "hex": "#8A08",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38268,
+          "hex": "#957C",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27140,
+      "hex": "#6A04",
+      "name": "Mana",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "текущая магическая сила героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 41090,
+          "hex": "#A082",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27142,
+      "hex": "#6A06",
+      "name": "ManaMax",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "максимальная магическая сила героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 41090,
+          "hex": "#A082",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27144,
+      "hex": "#6A08",
+      "name": "ManaRegen",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "пополнение магической силы героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41090,
+          "hex": "#A082",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27146,
+      "hex": "#6A0A",
+      "name": "Spells",
+      "kind": "equ",
+      "size": 10,
+      "meaning": "десять состояний заклинаний",
+      "evidence": [
+        {
+          "module": "O17",
+          "address": 47347,
+          "hex": "#B8F3",
+          "operation": "ID1..10 проверяют бит0 по #6A09+ID"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27156,
+      "hex": "#6A14",
+      "name": "Money",
+      "kind": "equ",
+      "size": 5,
+      "meaning": "наличные Float5",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38552,
+          "hex": "#9698",
+          "operation": "панель печатает поле под подписью Наличные"
+        },
+        {
+          "module": "S10",
+          "address": 41877,
+          "hex": "#A395",
+          "operation": "оплата неподконтрольного отряда вычитает из#6A14"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27161,
+      "hex": "#6A19",
+      "name": "BaseIncome",
+      "kind": "equ",
+      "size": 5,
+      "meaning": "базовая часть недельного дохода Float5",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38758,
+          "hex": "#9766",
+          "operation": "сумма доходов замков, затем#6A19+#6A14 складываются и пишутся в#6A14"
+        },
+        {
+          "module": "O05",
+          "address": 46125,
+          "hex": "#B42D",
+          "operation": "награда увеличивает#6A19"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27166,
+      "hex": "#6A1E",
+      "name": "Army",
+      "kind": "equ",
+      "size": 15,
+      "meaning": "пять FTroop армии героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27181,
+      "hex": "#6A2D",
+      "name": "Continent",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "текущий континент",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25397,
+          "hex": "#6335",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 31639,
+          "hex": "#7B97",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 34115,
+          "hex": "#8543",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 34256,
+          "hex": "#85D0",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35377,
+          "hex": "#8A31",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36049,
+          "hex": "#8CD1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36206,
+          "hex": "#8D6E",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 41223,
+          "hex": "#A107",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 41525,
+          "hex": "#A235",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 44152,
+          "hex": "#AC78",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 44337,
+          "hex": "#AD31",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27182,
+      "hex": "#6A2E",
+      "name": "Position",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "X/Y героя в C/B",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25712,
+          "hex": "#6470",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 32576,
+          "hex": "#7F40",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35377,
+          "hex": "#8A31",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35897,
+          "hex": "#8C39",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 41696,
+          "hex": "#A2E0",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27184,
+      "hex": "#6A30",
+      "name": "ShipMap",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "континент корабля",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27185,
+      "hex": "#6A31",
+      "name": "ShipPos",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "X/Y корабля, #FFFFнет",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25712,
+          "hex": "#6470",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35377,
+          "hex": "#8A31",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38268,
+          "hex": "#957C",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27187,
+      "hex": "#6A33",
+      "name": "MoveFlags",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "режим движения и флаги героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25712,
+          "hex": "#6470",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35377,
+          "hex": "#8A31",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35833,
+          "hex": "#8BF9",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35861,
+          "hex": "#8C15",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 41696,
+          "hex": "#A2E0",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27188,
+      "hex": "#6A34",
+      "name": "MapFlags",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "доступность карт",
+      "evidence": [
+        {
+          "module": "O13",
+          "address": 45568,
+          "hex": "#B200",
+          "operation": "по биту текущего континента доступна полная карта"
+        },
+        {
+          "module": "O14",
+          "address": 45568,
+          "hex": "#B200",
+          "operation": "из флагов строится список континентов"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27189,
+      "hex": "#6A35",
+      "name": "DayFraction",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "дробная часть дня",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27190,
+      "hex": "#6A36",
+      "name": "Days",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "прошедшие дни",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37992,
+          "hex": "#9468",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27192,
+      "hex": "#6A38",
+      "name": "Deadline",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "предел дней",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27194,
+      "hex": "#6A3A",
+      "name": "Contract",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "номер контрактного замка",
+      "evidence": [
+        {
+          "module": "O17",
+          "address": 45844,
+          "hex": "#B314",
+          "operation": "35*номер от#BFE0 даёт имя замка"
+        },
+        {
+          "module": "O02",
+          "address": 46327,
+          "hex": "#B4F7",
+          "operation": "ненулевой контракт запрещает новый"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27195,
+      "hex": "#6A3B",
+      "name": "Cult",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "секта героя",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 38268,
+          "hex": "#957C",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 38660,
+          "hex": "#9704",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27204,
+      "hex": "#6A44",
+      "name": "GoodStoryPos",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "клетка доброго рассказчика",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25397,
+          "hex": "#6335",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36049,
+          "hex": "#8CD1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27206,
+      "hex": "#6A46",
+      "name": "GoodStoryMap",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "континент доброго рассказчика",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36049,
+          "hex": "#8CD1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27209,
+      "hex": "#6A49",
+      "name": "GoodVisits",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "число встреч с добрым рассказчиком",
+      "evidence": [
+        {
+          "module": "O18",
+          "address": 45600,
+          "hex": "#B220",
+          "operation": "счётчик встречи увеличивается и используется при выборе рассказа"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27211,
+      "hex": "#6A4B",
+      "name": "BadStoryPos",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "клетка враждебного рассказчика",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25397,
+          "hex": "#6335",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36049,
+          "hex": "#8CD1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27213,
+      "hex": "#6A4D",
+      "name": "BadStoryMap",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "континент враждебного рассказчика",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25397,
+          "hex": "#6335",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 33493,
+          "hex": "#82D5",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36049,
+          "hex": "#8CD1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27216,
+      "hex": "#6A50",
+      "name": "BadVisits",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "число встреч с враждебным рассказчиком",
+      "evidence": [
+        {
+          "module": "O19",
+          "address": 45600,
+          "hex": "#B220",
+          "operation": "счётчик встречи увеличивается и используется при выборе рассказа"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27221,
+      "hex": "#6A55",
+      "name": "PuzzleOpen",
+      "kind": "equ",
+      "size": 5,
+      "meaning": "открытые части карты цели",
+      "evidence": [
+        {
+          "module": "O15",
+          "address": 45568,
+          "hex": "#B200",
+          "operation": "подсчёт25открытых частей по пяти байтам"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27226,
+      "hex": "#6A5A",
+      "name": "PuzzleTiles",
+      "kind": "equ",
+      "size": 25,
+      "meaning": "эталон5x5карты цели",
+      "evidence": [
+        {
+          "module": "O16",
+          "address": 45568,
+          "hex": "#B200",
+          "operation": "сравнение массива с5x5стратегической карты"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27250,
+      "hex": "#6A72",
+      "name": "IdleIndex",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "база на1байт перед25счётчиками дней поID",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27250,
+          "hex": "#6A72",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27251,
+      "hex": "#6A73",
+      "name": "IdleDays",
+      "kind": "equ",
+      "size": 25,
+      "meaning": "счётчики дней поID1..25",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 31396,
+          "hex": "#7AA4",
+          "operation": "IX=#6A72+ID"
+        },
+        {
+          "module": "S10",
+          "address": 40668,
+          "hex": "#9EDC",
+          "operation": "увеличение счётчиков"
+        },
+        {
+          "module": "S10",
+          "address": 40801,
+          "hex": "#9F61",
+          "operation": "чтение счётчика для сравнения с SOLDIERS+41"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27275,
+      "hex": "#6A8B",
+      "name": "UpgradeIndex",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "база на1байт перед25счётчиками развития поID",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27275,
+          "hex": "#6A8B",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27276,
+      "hex": "#6A8C",
+      "name": "UpgradeCount",
+      "kind": "equ",
+      "size": 25,
+      "meaning": "счётчики развития поID",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 40702,
+          "hex": "#9EFE",
+          "operation": "чтение IX+25 при IX=#6A72+ID"
+        },
+        {
+          "module": "S10",
+          "address": 31380,
+          "hex": "#7A94",
+          "operation": "оба массива сбрасываются для нового ID"
+        }
+      ],
+      "confidence": "partial"
+    },
+    {
+      "module": "State",
+      "address": 27306,
+      "hex": "#6AAA",
+      "name": "Attacker",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "кто угрожает замку,0нет",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27307,
+      "hex": "#6AAB",
+      "name": "AttackDays",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "дни до разрешения угрозы",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27308,
+      "hex": "#6AAC",
+      "name": "AttackCastle",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "адрес физической записи атакуемого замка",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 42414,
+          "hex": "#A5AE",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27310,
+      "hex": "#6AAE",
+      "name": "AttackArmy",
+      "kind": "equ",
+      "size": 15,
+      "meaning": "пять FTroop нападающей армии",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 42598,
+          "hex": "#A666",
+          "operation": "обнуление15байт"
+        },
+        {
+          "module": "S10",
+          "address": 42655,
+          "hex": "#A69F",
+          "operation": "формирование FTroop"
+        },
+        {
+          "module": "O21",
+          "address": 46637,
+          "hex": "#B62D",
+          "operation": "IX=#6AAE перед боем"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27347,
+      "hex": "#6AD3",
+      "name": "ControlIndex",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "база на1байт перед25коэффициентами контроля",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27347,
+          "hex": "#6AD3",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27348,
+      "hex": "#6AD4",
+      "name": "UnitControl",
+      "kind": "equ",
+      "size": 25,
+      "meaning": "коэффициенты контроля поID",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34552,
+          "hex": "#86F8",
+          "operation": "HL=#6AD3, затем прибавляется ID и читается байт-делитель"
+        },
+        {
+          "module": "S04",
+          "address": 26417,
+          "hex": "#6731",
+          "operation": "PERSON7 сворачивает25пар диапазонов в25коэффициентов"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27369,
+      "hex": "#6AE9",
+      "name": "CastlesIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FCastle",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27369,
+          "hex": "#6AE9",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27373,
+      "hex": "#6AED",
+      "name": "CastlesLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FCastle",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27373,
+          "hex": "#6AED",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27385,
+      "hex": "#6AF9",
+      "name": "TownsIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FTown",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27385,
+          "hex": "#6AF9",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27389,
+      "hex": "#6AFD",
+      "name": "TownsLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FTown",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27389,
+          "hex": "#6AFD",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27401,
+      "hex": "#6B09",
+      "name": "TemplesIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FTemple",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27401,
+          "hex": "#6B09",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27405,
+      "hex": "#6B0D",
+      "name": "TemplesLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FTemple",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27405,
+          "hex": "#6B0D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27417,
+      "hex": "#6B19",
+      "name": "SitesAIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27417,
+          "hex": "#6B19",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27421,
+      "hex": "#6B1D",
+      "name": "SitesALists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27421,
+          "hex": "#6B1D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27433,
+      "hex": "#6B29",
+      "name": "SitesBIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27433,
+          "hex": "#6B29",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27437,
+      "hex": "#6B2D",
+      "name": "SitesBLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27437,
+          "hex": "#6B2D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27449,
+      "hex": "#6B39",
+      "name": "SitesCIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27449,
+          "hex": "#6B39",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27453,
+      "hex": "#6B3D",
+      "name": "SitesCLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27453,
+          "hex": "#6B3D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27465,
+      "hex": "#6B49",
+      "name": "SitesDIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27465,
+          "hex": "#6B49",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27469,
+      "hex": "#6B4D",
+      "name": "SitesDLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27469,
+          "hex": "#6B4D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27481,
+      "hex": "#6B59",
+      "name": "ItemsIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FMapItem",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27481,
+          "hex": "#6B59",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27485,
+      "hex": "#6B5D",
+      "name": "ItemsLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FMapItem",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27485,
+          "hex": "#6B5D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27497,
+      "hex": "#6B69",
+      "name": "MapTroopsIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27497,
+          "hex": "#6B69",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27501,
+      "hex": "#6B6D",
+      "name": "MapTroopsLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FMapTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27501,
+          "hex": "#6B6D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27513,
+      "hex": "#6B79",
+      "name": "MapArmiesIndex",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "база на4байта перед дескрипторами FMapList континентов1..4, FMapArmy",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27513,
+          "hex": "#6B79",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 27517,
+      "hex": "#6B7D",
+      "name": "MapArmiesLists",
+      "kind": "equ",
+      "size": 16,
+      "meaning": "четыре реальные записи FMapList, континенты1..4, FMapArmy",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 27517,
+          "hex": "#6B7D",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 31851,
+      "hex": "#7C6B",
+      "name": "RandomState",
+      "kind": "equ",
+      "size": 6,
+      "meaning": "три слова состояния генератора случайных чисел",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25397,
+          "hex": "#6335",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 31757,
+          "hex": "#7C0D",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 34427,
+      "hex": "#867B",
+      "name": "CastleName",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "указатель имени текущего замка, физическая запись+3",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34427,
+          "hex": "#867B",
+          "operation": "адрес подтверждён статическими таблицами и операндами, см. structures.json и исходный листинг"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 36137,
+      "hex": "#8D29",
+      "name": "ObjectCell",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "координаты для поиска #8CD1",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 25712,
+          "hex": "#6470",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 35897,
+          "hex": "#8C39",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36049,
+          "hex": "#8CD1",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 37234,
+      "hex": "#9172",
+      "name": "Approaching",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "#FFсближение,#00отступление при#8DDA",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 37519,
+      "hex": "#928F",
+      "name": "MovingObject",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "сохранённый адрес текущей движущейся записи",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 37521,
+      "hex": "#9291",
+      "name": "MoveDirection",
+      "kind": "equ",
+      "size": 1,
+      "meaning": "направление к герою1..8",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 37522,
+      "hex": "#9292",
+      "name": "NearbyMin",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "минимальныеX/Yобласти внимания",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37235,
+          "hex": "#9173",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 37524,
+      "hex": "#9294",
+      "name": "NearbyMax",
+      "kind": "equ",
+      "size": 2,
+      "meaning": "максимальныеX/Yобласти внимания, тот же адрес как смещённая база таблицы отступления",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37235,
+          "hex": "#9173",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        },
+        {
+          "module": "S10",
+          "address": 37579,
+          "hex": "#92CB",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 37558,
+      "hex": "#92B6",
+      "name": "StepCandidates",
+      "kind": "equ",
+      "size": 9,
+      "meaning": "три записи [маскаместности,X,Y]",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37488,
+          "hex": "#9270",
+          "operation": "для трёх координат вызываются #80C4/#867D и результат пишется в+0"
+        },
+        {
+          "module": "S10",
+          "address": 37857,
+          "hex": "#93E1",
+          "operation": "ненулевой класс проверяется через способности отряда"
+        }
+      ],
+      "confidence": "proven"
+    },
+    {
+      "module": "State",
+      "address": 37567,
+      "hex": "#92BF",
+      "name": "SplitArmy",
+      "kind": "equ",
+      "size": 12,
+      "meaning": "временная армия до4отрядов FTroop",
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36314,
+          "hex": "#8DDA",
+          "operation": "прямая ссылка на поле в графе процедуры"
+        }
+      ],
+      "confidence": "proven"
+    }
+  ],
+  "register_contexts": [
+    {
+      "module": "S10",
+      "start": 34740,
+      "end": 34756,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FCastle",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34740,
+          "hex": "#87B4",
+          "operation": "начало#C000, шаг35"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 34791,
+      "end": 34802,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FCastle",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34791,
+          "hex": "#87E7",
+          "operation": "начало#C000, шаг35, поле владельца+19"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 36374,
+      "end": 36383,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapList",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36374,
+          "hex": "#8E16",
+          "operation": "после#7A74 выбран континентальный дескриптор, до переноса Data в IX"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 37639,
+      "end": 37648,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapList",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37639,
+          "hex": "#9307",
+          "operation": "после#7A74 выбран континентальный дескриптор, до переноса Data в IX"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 36408,
+      "end": 36507,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapArmy",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36408,
+          "hex": "#8E38",
+          "operation": "#6B79, банк1, шаг22, #9193 сохраняет IX"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 37115,
+      "end": 37167,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapArmy",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37115,
+          "hex": "#90FB",
+          "operation": "IX восстановлен из#928F, запись координат и флагов"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 37658,
+      "end": 37721,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37658,
+          "hex": "#931A",
+          "operation": "#6B69, банк0, шаг6"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 37867,
+      "end": 37881,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37867,
+          "hex": "#93EB",
+          "operation": "IX восстановлен из#928F, #7AEF сохраняет IX"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 37888,
+      "end": 37925,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37888,
+          "hex": "#9400",
+          "operation": "IX восстановлен из#928F, запись координат и ориентации"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 36549,
+      "end": 36936,
+      "end_inclusive": true,
+      "register": "IY",
+      "type": "FMoveStep",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36549,
+          "hex": "#8EC5",
+          "operation": "IY=#92B6, три кандидата с шагом3, #8CD1 окружён PUSH/POP IY"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 36957,
+      "end": 37180,
+      "end_inclusive": true,
+      "register": "IY",
+      "type": "FMoveStep",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 36957,
+          "hex": "#905D",
+          "operation": "IY=#92B6, три кандидата с шагом3, #8CD1 окружён PUSH/POP IY"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 37745,
+      "end": 37946,
+      "end_inclusive": true,
+      "register": "IY",
+      "type": "FMoveStep",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 37745,
+          "hex": "#9371",
+          "operation": "IY=#92B6, три кандидата с шагом3, #8CD1 окружён PUSH/POP IY"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 41122,
+      "end": 41157,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapArmy",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41122,
+          "hex": "#A0A2",
+          "operation": "банк1,#C000,744записи с шагом22"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 41175,
+      "end": 41207,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FRuler",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41175,
+          "hex": "#A0D7",
+          "operation": "банк3,#CCCB,15записей с шагом28"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 44595,
+      "end": 44601,
+      "end_inclusive": true,
+      "register": "IY",
+      "type": "FCastle",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 44595,
+          "hex": "#AE33",
+          "operation": "#ADBF передаёт физическую запись замка для вычисления дохода"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 44607,
+      "end": 44680,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FTown",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 44607,
+          "hex": "#AE3F",
+          "operation": "данные континентального списка#6AF9, шаг26"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 40568,
+      "end": 40612,
+      "end_inclusive": true,
+      "register": "IY",
+      "type": "FTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 40568,
+          "hex": "#9E78",
+          "operation": "подпрограмма расчёта стоимости получает трёхбайтную запись, сохраняет IY"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 41477,
+      "end": 41524,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 41477,
+          "hex": "#A205",
+          "operation": "сравнениеID, изменение+1/+2, на выходе IX+=3"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 34874,
+      "end": 35055,
+      "end_inclusive": true,
+      "register": "IY",
+      "type": "FBattleUnit",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34874,
+          "hex": "#883A",
+          "operation": "создание боевой записи18байт, IYшагает18, см.FBattleUnit корневого агента"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 34907,
+      "end": 35035,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 34907,
+          "hex": "#885B",
+          "operation": "входной массив с шагом3, IX временно заменяется описателем SOLDIERS"
+        }
+      ],
+      "exceptions": [
+        {
+          "start": 34981,
+          "end": 35016,
+          "type": "FSoldier",
+          "reason": "#8036 подменяет IX до POP IX по#88C8"
+        }
+      ]
+    },
+    {
+      "module": "S10",
+      "start": 35098,
+      "end": 35171,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FBattleUnit",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35098,
+          "hex": "#891A",
+          "operation": "обратное преобразование, исходный IXшагает18"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "S10",
+      "start": 35077,
+      "end": 35176,
+      "end_inclusive": true,
+      "register": "IY",
+      "type": "FTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "S10",
+          "address": 35077,
+          "hex": "#8905",
+          "operation": "обратное преобразование боевой армии в тройки, IYшагает3"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "O07",
+      "start": 45606,
+      "end": 45725,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapArmy",
+      "base_offset": 3,
+      "evidence": [
+        {
+          "module": "O07",
+          "address": 45606,
+          "hex": "#B226",
+          "operation": "#B200..#B204 прибавили3к адресу физической записи, #B288 восстанавливает указатель"
+        }
+      ],
+      "exceptions": [
+        {
+          "start": 45692,
+          "end": 45703,
+          "type": "FMenu",
+          "reason": "LD IX,#878A перед вызовом меню, затем IX восстанавливается по#B288"
+        }
+      ]
+    },
+    {
+      "module": "O03",
+      "start": 45649,
+      "end": 45652,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FSpell",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "O03",
+          "address": 45649,
+          "hex": "#B251",
+          "operation": "#8066 вернул описатель заклинания"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "O01",
+      "start": 46031,
+      "end": 46034,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FRuler",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "O01",
+          "address": 46031,
+          "hex": "#B3CF",
+          "operation": "#804E вернул описатель владельца замка"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "O01",
+      "start": 46070,
+      "end": 46073,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FRuler",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "O01",
+          "address": 46070,
+          "hex": "#B3F6",
+          "operation": "#804E вернул описатель владельца замка"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "O01",
+      "start": 45582,
+      "end": 45582,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FCastle",
+      "base_offset": 3,
+      "evidence": [
+        {
+          "module": "O01",
+          "address": 45582,
+          "hex": "#B20E",
+          "operation": "#B200..#B204 сместили входной IX к имени, чтение Owner по+16"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "O01",
+      "start": 45661,
+      "end": 45661,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FCastle",
+      "base_offset": 3,
+      "evidence": [
+        {
+          "module": "O01",
+          "address": 45661,
+          "hex": "#B25D",
+          "operation": "IX восстановлен из#867B, указатель на имя"
+        }
+      ],
+      "exceptions": []
+    },
+    {
+      "module": "O21",
+      "start": 47150,
+      "end": 47208,
+      "end_inclusive": true,
+      "register": "IX",
+      "type": "FMapTroop",
+      "base_offset": 0,
+      "evidence": [
+        {
+          "module": "O21",
+          "address": 47150,
+          "hex": "#B82E",
+          "operation": "IX получает адрес свободной шестибайтовой записи из#6B69"
+        }
+      ],
+      "exceptions": []
+    }
+  ],
+  "rewrite_rules": [
+    "Адреса не меняются, имена меток и каждого поля <=15символов",
+    "Контексты IX/IY применяются только к явно указанному регистру и диапазону, переход за диапазон не наследует тип",
+    "Для указателя внутрь записи исходное +k переводится в +(Type.Field-base_offset)",
+    "#8CD1 меняет IX на тип найденного объекта, после вызова нельзя сохранять прежний тип без восстановления указателя",
+    "#A43B вызывает#957C, после этого IY не гарантированно указывает на прежний FTroop",
+    "Ссылка State.* создаётся EQU, это не новая память и не изменение исходного размещения"
+  ]
+}

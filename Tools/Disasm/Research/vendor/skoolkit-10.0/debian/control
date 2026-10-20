@@ -1,0 +1,20 @@
+Source: skoolkit
+Maintainer: Richard Dymond <rjdymond@gmail.com>
+Section: python
+Priority: optional
+Build-Depends: python3 (>= 3.10), python3-all-dev (>= 3.10), python3-setuptools (>= 44.0.0), debhelper (>= 10), dh-python
+Standards-Version: 4.5.0
+X-Python3-Version: >= 3.10
+
+Package: skoolkit
+Architecture: any
+Depends: ${python3:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Description: Tools for creating disassemblies of ZX Spectrum programs
+ SkoolKit is a collection of utilities that can be used to disassemble a
+ Spectrum game (or indeed any piece of Spectrum software written in machine
+ code) into a format known as a skool file. Then, from this skool file, you can
+ use SkoolKit to create a browsable disassembly in HTML format, or a
+ re-assemblable disassembly in ASM format. So the skool file is - from start to
+ finish as you develop it by organising and annotating the code - the common
+ 'source' for both the reader-friendly HTML version of the disassembly, and the
+ developer- and assembler-friendly ASM version of the disassembly.

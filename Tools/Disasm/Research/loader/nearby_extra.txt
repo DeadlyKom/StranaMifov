@@ -1,0 +1,131 @@
+91D1 FD 35 02       DEC (IY+$02)
+91D4 FD 35 04       DEC (IY+$04)
+91D7 FD 35 05       DEC (IY+$05)
+91DA FD 34 07       INC (IY+$07)
+91DD FD 35 08       DEC (IY+$08)
+91E0 C9             RET
+91E1 FD 34 01       INC (IY+$01)
+91E4 FD 35 02       DEC (IY+$02)
+91E7 FD 35 05       DEC (IY+$05)
+91EA FD 34 07       INC (IY+$07)
+91ED C9             RET
+91EE FD 34 01       INC (IY+$01)
+91F1 FD 34 04       INC (IY+$04)
+91F4 FD 35 05       DEC (IY+$05)
+91F7 FD 34 07       INC (IY+$07)
+91FA FD 34 08       INC (IY+$08)
+91FD C9             RET
+91FE FD 34 01       INC (IY+$01)
+9201 FD 34 02       INC (IY+$02)
+9204 FD 34 04       INC (IY+$04)
+9207 FD 34 08       INC (IY+$08)
+920A C9             RET
+920B FD 34 02       INC (IY+$02)
+920E FD 35 04       DEC (IY+$04)
+9211 FD 34 05       INC (IY+$05)
+9214 FD 34 07       INC (IY+$07)
+9217 FD 34 08       INC (IY+$08)
+921A C9             RET
+921B FD 35 01       DEC (IY+$01)
+921E FD 34 02       INC (IY+$02)
+9221 FD 35 04       DEC (IY+$04)
+9224 FD 34 08       INC (IY+$08)
+9227 C9             RET
+9228 FD 35 01       DEC (IY+$01)
+922B FD 35 04       DEC (IY+$04)
+922E FD 35 05       DEC (IY+$05)
+9231 FD 35 07       DEC (IY+$07)
+9234 FD 34 08       INC (IY+$08)
+9237 C9             RET
+9238 FD 35 01       DEC (IY+$01)
+923B FD 35 02       DEC (IY+$02)
+923E FD 35 05       DEC (IY+$05)
+9241 FD 35 07       DEC (IY+$07)
+9244 C9             RET
+9245 FD 23          INC IY
+9247 FD 23          INC IY
+9249 3D             DEC A
+924A 20 F9          JR NZ,$9245
+924C 21 70 92       LD HL,$9270
+924F E5             PUSH HL
+9250 FD 6E 00       LD L,(IY+$00)
+9253 FD 66 01       LD H,(IY+$01)
+9256 E5             PUSH HL
+9257 21 B6 92       LD HL,$92B6
+925A DD 5E 01       LD E,(IX+$01)
+925D DD 56 02       LD D,(IX+$02)
+9260 06 03          LD B,$03
+9262 36 00          LD (HL),$00
+9264 23             INC HL
+9265 73             LD (HL),E
+9266 23             INC HL
+9267 72             LD (HL),D
+9268 23             INC HL
+9269 10 F7          DJNZ $9262
+926B FD 21 B6 92    LD IY,$92B6
+926F C9             RET
+9270 FD 21 B6 92    LD IY,$92B6
+9274 16 03          LD D,$03
+9276 FD 4E 01       LD C,(IY+$01)
+9279 FD 46 02       LD B,(IY+$02)
+927C CD C4 80       CALL $80C4
+927F CD 7D 86       CALL $867D
+9282 FD 77 00       LD (IY+$00),A
+9285 FD 23          INC IY
+9287 FD 23          INC IY
+9289 FD 23          INC IY
+928B 15             DEC D
+928C 20 E8          JR NZ,$9276
+928E C9             RET
+928F 00             NOP
+9290 00             NOP
+9291 00             NOP
+9292 00             NOP
+9293 00             NOP
+9294 00             NOP
+9295 00             NOP
+9296 0B             DEC BC
+9297 92             SUB D
+9298 1B             DEC DE
+9299 92             SUB D
+929A 28 92          JR Z,$922E
+929C 38 92          JR C,$9230
+929E D1             POP DE
+929F 91             SUB C
+92A0 E1             POP HL
+92A1 91             SUB C
+92A2 EE 91          XOR $91
+92A4 FE 91          CP $91
+92A6 D1             POP DE
+92A7 91             SUB C
+92A8 E1             POP HL
+92A9 91             SUB C
+92AA EE 91          XOR $91
+92AC FE 91          CP $91
+92AE 0B             DEC BC
+92AF 92             SUB D
+92B0 1B             DEC DE
+92B1 92             SUB D
+92B2 28 92          JR Z,$9246
+92B4 38 92          JR C,$9248
+92B6 00             NOP
+92B7 00             NOP
+92B8 00             NOP
+92B9 00             NOP
+92BA 00             NOP
+92BB 00             NOP
+92BC 00             NOP
+92BD 00             NOP
+92BE 00             NOP
+92BF 00             NOP
+92C0 00             NOP
+92C1 00             NOP
+92C2 00             NOP
+92C3 00             NOP
+92C4 00             NOP
+92C5 00             NOP
+92C6 00             NOP
+92C7 00             NOP
+92C8 00             NOP
+92C9 00             NOP
+92CA 00             NOP

@@ -1,0 +1,14 @@
+{
+  "png_files": 1115,
+  "unit_animations": 25,
+  "unit_frames": 100,
+  "hero_animations": 3,
+  "hero_frames": 12,
+  "portrait_images": 8,
+  "packed_scene_images": 18,
+  "world_maps": 4,
+  "font_glyphs": 672,
+  "structures": 24,
+  "procedures": 486,
+  "gallery": "Assets/Index.html"
+}

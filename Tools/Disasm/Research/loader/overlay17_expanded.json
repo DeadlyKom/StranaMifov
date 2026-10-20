@@ -1,0 +1,3183 @@
+{
+  "origin": 45568,
+  "end": 48301,
+  "seeds": [
+    45568,
+    46085,
+    46808,
+    46921,
+    47347,
+    47129
+  ],
+  "instructions": [
+    {
+      "address": 45568,
+      "hex": "cd346d",
+      "op": "CALL $6D34"
+    },
+    {
+      "address": 45571,
+      "hex": "3e01",
+      "op": "LD A,$01"
+    },
+    {
+      "address": 45573,
+      "hex": "3270b6",
+      "op": "LD ($B670),A"
+    },
+    {
+      "address": 45576,
+      "hex": "3e05",
+      "op": "LD A,$05"
+    },
+    {
+      "address": 45578,
+      "hex": "325ab9",
+      "op": "LD ($B95A),A"
+    },
+    {
+      "address": 45581,
+      "hex": "010004",
+      "op": "LD BC,$0400"
+    },
+    {
+      "address": 45584,
+      "hex": "112014",
+      "op": "LD DE,$1420"
+    },
+    {
+      "address": 45587,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 45588,
+      "hex": "cdcf73",
+      "op": "CALL $73CF"
+    },
+    {
+      "address": 45591,
+      "hex": "010004",
+      "op": "LD BC,$0400"
+    },
+    {
+      "address": 45594,
+      "hex": "111e01",
+      "op": "LD DE,$011E"
+    },
+    {
+      "address": 45597,
+      "hex": "3e47",
+      "op": "LD A,$47"
+    },
+    {
+      "address": 45599,
+      "hex": "cdfe73",
+      "op": "CALL $73FE"
+    },
+    {
+      "address": 45602,
+      "hex": "0605",
+      "op": "LD B,$05"
+    },
+    {
+      "address": 45604,
+      "hex": "11e4ba",
+      "op": "LD DE,$BAE4"
+    },
+    {
+      "address": 45607,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45610,
+      "hex": "010008",
+      "op": "LD BC,$0800"
+    },
+    {
+      "address": 45613,
+      "hex": "111e0e",
+      "op": "LD DE,$0E1E"
+    },
+    {
+      "address": 45616,
+      "hex": "3e46",
+      "op": "LD A,$46"
+    },
+    {
+      "address": 45618,
+      "hex": "cdfe73",
+      "op": "CALL $73FE"
+    },
+    {
+      "address": 45621,
+      "hex": "cda187",
+      "op": "CALL $87A1"
+    },
+    {
+      "address": 45624,
+      "hex": "ed4379bb",
+      "op": "LD ($BB79),BC"
+    },
+    {
+      "address": 45628,
+      "hex": "79",
+      "op": "LD A,C"
+    },
+    {
+      "address": 45629,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 45630,
+      "hex": "2018",
+      "op": "JR NZ,$B258"
+    },
+    {
+      "address": 45632,
+      "hex": "2165b9",
+      "op": "LD HL,$B965"
+    },
+    {
+      "address": 45635,
+      "hex": "3600",
+      "op": "LD (HL),$00"
+    },
+    {
+      "address": 45637,
+      "hex": "1166b9",
+      "op": "LD DE,$B966"
+    },
+    {
+      "address": 45640,
+      "hex": "010700",
+      "op": "LD BC,$0007"
+    },
+    {
+      "address": 45643,
+      "hex": "edb0",
+      "op": "LDIR"
+    },
+    {
+      "address": 45645,
+      "hex": "11faba",
+      "op": "LD DE,$BAFA"
+    },
+    {
+      "address": 45648,
+      "hex": "060a",
+      "op": "LD B,$0A"
+    },
+    {
+      "address": 45650,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45653,
+      "hex": "c3e0b2",
+      "op": "JP $B2E0"
+    },
+    {
+      "address": 45656,
+      "hex": "fe50",
+      "op": "CP $50"
+    },
+    {
+      "address": 45658,
+      "hex": "2017",
+      "op": "JR NZ,$B273"
+    },
+    {
+      "address": 45660,
+      "hex": "2165b9",
+      "op": "LD HL,$B965"
+    },
+    {
+      "address": 45663,
+      "hex": "3600",
+      "op": "LD (HL),$00"
+    },
+    {
+      "address": 45665,
+      "hex": "1166b9",
+      "op": "LD DE,$B966"
+    },
+    {
+      "address": 45668,
+      "hex": "010700",
+      "op": "LD BC,$0007"
+    },
+    {
+      "address": 45671,
+      "hex": "edb0",
+      "op": "LDIR"
+    },
+    {
+      "address": 45673,
+      "hex": "11fabb",
+      "op": "LD DE,$BBFA"
+    },
+    {
+      "address": 45676,
+      "hex": "060a",
+      "op": "LD B,$0A"
+    },
+    {
+      "address": 45678,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45681,
+      "hex": "186d",
+      "op": "JR $B2E0"
+    },
+    {
+      "address": 45683,
+      "hex": "1162bb",
+      "op": "LD DE,$BB62"
+    },
+    {
+      "address": 45686,
+      "hex": "060a",
+      "op": "LD B,$0A"
+    },
+    {
+      "address": 45688,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45691,
+      "hex": "01140a",
+      "op": "LD BC,$0A14"
+    },
+    {
+      "address": 45694,
+      "hex": "110801",
+      "op": "LD DE,$0108"
+    },
+    {
+      "address": 45697,
+      "hex": "3e44",
+      "op": "LD A,$44"
+    },
+    {
+      "address": 45699,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 45702,
+      "hex": "01140a",
+      "op": "LD BC,$0A14"
+    },
+    {
+      "address": 45705,
+      "hex": "ed4365b9",
+      "op": "LD ($B965),BC"
+    },
+    {
+      "address": 45709,
+      "hex": "011c0b",
+      "op": "LD BC,$0B1C"
+    },
+    {
+      "address": 45712,
+      "hex": "ed4367b9",
+      "op": "LD ($B967),BC"
+    },
+    {
+      "address": 45716,
+      "hex": "01000f",
+      "op": "LD BC,$0F00"
+    },
+    {
+      "address": 45719,
+      "hex": "cdd187",
+      "op": "CALL $87D1"
+    },
+    {
+      "address": 45722,
+      "hex": "2801",
+      "op": "JR Z,$B29D"
+    },
+    {
+      "address": 45724,
+      "hex": "0c",
+      "op": "INC C"
+    },
+    {
+      "address": 45725,
+      "hex": "10f8",
+      "op": "DJNZ $B297"
+    },
+    {
+      "address": 45727,
+      "hex": "ed43c6bb",
+      "op": "LD ($BBC6),BC"
+    },
+    {
+      "address": 45731,
+      "hex": "79",
+      "op": "LD A,C"
+    },
+    {
+      "address": 45732,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 45733,
+      "hex": "2018",
+      "op": "JR NZ,$B2BF"
+    },
+    {
+      "address": 45735,
+      "hex": "2169b9",
+      "op": "LD HL,$B969"
+    },
+    {
+      "address": 45738,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 45741,
+      "hex": "ed4369b9",
+      "op": "LD ($B969),BC"
+    },
+    {
+      "address": 45745,
+      "hex": "ed436bb9",
+      "op": "LD ($B96B),BC"
+    },
+    {
+      "address": 45749,
+      "hex": "060b",
+      "op": "LD B,$0B"
+    },
+    {
+      "address": 45751,
+      "hex": "1186bb",
+      "op": "LD DE,$BB86"
+    },
+    {
+      "address": 45754,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45757,
+      "hex": "1821",
+      "op": "JR $B2E0"
+    },
+    {
+      "address": 45759,
+      "hex": "010d0b",
+      "op": "LD BC,$0B0D"
+    },
+    {
+      "address": 45762,
+      "hex": "110701",
+      "op": "LD DE,$0107"
+    },
+    {
+      "address": 45765,
+      "hex": "3e44",
+      "op": "LD A,$44"
+    },
+    {
+      "address": 45767,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 45770,
+      "hex": "010d0b",
+      "op": "LD BC,$0B0D"
+    },
+    {
+      "address": 45773,
+      "hex": "ed4369b9",
+      "op": "LD ($B969),BC"
+    },
+    {
+      "address": 45777,
+      "hex": "01140c",
+      "op": "LD BC,$0C14"
+    },
+    {
+      "address": 45780,
+      "hex": "ed436bb9",
+      "op": "LD ($B96B),BC"
+    },
+    {
+      "address": 45784,
+      "hex": "060b",
+      "op": "LD B,$0B"
+    },
+    {
+      "address": 45786,
+      "hex": "11b6bb",
+      "op": "LD DE,$BBB6"
+    },
+    {
+      "address": 45789,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45792,
+      "hex": "3a3a6a",
+      "op": "LD A,($6A3A)"
+    },
+    {
+      "address": 45795,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 45796,
+      "hex": "2015",
+      "op": "JR NZ,$B2FB"
+    },
+    {
+      "address": 45798,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 45801,
+      "hex": "ed436db9",
+      "op": "LD ($B96D),BC"
+    },
+    {
+      "address": 45805,
+      "hex": "ed436fb9",
+      "op": "LD ($B96F),BC"
+    },
+    {
+      "address": 45809,
+      "hex": "060d",
+      "op": "LD B,$0D"
+    },
+    {
+      "address": 45811,
+      "hex": "1142bc",
+      "op": "LD DE,$BC42"
+    },
+    {
+      "address": 45814,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45817,
+      "hex": "1835",
+      "op": "JR $B330"
+    },
+    {
+      "address": 45819,
+      "hex": "01010e",
+      "op": "LD BC,$0E01"
+    },
+    {
+      "address": 45822,
+      "hex": "111301",
+      "op": "LD DE,$0113"
+    },
+    {
+      "address": 45825,
+      "hex": "3e44",
+      "op": "LD A,$44"
+    },
+    {
+      "address": 45827,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 45830,
+      "hex": "01010e",
+      "op": "LD BC,$0E01"
+    },
+    {
+      "address": 45833,
+      "hex": "ed436db9",
+      "op": "LD ($B96D),BC"
+    },
+    {
+      "address": 45837,
+      "hex": "01140f",
+      "op": "LD BC,$0F14"
+    },
+    {
+      "address": 45840,
+      "hex": "ed436fb9",
+      "op": "LD ($B96F),BC"
+    },
+    {
+      "address": 45844,
+      "hex": "3a3a6a",
+      "op": "LD A,($6A3A)"
+    },
+    {
+      "address": 45847,
+      "hex": "47",
+      "op": "LD B,A"
+    },
+    {
+      "address": 45848,
+      "hex": "21e0bf",
+      "op": "LD HL,$BFE0"
+    },
+    {
+      "address": 45851,
+      "hex": "112300",
+      "op": "LD DE,$0023"
+    },
+    {
+      "address": 45854,
+      "hex": "19",
+      "op": "ADD HL,DE"
+    },
+    {
+      "address": 45855,
+      "hex": "10fd",
+      "op": "DJNZ $B31E"
+    },
+    {
+      "address": 45857,
+      "hex": "22a8bc",
+      "op": "LD ($BCA8),HL"
+    },
+    {
+      "address": 45860,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 45861,
+      "hex": "cd2f6d",
+      "op": "CALL $6D2F"
+    },
+    {
+      "address": 45864,
+      "hex": "060d",
+      "op": "LD B,$0D"
+    },
+    {
+      "address": 45866,
+      "hex": "117bbc",
+      "op": "LD DE,$BC7B"
+    },
+    {
+      "address": 45869,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45872,
+      "hex": "116cba",
+      "op": "LD DE,$BA6C"
+    },
+    {
+      "address": 45875,
+      "hex": "3a336a",
+      "op": "LD A,($6A33)"
+    },
+    {
+      "address": 45878,
+      "hex": "cb6f",
+      "op": "BIT 5,A"
+    },
+    {
+      "address": 45880,
+      "hex": "2003",
+      "op": "JR NZ,$B33D"
+    },
+    {
+      "address": 45882,
+      "hex": "11aeba",
+      "op": "LD DE,$BAAE"
+    },
+    {
+      "address": 45885,
+      "hex": "060f",
+      "op": "LD B,$0F"
+    },
+    {
+      "address": 45887,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45890,
+      "hex": "112cba",
+      "op": "LD DE,$BA2C"
+    },
+    {
+      "address": 45893,
+      "hex": "3a3b6a",
+      "op": "LD A,($6A3B)"
+    },
+    {
+      "address": 45896,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 45897,
+      "hex": "280a",
+      "op": "JR Z,$B355"
+    },
+    {
+      "address": 45899,
+      "hex": "cd807a",
+      "op": "CALL $7A80"
+    },
+    {
+      "address": 45902,
+      "hex": "ed5367ba",
+      "op": "LD ($BA67),DE"
+    },
+    {
+      "address": 45906,
+      "hex": "1150ba",
+      "op": "LD DE,$BA50"
+    },
+    {
+      "address": 45909,
+      "hex": "0611",
+      "op": "LD B,$11"
+    },
+    {
+      "address": 45911,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45914,
+      "hex": "210a6a",
+      "op": "LD HL,$6A0A"
+    },
+    {
+      "address": 45917,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 45918,
+      "hex": "060a",
+      "op": "LD B,$0A"
+    },
+    {
+      "address": 45920,
+      "hex": "86",
+      "op": "ADD A,(HL)"
+    },
+    {
+      "address": 45921,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 45922,
+      "hex": "10fc",
+      "op": "DJNZ $B360"
+    },
+    {
+      "address": 45924,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 45927,
+      "hex": "ed4371b9",
+      "op": "LD ($B971),BC"
+    },
+    {
+      "address": 45931,
+      "hex": "ed4373b9",
+      "op": "LD ($B973),BC"
+    },
+    {
+      "address": 45935,
+      "hex": "11bcb9",
+      "op": "LD DE,$B9BC"
+    },
+    {
+      "address": 45938,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 45939,
+      "hex": "281f",
+      "op": "JR Z,$B394"
+    },
+    {
+      "address": 45941,
+      "hex": "010713",
+      "op": "LD BC,$1307"
+    },
+    {
+      "address": 45944,
+      "hex": "ed4371b9",
+      "op": "LD ($B971),BC"
+    },
+    {
+      "address": 45948,
+      "hex": "011214",
+      "op": "LD BC,$1412"
+    },
+    {
+      "address": 45951,
+      "hex": "ed4373b9",
+      "op": "LD ($B973),BC"
+    },
+    {
+      "address": 45955,
+      "hex": "321bba",
+      "op": "LD ($BA1B),A"
+    },
+    {
+      "address": 45958,
+      "hex": "010713",
+      "op": "LD BC,$1307"
+    },
+    {
+      "address": 45961,
+      "hex": "110b01",
+      "op": "LD DE,$010B"
+    },
+    {
+      "address": 45964,
+      "hex": "3e44",
+      "op": "LD A,$44"
+    },
+    {
+      "address": 45966,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 45969,
+      "hex": "11eeb9",
+      "op": "LD DE,$B9EE"
+    },
+    {
+      "address": 45972,
+      "hex": "0612",
+      "op": "LD B,$12"
+    },
+    {
+      "address": 45974,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 45977,
+      "hex": "3aaa6a",
+      "op": "LD A,($6AAA)"
+    },
+    {
+      "address": 45980,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 45981,
+      "hex": "2827",
+      "op": "JR Z,$B3C6"
+    },
+    {
+      "address": 45983,
+      "hex": "010114",
+      "op": "LD BC,$1401"
+    },
+    {
+      "address": 45986,
+      "hex": "111e02",
+      "op": "LD DE,$021E"
+    },
+    {
+      "address": 45989,
+      "hex": "3e42",
+      "op": "LD A,$42"
+    },
+    {
+      "address": 45991,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 45994,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 45995,
+      "hex": "cd2f6d",
+      "op": "CALL $6D2F"
+    },
+    {
+      "address": 45998,
+      "hex": "ed5bac6a",
+      "op": "LD DE,($6AAC)"
+    },
+    {
+      "address": 46002,
+      "hex": "13",
+      "op": "INC DE"
+    },
+    {
+      "address": 46003,
+      "hex": "13",
+      "op": "INC DE"
+    },
+    {
+      "address": 46004,
+      "hex": "13",
+      "op": "INC DE"
+    },
+    {
+      "address": 46005,
+      "hex": "ed5391b9",
+      "op": "LD ($B991),DE"
+    },
+    {
+      "address": 46009,
+      "hex": "1183b9",
+      "op": "LD DE,$B983"
+    },
+    {
+      "address": 46012,
+      "hex": "0614",
+      "op": "LD B,$14"
+    },
+    {
+      "address": 46014,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46017,
+      "hex": "3e06",
+      "op": "LD A,$06"
+    },
+    {
+      "address": 46019,
+      "hex": "325ab9",
+      "op": "LD ($B95A),A"
+    },
+    {
+      "address": 46022,
+      "hex": "011416",
+      "op": "LD BC,$1614"
+    },
+    {
+      "address": 46025,
+      "hex": "110b01",
+      "op": "LD DE,$010B"
+    },
+    {
+      "address": 46028,
+      "hex": "3e41",
+      "op": "LD A,$41"
+    },
+    {
+      "address": 46030,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 46033,
+      "hex": "0616",
+      "op": "LD B,$16"
+    },
+    {
+      "address": 46035,
+      "hex": "11acb9",
+      "op": "LD DE,$B9AC"
+    },
+    {
+      "address": 46038,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46041,
+      "hex": "dd215ab9",
+      "op": "LD IX,$B95A"
+    },
+    {
+      "address": 46045,
+      "hex": "cd6d77",
+      "op": "CALL $776D"
+    },
+    {
+      "address": 46048,
+      "hex": "fe01",
+      "op": "CP $01"
+    },
+    {
+      "address": 46050,
+      "hex": "2813",
+      "op": "JR Z,$B3F7"
+    },
+    {
+      "address": 46052,
+      "hex": "fd2175b9",
+      "op": "LD IY,$B975"
+    },
+    {
+      "address": 46056,
+      "hex": "fd23",
+      "op": "INC IY"
+    },
+    {
+      "address": 46058,
+      "hex": "fd23",
+      "op": "INC IY"
+    },
+    {
+      "address": 46060,
+      "hex": "3d",
+      "op": "DEC A"
+    },
+    {
+      "address": 46061,
+      "hex": "20f9",
+      "op": "JR NZ,$B3E8"
+    },
+    {
+      "address": 46063,
+      "hex": "fd6e00",
+      "op": "LD L,(IY+$00)"
+    },
+    {
+      "address": 46066,
+      "hex": "fd6601",
+      "op": "LD H,(IY+$01)"
+    },
+    {
+      "address": 46069,
+      "hex": "e5",
+      "op": "PUSH HL"
+    },
+    {
+      "address": 46070,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 46071,
+      "hex": "010004",
+      "op": "LD BC,$0400"
+    },
+    {
+      "address": 46074,
+      "hex": "112014",
+      "op": "LD DE,$1420"
+    },
+    {
+      "address": 46077,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 46078,
+      "hex": "cdcf73",
+      "op": "CALL $73CF"
+    },
+    {
+      "address": 46081,
+      "hex": "cd7c95",
+      "op": "CALL $957C"
+    },
+    {
+      "address": 46084,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 46085,
+      "hex": "010105",
+      "op": "LD BC,$0501"
+    },
+    {
+      "address": 46088,
+      "hex": "111c10",
+      "op": "LD DE,$101C"
+    },
+    {
+      "address": 46091,
+      "hex": "3e45",
+      "op": "LD A,$45"
+    },
+    {
+      "address": 46093,
+      "hex": "cdfe73",
+      "op": "CALL $73FE"
+    },
+    {
+      "address": 46096,
+      "hex": "010215",
+      "op": "LD BC,$1502"
+    },
+    {
+      "address": 46099,
+      "hex": "111c01",
+      "op": "LD DE,$011C"
+    },
+    {
+      "address": 46102,
+      "hex": "3e46",
+      "op": "LD A,$46"
+    },
+    {
+      "address": 46104,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 46107,
+      "hex": "010415",
+      "op": "LD BC,$1504"
+    },
+    {
+      "address": 46110,
+      "hex": "11a8b6",
+      "op": "LD DE,$B6A8"
+    },
+    {
+      "address": 46113,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46116,
+      "hex": "010d15",
+      "op": "LD BC,$150D"
+    },
+    {
+      "address": 46119,
+      "hex": "11afb6",
+      "op": "LD DE,$B6AF"
+    },
+    {
+      "address": 46122,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46125,
+      "hex": "011515",
+      "op": "LD BC,$1515"
+    },
+    {
+      "address": 46128,
+      "hex": "11b5b6",
+      "op": "LD DE,$B6B5"
+    },
+    {
+      "address": 46131,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46134,
+      "hex": "cd08b6",
+      "op": "CALL $B608"
+    },
+    {
+      "address": 46137,
+      "hex": "dd216eb5",
+      "op": "LD IX,$B56E"
+    },
+    {
+      "address": 46141,
+      "hex": "cd6d77",
+      "op": "CALL $776D"
+    },
+    {
+      "address": 46144,
+      "hex": "fe03",
+      "op": "CP $03"
+    },
+    {
+      "address": 46146,
+      "hex": "ca08b2",
+      "op": "JP Z,$B208"
+    },
+    {
+      "address": 46149,
+      "hex": "fe02",
+      "op": "CP $02"
+    },
+    {
+      "address": 46151,
+      "hex": "2011",
+      "op": "JR NZ,$B45A"
+    },
+    {
+      "address": 46153,
+      "hex": "3a70b6",
+      "op": "LD A,($B670)"
+    },
+    {
+      "address": 46156,
+      "hex": "fe01",
+      "op": "CP $01"
+    },
+    {
+      "address": 46158,
+      "hex": "28e9",
+      "op": "JR Z,$B439"
+    },
+    {
+      "address": 46160,
+      "hex": "3a70b6",
+      "op": "LD A,($B670)"
+    },
+    {
+      "address": 46163,
+      "hex": "d61a",
+      "op": "SUB $1A"
+    },
+    {
+      "address": 46165,
+      "hex": "3270b6",
+      "op": "LD ($B670),A"
+    },
+    {
+      "address": 46168,
+      "hex": "18dc",
+      "op": "JR $B436"
+    },
+    {
+      "address": 46170,
+      "hex": "fe01",
+      "op": "CP $01"
+    },
+    {
+      "address": 46172,
+      "hex": "2014",
+      "op": "JR NZ,$B472"
+    },
+    {
+      "address": 46174,
+      "hex": "3a70b6",
+      "op": "LD A,($B670)"
+    },
+    {
+      "address": 46177,
+      "hex": "5f",
+      "op": "LD E,A"
+    },
+    {
+      "address": 46178,
+      "hex": "3a79bb",
+      "op": "LD A,($BB79)"
+    },
+    {
+      "address": 46181,
+      "hex": "93",
+      "op": "SUB E"
+    },
+    {
+      "address": 46182,
+      "hex": "fe1a",
+      "op": "CP $1A"
+    },
+    {
+      "address": 46184,
+      "hex": "38cf",
+      "op": "JR C,$B439"
+    },
+    {
+      "address": 46186,
+      "hex": "7b",
+      "op": "LD A,E"
+    },
+    {
+      "address": 46187,
+      "hex": "c61a",
+      "op": "ADD A,$1A"
+    },
+    {
+      "address": 46189,
+      "hex": "3270b6",
+      "op": "LD ($B670),A"
+    },
+    {
+      "address": 46192,
+      "hex": "18c4",
+      "op": "JR $B436"
+    },
+    {
+      "address": 46194,
+      "hex": "d604",
+      "op": "SUB $04"
+    },
+    {
+      "address": 46196,
+      "hex": "5f",
+      "op": "LD E,A"
+    },
+    {
+      "address": 46197,
+      "hex": "3a70b6",
+      "op": "LD A,($B670)"
+    },
+    {
+      "address": 46200,
+      "hex": "83",
+      "op": "ADD A,E"
+    },
+    {
+      "address": 46201,
+      "hex": "cde9b5",
+      "op": "CALL $B5E9"
+    },
+    {
+      "address": 46204,
+      "hex": "cd82b4",
+      "op": "CALL $B482"
+    },
+    {
+      "address": 46207,
+      "hex": "c305b4",
+      "op": "JP $B405"
+    },
+    {
+      "address": 46210,
+      "hex": "dd2278b6",
+      "op": "LD ($B678),IX"
+    },
+    {
+      "address": 46214,
+      "hex": "010109",
+      "op": "LD BC,$0901"
+    },
+    {
+      "address": 46217,
+      "hex": "111c0c",
+      "op": "LD DE,$0C1C"
+    },
+    {
+      "address": 46220,
+      "hex": "3e41",
+      "op": "LD A,$41"
+    },
+    {
+      "address": 46222,
+      "hex": "cdfe73",
+      "op": "CALL $73FE"
+    },
+    {
+      "address": 46225,
+      "hex": "01020a",
+      "op": "LD BC,$0A02"
+    },
+    {
+      "address": 46228,
+      "hex": "111c01",
+      "op": "LD DE,$011C"
+    },
+    {
+      "address": 46231,
+      "hex": "3e42",
+      "op": "LD A,$42"
+    },
+    {
+      "address": 46233,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 46236,
+      "hex": "01020b",
+      "op": "LD BC,$0B02"
+    },
+    {
+      "address": 46239,
+      "hex": "111c01",
+      "op": "LD DE,$011C"
+    },
+    {
+      "address": 46242,
+      "hex": "3e06",
+      "op": "LD A,$06"
+    },
+    {
+      "address": 46244,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 46247,
+      "hex": "2a78b6",
+      "op": "LD HL,($B678)"
+    },
+    {
+      "address": 46250,
+      "hex": "dd21ed6a",
+      "op": "LD IX,$6AED"
+    },
+    {
+      "address": 46254,
+      "hex": "cd4e7a",
+      "op": "CALL $7A4E"
+    },
+    {
+      "address": 46257,
+      "hex": "4f",
+      "op": "LD C,A"
+    },
+    {
+      "address": 46258,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 46259,
+      "hex": "79",
+      "op": "LD A,C"
+    },
+    {
+      "address": 46260,
+      "hex": "fd2a78b6",
+      "op": "LD IY,($B678)"
+    },
+    {
+      "address": 46264,
+      "hex": "fd2b",
+      "op": "DEC IY"
+    },
+    {
+      "address": 46266,
+      "hex": "fd2b",
+      "op": "DEC IY"
+    },
+    {
+      "address": 46268,
+      "hex": "fd2b",
+      "op": "DEC IY"
+    },
+    {
+      "address": 46270,
+      "hex": "cd1aae",
+      "op": "CALL $AE1A"
+    },
+    {
+      "address": 46273,
+      "hex": "ed4390b6",
+      "op": "LD ($B690),BC"
+    },
+    {
+      "address": 46277,
+      "hex": "060a",
+      "op": "LD B,$0A"
+    },
+    {
+      "address": 46279,
+      "hex": "1171b6",
+      "op": "LD DE,$B671"
+    },
+    {
+      "address": 46282,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46285,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 46286,
+      "hex": "3a2d6a",
+      "op": "LD A,($6A2D)"
+    },
+    {
+      "address": 46289,
+      "hex": "b9",
+      "op": "CP C"
+    },
+    {
+      "address": 46290,
+      "hex": "2050",
+      "op": "JR NZ,$B524"
+    },
+    {
+      "address": 46292,
+      "hex": "dd2a78b6",
+      "op": "LD IX,($B678)"
+    },
+    {
+      "address": 46296,
+      "hex": "ed4b2e6a",
+      "op": "LD BC,($6A2E)"
+    },
+    {
+      "address": 46300,
+      "hex": "dd5efe",
+      "op": "LD E,(IX-$02)"
+    },
+    {
+      "address": 46303,
+      "hex": "dd56ff",
+      "op": "LD D,(IX-$01)"
+    },
+    {
+      "address": 46306,
+      "hex": "cd717c",
+      "op": "CALL $7C71"
+    },
+    {
+      "address": 46309,
+      "hex": "ed5349b8",
+      "op": "LD ($B849),DE"
+    },
+    {
+      "address": 46313,
+      "hex": "ed4b2e6a",
+      "op": "LD BC,($6A2E)"
+    },
+    {
+      "address": 46317,
+      "hex": "dd5efe",
+      "op": "LD E,(IX-$02)"
+    },
+    {
+      "address": 46320,
+      "hex": "dd56ff",
+      "op": "LD D,(IX-$01)"
+    },
+    {
+      "address": 46323,
+      "hex": "cdf07f",
+      "op": "CALL $7FF0"
+    },
+    {
+      "address": 46326,
+      "hex": "69",
+      "op": "LD L,C"
+    },
+    {
+      "address": 46327,
+      "hex": "60",
+      "op": "LD H,B"
+    },
+    {
+      "address": 46328,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 46329,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 46330,
+      "hex": "010500",
+      "op": "LD BC,$0005"
+    },
+    {
+      "address": 46333,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 46334,
+      "hex": "4d",
+      "op": "LD C,L"
+    },
+    {
+      "address": 46335,
+      "hex": "44",
+      "op": "LD B,H"
+    },
+    {
+      "address": 46336,
+      "hex": "cd626d",
+      "op": "CALL $6D62"
+    },
+    {
+      "address": 46339,
+      "hex": "ef",
+      "op": "RST $28"
+    },
+    {
+      "address": 46347,
+      "hex": "cd766d",
+      "op": "CALL $6D76"
+    },
+    {
+      "address": 46350,
+      "hex": "ed435cb8",
+      "op": "LD ($B85C),BC"
+    },
+    {
+      "address": 46354,
+      "hex": "1123b8",
+      "op": "LD DE,$B823"
+    },
+    {
+      "address": 46357,
+      "hex": "69",
+      "op": "LD L,C"
+    },
+    {
+      "address": 46358,
+      "hex": "60",
+      "op": "LD H,B"
+    },
+    {
+      "address": 46359,
+      "hex": "011400",
+      "op": "LD BC,$0014"
+    },
+    {
+      "address": 46362,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 46363,
+      "hex": "ed42",
+      "op": "SBC HL,BC"
+    },
+    {
+      "address": 46365,
+      "hex": "3017",
+      "op": "JR NC,$B536"
+    },
+    {
+      "address": 46367,
+      "hex": "1167b8",
+      "op": "LD DE,$B867"
+    },
+    {
+      "address": 46370,
+      "hex": "1812",
+      "op": "JR $B536"
+    },
+    {
+      "address": 46372,
+      "hex": "41",
+      "op": "LD B,C"
+    },
+    {
+      "address": 46373,
+      "hex": "219069",
+      "op": "LD HL,$6990"
+    },
+    {
+      "address": 46376,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 46377,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 46378,
+      "hex": "be",
+      "op": "CP (HL)"
+    },
+    {
+      "address": 46379,
+      "hex": "20fc",
+      "op": "JR NZ,$B529"
+    },
+    {
+      "address": 46381,
+      "hex": "10fa",
+      "op": "DJNZ $B529"
+    },
+    {
+      "address": 46383,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 46384,
+      "hex": "22b2b8",
+      "op": "LD ($B8B2),HL"
+    },
+    {
+      "address": 46387,
+      "hex": "1183b8",
+      "op": "LD DE,$B883"
+    },
+    {
+      "address": 46390,
+      "hex": "060d",
+      "op": "LD B,$0D"
+    },
+    {
+      "address": 46392,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46395,
+      "hex": "dd2a78b6",
+      "op": "LD IX,($B678)"
+    },
+    {
+      "address": 46399,
+      "hex": "dd7e11",
+      "op": "LD A,(IX+$11)"
+    },
+    {
+      "address": 46402,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 46403,
+      "hex": "281b",
+      "op": "JR Z,$B560"
+    },
+    {
+      "address": 46405,
+      "hex": "0610",
+      "op": "LD B,$10"
+    },
+    {
+      "address": 46407,
+      "hex": "11e2b8",
+      "op": "LD DE,$B8E2"
+    },
+    {
+      "address": 46410,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46413,
+      "hex": "fd2a78b6",
+      "op": "LD IY,($B678)"
+    },
+    {
+      "address": 46417,
+      "hex": "010311",
+      "op": "LD BC,$1103"
+    },
+    {
+      "address": 46420,
+      "hex": "111100",
+      "op": "LD DE,$0011"
+    },
+    {
+      "address": 46423,
+      "hex": "fd19",
+      "op": "ADD IY,DE"
+    },
+    {
+      "address": 46425,
+      "hex": "3e05",
+      "op": "LD A,$05"
+    },
+    {
+      "address": 46427,
+      "hex": "cd557e",
+      "op": "CALL $7E55"
+    },
+    {
+      "address": 46430,
+      "hex": "1808",
+      "op": "JR $B568"
+    },
+    {
+      "address": 46432,
+      "hex": "0612",
+      "op": "LD B,$12"
+    },
+    {
+      "address": 46434,
+      "hex": "11c3b6",
+      "op": "LD DE,$B6C3"
+    },
+    {
+      "address": 46437,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46440,
+      "hex": "06ff",
+      "op": "LD B,$FF"
+    },
+    {
+      "address": 46442,
+      "hex": "cdf47b",
+      "op": "CALL $7BF4"
+    },
+    {
+      "address": 46445,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 46569,
+      "hex": "d5",
+      "op": "PUSH DE"
+    },
+    {
+      "address": 46570,
+      "hex": "c5",
+      "op": "PUSH BC"
+    },
+    {
+      "address": 46571,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 46572,
+      "hex": "47",
+      "op": "LD B,A"
+    },
+    {
+      "address": 46573,
+      "hex": "dd21e0bf",
+      "op": "LD IX,$BFE0"
+    },
+    {
+      "address": 46577,
+      "hex": "112300",
+      "op": "LD DE,$0023"
+    },
+    {
+      "address": 46580,
+      "hex": "dd19",
+      "op": "ADD IX,DE"
+    },
+    {
+      "address": 46582,
+      "hex": "ddcbfd46",
+      "op": "BIT 0,(IX-$03)"
+    },
+    {
+      "address": 46586,
+      "hex": "20f8",
+      "op": "JR NZ,$B5F4"
+    },
+    {
+      "address": 46588,
+      "hex": "dd7e10",
+      "op": "LD A,(IX+$10)"
+    },
+    {
+      "address": 46591,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 46592,
+      "hex": "20f2",
+      "op": "JR NZ,$B5F4"
+    },
+    {
+      "address": 46594,
+      "hex": "10f0",
+      "op": "DJNZ $B5F4"
+    },
+    {
+      "address": 46596,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 46597,
+      "hex": "c1",
+      "op": "POP BC"
+    },
+    {
+      "address": 46598,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 46599,
+      "hex": "c9",
+      "op": "RET"
+    },
+    {
+      "address": 46600,
+      "hex": "010207",
+      "op": "LD BC,$0702"
+    },
+    {
+      "address": 46603,
+      "hex": "111c0d",
+      "op": "LD DE,$0D1C"
+    },
+    {
+      "address": 46606,
+      "hex": "3e45",
+      "op": "LD A,$45"
+    },
+    {
+      "address": 46608,
+      "hex": "cdcf73",
+      "op": "CALL $73CF"
+    },
+    {
+      "address": 46611,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 46612,
+      "hex": "cd2f6d",
+      "op": "CALL $6D2F"
+    },
+    {
+      "address": 46615,
+      "hex": "010307",
+      "op": "LD BC,$0703"
+    },
+    {
+      "address": 46618,
+      "hex": "ed4344b6",
+      "op": "LD ($B644),BC"
+    },
+    {
+      "address": 46622,
+      "hex": "3e03",
+      "op": "LD A,$03"
+    },
+    {
+      "address": 46624,
+      "hex": "326eb5",
+      "op": "LD ($B56E),A"
+    },
+    {
+      "address": 46627,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 46628,
+      "hex": "324ab6",
+      "op": "LD ($B64A),A"
+    },
+    {
+      "address": 46631,
+      "hex": "3a79bb",
+      "op": "LD A,($BB79)"
+    },
+    {
+      "address": 46634,
+      "hex": "6f",
+      "op": "LD L,A"
+    },
+    {
+      "address": 46635,
+      "hex": "3a70b6",
+      "op": "LD A,($B670)"
+    },
+    {
+      "address": 46638,
+      "hex": "67",
+      "op": "LD H,A"
+    },
+    {
+      "address": 46639,
+      "hex": "3a4ab6",
+      "op": "LD A,($B64A)"
+    },
+    {
+      "address": 46642,
+      "hex": "fe1a",
+      "op": "CP $1A"
+    },
+    {
+      "address": 46644,
+      "hex": "c8",
+      "op": "RET Z"
+    },
+    {
+      "address": 46645,
+      "hex": "3a4ab6",
+      "op": "LD A,($B64A)"
+    },
+    {
+      "address": 46648,
+      "hex": "84",
+      "op": "ADD A,H"
+    },
+    {
+      "address": 46649,
+      "hex": "2c",
+      "op": "INC L"
+    },
+    {
+      "address": 46650,
+      "hex": "bd",
+      "op": "CP L"
+    },
+    {
+      "address": 46651,
+      "hex": "d0",
+      "op": "RET NC"
+    },
+    {
+      "address": 46652,
+      "hex": "2d",
+      "op": "DEC L"
+    },
+    {
+      "address": 46653,
+      "hex": "cde9b5",
+      "op": "CALL $B5E9"
+    },
+    {
+      "address": 46656,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 46658,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 46659,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 46662,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46665,
+      "hex": "3e00",
+      "op": "LD A,$00"
+    },
+    {
+      "address": 46667,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 46668,
+      "hex": "324ab6",
+      "op": "LD ($B64A),A"
+    },
+    {
+      "address": 46671,
+      "hex": "3a4ab6",
+      "op": "LD A,($B64A)"
+    },
+    {
+      "address": 46674,
+      "hex": "cb3f",
+      "op": "SRL A"
+    },
+    {
+      "address": 46676,
+      "hex": "c607",
+      "op": "ADD A,$07"
+    },
+    {
+      "address": 46678,
+      "hex": "3245b6",
+      "op": "LD ($B645),A"
+    },
+    {
+      "address": 46681,
+      "hex": "3a44b6",
+      "op": "LD A,($B644)"
+    },
+    {
+      "address": 46684,
+      "hex": "fe03",
+      "op": "CP $03"
+    },
+    {
+      "address": 46686,
+      "hex": "3e14",
+      "op": "LD A,$14"
+    },
+    {
+      "address": 46688,
+      "hex": "2802",
+      "op": "JR Z,$B664"
+    },
+    {
+      "address": 46690,
+      "hex": "3e03",
+      "op": "LD A,$03"
+    },
+    {
+      "address": 46692,
+      "hex": "3244b6",
+      "op": "LD ($B644),A"
+    },
+    {
+      "address": 46695,
+      "hex": "3a6eb5",
+      "op": "LD A,($B56E)"
+    },
+    {
+      "address": 46698,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 46699,
+      "hex": "326eb5",
+      "op": "LD ($B56E),A"
+    },
+    {
+      "address": 46702,
+      "hex": "18bf",
+      "op": "JR $B62F"
+    },
+    {
+      "address": 46808,
+      "hex": "010605",
+      "op": "LD BC,$0506"
+    },
+    {
+      "address": 46811,
+      "hex": "3ac6bb",
+      "op": "LD A,($BBC6)"
+    },
+    {
+      "address": 46814,
+      "hex": "57",
+      "op": "LD D,A"
+    },
+    {
+      "address": 46815,
+      "hex": "14",
+      "op": "INC D"
+    },
+    {
+      "address": 46816,
+      "hex": "1e12",
+      "op": "LD E,$12"
+    },
+    {
+      "address": 46818,
+      "hex": "3e41",
+      "op": "LD A,$41"
+    },
+    {
+      "address": 46820,
+      "hex": "cdfe73",
+      "op": "CALL $73FE"
+    },
+    {
+      "address": 46823,
+      "hex": "1620",
+      "op": "LD D,$20"
+    },
+    {
+      "address": 46825,
+      "hex": "3ac6bb",
+      "op": "LD A,($BBC6)"
+    },
+    {
+      "address": 46828,
+      "hex": "fe01",
+      "op": "CP $01"
+    },
+    {
+      "address": 46830,
+      "hex": "2802",
+      "op": "JR Z,$B6F2"
+    },
+    {
+      "address": 46832,
+      "hex": "16eb",
+      "op": "LD D,$EB"
+    },
+    {
+      "address": 46834,
+      "hex": "7a",
+      "op": "LD A,D"
+    },
+    {
+      "address": 46835,
+      "hex": "3244b7",
+      "op": "LD ($B744),A"
+    },
+    {
+      "address": 46838,
+      "hex": "010706",
+      "op": "LD BC,$0607"
+    },
+    {
+      "address": 46841,
+      "hex": "111201",
+      "op": "LD DE,$0112"
+    },
+    {
+      "address": 46844,
+      "hex": "3e42",
+      "op": "LD A,$42"
+    },
+    {
+      "address": 46846,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 46849,
+      "hex": "0606",
+      "op": "LD B,$06"
+    },
+    {
+      "address": 46851,
+      "hex": "113bb7",
+      "op": "LD DE,$B73B"
+    },
+    {
+      "address": 46854,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46857,
+      "hex": "010c07",
+      "op": "LD BC,$070C"
+    },
+    {
+      "address": 46860,
+      "hex": "ed4321b7",
+      "op": "LD ($B721),BC"
+    },
+    {
+      "address": 46864,
+      "hex": "3e01",
+      "op": "LD A,$01"
+    },
+    {
+      "address": 46866,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 46867,
+      "hex": "47",
+      "op": "LD B,A"
+    },
+    {
+      "address": 46868,
+      "hex": "cdd187",
+      "op": "CALL $87D1"
+    },
+    {
+      "address": 46871,
+      "hex": "2814",
+      "op": "JR Z,$B72D"
+    },
+    {
+      "address": 46873,
+      "hex": "78",
+      "op": "LD A,B"
+    },
+    {
+      "address": 46874,
+      "hex": "cd4e80",
+      "op": "CALL $804E"
+    },
+    {
+      "address": 46877,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 46879,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 46880,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 46883,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46886,
+      "hex": "3a22b7",
+      "op": "LD A,($B722)"
+    },
+    {
+      "address": 46889,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 46890,
+      "hex": "3222b7",
+      "op": "LD ($B722),A"
+    },
+    {
+      "address": 46893,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 46894,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 46895,
+      "hex": "fe10",
+      "op": "CP $10"
+    },
+    {
+      "address": 46897,
+      "hex": "20df",
+      "op": "JR NZ,$B712"
+    },
+    {
+      "address": 46899,
+      "hex": "06ff",
+      "op": "LD B,$FF"
+    },
+    {
+      "address": 46901,
+      "hex": "cdf47b",
+      "op": "CALL $7BF4"
+    },
+    {
+      "address": 46904,
+      "hex": "c308b2",
+      "op": "JP $B208"
+    },
+    {
+      "address": 46921,
+      "hex": "010109",
+      "op": "LD BC,$0901"
+    },
+    {
+      "address": 46924,
+      "hex": "111c0c",
+      "op": "LD DE,$0C1C"
+    },
+    {
+      "address": 46927,
+      "hex": "3e45",
+      "op": "LD A,$45"
+    },
+    {
+      "address": 46929,
+      "hex": "cdfe73",
+      "op": "CALL $73FE"
+    },
+    {
+      "address": 46932,
+      "hex": "060a",
+      "op": "LD B,$0A"
+    },
+    {
+      "address": 46934,
+      "hex": "117bbc",
+      "op": "LD DE,$BC7B"
+    },
+    {
+      "address": 46937,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 46940,
+      "hex": "2aa8bc",
+      "op": "LD HL,($BCA8)"
+    },
+    {
+      "address": 46943,
+      "hex": "2b",
+      "op": "DEC HL"
+    },
+    {
+      "address": 46944,
+      "hex": "2b",
+      "op": "DEC HL"
+    },
+    {
+      "address": 46945,
+      "hex": "2b",
+      "op": "DEC HL"
+    },
+    {
+      "address": 46946,
+      "hex": "dd21ed6a",
+      "op": "LD IX,$6AED"
+    },
+    {
+      "address": 46950,
+      "hex": "cd4e7a",
+      "op": "CALL $7A4E"
+    },
+    {
+      "address": 46953,
+      "hex": "4f",
+      "op": "LD C,A"
+    },
+    {
+      "address": 46954,
+      "hex": "3a2d6a",
+      "op": "LD A,($6A2D)"
+    },
+    {
+      "address": 46957,
+      "hex": "b9",
+      "op": "CP C"
+    },
+    {
+      "address": 46958,
+      "hex": "2050",
+      "op": "JR NZ,$B7C0"
+    },
+    {
+      "address": 46960,
+      "hex": "dd2aa8bc",
+      "op": "LD IX,($BCA8)"
+    },
+    {
+      "address": 46964,
+      "hex": "ed4b2e6a",
+      "op": "LD BC,($6A2E)"
+    },
+    {
+      "address": 46968,
+      "hex": "dd5efe",
+      "op": "LD E,(IX-$02)"
+    },
+    {
+      "address": 46971,
+      "hex": "dd56ff",
+      "op": "LD D,(IX-$01)"
+    },
+    {
+      "address": 46974,
+      "hex": "cd717c",
+      "op": "CALL $7C71"
+    },
+    {
+      "address": 46977,
+      "hex": "ed5349b8",
+      "op": "LD ($B849),DE"
+    },
+    {
+      "address": 46981,
+      "hex": "ed4b2e6a",
+      "op": "LD BC,($6A2E)"
+    },
+    {
+      "address": 46985,
+      "hex": "dd5efe",
+      "op": "LD E,(IX-$02)"
+    },
+    {
+      "address": 46988,
+      "hex": "dd56ff",
+      "op": "LD D,(IX-$01)"
+    },
+    {
+      "address": 46991,
+      "hex": "cdf07f",
+      "op": "CALL $7FF0"
+    },
+    {
+      "address": 46994,
+      "hex": "69",
+      "op": "LD L,C"
+    },
+    {
+      "address": 46995,
+      "hex": "60",
+      "op": "LD H,B"
+    },
+    {
+      "address": 46996,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 46997,
+      "hex": "29",
+      "op": "ADD HL,HL"
+    },
+    {
+      "address": 46998,
+      "hex": "010500",
+      "op": "LD BC,$0005"
+    },
+    {
+      "address": 47001,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 47002,
+      "hex": "4d",
+      "op": "LD C,L"
+    },
+    {
+      "address": 47003,
+      "hex": "44",
+      "op": "LD B,H"
+    },
+    {
+      "address": 47004,
+      "hex": "cd626d",
+      "op": "CALL $6D62"
+    },
+    {
+      "address": 47007,
+      "hex": "ef",
+      "op": "RST $28"
+    },
+    {
+      "address": 47015,
+      "hex": "cd766d",
+      "op": "CALL $6D76"
+    },
+    {
+      "address": 47018,
+      "hex": "ed435cb8",
+      "op": "LD ($B85C),BC"
+    },
+    {
+      "address": 47022,
+      "hex": "1123b8",
+      "op": "LD DE,$B823"
+    },
+    {
+      "address": 47025,
+      "hex": "69",
+      "op": "LD L,C"
+    },
+    {
+      "address": 47026,
+      "hex": "60",
+      "op": "LD H,B"
+    },
+    {
+      "address": 47027,
+      "hex": "011400",
+      "op": "LD BC,$0014"
+    },
+    {
+      "address": 47030,
+      "hex": "b7",
+      "op": "OR A"
+    },
+    {
+      "address": 47031,
+      "hex": "ed42",
+      "op": "SBC HL,BC"
+    },
+    {
+      "address": 47033,
+      "hex": "3017",
+      "op": "JR NC,$B7D2"
+    },
+    {
+      "address": 47035,
+      "hex": "1167b8",
+      "op": "LD DE,$B867"
+    },
+    {
+      "address": 47038,
+      "hex": "1812",
+      "op": "JR $B7D2"
+    },
+    {
+      "address": 47040,
+      "hex": "41",
+      "op": "LD B,C"
+    },
+    {
+      "address": 47041,
+      "hex": "219069",
+      "op": "LD HL,$6990"
+    },
+    {
+      "address": 47044,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 47045,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 47046,
+      "hex": "be",
+      "op": "CP (HL)"
+    },
+    {
+      "address": 47047,
+      "hex": "20fc",
+      "op": "JR NZ,$B7C5"
+    },
+    {
+      "address": 47049,
+      "hex": "10fa",
+      "op": "DJNZ $B7C5"
+    },
+    {
+      "address": 47051,
+      "hex": "23",
+      "op": "INC HL"
+    },
+    {
+      "address": 47052,
+      "hex": "22b2b8",
+      "op": "LD ($B8B2),HL"
+    },
+    {
+      "address": 47055,
+      "hex": "1183b8",
+      "op": "LD DE,$B883"
+    },
+    {
+      "address": 47058,
+      "hex": "060c",
+      "op": "LD B,$0C"
+    },
+    {
+      "address": 47060,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 47063,
+      "hex": "dd2aa8bc",
+      "op": "LD IX,($BCA8)"
+    },
+    {
+      "address": 47067,
+      "hex": "11b7b8",
+      "op": "LD DE,$B8B7"
+    },
+    {
+      "address": 47070,
+      "hex": "dd7e10",
+      "op": "LD A,(IX+$10)"
+    },
+    {
+      "address": 47073,
+      "hex": "feff",
+      "op": "CP $FF"
+    },
+    {
+      "address": 47075,
+      "hex": "280a",
+      "op": "JR Z,$B7EF"
+    },
+    {
+      "address": 47077,
+      "hex": "cd4e80",
+      "op": "CALL $804E"
+    },
+    {
+      "address": 47080,
+      "hex": "dd22ddb8",
+      "op": "LD ($B8DD),IX"
+    },
+    {
+      "address": 47084,
+      "hex": "11cfb8",
+      "op": "LD DE,$B8CF"
+    },
+    {
+      "address": 47087,
+      "hex": "060e",
+      "op": "LD B,$0E"
+    },
+    {
+      "address": 47089,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 47092,
+      "hex": "0610",
+      "op": "LD B,$10"
+    },
+    {
+      "address": 47094,
+      "hex": "11e2b8",
+      "op": "LD DE,$B8E2"
+    },
+    {
+      "address": 47097,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 47100,
+      "hex": "af",
+      "op": "XOR A"
+    },
+    {
+      "address": 47101,
+      "hex": "cd2f6d",
+      "op": "CALL $6D2F"
+    },
+    {
+      "address": 47104,
+      "hex": "fd2aa8bc",
+      "op": "LD IY,($BCA8)"
+    },
+    {
+      "address": 47108,
+      "hex": "010311",
+      "op": "LD BC,$1103"
+    },
+    {
+      "address": 47111,
+      "hex": "111100",
+      "op": "LD DE,$0011"
+    },
+    {
+      "address": 47114,
+      "hex": "fd19",
+      "op": "ADD IY,DE"
+    },
+    {
+      "address": 47116,
+      "hex": "3e05",
+      "op": "LD A,$05"
+    },
+    {
+      "address": 47118,
+      "hex": "cd557e",
+      "op": "CALL $7E55"
+    },
+    {
+      "address": 47121,
+      "hex": "06ff",
+      "op": "LD B,$FF"
+    },
+    {
+      "address": 47123,
+      "hex": "cdf47b",
+      "op": "CALL $7BF4"
+    },
+    {
+      "address": 47126,
+      "hex": "c308b2",
+      "op": "JP $B208"
+    },
+    {
+      "address": 47129,
+      "hex": "dd2a91b9",
+      "op": "LD IX,($B991)"
+    },
+    {
+      "address": 47133,
+      "hex": "cd82b4",
+      "op": "CALL $B482"
+    },
+    {
+      "address": 47136,
+      "hex": "c308b2",
+      "op": "JP $B208"
+    },
+    {
+      "address": 47347,
+      "hex": "010608",
+      "op": "LD BC,$0806"
+    },
+    {
+      "address": 47350,
+      "hex": "3a1bba",
+      "op": "LD A,($BA1B)"
+    },
+    {
+      "address": 47353,
+      "hex": "57",
+      "op": "LD D,A"
+    },
+    {
+      "address": 47354,
+      "hex": "14",
+      "op": "INC D"
+    },
+    {
+      "address": 47355,
+      "hex": "1e12",
+      "op": "LD E,$12"
+    },
+    {
+      "address": 47357,
+      "hex": "3e41",
+      "op": "LD A,$41"
+    },
+    {
+      "address": 47359,
+      "hex": "cdfe73",
+      "op": "CALL $73FE"
+    },
+    {
+      "address": 47362,
+      "hex": "010709",
+      "op": "LD BC,$0907"
+    },
+    {
+      "address": 47365,
+      "hex": "111201",
+      "op": "LD DE,$0112"
+    },
+    {
+      "address": 47368,
+      "hex": "3e42",
+      "op": "LD A,$42"
+    },
+    {
+      "address": 47370,
+      "hex": "cdad73",
+      "op": "CALL $73AD"
+    },
+    {
+      "address": 47373,
+      "hex": "0609",
+      "op": "LD B,$09"
+    },
+    {
+      "address": 47375,
+      "hex": "114cb9",
+      "op": "LD DE,$B94C"
+    },
+    {
+      "address": 47378,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 47381,
+      "hex": "010c0a",
+      "op": "LD BC,$0A0C"
+    },
+    {
+      "address": 47384,
+      "hex": "ed4332b9",
+      "op": "LD ($B932),BC"
+    },
+    {
+      "address": 47388,
+      "hex": "3e01",
+      "op": "LD A,$01"
+    },
+    {
+      "address": 47390,
+      "hex": "f5",
+      "op": "PUSH AF"
+    },
+    {
+      "address": 47391,
+      "hex": "0600",
+      "op": "LD B,$00"
+    },
+    {
+      "address": 47393,
+      "hex": "4f",
+      "op": "LD C,A"
+    },
+    {
+      "address": 47394,
+      "hex": "21096a",
+      "op": "LD HL,$6A09"
+    },
+    {
+      "address": 47397,
+      "hex": "09",
+      "op": "ADD HL,BC"
+    },
+    {
+      "address": 47398,
+      "hex": "cb46",
+      "op": "BIT 0,(HL)"
+    },
+    {
+      "address": 47400,
+      "hex": "2814",
+      "op": "JR Z,$B93E"
+    },
+    {
+      "address": 47402,
+      "hex": "79",
+      "op": "LD A,C"
+    },
+    {
+      "address": 47403,
+      "hex": "cd6680",
+      "op": "CALL $8066"
+    },
+    {
+      "address": 47406,
+      "hex": "dde5",
+      "op": "PUSH IX"
+    },
+    {
+      "address": 47408,
+      "hex": "d1",
+      "op": "POP DE"
+    },
+    {
+      "address": 47409,
+      "hex": "010000",
+      "op": "LD BC,$0000"
+    },
+    {
+      "address": 47412,
+      "hex": "cd1771",
+      "op": "CALL $7117"
+    },
+    {
+      "address": 47415,
+      "hex": "3a33b9",
+      "op": "LD A,($B933)"
+    },
+    {
+      "address": 47418,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 47419,
+      "hex": "3233b9",
+      "op": "LD ($B933),A"
+    },
+    {
+      "address": 47422,
+      "hex": "f1",
+      "op": "POP AF"
+    },
+    {
+      "address": 47423,
+      "hex": "3c",
+      "op": "INC A"
+    },
+    {
+      "address": 47424,
+      "hex": "fe0b",
+      "op": "CP $0B"
+    },
+    {
+      "address": 47426,
+      "hex": "20da",
+      "op": "JR NZ,$B91E"
+    },
+    {
+      "address": 47428,
+      "hex": "06ff",
+      "op": "LD B,$FF"
+    },
+    {
+      "address": 47430,
+      "hex": "cdf47b",
+      "op": "CALL $7BF4"
+    },
+    {
+      "address": 47433,
+      "hex": "c308b2",
+      "op": "JP $B208"
+    }
+  ],
+  "call_targets": {
+    "46210": [
+      47133,
+      46204
+    ],
+    "29647": [
+      45588,
+      46078,
+      46608
+    ],
+    "29694": [
+      45599,
+      45618,
+      46222,
+      47359,
+      46929,
+      46820,
+      46093
+    ],
+    "28951": [
+      45607,
+      45650,
+      45814,
+      45887,
+      45911,
+      45974,
+      46014,
+      46038,
+      45869,
+      45678,
+      45688,
+      45754,
+      45789,
+      46282,
+      46392,
+      46410,
+      46437,
+      47378,
+      47412,
+      46937,
+      47060,
+      47089,
+      47097,
+      46854,
+      46883,
+      46113,
+      46122,
+      46131,
+      46662
+    ],
+    "34721": [
+      45621
+    ],
+    "31360": [
+      45899
+    ],
+    "29613": [
+      45966,
+      45991,
+      46030,
+      45827,
+      45699,
+      45767,
+      46233,
+      46244,
+      47370,
+      46846,
+      46104
+    ],
+    "27951": [
+      45995,
+      45861,
+      47101,
+      46612
+    ],
+    "30573": [
+      46045,
+      46141
+    ],
+    "38268": [
+      46081
+    ],
+    "34769": [
+      45719,
+      46868
+    ],
+    "31310": [
+      46254,
+      46950
+    ],
+    "44570": [
+      46270
+    ],
+    "31857": [
+      46306,
+      46974
+    ],
+    "32752": [
+      46323,
+      46991
+    ],
+    "28002": [
+      46336,
+      47004
+    ],
+    "28022": [
+      46347,
+      47015
+    ],
+    "32341": [
+      46427,
+      47118
+    ],
+    "31732": [
+      46442,
+      47430,
+      47123,
+      46901
+    ],
+    "32870": [
+      47403
+    ],
+    "32846": [
+      47077,
+      46874
+    ],
+    "46600": [
+      46134
+    ],
+    "46569": [
+      46201,
+      46653
+    ],
+    "27956": [
+      45568
+    ]
+  },
+  "external_targets": {
+    "29647": [
+      45588,
+      46078,
+      46608
+    ],
+    "29694": [
+      45599,
+      45618,
+      46222,
+      47359,
+      46929,
+      46820,
+      46093
+    ],
+    "28951": [
+      45607,
+      45650,
+      45814,
+      45887,
+      45911,
+      45974,
+      46014,
+      46038,
+      45869,
+      45678,
+      45688,
+      45754,
+      45789,
+      46282,
+      46392,
+      46410,
+      46437,
+      47378,
+      47412,
+      46937,
+      47060,
+      47089,
+      47097,
+      46854,
+      46883,
+      46113,
+      46122,
+      46131,
+      46662
+    ],
+    "34721": [
+      45621
+    ],
+    "31360": [
+      45899
+    ],
+    "29613": [
+      45966,
+      45991,
+      46030,
+      45827,
+      45699,
+      45767,
+      46233,
+      46244,
+      47370,
+      46846,
+      46104
+    ],
+    "27951": [
+      45995,
+      45861,
+      47101,
+      46612
+    ],
+    "30573": [
+      46045,
+      46141
+    ],
+    "38268": [
+      46081
+    ],
+    "34769": [
+      45719,
+      46868
+    ],
+    "31310": [
+      46254,
+      46950
+    ],
+    "44570": [
+      46270
+    ],
+    "31857": [
+      46306,
+      46974
+    ],
+    "32752": [
+      46323,
+      46991
+    ],
+    "28002": [
+      46336,
+      47004
+    ],
+    "28022": [
+      46347,
+      47015
+    ],
+    "32341": [
+      46427,
+      47118
+    ],
+    "31732": [
+      46442,
+      47430,
+      47123,
+      46901
+    ],
+    "32870": [
+      47403
+    ],
+    "32846": [
+      47077,
+      46874
+    ],
+    "27956": [
+      45568
+    ]
+  },
+  "calculator_blocks": [
+    {
+      "address": 46339,
+      "hex": "a40527a4042738"
+    },
+    {
+      "address": 47007,
+      "hex": "a40527a4042738"
+    }
+  ],
+  "module_id": 17
+}

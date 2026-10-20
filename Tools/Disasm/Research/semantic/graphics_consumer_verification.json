@@ -1,0 +1,89 @@
+{
+  "engine": "SkoolKit 10.0 Python Simulator, interrupts=False, fast_ldir=False",
+  "boundary": "от входа7545/75E1/75A2/7649 до RET на5F00, исходные машинные байты head.co",
+  "fixture": "32x32, позиции(3,5) и(20,28), фон всех6912байтов детерминированно заполнен",
+  "exclusions": "ассемблер, полная машина, переключение банков, графический интерфейс игры",
+  "cases": [
+    {
+      "routine": "#7545",
+      "row": 3,
+      "column": 5,
+      "source_slot": 35,
+      "source_offset": 1440,
+      "instructions": 503,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "62a266975850c7eb661a3ef2126f2d277ee57c664b2c510d565a1af40411ee61"
+    },
+    {
+      "routine": "#7545",
+      "row": 20,
+      "column": 28,
+      "source_slot": 35,
+      "source_offset": 1440,
+      "instructions": 506,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "bbde378e2b57a40a28d8da34267a3119307c22d0be1b955727ff5c1a08070c91"
+    },
+    {
+      "routine": "#75E1",
+      "row": 3,
+      "column": 5,
+      "source_slot": 35,
+      "source_offset": 1440,
+      "instructions": 5109,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "32e6318a90abedb010a714757c3955103fa22a5763ce94e8d3f9645ff3efd12f"
+    },
+    {
+      "routine": "#75E1",
+      "row": 20,
+      "column": 28,
+      "source_slot": 35,
+      "source_offset": 1440,
+      "instructions": 5112,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "c8845eaf4fbf66dd9cf09fd36291a93320cf342986e49ae1a864f487dc46c0bb"
+    },
+    {
+      "routine": "#75A2",
+      "row": 3,
+      "column": 5,
+      "source_slot": 45,
+      "source_offset": 0,
+      "instructions": 1418,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "2e99113cdb8f46cb0466ffd8eca0465ebaf5927413c7e49408b2bf649e50b24e"
+    },
+    {
+      "routine": "#75A2",
+      "row": 20,
+      "column": 28,
+      "source_slot": 45,
+      "source_offset": 0,
+      "instructions": 1421,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "11d847b337a3c91f4ed9ee9942e6b5dec9b53f062aeab06085b1b58081340379"
+    },
+    {
+      "routine": "#7649",
+      "row": 3,
+      "column": 5,
+      "source_slot": 45,
+      "source_offset": 0,
+      "instructions": 9578,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "5e70f7e0cfa820313a9bdbba9e1b6ca5605e56886d4d478f1977af6ca089382d"
+    },
+    {
+      "routine": "#7649",
+      "row": 20,
+      "column": 28,
+      "source_slot": 45,
+      "source_offset": 0,
+      "instructions": 9581,
+      "pixels_and_all_attributes_identical": true,
+      "entire_screen_sha256": "1494c1d284916c0e037a9900cc5f78f496236ff9da80f00baba789d917e82488"
+    }
+  ],
+  "passed": 8
+}

@@ -1,0 +1,966 @@
+
+O13:B200
+экран выбора трёх вариантов стратегической карты
+IN #6A2D — континент, #6A2E/#6A2F — координаты, #6A34 — флаги карт, #6A1E — армия
+OUT возврат после пункта выхода
+EFFECTS экран, состояние меню #B8EC..#B8F4, логические банки
+B200 cd346d       CALL $6D34
+B203 cd3f6d       CALL $6D3F
+B20D cdcf73       CALL $73CF
+B218 cdfe73       CALL $73FE
+B223 cdad73       CALL $73AD
+B22E cdfe73       CALL $73FE
+B242 cd1771       CALL $7117
+B260 cd1771       CALL $7117
+B269 cd1771       CALL $7117
+B29B cd1771       CALL $7117
+B29E dd211e6a     LD IX,$6A1E
+B2AA cdef7a       CALL $7AEF
+B2CA cd1771       CALL $7117
+B2E3 cdfdb7       CALL $B7FD
+B2F3 cd04b5       CALL $B504
+B2F8 cd35b3       CALL $B335
+B2FB dd21f4b8     LD IX,$B8F4
+B2FF cd6d77       CALL $776D
+B30D cdcf73       CALL $73CF
+B310 cd4a94       CALL $944A
+B313 cd636c       CALL $6C63
+B316 c9           RET
+B31B cd35b3       CALL $B335
+B32B cd04b5       CALL $B504
+B330 cdfdb7       CALL $B7FD
+
+O13:B335
+рисование увеличенного участка карты пройденного
+IN координаты героя, стратегическая карта и отдельная маска открытия
+OUT на экране фрагмент 42x26, затем возврат
+EFFECTS #B459..#B45C — рабочая и относительная позиция, экран, банк 11
+B342 cdfe73       CALL $73FE
+B34D cdad73       CALL $73AD
+B356 cd1771       CALL $7117
+B360 cdad73       CALL $73AD
+B397 c5           PUSH BC
+B398 d5           PUSH DE
+B39D cdc480       CALL $80C4
+B3A3 cd8eb4       CALL $B48E
+B3AE cd2f6d       CALL $6D2F
+B3B4 dd21e96a     LD IX,$6AE9
+B3BE cd6e8d       CALL $8D6E
+B3C7 dd21096b     LD IX,$6B09
+B3D1 cd6e8d       CALL $8D6E
+B3DA dd21f96a     LD IX,$6AF9
+B3E4 cd6e8d       CALL $8D6E
+B3F2 cd7db4       CALL $B47D
+B3F5 cdc6b4       CALL $B4C6
+B40A d1           POP DE
+B419 c1           POP BC
+B420 c291b3       JP NZ,$B391
+B42B cdad73       CALL $73AD
+B443 cdc480       CALL $80C4
+B446 cd7db4       CALL $B47D
+B449 d5           PUSH DE
+B44A cdc6b4       CALL $B4C6
+B44F cdf16b       CALL $6BF1
+B452 d1           POP DE
+B455 cde1b8       CALL $B8E1
+B458 c9           RET
+
+O13:B47D
+выбор четырёхбайтового образца ландшафта малой карты
+IN A — байт стратегической клетки
+OUT DE — адрес четырёх строк образца
+EFFECTS HL, DE, AF
+B47F cd9786       CALL $8697
+B48C eb           EX DE,HL
+B48D c9           RET
+
+O13:B48E
+проверка отдельного бита открытия стратегической клетки
+IN #B459 — column, #B45A — row, #6A2D — map 1..4
+OUT Z=1 клетка не открыта, Z=0 открыта, HL адрес байта маски
+EFFECTS логический банк 11, операнд BIT по #B4C4, HL, DE, BC, AF
+B490 cd2f6d       CALL $6D2F
+B4C5 c9           RET
+
+O13:B4C6
+XOR-вывод одной клетки малой карты размером 4x4
+IN DE — четыре байта образца, #B45B=column, #B45C=row
+OUT DE после образца, четыре строки экрана изменены
+EFFECTS экран, HL, DE, BC, AF; при нулевом B после SRL цикл DJNZ делает 256 итераций с модульным итоговым адресом
+B4C6 d5           PUSH DE
+B4F1 d1           POP DE
+B503 c9           RET
+
+O13:B504
+полная карта континента с просмотром замков
+IN карта континента, таблицы объектов, координаты героя
+OUT выбранный индекс замка #B6AF сохранён
+EFFECTS экран, #B6AF..#B6B1, #B8F3, рабочие самомодифицируемые операнды
+B511 cdfe73       CALL $73FE
+B51A cd1771       CALL $7117
+B524 cdad73       CALL $73AD
+B527 cdae80       CALL $80AE
+B53C d4c3b7       CALL NC,$B7C3
+B548 cd2f6d       CALL $6D2F
+B553 cdad73       CALL $73AD
+B560 cdc3b7       CALL $B7C3
+B570 cdc3b7       CALL $B7C3
+B576 dd21e96a     LD IX,$6AE9
+B57D cd747a       CALL $7A74
+B58E cdfe73       CALL $73FE
+B596 cd1771       CALL $7117
+B599 cdd1b6       CALL $B6D1
+B59C cd51b7       CALL $B751
+B5A6 c5           PUSH BC
+B5A7 cd03b7       CALL $B703
+B5AA c1           POP BC
+B5AB cdf16b       CALL $6BF1
+B5B9 f5           PUSH AF
+B5BE c403b7       CALL NZ,$B703
+B5C1 f1           POP AF
+B5DB cdd1b6       CALL $B6D1
+B5F0 cdd1b6       CALL $B6D1
+B601 cdfe73       CALL $73FE
+B60C cdad73       CALL $73AD
+B619 cd1771       CALL $7117
+B622 cd1771       CALL $7117
+B632 cd1771       CALL $7117
+B63F c8           RET Z
+B646 cd1771       CALL $7117
+B649 c9           RET
+
+O13:B6B2
+получение записи выбранного замка континента
+IN #6A2D — континент, #B6AF — выбранный замок 1..N
+OUT IX — начало 35-байтовой записи замка
+EFFECTS HL, DE, AF, IX
+B6B2 dd21e96a     LD IX,$6AE9
+B6B9 cd747a       CALL $7A74
+B6C2 e5           PUSH HL
+B6C3 dde1         POP IX
+B6CC c8           RET Z
+B6CD dd19         ADD IX,DE
+
+O13:B6D1
+вывод имени и принадлежности выбранного замка на полной карте
+IN состояние выбора замка
+OUT строка имени обновлена
+EFFECTS экран, указатели строк #B697/#B6AA
+B6D1 cdb2b6       CALL $B6B2
+B6D4 dde5         PUSH IX
+B6D6 d1           POP DE
+B6F2 d5           PUSH DE
+B6F9 cdcf73       CALL $73CF
+B6FC d1           POP DE
+B6FF cd1771       CALL $7117
+B702 c9           RET
+
+O13:B703
+переключение мигающей рамки выбранного замка
+IN выбранный замок
+OUT #B6B1 инвертирован
+EFFECTS экран, HL, DE, BC, AF, IX
+B703 cdb2b6       CALL $B6B2
+B712 cdc3b7       CALL $B7C3
+B716 cdc3b7       CALL $B7C3
+B71A cdc3b7       CALL $B7C3
+B71E cdc3b7       CALL $B7C3
+B722 cdc3b7       CALL $B7C3
+B726 cdc3b7       CALL $B7C3
+B72A cdc3b7       CALL $B7C3
+B72E cdc3b7       CALL $B7C3
+B732 cdc3b7       CALL $B7C3
+B736 cdc3b7       CALL $B7C3
+B73A cdc3b7       CALL $B7C3
+B73E cdc3b7       CALL $B7C3
+B742 cdc3b7       CALL $B7C3
+B746 cdc3b7       CALL $B7C3
+B750 c9           RET
+
+O13:B751
+нанесение трёх групп строений на полную карту
+IN текущий континент и таблицы объектов
+OUT отметки нанесены
+EFFECTS экран, HL, DE, BC, AF, IX
+B751 dd21e96a     LD IX,$6AE9
+B75B cd79b7       CALL $B779
+B75E dd21096b     LD IX,$6B09
+B768 cd79b7       CALL $B779
+B76B dd21f96a     LD IX,$6AF9
+B775 cd79b7       CALL $B779
+B778 c9           RET
+
+O13:B779
+нанесение активных записей одной таблицы объектов на полную карту
+IN IX — четырёхбайтовый дескриптор континентов, DE — шаг записи, B — высота, C — ширина отметки
+OUT все доступные записи пройдены
+EFFECTS операнды #B7AB/#B7AD/#B7BC, экран, HL, DE, BC, AF, IX
+B788 cd747a       CALL $7A74
+B794 e5           PUSH HL
+B795 dde1         POP IX
+B79D c5           PUSH BC
+B7AE d5           PUSH DE
+B7AF cdc3b7       CALL $B7C3
+B7B6 d1           POP DE
+B7BA c1           POP BC
+B7BE dd19         ADD IX,DE
+B7C2 c9           RET
+
+O13:B7C3
+инверсия одного экранного пикселя полной карты
+IN D — y, E — x
+OUT HL, DE, BC, AF сохранены
+EFFECTS один пиксель экрана
+B7C3 e5           PUSH HL
+B7C4 c5           PUSH BC
+B7C5 f5           PUSH AF
+B7C6 d5           PUSH DE
+B7C7 c1           POP BC
+B7F9 f1           POP AF
+B7FA c1           POP BC
+B7FB e1           POP HL
+B7FC c9           RET
+
+O13:B7FD
+вид с высоты птичьего полёта
+IN текущая стратегическая карта, координаты героя
+OUT на экране 21x13 знакомест
+EFFECTS экран и атрибуты, #B8ED/#B8F1, #B8F3, логические банки
+B80A cdfe73       CALL $73FE
+B813 cd1771       CALL $7117
+B83A cd2f6d       CALL $6D2F
+B840 dd214a59     LD IX,$594A
+B848 e5           PUSH HL
+B849 c5           PUSH BC
+B84A d5           PUSH DE
+B84B e5           PUSH HL
+B84C e5           PUSH HL
+B851 cdc480       CALL $80C4
+B870 eb           EX DE,HL
+B871 e1           POP HL
+B891 cd9786       CALL $8697
+B89F e1           POP HL
+B8A0 d1           POP DE
+B8AA c24ab8       JP NZ,$B84A
+B8B0 dd09         ADD IX,BC
+B8B2 c1           POP BC
+B8B4 e1           POP HL
+B8C0 c246b8       JP NZ,$B846
+B8DD cde1b8       CALL $B8E1
+B8E0 c9           RET
+
+O13:B8E1
+ожидание действия с десятикадровой задержкой после ввода
+IN разрешённые прерывания
+OUT получен ввод и прошли 10 прерываний
+EFFECTS BC, AF
+B8E1 cdf16b       CALL $6BF1
+B8EB c9           RET
+
+O14:B200
+переход на выбранный доступный континент по морю
+IN #6A34 — доступность, #6A33 — режим передвижения, текущий континент
+OUT при успехе изменён континент, режим и координаты; обычный возврат
+EFFECTS карта банк 10, #6A2D..#6A32, координаты встреч #6A44/#6A4B, #6A46, экран и временные поля оверлея
+B205 c8           RET Z
+B20D c0           RET NZ
+B216 cdfe73       CALL $73FE
+B221 cdad73       CALL $73AD
+B22A cd1771       CALL $7117
+B249 f5           PUSH AF
+B257 d5           PUSH DE
+B25B cd1771       CALL $7117
+B265 d1           POP DE
+B266 f1           POP AF
+B269 dd2140b4     LD IX,$B440
+B26D cd6d77       CALL $776D
+B272 caaab3       JP Z,$B3AA
+B27A caaab3       JP Z,$B3AA
+B28D cd7c95       CALL $957C
+B292 c5           PUSH BC
+B293 cd346d       CALL $6D34
+B296 cd3f6d       CALL $6D3F
+B2A0 cdcf73       CALL $73CF
+B2A3 cd0497       CALL $9704
+B2AD c1           POP BC
+B2AE c3aab3       JP $B3AA
+B2B1 c1           POP BC
+B2D8 cdae80       CALL $80AE
+B2E9 cdc86c       CALL $6CC8
+B2EC cd0b7b       CALL $7B0B
+B2EF cdae80       CALL $80AE
+B2FB cd0d7c       CALL $7C0D
+B302 cd0d7c       CALL $7C0D
+B306 cdb480       CALL $80B4
+B325 cd0d7c       CALL $7C0D
+B32C cd0d7c       CALL $7C0D
+B330 cdb480       CALL $80B4
+B354 dd219069     LD IX,$6990
+B378 cdd582       CALL $82D5
+B384 cdfe73       CALL $73FE
+B38F cdad73       CALL $73AD
+B39A cdad73       CALL $73AD
+B3A2 cd1771       CALL $7117
+B3A7 cdf47b       CALL $7BF4
+B3AA cd4a94       CALL $944A
+B3AD c9           RET
+
+O15:B200
+показ собранных частей карты местонахождения цели
+IN маска открытых частей и 25 байтов целевого узора
+OUT карта 5x5 показана до действия пользователя
+EFFECTS экран, банк 4, числовое поле #B2D3, HL, DE, BC, AF, IX, IY
+B200 cd346d       CALL $6D34
+B20B cdcf73       CALL $73CF
+B216 cdfe73       CALL $73FE
+B247 cd1771       CALL $7117
+B24C cd2f6d       CALL $6D2F
+B24F fd21556a     LD IY,$6A55
+B26C d5           PUSH DE
+B26D dd21a0ee     LD IX,$EEA0
+B274 cd4575       CALL $7545
+B279 d5           PUSH DE
+B27A dd2170bf     LD IX,$BF70
+B281 dd19         ADD IX,DE
+B28D cd4575       CALL $7545
+B292 cde175       CALL $75E1
+B295 d1           POP DE
+B2B5 cdf47b       CALL $7BF4
+B2B8 cd4a94       CALL $944A
+B2BB c9           RET
+
+O16:B200
+поиск цели сравнением участка карты 5x5 и завершение игры
+IN карта, координаты героя, узор #6A5A, данные героя #69EF
+OUT провал возвращает управление, победа завершает JP #0000
+EFFECTS время, экран, fixed disk region DE=#9E00 12 секторов, память банк 0: #C000, текущий стек
+B205 c0           RET NZ
+B20E cdfe73       CALL $73FE
+B219 cdad73       CALL $73AD
+B224 cdad73       CALL $73AD
+B22C cd1771       CALL $7117
+B22F dd2173b6     LD IX,$B673
+B233 cd6d77       CALL $776D
+B238 c0           RET NZ
+B240 c5           PUSH BC
+B241 cd0497       CALL $9704
+B244 c1           POP BC
+B247 cdae80       CALL $80AE
+B252 cdb480       CALL $80B4
+B25A c5           PUSH BC
+B25E cdf7b5       CALL $B5F7
+B263 cdf7b5       CALL $B5F7
+B269 c1           POP BC
+B272 cdfe73       CALL $73FE
+B27A cd1771       CALL $7117
+B27F cdf47b       CALL $7BF4
+B282 c9           RET
+B28B c1           POP BC
+B28E cd346d       CALL $6D34
+B2DC cdcf73       CALL $73CF
+B2E1 cd0188       CALL $8801
+B2EC cdfe73       CALL $73FE
+B2F4 cd1771       CALL $7117
+B2F9 cdf47b       CALL $7BF4
+B304 cdfe73       CALL $73FE
+B30C cd1771       CALL $7117
+B311 cdf47b       CALL $7BF4
+B31C cdfe73       CALL $73FE
+B324 cd1771       CALL $7117
+B328 cd2f6d       CALL $6D2F
+B334 cd156d       CALL $6D15
+B342 dd210000     LD IX,$0000
+B35F cd156d       CALL $6D15
+B37F cdfe73       CALL $73FE
+B38A cdad73       CALL $73AD
+B394 cdad73       CALL $73AD
+B39C cd1771       CALL $7117
+B3A6 cdcf73       CALL $73CF
+B3B5 cad2b3       JP Z,$B3D2
+B3C7 cd1771       CALL $7117
+B3CC cd0ab4       CALL $B40A
+B3CF c39fb3       JP $B39F
+B3D4 cd0ab4       CALL $B40A
+B3DF cdcf73       CALL $73CF
+B3E7 cd1771       CALL $7117
+B3EC cdf47b       CALL $7BF4
+B3F7 cdfe73       CALL $73FE
+B3FF cd1771       CALL $7117
+B404 cdf47b       CALL $7BF4
+B407 c30000       JP $0000
+
+O16:B40A
+прокрутка нижней текстовой области списка победителей
+IN B — число пиксельных шагов, не ноль
+OUT B=0
+EFFECTS часть экранной памяти, HL, DE, BC, AF
+B40A c5           PUSH BC
+B418 c5           PUSH BC
+B41D d5           PUSH DE
+B41E e1           POP HL
+B422 e5           PUSH HL
+B423 d5           PUSH DE
+B424 c5           PUSH BC
+B42A c1           POP BC
+B42B d1           POP DE
+B42C e1           POP HL
+B43E e5           PUSH HL
+B444 d1           POP DE
+B445 c1           POP BC
+B455 c1           POP BC
+B458 c9           RET
+
+O16:B5F7
+отбрасывание служебных битов клетки при поиске цели
+IN A — байт клетки
+OUT A=исходное A AND #3F, Z по этому значению
+EFFECTS AF
+B5F9 c8           RET Z
+B5FC c9           RET
+
+O17:B200
+экран статистики с переходами в подробные подменю
+IN глобальные поля героя, таблицы замков/врагов/заклинаний
+OUT меню 1 закрывает экран; пункты 2..6 переходят к локальным обработчикам
+EFFECTS экран, таблица меню #B95A/#B965..#B973, поля строк; цели #B405, #B6D8, #B749, #B8F3, #B819
+B200 cd346d       CALL $6D34
+B214 cdcf73       CALL $73CF
+B21F cdfe73       CALL $73FE
+B227 cd1771       CALL $7117
+B232 cdfe73       CALL $73FE
+B235 cda187       CALL $87A1
+B252 cd1771       CALL $7117
+B255 c3e0b2       JP $B2E0
+B26E cd1771       CALL $7117
+B278 cd1771       CALL $7117
+B283 cdad73       CALL $73AD
+B297 cdd187       CALL $87D1
+B2BA cd1771       CALL $7117
+B2C7 cdad73       CALL $73AD
+B2DD cd1771       CALL $7117
+B2F6 cd1771       CALL $7117
+B303 cdad73       CALL $73AD
+B325 cd2f6d       CALL $6D2F
+B32D cd1771       CALL $7117
+B33F cd1771       CALL $7117
+B34B cd807a       CALL $7A80
+B357 cd1771       CALL $7117
+B38E cdad73       CALL $73AD
+B396 cd1771       CALL $7117
+B3A7 cdad73       CALL $73AD
+B3AB cd2f6d       CALL $6D2F
+B3BE cd1771       CALL $7117
+B3CE cdad73       CALL $73AD
+B3D6 cd1771       CALL $7117
+B3D9 dd215ab9     LD IX,$B95A
+B3DD cd6d77       CALL $776D
+B3E4 fd2175b9     LD IY,$B975
+B3F5 e5           PUSH HL
+B3F6 c9           RET
+B3FE cdcf73       CALL $73CF
+B401 cd7c95       CALL $957C
+B404 c9           RET
+
+O17:B405
+список собственных замков с листанием по 26 названий
+IN #B670 — первый индекс, #BB79 — число своих замков
+OUT переход к #B208 при закрытии
+EFFECTS экран, #B670, локальное меню #B56E
+B40D cdfe73       CALL $73FE
+B418 cdad73       CALL $73AD
+B421 cd1771       CALL $7117
+B42A cd1771       CALL $7117
+B433 cd1771       CALL $7117
+B436 cd08b6       CALL $B608
+B439 dd216eb5     LD IX,$B56E
+B43D cd6d77       CALL $776D
+B442 ca08b2       JP Z,$B208
+B479 cde9b5       CALL $B5E9
+B47C cd82b4       CALL $B482
+B47F c305b4       JP $B405
+
+O17:B482
+карточка замка с доходом, местоположением и гарнизоном
+IN IX — указатель на 15-байтовое имя, физическая запись замка начинается IX-3
+OUT возврат после карточки
+EFFECTS экран, #B678, #B690, #B849, #B85C, #B8B2, банки
+B48E cdfe73       CALL $73FE
+B499 cdad73       CALL $73AD
+B4A4 cdad73       CALL $73AD
+B4AA dd21ed6a     LD IX,$6AED
+B4AE cd4e7a       CALL $7A4E
+B4B2 c5           PUSH BC
+B4B4 fd2a78b6     LD IY,($B678)
+B4BE cd1aae       CALL $AE1A
+B4CA cd1771       CALL $7117
+B4CD c1           POP BC
+B4D4 dd2a78b6     LD IX,($B678)
+B4E2 cd717c       CALL $7C71
+B4F3 cdf07f       CALL $7FF0
+B500 cd626d       CALL $6D62
+B50B cd766d       CALL $6D76
+B538 cd1771       CALL $7117
+B53B dd2a78b6     LD IX,($B678)
+B54A cd1771       CALL $7117
+B54D fd2a78b6     LD IY,($B678)
+B557 fd19         ADD IY,DE
+B55B cd557e       CALL $7E55
+B565 cd1771       CALL $7117
+B56A cdf47b       CALL $7BF4
+B56D c9           RET
+
+O17:B5E9
+поиск N-го собственного замка в таблице из 35-байтовых записей
+IN A — порядковый номер своего замка с 1
+OUT IX — имя найденного замка, DE, BC, AF сохранены
+EFFECTS IX
+B5E9 d5           PUSH DE
+B5EA c5           PUSH BC
+B5EB f5           PUSH AF
+B5ED dd21e0bf     LD IX,$BFE0
+B5F4 dd19         ADD IX,DE
+B604 f1           POP AF
+B605 c1           POP BC
+B606 d1           POP DE
+B607 c9           RET
+
+O17:B608
+вывод текущей страницы списка собственных замков
+IN #B670 — индекс начала, #BB79 — общее число
+OUT меню содержит только фактически напечатанные замки
+EFFECTS экран, #B56E, #B644, #B64A, банк 0
+B610 cdcf73       CALL $73CF
+B614 cd2f6d       CALL $6D2F
+B634 c8           RET Z
+B63B d0           RET NC
+B63D cde9b5       CALL $B5E9
+B640 dde5         PUSH IX
+B642 d1           POP DE
+B646 cd1771       CALL $7117
+
+O17:B6D8
+показ списка побеждённых противников
+IN #BBC6 — число побеждённых, таблицы врагов/замков
+OUT переход к статистике
+EFFECTS экран, банки, рабочие операнды #B721/#B744
+B6E4 cdfe73       CALL $73FE
+B6FE cdad73       CALL $73AD
+B706 cd1771       CALL $7117
+B712 f5           PUSH AF
+B714 cdd187       CALL $87D1
+B71A cd4e80       CALL $804E
+B71D dde5         PUSH IX
+B71F d1           POP DE
+B723 cd1771       CALL $7117
+B72D f1           POP AF
+B735 cdf47b       CALL $7BF4
+B738 c308b2       JP $B208
+
+O17:B749
+подробности текущего контракта на захват замка
+IN #BCA8 — имя контрактного замка
+OUT переход к #B208
+EFFECTS экран, банки и поля строк
+B751 cdfe73       CALL $73FE
+B759 cd1771       CALL $7117
+B762 dd21ed6a     LD IX,$6AED
+B766 cd4e7a       CALL $7A4E
+B770 dd2aa8bc     LD IX,($BCA8)
+B77E cd717c       CALL $7C71
+B78F cdf07f       CALL $7FF0
+B79C cd626d       CALL $6D62
+B7A7 cd766d       CALL $6D76
+B7D4 cd1771       CALL $7117
+B7D7 dd2aa8bc     LD IX,($BCA8)
+B7E5 cd4e80       CALL $804E
+B7F1 cd1771       CALL $7117
+B7F9 cd1771       CALL $7117
+B7FD cd2f6d       CALL $6D2F
+B800 fd2aa8bc     LD IY,($BCA8)
+B80A fd19         ADD IY,DE
+B80E cd557e       CALL $7E55
+B813 cdf47b       CALL $7BF4
+B816 c308b2       JP $B208
+
+O17:B819
+показ замка, на который готовится нападение
+IN #B991 — имя целевого замка
+OUT переход к #B208
+EFFECTS эффекты карточки #B482
+B819 dd2a91b9     LD IX,($B991)
+B81D cd82b4       CALL $B482
+B820 c308b2       JP $B208
+
+O17:B8F3
+список изученных заклинаний
+IN #6A0A..#6A13 — флаги заклинаний
+OUT переход к #B208
+EFFECTS экран, банк 3, операнд координат #B932
+B8FF cdfe73       CALL $73FE
+B90A cdad73       CALL $73AD
+B912 cd1771       CALL $7117
+B91E f5           PUSH AF
+B92B cd6680       CALL $8066
+B92E dde5         PUSH IX
+B930 d1           POP DE
+B934 cd1771       CALL $7117
+B93E f1           POP AF
+B946 cdf47b       CALL $7BF4
+B949 c308b2       JP $B208
+
+O18:B200
+встреча доброжелательного рассказчика и перенос его отметки
+IN #6A49 — число встреч, #6A44 — старая клетка
+OUT рассказчик перенесён на новую клетку
+EFFECTS #6A49, #6A44, карта банк 10, экран
+B200 cd346d       CALL $6D34
+B205 cd0188       CALL $8801
+B210 cdfe73       CALL $73FE
+B218 cd1771       CALL $7117
+B21D cdf47b       CALL $7BF4
+B227 cd57b2       CALL $B257
+B22A cdae80       CALL $80AE
+B231 cdb480       CALL $80B4
+B239 cd0d7c       CALL $7C0D
+B240 cd0d7c       CALL $7C0D
+B244 cdb480       CALL $80B4
+B256 c9           RET
+
+O18:B257
+выбор и постраничная печать анекдота доброжелательной встречи
+IN HL — положительный номер встречи
+OUT возврат после последней страницы
+EFFECTS экран, HL, DE, BC, AF
+B25B e5           PUSH HL
+B25E c1           POP BC
+B264 cd0d7c       CALL $7C0D
+B278 e5           PUSH HL
+B281 cdfe73       CALL $73FE
+B28C cdad73       CALL $73AD
+B28F e1           POP HL
+B2AB cd1771       CALL $7117
+B2B0 cdf47b       CALL $7BF4
+B2B5 cdc570       CALL $70C5
+B2C1 cd1771       CALL $7117
+B2C6 cdf47b       CALL $7BF4
+B2C9 c9           RET
+
+O19:B200
+встреча враждебного рассказчика и выбор его нового континента
+IN #6A50 — число встреч, #6A4B — прежняя позиция
+OUT #6A4D — выбранный континент
+EFFECTS карта, счётчики, экран
+B200 cd346d       CALL $6D34
+B205 cd0188       CALL $8801
+B210 cdfe73       CALL $73FE
+B218 cd1771       CALL $7117
+B21D cdf47b       CALL $7BF4
+B227 cda8b2       CALL $B2A8
+B22A cdae80       CALL $80AE
+B231 cdb480       CALL $80B4
+B239 cd0d7c       CALL $7C0D
+B24A cd0d7c       CALL $7C0D
+B251 cd0d7c       CALL $7C0D
+B255 cdb480       CALL $80B4
+B267 c9           RET
+
+O19:B2A8
+постраничный анекдот враждебной встречи
+IN HL — положительный номер встречи
+OUT возврат после завершения
+EFFECTS экран, HL, DE, BC, AF
+B2AC e5           PUSH HL
+B2AF c1           POP BC
+B2B5 cd0d7c       CALL $7C0D
+B2C9 e5           PUSH HL
+B2D2 cdfe73       CALL $73FE
+B2DD cdad73       CALL $73AD
+B2E0 e1           POP HL
+B2FC cd1771       CALL $7117
+B301 cdf47b       CALL $7BF4
+B306 cdc570       CALL $70C5
+B312 cd1771       CALL $7117
+B317 cdf47b       CALL $7BF4
+B31A c9           RET
+
+O20:B200
+экран поражения и повторная загрузка стартового блока KB.co
+IN C — причина, 0 битва, неноль срок
+OUT управление #6149, обычного возврата нет
+EFFECTS экран, TR-DOS, системные переменные, стек, режим прерываний
+B200 c5           PUSH BC
+B209 cdcf73       CALL $73CF
+B212 cd5bb2       CALL $B25B
+B21B cdc86c       CALL $6CC8
+B224 cdfe73       CALL $73FE
+B227 c1           POP BC
+B234 cd5bb2       CALL $B25B
+B23E cda15f       CALL $5FA1
+B255 cd133d       CALL $3D13
+B258 c34961       JP $6149
+
+O20:B25B
+печать сообщения поражения и ожидание действия
+IN DE — сообщение, B — строка
+OUT возврат из общего ожидания
+EFFECTS экран и регистры по процедурам ядра
+B25B cd1771       CALL $7117
+B260 c3f47b       JP $7BF4
+
+O21:B200
+управление гарнизоном собственного замка и его защитой
+IN #867B — имя замка, #6A1E — армия героя, #6AAA..#6AAC — нападение
+OUT возврат после выхода из замка или завершения защиты
+EFFECTS гарнизон, имя замка, армия, владельцы, численные поля героя, экран, банки
+B235 cd346d       CALL $6D34
+B238 cd3f6d       CALL $6D3F
+B23D cd0188       CALL $8801
+B241 cd2f6d       CALL $6D2F
+B246 cd1287       CALL $8712
+B251 cdad73       CALL $73AD
+B25A cd1771       CALL $7117
+B260 cdae6d       CALL $6DAE
+B266 cde370       CALL $70E3
+B26E cd1771       CALL $7117
+B28B cd1771       CALL $7117
+B293 cd1771       CALL $7117
+B296 dd2134bd     LD IX,$BD34
+B29A cd6d77       CALL $776D
+B29F c210b4       JP NZ,$B410
+B2A8 cd2f6d       CALL $6D2F
+B2AB dd2a7b86     LD IX,($867B)
+B2C0 c5           PUSH BC
+B2C1 cd5f7f       CALL $7F5F
+B2C4 c1           POP BC
+B2CB cdf07f       CALL $7FF0
+B2E3 cd1287       CALL $8712
+B2EB cd1771       CALL $7117
+B2F0 cdf47b       CALL $7BF4
+B2F3 c340b2       JP $B240
+B302 cd1287       CALL $8712
+B30A cd1771       CALL $7117
+B30F cdf47b       CALL $7BF4
+B312 c340b2       JP $B240
+B317 cd1287       CALL $8712
+B31F cd1771       CALL $7117
+B327 cd1771       CALL $7117
+B336 dd2a76b8     LD IX,($B876)
+B342 c5           PUSH BC
+B34D cda77e       CALL $7EA7
+B351 cd2f6d       CALL $6D2F
+B35A cd1771       CALL $7117
+B36B c1           POP BC
+B374 dd212fb9     LD IX,$B92F
+B378 cd6d77       CALL $776D
+B37D ca40b2       JP Z,$B240
+B385 dd2a76b8     LD IX,($B876)
+B38F dd09         ADD IX,BC
+B391 fd2a7b86     LD IY,($867B)
+B3AC cd1287       CALL $8712
+B3B5 cd1771       CALL $7117
+B3BA cdf47b       CALL $7BF4
+B3BD c315b3       JP $B315
+B3C8 cdb2bb       CALL $BBB2
+B3CB ca15b3       JP Z,$B315
+B3D7 cd947a       CALL $7A94
+B40A cd7e80       CALL $807E
+B40D c315b3       JP $B315
+B412 c269b4       JP NZ,$B469
+B41D cdad73       CALL $73AD
+B428 cdad73       CALL $73AD
+B431 cd1771       CALL $7117
+B449 dd215db9     LD IX,$B95D
+B452 cd0e6e       CALL $6E0E
+B457 ca40b2       JP Z,$B240
+B466 c340b2       JP $B240
+B46B c231b5       JP NZ,$B531
+B476 cd1287       CALL $8712
+B47F cd1771       CALL $7117
+B484 cdf47b       CALL $7BF4
+B487 c340b2       JP $B240
+B48C cd1287       CALL $8712
+B494 cd1771       CALL $7117
+B497 fd211e6a     LD IY,$6A1E
+B49B cd5cbb       CALL $BB5C
+B49E dd214fbd     LD IX,$BD4F
+B4A2 cd6d77       CALL $776D
+B4A7 ca40b2       JP Z,$B240
+B4AA dd211b6a     LD IX,$6A1B
+B4BB fd2a7b86     LD IY,($867B)
+B4C2 fd19         ADD IY,DE
+B4DB cd1287       CALL $8712
+B4E4 cd1771       CALL $7117
+B4E9 cdf47b       CALL $7BF4
+B4EC c38ab4       JP $B48A
+B4F7 cdb2bb       CALL $BBB2
+B52B cd7e80       CALL $807E
+B52E c38ab4       JP $B48A
+B533 c210b6       JP NZ,$B610
+B536 dd2a7b86     LD IX,($867B)
+B542 cd1287       CALL $8712
+B54B cd1771       CALL $7117
+B550 cdf47b       CALL $7BF4
+B553 c340b2       JP $B240
+B558 cd1287       CALL $8712
+B560 cd1771       CALL $7117
+B563 fd2a7b86     LD IY,($867B)
+B56A fd19         ADD IY,DE
+B56C cd5cbb       CALL $BB5C
+B56F dd214fbd     LD IX,$BD4F
+B573 cd6d77       CALL $776D
+B578 ca40b2       JP Z,$B240
+B57F dd2a7b86     LD IX,($867B)
+B586 dd19         ADD IX,DE
+B591 fd211e6a     LD IY,$6A1E
+B5AC cd1287       CALL $8712
+B5B5 cd1771       CALL $7117
+B5BA cdf47b       CALL $7BF4
+B5BD c356b5       JP $B556
+B5C8 cdb2bb       CALL $BBB2
+B5DA cd947a       CALL $7A94
+B60A cd7e80       CALL $807E
+B60D c356b5       JP $B556
+B616 cd407f       CALL $7F40
+B619 c9           RET
+B624 cd4e80       CALL $804E
+B62D dd21ae6a     LD IX,$6AAE
+B636 cd2f6d       CALL $6D2F
+B63B cd55d2       CALL $D255
+B63E f5           PUSH AF
+B63F cd346d       CALL $6D34
+B653 cd4e80       CALL $804E
+B663 cdcf73       CALL $73CF
+B666 f1           POP AF
+B668 ca57b7       JP Z,$B757
+B66C cd2f6d       CALL $6D2F
+B66F dd2aac6a     LD IX,($6AAC)
+B679 dde5         PUSH IX
+B67B e1           POP HL
+B680 eb           EX DE,HL
+B689 cde089       CALL $89E0
+B6A5 cdfe73       CALL $73FE
+B6AD cd1771       CALL $7117
+B6BA cd4e80       CALL $804E
+B6C6 cd1771       CALL $7117
+B6D4 cd1771       CALL $7117
+B6D9 cdf47b       CALL $7BF4
+B6DC cd407f       CALL $7F40
+B6DF c9           RET
+B6F4 cd1771       CALL $7117
+B6F9 cdf47b       CALL $7BF4
+B715 c9           RET
+B71B cd1771       CALL $7117
+B720 cdf47b       CALL $7BF4
+B723 cd01b8       CALL $B801
+B73C cd0d7c       CALL $7C0D
+B743 cd0d7c       CALL $7C0D
+B747 cdc480       CALL $80C4
+B756 c9           RET
+B757 cd088a       CALL $8A08
+B75D cdae6d       CALL $6DAE
+B762 cd886d       CALL $6D88
+B76B cdc46d       CALL $6DC4
+B771 cdae6d       CALL $6DAE
+B777 cdae6d       CALL $6DAE
+B780 cdc46d       CALL $6DC4
+B78B cdfe73       CALL $73FE
+B793 cd1771       CALL $7117
+B798 cdf47b       CALL $7BF4
+B7A2 cdcf73       CALL $73CF
+B7A6 cd2f6d       CALL $6D2F
+B7AD c20bb2       JP NZ,$B20B
+B7BD cd2f6d       CALL $6D2F
+B7C7 eb           EX DE,HL
+B7D8 cdfe73       CALL $73FE
+B7E0 c3f4b6       JP $B6F4
+B7EB cdfe73       CALL $73FE
+B7F3 cd1771       CALL $7117
+B7F8 cdf47b       CALL $7BF4
+B7FB cd01b8       CALL $B801
+B7FE c30bb2       JP $B20B
+
+O21:B801
+размещение сохранённых отрядов как шестибайтовых объектов карты
+IN #69DE — сохранённая армия, таблица #6B69 текущего континента
+OUT отряды размещены либо ранний возврат на пустой исходной записи
+EFFECTS шестибайтовые объекты карты, генератор случайных чисел, IY, IX и основные регистры
+B801 fd21de69     LD IY,$69DE
+B80B c8           RET Z
+B80C c5           PUSH BC
+B80D dd21696b     LD IX,$6B69
+B814 cd747a       CALL $7A74
+B82A c9           RET
+B82B e5           PUSH HL
+B82C dde1         POP IX
+B843 cd0d7c       CALL $7C0D
+B84A cd0d7c       CALL $7C0D
+B84E cdc480       CALL $80C4
+B86B c1           POP BC
+B874 c9           RET
+
+O21:BB5C
+вывод до пяти отрядов и подготовка меню выбора
+IN IY — массив до 5 записей ID+little-endian количество
+OUT #BD4F=1+число напечатанных записей
+EFFECTS экран, #BD29/#BD2E, #BB8F, IY после последней записи
+BB64 cdcf73       CALL $73CF
+BB74 cd2f6d       CALL $6D2F
+BB7B c8           RET Z
+BB7C c5           PUSH BC
+BB87 cd3680       CALL $8036
+BB93 cd1771       CALL $7117
+BBA4 c1           POP BC
+BBAE cd2f6d       CALL $6D2F
+BBB1 c9           RET
+
+O21:BBB2
+ввод числа передаваемых воинов с верхней границей
+IN A — номер строки выбора с 1, HL — максимум
+OUT BC — введённое количество, A=#0E/Z=1 при отмене; Z=0 и CF=0 при успехе, A=B OR C; IX, IY сохранены
+EFFECTS экран, рабочий операнд #BBD4, HL сохраняется при сравнении, основные регистры
+BBB2 dde5         PUSH IX
+BBB4 fde5         PUSH IY
+BBB9 c5           PUSH BC
+BBC1 cdad73       CALL $73AD
+BBC4 c1           POP BC
+BBCA cd1771       CALL $7117
+BBD6 e5           PUSH HL
+BBD7 cdc06f       CALL $6FC0
+BBDA e1           POP HL
+BBDF cd766d       CALL $6D76
+BBE6 e5           PUSH HL
+BBE9 e1           POP HL
+BBED fde1         POP IY
+BBEF dde1         POP IX
+BBF1 c9           RET
+
+O22:B200
+трёхстраничная справка об управлении
+IN нет явных аргументов
+OUT возврат после третьей страницы
+EFFECTS экран, состояние общих процедур печати
+B200 cd346d       CALL $6D34
+B203 cd3f6d       CALL $6D3F
+B20E cdcf73       CALL $73CF
+B216 cd1771       CALL $7117
+B219 cd61b2       CALL $B261
+B224 cdcf73       CALL $73CF
+B22C cd1771       CALL $7117
+B22F cd61b2       CALL $B261
+B23A cdcf73       CALL $73CF
+B242 cd1771       CALL $7117
+B24D cdad73       CALL $73AD
+B255 cd1771       CALL $7117
+B25A cdf47b       CALL $7BF4
+B25D cd4a94       CALL $944A
+B260 c9           RET
+
+O22:B261
+нижняя строка продолжения справки и ожидание
+IN страница уже выведена
+OUT возврат после общего ожидания
+EFFECTS экран и регистры по процедурам ядра
+B269 cdad73       CALL $73AD
+B271 cd1771       CALL $7117
+B276 cdf47b       CALL $7BF4
+B279 c9           RET

@@ -1,0 +1,9 @@
+{
+  "extraction_byte_identical": true,
+  "sha256": "08b0e7fd5c59bc104c9de623d2bd0bc2ff0dabf43c340cca6a06b165d2232717",
+  "total": 60,
+  "active": 54,
+  "deleted": 6,
+  "allocated_file_bytes": 567552,
+  "unallocated_nonzero_bytes": 0
+}

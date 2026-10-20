@@ -1,0 +1,99 @@
+{
+  "passed": true,
+  "fixtures": [
+    {
+      "name": "normal_source_and_includes",
+      "expected": "accepted",
+      "evidence": {
+        "purpose": "Full Source transcription using current Includes-derived symbols, EQU, fields and arithmetic"
+      },
+      "actual": "accepted",
+      "passed": true,
+      "detail": {
+        "transcription_byte_identical": true,
+        "source_blocks": 81,
+        "source_bytes": 348741,
+        "sha256": "08b0e7fd5c59bc104c9de623d2bd0bc2ff0dabf43c340cca6a06b165d2232717",
+        "assembler_executed_by_this_check": false
+      }
+    },
+    {
+      "name": "valid_jp_arithmetic",
+      "expected": "accepted",
+      "evidence": {
+        "source": "Source/Battle/SelectActor.asm",
+        "line": 51,
+        "replacement": "JP Battle.NewRound + FWord.Low",
+        "FWord.Low": 0
+      },
+      "actual": "accepted",
+      "passed": true,
+      "detail": {
+        "block": "S47",
+        "bytes": 11583
+      }
+    },
+    {
+      "name": "wrong_new_equ",
+      "expected": "rejected",
+      "evidence": {
+        "source": "Source/Battle/TickCursorAnim.asm",
+        "line": 21,
+        "old": ".Delay          EQU $+1                                                         ; изменяемый операнд HL длительности кадра курсора",
+        "replacement": ".Delay          EQU $+2                                                         ; изменяемый операнд HL длительности кадра курсора",
+        "registered_value_unchanged": true
+      },
+      "actual": "rejected",
+      "passed": true,
+      "error_type": "AssertionError",
+      "error": "('Source/Battle/TickCursorAnim.asm', 21, 'EQU value', 'Battle.TickCursorAnim.Delay', 63888)"
+    },
+    {
+      "name": "shifted_battle_cell_field",
+      "expected": "rejected",
+      "evidence": {
+        "symbol": "FBattleCells.First.X",
+        "old": 1,
+        "new": 2,
+        "source_files_unchanged": true
+      },
+      "actual": "rejected",
+      "passed": true,
+      "error_type": "AssertionError",
+      "error": "('Source/Battle/NeighboursNE.asm', 16, 'mnemonic transcription', 'INC (IY + FBattleCells.First.X)', 'INC (IY+#01)')"
+    },
+    {
+      "name": "wrong_jp_arithmetic",
+      "expected": "rejected",
+      "evidence": {
+        "source": "Source/Battle/SelectActor.asm",
+        "line": 51,
+        "replacement": "JP Battle.NewRound + FWord.High",
+        "FWord.High": 1
+      },
+      "actual": "rejected",
+      "passed": true,
+      "error_type": "AssertionError",
+      "error": "('Source/Battle/SelectActor.asm', 51, 'mnemonic transcription', 'JP Battle.NewRound + FWord.High', 'JP #D25C')"
+    },
+    {
+      "name": "changed_db_byte",
+      "expected": "rejected",
+      "evidence": {
+        "source": "Source/Battle/SaveCursorBack.asm",
+        "line": 27,
+        "old": ".Frame          DB #00                                                          ; номер текущего кадра курсора",
+        "replacement": ".Frame          DB #01                                                          ; номер текущего кадра курсора",
+        "boundary": "full TRD reconstruction and original image comparison"
+      },
+      "actual": "rejected",
+      "passed": true,
+      "error_type": "AssertionError",
+      "error": "disk transcription differs from original"
+    }
+  ],
+  "source_files_modified": false,
+  "includes_modified": false,
+  "assembler_executed": false,
+  "mutation_method": "In-memory source_lines replacement and copied symbol dictionaries only"
+}
