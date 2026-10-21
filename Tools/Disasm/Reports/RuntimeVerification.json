@@ -1,0 +1,146 @@
+{
+  "verified_utc": "2026-10-21T05:07:40.314863+00:00",
+  "path_base": "project_root",
+  "scope": "boot_to_CTPAHA_menu",
+  "passed": true,
+  "full_machine_executed": true,
+  "gameplay_tested": false,
+  "full_gameplay_verified": false,
+  "all_game_branches_tested": false,
+  "emulator": {
+    "name": "Xpeccy+",
+    "version": "2026.7",
+    "machine": "pent",
+    "exe_sha256": "f91c05e8f214a08cb43edad1083dc2aa976904a1aa20c1c90945628f81199caa",
+    "active_basic48_bank_sha256": "8d93c3342321e9d1e51d60afcd7d15f6a7afd978c231b43435a7c0757c60b9a3",
+    "active_basic48_bank_file": "roms/128-1.rom",
+    "active_basic48_bank_verified_by_memory_read": true,
+    "rom_readback_run": "Rebuilt",
+    "rom_override_files": {
+      "roms/128-0.rom": "3ba308f23b9471d13d9ba30c23030059a9ce5d4b317b85b86274b132651d1425",
+      "roms/128-1.rom": "8d93c3342321e9d1e51d60afcd7d15f6a7afd978c231b43435a7c0757c60b9a3",
+      "roms/128p-0.rom": "633343620691a592c706d18c927fd539b7069a5d0fb7011bcd3bfc94be418681",
+      "roms/128p-1.rom": "8d93c3342321e9d1e51d60afcd7d15f6a7afd978c231b43435a7c0757c60b9a3",
+      "roms/256s-0.rom": "c7ba1b5a4895b9ffba4499a40f227f955bc147092532f95023afe3a393bba602",
+      "roms/256s-1.rom": "e8b8ec052e5e7283a59173326a954773583fc282ccdf1dfff1724c30fdbc86f8",
+      "roms/256s-2.rom": "9f7571982a90268ef567bb6a8523d7c96db1d9644c85fee83c0ef0fa8a8900e1",
+      "roms/256s-3.rom": "31eda65b203179f466e5fcea8741ecb7c14d3c8f022e622585103e903969eadd",
+      "roms/48.rom": "d55daa439b673b0e3f5897f99ac37ecb45f974d1862b4dadb85dec34af99cb42",
+      "roms/alf.rom": "b86b46fd05df0f63c85bba986ef50c98bda5b587d0fccbdb2c19af010a0e3704",
+      "roms/atm2.rom": "9d53fa61aab7773d311f81eedbb35cf38225566e44a9417b5ecdc87d15dfe8e8",
+      "roms/gluck.rom": "7e0d59753fc1bc1f659baf0a1d982fe36d3a56a4de6c5a21f4023acd00371313",
+      "roms/gs104.rom": "03b1e1801b3682bd0ef25f6006299f7bfacb3d8755f8792c87ea4d856e47dce0",
+      "roms/gs105a.rom": "e256c963cf1bc5565bde1160855280a3d5cdd7e5d8481f3ee1c93f4e7e77b4d5",
+      "roms/gs105b.rom": "9948ec9617365fb1913b0c56e00d5f6b6a36084875cca16debae270a4c6e6adf",
+      "roms/phoenix.rom": "1e40d90e164ab497cf0f56b48c701ffc63d30137fc956942f6597150bf3e47b1",
+      "roms/plus2-0.rom": "51dc881d1d3e8242972390224e7cfd8650987d9a620e086aca9dfdf6988fcbf1",
+      "roms/plus2-1.rom": "ae6d95f1e6d16c3d1c947b77e6087952f3204b7930c6cadae3769289a1f5a1b9",
+      "roms/plus3-0.rom": "841d54545c743a7202fb9b068534ed906a08cc657a19955ae20a8de5af8ab185",
+      "roms/plus3-1.rom": "6d6ccab28f255b01c8cd89ceab9e7b60247f4610471118092f290f6c7768b7e3",
+      "roms/plus3-2.rom": "c5590212a269117657ce611acbac582e41e9db87dc78db480da2615e413b2da6",
+      "roms/plus3-3.rom": "8ec5cb9fd7ec24a041800314bb5a2c99be02f7e50745194eb649ed6d9085bd1f",
+      "roms/plus3-41.rom": "5e7d9b3355ca76f4a99cbcc0bc1c90118ecda6a1549c2cb0f02e98af17694f3e",
+      "roms/prof39f.rom": "7860fc0da2c3df2b3b7721a85ab3e74a9cb049d943ed32a1a6b8c38d4c61c9d4",
+      "roms/prof401.rom": "d0bd089d7adb84037d8a64b8cf49d0e3cbc737e75195d2bd2c98599b6e7f1d44",
+      "roms/profi-bios10.rom": "c223df0bd781700d8efbaabd68893cf21d28e89b1d225538eb52e49f94a9c10e",
+      "roms/profi-bios20.rom": "667607bb33ba2dfddc31045d638a604e6feab324e4dc9be339f963b274a2a72e",
+      "roms/profi-kramis02.rom": "1d3a044aa2f63ce7f71354441346f0ebb3736af778488da56dce3382b91fe03e",
+      "roms/scorpion295.rom": "f10e9daa1ff302247322b01c1ec63547e18d56a2ab3c62579f2b5c7fafd0ddeb",
+      "roms/sgen.rom": "d7711642b423319d06dd1abc22a7e4266f5c642fae3018566a6ed245da5fcebf",
+      "roms/trdos.rom": "91259fca6a8ded428cc24046f5b48b31d4043f2afbd9087d8946eaf4e10d71a5",
+      "roms/trdos504t.rom": "e21d37271d087eab5ef8f88d8f3a58c8c19da1fa857b9790eaa974b231db9e13",
+      "roms/tsconf.rom": "148ac0907e8ce9ce3f4215ac57666d9c88871ee49f0420b634a002a6506e4d02",
+      "roms/zxevo-fe.rom": "3122e06f41267b7b93563f5f30ab47465bfb8cdce8bfb1aaf01d80cb2a470abd"
+    },
+    "trdos_rom_variant_read_back_separately": false,
+    "user_emulator_files_unchanged": true
+  },
+  "isolation": {
+    "configurations": [
+      "Original/config",
+      "Rebuilt/config"
+    ],
+    "overrides": {
+      "port": [
+        30121,
+        30122
+      ],
+      "lastdir": ".",
+      "recent": "",
+      "savepaths": "no",
+      "pause.inactive": "no",
+      "autorun": "yes",
+      "addboot": "no",
+      "sound.enabled": "no"
+    },
+    "started_with_hidden_window": true,
+    "original_command": "./Emulator/xpeccy-plus.exe --confdir ./Original/config --machine pent --autostart --no-log ./Original/MYTHLAND.trd",
+    "rebuilt_command": "./Emulator/xpeccy-plus.exe --confdir ./Rebuilt/config --machine pent --autostart --no-log ./Rebuilt/MYTHLAND.trd",
+    "tcp_commands": [
+      "pause",
+      "getreg PC",
+      "getreg SP",
+      "dump 4000 432",
+      "dump 5c00 32",
+      "dump 0 1024",
+      "quit"
+    ],
+    "machine_memory_or_registers_injected": false
+  },
+  "results": [
+    {
+      "image": "Tools/Disasm/Disk/original.trd",
+      "image_bytes": 655360,
+      "image_sha256": "08b0e7fd5c59bc104c9de623d2bd0bc2ff0dabf43c340cca6a06b165d2232717",
+      "pc": "#6B97",
+      "sp": "#5F90",
+      "procedure": "Loader.Menu.ReadKeyCodes",
+      "procedure_start": "#6B72",
+      "procedure_end_exclusive": "#6BA1",
+      "screen": "Tools/Disasm/Reports/Runtime/Original.scr",
+      "preview": "Tools/Disasm/Reports/Runtime/Original.png",
+      "tcp_evidence": "Tools/Disasm/Reports/Runtime/Original.json",
+      "screen_bytes": 6912,
+      "screen_sha256": "5ee9357da26809c2c38d2f6ceea89173d874fc3442f1fdfa42d3edba5faade5f",
+      "isolated_config_after_run_sha256": "34f9da697e58b47002b7e5011b17d7b1423bd9c1623e059a7382c27420bcc0fd",
+      "observed_menu": [
+        "УЛУЧШЕННАЯ ВЕРСИЯ !!! (ВЕРСИЯ 2.0)",
+        "СТРАНА МИФОВ",
+        "Игра",
+        "Описание",
+        "Настройки"
+      ]
+    },
+    {
+      "image": "MYTHLAND.trd",
+      "image_bytes": 655360,
+      "image_sha256": "08b0e7fd5c59bc104c9de623d2bd0bc2ff0dabf43c340cca6a06b165d2232717",
+      "pc": "#6B7D",
+      "sp": "#5F8E",
+      "procedure": "Loader.Menu.ReadKeyCodes",
+      "procedure_start": "#6B72",
+      "procedure_end_exclusive": "#6BA1",
+      "screen": "Tools/Disasm/Reports/Runtime/Rebuilt.scr",
+      "preview": "Tools/Disasm/Reports/Runtime/Rebuilt.png",
+      "tcp_evidence": "Tools/Disasm/Reports/Runtime/Rebuilt.json",
+      "screen_bytes": 6912,
+      "screen_sha256": "5ee9357da26809c2c38d2f6ceea89173d874fc3442f1fdfa42d3edba5faade5f",
+      "isolated_config_after_run_sha256": "441469bc09ad6dbe29e2e78461076add41c71839a430a5055450f12a0f7f6de7",
+      "observed_menu": [
+        "УЛУЧШЕННАЯ ВЕРСИЯ !!! (ВЕРСИЯ 2.0)",
+        "СТРАНА МИФОВ",
+        "Игра",
+        "Описание",
+        "Настройки"
+      ]
+    }
+  ],
+  "screens_byte_identical": true,
+  "own_processes_closed_after_check": true,
+  "limitations": [
+    "The observed endpoint is the CTPAHA loader menu, before selecting Игра.",
+    "Creating a campaign, battles, saving and loading games were not exercised.",
+    "Captures were paused at different instruction boundaries, not synchronized by frame.",
+    "The first isolated process exited after a direct cpuregs query during an unpaused attempt, its cause was not independently localized. The recorded successful runs used pause and individual getreg queries."
+  ]
+}

@@ -1,18 +1,21 @@
 {
-  "registry_values": 7726,
-  "actual_definitions": 7726,
+  "registry_values": 7917,
+  "actual_definitions": 7917,
   "values_without_definitions": {},
   "values_mismatch": {},
   "kinds": {
     "field": 931,
     "struct": 59,
-    "constant": 226,
-    "label": 2185,
+    "constant": 416,
+    "function": 486,
+    "label": 1699,
     "data": 3624,
-    "operand": 701
+    "operand": 702
   },
   "definition_anchors_mismatch": [],
   "definition_source_files": 486,
-  "compiled_values_checked": 7726,
-  "compiled_values_match": true
+  "compiled_values_checked": 7917,
+  "compiled_values_match": true,
+  "assembler_symbol_entries": 8676,
+  "verified_utc": "2026-10-21T04:58:23.248096+00:00"
 }

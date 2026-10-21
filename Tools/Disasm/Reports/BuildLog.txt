@@ -542,6 +542,6 @@ include data: name=Assets/Gfx/raw/battlefield_mode_7_tilemap.bin (40 bytes) Offs
 include data: name=Assets/Gfx/raw/battlefield_mode_8_tilemap.bin (40 bytes) Offset=0  Len=40
 include data: name=Assets/Gfx/raw/battlefield_special_bit7_tilemap.bin (40 bytes) Offset=0  Len=40
 include data: name=Assets/Screens/Defeat.scr (6912 bytes) Offset=0  Len=6912
-Pass 3 complete
 MYTHLAND.TRD: byte-for-byte match, 655360 bytes
-Errors: 0, warnings: 0, compiled: 405267 lines, work time: 29.922 seconds
+Pass 3 complete
+Errors: 0, warnings: 0, compiled: 408101 lines, work time: 30.313 seconds

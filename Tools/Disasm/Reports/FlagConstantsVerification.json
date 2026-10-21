@@ -62,5 +62,14 @@
       "limitation": "Instruction mnemonics and resolved operands matched the immutable reference before reference instruction bytes were used. Data and resources were read from source. This is not assembly validation."
     },
     "assembler_executed": false
+  },
+  "current_assembly_verification": {
+    "verified_utc": "2026-10-21T04:58:23.248096+00:00",
+    "passed": true,
+    "registry_values_checked": 7917,
+    "errors": 0,
+    "warnings": 0,
+    "image_byte_identical": true,
+    "explicit_zero_index_operands": 72
   }
 }

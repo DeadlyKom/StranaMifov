@@ -71,22 +71,20 @@
 
 ## Проверки и их область
 
-- После именования битов выполнена статическая сверка, повторная сборка не запускалась, см. [Docs/Flags.md](Docs/Flags.md)
-
-- Последняя запись проверки сборки — [`Tools/Disasm/Reports/BuildVerification.json`](Tools/Disasm/Reports/BuildVerification.json).
-- Дата записи: `2026-10-20T21:37:48.215409+00:00`
-- Текущий снимок после разметки полей и рабочих данных проверяется по [реестру символов](Docs/Symbols.md) и отчётам сборки и статической проверки
-- Отпечатки последней сборки относятся к снимку до именования битов
-- Результат сохранённого отчёта: exit_code=0, errors=0, warnings=0
-- byte_identical=`True`, full_machine_executed=`False`
-- Предупреждения текущей сборки отсутствуют
-- Границы статического и игрового подтверждения — [`Docs/VerificationLimits.md`](Docs/VerificationLimits.md).
+- Итоговая сборка текущих исходников выполнена `2026-10-21T04:58:23.248096+00:00`, ошибок 0, предупреждений 0
+- Все 7917 значений реестра совпали с символами sjasmplus
+- `MYTHLAND.trd`, 655360 байт, побайтово совпал с исходным образом
+- Отпечатки ASM/INC/Lua и исходных ресурсов соответствуют проверенному снимку
+- Проверены именованные биты, явные нулевые смещения IX/IY, выравнивание комментариев и пустые строки после переходов
+- Команда, журнал и контрольные суммы — [Docs/Build.md](Docs/Build.md) и [BuildVerification.json](Tools/Disasm/Reports/BuildVerification.json)
+- Оригинал и сборка загрузились до меню в полном эмуляторе, экраны совпали побайтово, см. [проверку запуска](Docs/RuntimeVerification.md)
+- Границы статического и игрового подтверждения — [Docs/VerificationLimits.md](Docs/VerificationLimits.md)
 
 ## Как собрать
 
-В VS Code откройте корень Strana и нажмите `Ctrl+B`. Задача `Build` из [`.vscode/tasks.json`](.vscode/tasks.json) назначена задачей сборки по умолчанию и напрямую запускает локальный sjasmplus.
+В VS Code откройте корень проекта и нажмите `Ctrl+B`. Задача `Build` из [`.vscode/tasks.json`](.vscode/tasks.json) назначена задачей сборки по умолчанию и напрямую запускает локальный sjasmplus.
 
-Из PowerShell в корне Strana:
+Из PowerShell в корне проекта:
 
 ```powershell
 .\Tools\Sjasmplus\sjasmplus.exe --fullpath=rel --lst=Tmp/MYTHLAND.lst --sym=Tmp/MYTHLAND.sym Builder/Main.asm

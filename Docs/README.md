@@ -113,3 +113,5 @@ JSON и TSV в [`Tools/Disasm/Reports`](../Tools/Disasm/Reports) хранят т
 - [PointerNames.json](../Tools/Disasm/Reports/PointerNames.json)
 
 - [Проверка именованных битов](../Tools/Disasm/Reports/FlagConstantsVerification.json)
+
+- [Проверка загрузки в эмуляторе](RuntimeVerification.md)

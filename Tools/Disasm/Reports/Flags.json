@@ -2297,7 +2297,7 @@
               "line": 71,
               "address": 45659,
               "hex": "#B25B",
-              "operation": "LD E, (IY)",
+              "operation": "LD E, (IY + #00)",
               "block": "O15",
               "symbol": "Overlay.TargetMap.Entry",
               "original_operation": "LD E, (IY+#00)",
@@ -2386,7 +2386,7 @@
               "line": 71,
               "address": 45659,
               "hex": "#B25B",
-              "operation": "LD E, (IY)",
+              "operation": "LD E, (IY + #00)",
               "block": "O15",
               "symbol": "Overlay.TargetMap.Entry",
               "original_operation": "LD E, (IY+#00)",
@@ -2475,7 +2475,7 @@
               "line": 71,
               "address": 45659,
               "hex": "#B25B",
-              "operation": "LD E, (IY)",
+              "operation": "LD E, (IY + #00)",
               "block": "O15",
               "symbol": "Overlay.TargetMap.Entry",
               "original_operation": "LD E, (IY+#00)",
@@ -2564,7 +2564,7 @@
               "line": 71,
               "address": 45659,
               "hex": "#B25B",
-              "operation": "LD E, (IY)",
+              "operation": "LD E, (IY + #00)",
               "block": "O15",
               "symbol": "Overlay.TargetMap.Entry",
               "original_operation": "LD E, (IY+#00)",
@@ -2653,7 +2653,7 @@
               "line": 71,
               "address": 45659,
               "hex": "#B25B",
-              "operation": "LD E, (IY)",
+              "operation": "LD E, (IY + #00)",
               "block": "O15",
               "symbol": "Overlay.TargetMap.Entry",
               "original_operation": "LD E, (IY+#00)",
@@ -11138,8 +11138,8 @@
               "source": "Source/Battle/AISpell.asm",
               "line": 41,
               "operation": "SET",
-              "operand": "(IY)",
-              "instruction": "SET SPELL_BLOCK_BIT, (IY)",
+              "operand": "(IY + #00)",
+              "instruction": "SET SPELL_BLOCK_BIT, (IY + #00)",
               "address": 60383,
               "hex": "#EBDF",
               "block": "S47",
@@ -11964,7 +11964,8 @@
         {
           "source": "Source/Engine/BuildArmy.asm",
           "line": 99,
-          "operation": "RES 1, C"
+          "operation": "RES UNIT_SHOT_BIT, C",
+          "original_operation": "RES 1, C"
         }
       ],
       "mask_name": "UNIT_SHOT",
@@ -12026,17 +12027,20 @@
         {
           "source": "Source/Engine/BuildArmy.asm",
           "line": 100,
-          "operation": "RES 2, C"
+          "operation": "RES UNIT_FLY_BIT, C",
+          "original_operation": "RES 2, C"
         },
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 106,
-          "instruction": "BIT 2, E"
+          "instruction": "BIT UNIT_FLY_BIT, E",
+          "original_operation": "BIT 2, E"
         },
         {
           "source": "Source/Overlays/TakeOff.asm",
           "line": 41,
-          "instruction": "BIT 2, E"
+          "instruction": "BIT UNIT_FLY_BIT, E",
+          "original_operation": "BIT 2, E"
         }
       ],
       "mask_name": "UNIT_FLY",
@@ -13341,7 +13345,7 @@
           "source": "Source/Battle/AISpell.asm",
           "line": 41,
           "operation": "SET",
-          "operand": "(IY)"
+          "operand": "(IY + #00)"
         },
         {
           "source": "Source/Battle/AISpell.asm",
@@ -13417,8 +13421,8 @@
           "source": "Source/Battle/AISpell.asm",
           "line": 41,
           "operation": "SET",
-          "operand": "(IY)",
-          "instruction": "SET SPELL_BLOCK_BIT, (IY)",
+          "operand": "(IY + #00)",
+          "instruction": "SET SPELL_BLOCK_BIT, (IY + #00)",
           "address": 60383,
           "hex": "#EBDF",
           "block": "S47",
@@ -13590,17 +13594,20 @@
         {
           "source": "Source/Overlays/Info.asm",
           "line": 879,
-          "instruction": "BIT 0, (HL)"
+          "instruction": "BIT SPELL_KNOWN_BIT, (HL)",
+          "original_operation": "BIT 0, (HL)"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 203,
-          "instruction": "BIT 0, (HL)"
+          "instruction": "BIT SPELL_KNOWN_BIT, (HL)",
+          "original_operation": "BIT 0, (HL)"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 215,
-          "instruction": "SET 0, (HL)"
+          "instruction": "SET SPELL_KNOWN_BIT, (HL)",
+          "original_operation": "SET 0, (HL)"
         }
       ],
       "mask_name": "SPELL_KNOWN",
@@ -14310,32 +14317,38 @@
         {
           "source": "Source/Overlays/Capture.asm",
           "line": 81,
-          "instruction": "BIT 5, A"
+          "instruction": "BIT HERO_SIEGE_BIT, A",
+          "original_operation": "BIT 5, A"
         },
         {
           "source": "Source/Overlays/City.asm",
           "line": 165,
-          "instruction": "BIT 5, A"
+          "instruction": "BIT HERO_SIEGE_BIT, A",
+          "original_operation": "BIT 5, A"
         },
         {
           "source": "Source/Overlays/City.asm",
           "line": 196,
-          "instruction": "SET 5, A"
+          "instruction": "SET HERO_SIEGE_BIT, A",
+          "original_operation": "SET 5, A"
         },
         {
           "source": "Source/Overlays/Info.asm",
           "line": 154,
-          "instruction": "BIT 5, A"
+          "instruction": "BIT HERO_SIEGE_BIT, A",
+          "original_operation": "BIT 5, A"
         },
         {
           "source": "Source/Overlays/TakeOff.asm",
           "line": 63,
-          "instruction": "BIT 5, A"
+          "instruction": "BIT HERO_SIEGE_BIT, A",
+          "original_operation": "BIT 5, A"
         },
         {
           "source": "Source/Overlays/TakeOff.asm",
           "line": 93,
-          "instruction": "RES 5, A"
+          "instruction": "RES HERO_SIEGE_BIT, A",
+          "original_operation": "RES 5, A"
         }
       ],
       "mask_name": "HERO_SIEGE",
@@ -14698,7 +14711,8 @@
         {
           "source": "Source/Engine/FloatSignZero.asm",
           "line": 27,
-          "operation": "BIT 7, A"
+          "operation": "BIT FLOAT_SIGN_BIT, A",
+          "original_operation": "BIT 7, A"
         }
       ],
       "mask_name": null,
@@ -14947,207 +14961,248 @@
         {
           "source": "Source/Engine/ApplyMoveCode.asm",
           "line": 95,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/FindMapObject.asm",
           "line": 46,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/FindRecord.asm",
           "line": 20,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/Initialize.asm",
           "line": 85,
-          "operation": "SET 7, (HL)"
+          "operation": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/Initialize.asm",
           "line": 94,
-          "operation": "SET 7, (HL)"
+          "operation": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/MainLoop.asm",
           "line": 56,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/MarkMapCell.asm",
           "line": 18,
-          "operation": "SET 7, (HL)"
+          "operation": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/MoveSitesC.asm",
           "line": 40,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/MoveSitesC.asm",
           "line": 60,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/MoveSitesC.asm",
           "line": 70,
-          "operation": "SET 7, (HL)"
+          "operation": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/MoveSitesC.asm",
           "line": 73,
-          "operation": "RES 7, (HL)"
+          "operation": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 199,
-          "operation": "RES 7, (HL)"
+          "operation": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 205,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 319,
-          "operation": "SET 7, (HL)"
+          "operation": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 422,
-          "operation": "RES 7, (HL)"
+          "operation": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 428,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 464,
-          "operation": "RES 7, (HL)"
+          "operation": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 482,
-          "operation": "SET 7, (HL)"
+          "operation": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/StepMapTroops.asm",
           "line": 167,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/StepMapTroops.asm",
           "line": 192,
-          "operation": "RES 7, (HL)"
+          "operation": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Engine/StepMapTroops.asm",
           "line": 203,
-          "operation": "SET 7, (HL)"
+          "operation": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 398,
-          "operation": "BIT 7, A"
+          "operation": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Bandits.asm",
           "line": 126,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Bandits.asm",
           "line": 201,
-          "instruction": "RES 7, (HL)"
+          "instruction": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Overlays/Castle.asm",
           "line": 648,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Castle.asm",
           "line": 788,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Friendly.asm",
           "line": 43,
-          "instruction": "RES 7, (HL)"
+          "instruction": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Overlays/Friendly.asm",
           "line": 55,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Friendly.asm",
           "line": 61,
-          "instruction": "SET 7, (HL)"
+          "instruction": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Overlays/Hostile.asm",
           "line": 43,
-          "instruction": "RES 7, (HL)"
+          "instruction": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Overlays/Hostile.asm",
           "line": 63,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Hostile.asm",
           "line": 69,
-          "instruction": "SET 7, (HL)"
+          "instruction": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Overlays/Join.asm",
           "line": 42,
-          "instruction": "RES 7, (HL)"
+          "instruction": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         },
         {
           "source": "Source/Overlays/Land.asm",
           "line": 26,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 1056,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 156,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 162,
-          "instruction": "SET 7, (HL)"
+          "instruction": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 180,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 186,
-          "instruction": "SET 7, (HL)"
+          "instruction": "SET MAP_BUSY_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Overlays/Temple.asm",
           "line": 347,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT MAP_BUSY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 36,
-          "instruction": "RES 7, (HL)"
+          "instruction": "RES MAP_BUSY_BIT, (HL)",
+          "original_operation": "RES 7, (HL)"
         }
       ],
       "mask_name": "MAP_BUSY",
@@ -15842,17 +15897,20 @@
         {
           "source": "Source/Engine/EditNumber.asm",
           "line": 17,
-          "operation": "SET 4, A"
+          "operation": "SET TEXT_DIGIT_BIT, A",
+          "original_operation": "SET 4, A"
         },
         {
           "source": "Source/Engine/ReadTextChar.asm",
           "line": 53,
-          "operation": "BIT 4, (HL)"
+          "operation": "BIT TEXT_DIGIT_BIT, (HL)",
+          "original_operation": "BIT 4, (HL)"
         },
         {
           "source": "Source/Overlays/Castle.asm",
           "line": 295,
-          "instruction": "RES 4, A"
+          "instruction": "RES TEXT_DIGIT_BIT, A",
+          "original_operation": "RES 4, A"
         }
       ],
       "mask_name": "TEXT_DIGIT",
@@ -15956,9 +16014,11 @@
         },
         {
           "source": "Source/Startup/EditText.asm",
-          "line": 34,
+          "line": 35,
           "operation": "RES",
-          "operand": "(IX + Startup.Interrupt.EditFlags - Startup.Interrupt.EditAnchor)"
+          "operand": "(IX + .FlagsOfs)",
+          "original_line": 34,
+          "original_operation": "RES 5, (IX + Startup.Interrupt.EditFlags - Startup.Interrupt.EditAnchor)"
         },
         {
           "source": "Source/Startup/Interrupt.asm",
@@ -15969,17 +16029,20 @@
         {
           "source": "Source/Engine/EditText.asm",
           "line": 22,
-          "operation": "SET 5, A"
+          "operation": "SET TEXT_CURSOR_BIT, A",
+          "original_operation": "SET 5, A"
         },
         {
           "source": "Source/Engine/EditText.asm",
           "line": 33,
-          "operation": "RES 5, (IX + State.ViewFlags - State.EventFlags)"
+          "operation": "RES TEXT_CURSOR_BIT, (IX + State.ViewFlags - State.EventFlags)",
+          "original_operation": "RES 5, (IX + State.ViewFlags - State.EventFlags)"
         },
         {
           "source": "Source/Engine/Interrupt.asm",
           "line": 41,
-          "operation": "BIT 5, A"
+          "operation": "BIT TEXT_CURSOR_BIT, A",
+          "original_operation": "BIT 5, A"
         }
       ],
       "mask_name": "TEXT_CURSOR",
@@ -16162,12 +16225,14 @@
         {
           "source": "Source/Engine/ReadInput.asm",
           "line": 34,
-          "operation": "BIT 4, A"
+          "operation": "BIT JOY_FIRE_BIT, A",
+          "original_operation": "BIT 4, A"
         },
         {
           "source": "Source/Engine/WaitMenuInput.asm",
           "line": 23,
-          "operation": "BIT 4, A"
+          "operation": "BIT JOY_FIRE_BIT, A",
+          "original_operation": "BIT 4, A"
         }
       ],
       "mask_name": "JOY_FIRE",
@@ -16238,7 +16303,8 @@
         {
           "source": "Source/Engine/DrawGlyph.asm",
           "line": 38,
-          "operation": "SET 7, B"
+          "operation": "SET MASK_FILL_BIT, B",
+          "original_operation": "SET 7, B"
         }
       ],
       "mask_name": null,
@@ -16295,7 +16361,8 @@
         {
           "source": "Source/Engine/ShiftCursorL.asm",
           "line": 28,
-          "operation": "SET 0, (HL)"
+          "operation": "SET PIXEL_RIGHT_BIT, (HL)",
+          "original_operation": "SET 0, (HL)"
         }
       ],
       "mask_name": null,
@@ -16352,7 +16419,8 @@
         {
           "source": "Source/Engine/ShiftCursorR.asm",
           "line": 28,
-          "operation": "SET 7, (HL)"
+          "operation": "SET PIXEL_LEFT_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         }
       ],
       "mask_name": null,
@@ -16410,12 +16478,14 @@
         {
           "source": "Source/Engine/RandomScaled.asm",
           "line": 34,
-          "operation": "SET 0, L"
+          "operation": "SET RNG_FEED_BIT, L",
+          "original_operation": "SET 0, L"
         },
         {
           "source": "Source/Files/06_PRES.asm",
           "line": 871,
-          "instruction": "SET 0, L"
+          "instruction": "SET RNG_FEED_BIT, L",
+          "original_operation": "SET 0, L"
         }
       ],
       "mask_name": null,
@@ -16489,7 +16559,8 @@
         {
           "source": "Source/Files/06_PRES.asm",
           "line": 896,
-          "instruction": ".RoundResult    BIT 7, H"
+          "instruction": "BIT RNG_ROUND_BIT, H",
+          "original_operation": ".RoundResult    BIT 7, H"
         }
       ],
       "mask_name": null,
@@ -16569,17 +16640,20 @@
         {
           "source": "Source/Engine/TickCastle.asm",
           "line": 72,
-          "operation": "BIT 0, (IX + FCastle.Flags)"
+          "operation": "BIT CASTLE_OFF_BIT, (IX + FCastle.Flags)",
+          "original_operation": "BIT 0, (IX + FCastle.Flags)"
         },
         {
           "source": "Source/Overlays/Capture.asm",
           "line": 389,
-          "instruction": ".FindRulerFort  BIT 0, (IX + FCastle.Flags)"
+          "instruction": "BIT CASTLE_OFF_BIT, (IX + FCastle.Flags)",
+          "original_operation": ".FindRulerFort  BIT 0, (IX + FCastle.Flags)"
         },
         {
           "source": "Source/Overlays/Info.asm",
           "line": 493,
-          "instruction": "BIT 0, (IX + FCastle.Flags - FCastle.Name)"
+          "instruction": "BIT CASTLE_OFF_BIT, (IX + FCastle.Flags - FCastle.Name)",
+          "original_operation": "BIT 0, (IX + FCastle.Flags - FCastle.Name)"
         }
       ],
       "mask_name": "CASTLE_OFF",
@@ -16784,27 +16858,32 @@
         {
           "source": "Source/Engine/DevelopTroops.asm",
           "line": 18,
-          "operation": "BIT 7, A"
+          "operation": "BIT EVENT_LOCK_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/TickCastle.asm",
           "line": 50,
-          "operation": "BIT 7, A"
+          "operation": "BIT EVENT_LOCK_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/TickCastle.asm",
           "line": 271,
-          "operation": "BIT 7, A"
+          "operation": "BIT EVENT_LOCK_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 94,
-          "instruction": "SET 7, A"
+          "instruction": "SET EVENT_LOCK_BIT, A",
+          "original_operation": "SET 7, A"
         },
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 120,
-          "instruction": "RES 7, A"
+          "instruction": "RES EVENT_LOCK_BIT, A",
+          "original_operation": "RES 7, A"
         }
       ],
       "mask_name": "EVENT_LOCK",
@@ -16915,7 +16994,8 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 871,
-          "instruction": ".SiteRecord     BIT 0, (IX + FMapSite.Flags)"
+          "instruction": "BIT SITE_OFF_BIT, (IX + FMapSite.Flags)",
+          "original_operation": ".SiteRecord     BIT 0, (IX + FMapSite.Flags)"
         }
       ],
       "mask_name": "SITE_OFF",
@@ -17014,27 +17094,32 @@
         {
           "source": "Source/Engine/GetDirection.asm",
           "line": 35,
-          "operation": "BIT 7, A"
+          "operation": "BIT DELTA_NEG_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/GetDirection.asm",
           "line": 45,
-          "operation": "BIT 7, A"
+          "operation": "BIT DELTA_NEG_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/GetDirection.asm",
           "line": 71,
-          "operation": "BIT 7, (IX + FPosition.X)"
+          "operation": "BIT DELTA_NEG_BIT, (IX + FPosition.X)",
+          "original_operation": "BIT 7, (IX + FPosition.X)"
         },
         {
           "source": "Source/Engine/GetDirection.asm",
           "line": 82,
-          "operation": "BIT 7, (IX + FPosition.X)"
+          "operation": "BIT DELTA_NEG_BIT, (IX + FPosition.X)",
+          "original_operation": "BIT 7, (IX + FPosition.X)"
         },
         {
           "source": "Source/Engine/GetDirection.asm",
           "line": 85,
-          "operation": "BIT 7, (IX + FPosition.Y)"
+          "operation": "BIT DELTA_NEG_BIT, (IX + FPosition.Y)",
+          "original_operation": "BIT 7, (IX + FPosition.Y)"
         },
         {
           "source": "Source/Engine/GetDirection.asm",
@@ -17044,7 +17129,8 @@
         {
           "source": "Source/Engine/GetDirection.asm",
           "line": 101,
-          "operation": "BIT 7, (IX + FPosition.Y)"
+          "operation": "BIT DELTA_NEG_BIT, (IX + FPosition.Y)",
+          "original_operation": "BIT 7, (IX + FPosition.Y)"
         }
       ],
       "mask_name": null,
@@ -17148,17 +17234,20 @@
         {
           "source": "Source/Engine/Interrupt.asm",
           "line": 66,
-          "operation": "BIT 2, A"
+          "operation": "BIT VIEW_RENDER_BIT, A",
+          "original_operation": "BIT 2, A"
         },
         {
           "source": "Source/Engine/StartView.asm",
           "line": 14,
-          "operation": "SET 2, A"
+          "operation": "SET VIEW_RENDER_BIT, A",
+          "original_operation": "SET 2, A"
         },
         {
           "source": "Source/Engine/StopView.asm",
           "line": 14,
-          "operation": "RES 2, A"
+          "operation": "RES VIEW_RENDER_BIT, A",
+          "original_operation": "RES 2, A"
         }
       ],
       "mask_name": "VIEW_RENDER",
@@ -17222,17 +17311,20 @@
         {
           "source": "Source/Engine/MapMoveLeft.asm",
           "line": 21,
-          "operation": "RES 3, A"
+          "operation": "RES HERO_FACE_BIT, A",
+          "original_operation": "RES 3, A"
         },
         {
           "source": "Source/Engine/MapMoveRight.asm",
           "line": 20,
-          "operation": "SET 3, A"
+          "operation": "SET HERO_FACE_BIT, A",
+          "original_operation": "SET 3, A"
         },
         {
           "source": "Source/Engine/UpdateLocalView.asm",
           "line": 191,
-          "operation": "BIT 3, A"
+          "operation": "BIT HERO_FACE_BIT, A",
+          "original_operation": "BIT 3, A"
         }
       ],
       "mask_name": "HERO_FACE",
@@ -17296,17 +17388,20 @@
         {
           "source": "Source/Engine/MapMoveLeft.asm",
           "line": 28,
-          "operation": "RES 4, A"
+          "operation": "RES SHIP_FACE_BIT, A",
+          "original_operation": "RES 4, A"
         },
         {
           "source": "Source/Engine/MapMoveRight.asm",
           "line": 27,
-          "operation": "SET 4, A"
+          "operation": "SET SHIP_FACE_BIT, A",
+          "original_operation": "SET 4, A"
         },
         {
           "source": "Source/Engine/UpdateLocalView.asm",
           "line": 233,
-          "operation": "BIT 4, A"
+          "operation": "BIT SHIP_FACE_BIT, A",
+          "original_operation": "BIT 4, A"
         }
       ],
       "mask_name": "SHIP_FACE",
@@ -17385,12 +17480,14 @@
         {
           "source": "Source/Overlays/Castle.asm",
           "line": 762,
-          "instruction": ".FindMapSlot    BIT 0, (HL)"
+          "instruction": "BIT TROOP_FREE_BIT, (HL)",
+          "original_operation": ".FindMapSlot    BIT 0, (HL)"
         },
         {
           "source": "Source/Overlays/Join.asm",
           "line": 37,
-          "instruction": "SET 0, (IX + FMapTroop.Flags - FMapTroop.ID)"
+          "instruction": "SET TROOP_FREE_BIT, (IX + FMapTroop.Flags - FMapTroop.ID)",
+          "original_operation": "SET 0, (IX + FMapTroop.Flags - FMapTroop.ID)"
         }
       ],
       "mask_name": "TROOP_FREE",
@@ -17476,7 +17573,8 @@
         {
           "source": "Source/Engine/PlaceCells.asm",
           "line": 56,
-          "operation": "BIT 5, (IX + FMapSite.Flags)"
+          "operation": "BIT SITE_ALT_BIT, (IX + FMapSite.Flags)",
+          "original_operation": "BIT 5, (IX + FMapSite.Flags)"
         }
       ],
       "mask_name": "SITE_ALT",
@@ -17523,7 +17621,8 @@
         {
           "source": "Source/Engine/ReadTextChar.asm",
           "line": 92,
-          "operation": "BIT 1, (HL)"
+          "operation": "BIT TEXT_CASE_BIT, (HL)",
+          "original_operation": "BIT 1, (HL)"
         }
       ],
       "mask_name": "TEXT_CASE",
@@ -17576,7 +17675,8 @@
         {
           "source": "Source/Engine/RefreshTowns.asm",
           "line": 34,
-          "operation": "BIT 0, E"
+          "operation": "BIT TOWN_ROLL_BIT, E",
+          "original_operation": "BIT 0, E"
         }
       ],
       "mask_name": null,
@@ -17624,7 +17724,8 @@
         {
           "source": "Source/Overlays/Bandits.asm",
           "line": 196,
-          "instruction": "SET 0, (IX + FMapArmy.Flags - FMapArmy.Mana)"
+          "instruction": "SET ARMY_FREE_BIT, (IX + FMapArmy.Flags - FMapArmy.Mana)",
+          "original_operation": "SET 0, (IX + FMapArmy.Flags - FMapArmy.Mana)"
         }
       ],
       "mask_name": "ARMY_FREE",
@@ -17730,7 +17831,8 @@
         {
           "source": "Source/Engine/SetFacing.asm",
           "line": 21,
-          "operation": "RES 6, (IX + FMapSite.Flags)"
+          "operation": "RES OBJECT_FACE_BIT, (IX + FMapSite.Flags)",
+          "original_operation": "RES 6, (IX + FMapSite.Flags)"
         },
         {
           "source": "Source/Engine/SetFacing.asm",
@@ -17788,27 +17890,32 @@
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 170,
-          "operation": "BIT 5, (HL)"
+          "operation": "BIT ARMY_WATER_BIT, (HL)",
+          "original_operation": "BIT 5, (HL)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 393,
-          "operation": "BIT 5, (HL)"
+          "operation": "BIT ARMY_WATER_BIT, (HL)",
+          "original_operation": "BIT 5, (HL)"
         },
         {
           "source": "Source/Engine/StepMapTroops.asm",
           "line": 132,
-          "operation": "BIT 5, (HL)"
+          "operation": "BIT ARMY_WATER_BIT, (HL)",
+          "original_operation": "BIT 5, (HL)"
         },
         {
           "source": "Source/Overlays/Bandits.asm",
           "line": 39,
-          "instruction": "BIT 5, (IX + FMapArmy.Flags - 3)"
+          "instruction": "BIT ARMY_WATER_BIT, (IX + FMapArmy.Flags - 3)",
+          "original_operation": "BIT 5, (IX + FMapArmy.Flags - 3)"
         },
         {
           "source": "Source/Overlays/Bandits.asm",
           "line": 168,
-          "instruction": "BIT 5, (IX + FMapArmy.Flags - FMapArmy.Mana)"
+          "instruction": "BIT ARMY_WATER_BIT, (IX + FMapArmy.Flags - FMapArmy.Mana)",
+          "original_operation": "BIT 5, (IX + FMapArmy.Flags - FMapArmy.Mana)"
         }
       ],
       "mask_name": "ARMY_WATER",
@@ -17894,22 +18001,26 @@
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 194,
-          "operation": "SET 0, (IX + FMapItem.Flags)"
+          "operation": "SET ITEM_USED_BIT, (IX + FMapItem.Flags)",
+          "original_operation": "SET 0, (IX + FMapItem.Flags)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 417,
-          "operation": "SET 0, (IX + FMapItem.Flags)"
+          "operation": "SET ITEM_USED_BIT, (IX + FMapItem.Flags)",
+          "original_operation": "SET 0, (IX + FMapItem.Flags)"
         },
         {
           "source": "Source/Engine/StepMapTroops.asm",
           "line": 156,
-          "operation": "SET 0, (IX + FMapItem.Flags)"
+          "operation": "SET ITEM_USED_BIT, (IX + FMapItem.Flags)",
+          "original_operation": "SET 0, (IX + FMapItem.Flags)"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 31,
-          "instruction": "SET 0, (IX + FMapItem.Flags)"
+          "instruction": "SET ITEM_USED_BIT, (IX + FMapItem.Flags)",
+          "original_operation": "SET 0, (IX + FMapItem.Flags)"
         }
       ],
       "mask_name": "ITEM_USED",
@@ -17984,12 +18095,14 @@
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 316,
-          "operation": "SET 4, (IX + FMapArmy.Flags)"
+          "operation": "SET ARMY_MOVED_BIT, (IX + FMapArmy.Flags)",
+          "original_operation": "SET 4, (IX + FMapArmy.Flags)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
           "line": 495,
-          "operation": "SET 4, (IX + FMapArmy.Flags)"
+          "operation": "SET ARMY_MOVED_BIT, (IX + FMapArmy.Flags)",
+          "original_operation": "SET 4, (IX + FMapArmy.Flags)"
         },
         {
           "source": "Source/Engine/StepArmies.asm",
@@ -18058,7 +18171,8 @@
         {
           "source": "Source/Engine/StepMapTroops.asm",
           "line": 161,
-          "operation": "RES 0, (HL)"
+          "operation": "RES TERRAIN_LSB_BIT, (HL)",
+          "original_operation": "RES 0, (HL)"
         }
       ],
       "mask_name": null,
@@ -18106,12 +18220,14 @@
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 323,
-          "operation": "BIT 7, A"
+          "operation": "BIT EXP_PAY_BIT, A",
+          "original_operation": "BIT 7, A"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 510,
-          "operation": "BIT 7, (IY + FExpense.Flags)"
+          "operation": "BIT EXP_PAY_BIT, (IY + FExpense.Flags)",
+          "original_operation": "BIT 7, (IY + FExpense.Flags)"
         }
       ],
       "mask_name": "EXP_PAY",
@@ -18186,7 +18302,8 @@
         {
           "source": "Source/Engine/TickCastle.asm",
           "line": 267,
-          "operation": "BIT 0, A"
+          "operation": "BIT DEFENSE_OK_BIT, A",
+          "original_operation": "BIT 0, A"
         }
       ],
       "mask_name": "DEFENSE_OK",
@@ -18230,47 +18347,56 @@
         {
           "source": "Source/Engine/TickCastle.asm",
           "line": 351,
-          "operation": "SET 2, A"
+          "operation": "SET HERO_HIDE_BIT, A",
+          "original_operation": "SET 2, A"
         },
         {
           "source": "Source/Engine/TickCastle.asm",
           "line": 355,
-          "operation": "RES 2, A"
+          "operation": "RES HERO_HIDE_BIT, A",
+          "original_operation": "RES 2, A"
         },
         {
           "source": "Source/Engine/UpdateLocalView.asm",
           "line": 182,
-          "operation": "BIT 2, A"
+          "operation": "BIT HERO_HIDE_BIT, A",
+          "original_operation": "BIT 2, A"
         },
         {
           "source": "Source/Overlays/Bandits.asm",
           "line": 28,
-          "instruction": "SET 2, A"
+          "instruction": "SET HERO_HIDE_BIT, A",
+          "original_operation": "SET 2, A"
         },
         {
           "source": "Source/Overlays/Bandits.asm",
           "line": 33,
-          "instruction": "RES 2, A"
+          "instruction": "RES HERO_HIDE_BIT, A",
+          "original_operation": "RES 2, A"
         },
         {
           "source": "Source/Overlays/Capture.asm",
           "line": 33,
-          "instruction": "SET 2, A"
+          "instruction": "SET HERO_HIDE_BIT, A",
+          "original_operation": "SET 2, A"
         },
         {
           "source": "Source/Overlays/Capture.asm",
           "line": 38,
-          "instruction": "RES 2, A"
+          "instruction": "RES HERO_HIDE_BIT, A",
+          "original_operation": "RES 2, A"
         },
         {
           "source": "Source/Overlays/Join.asm",
           "line": 27,
-          "instruction": "SET 2, A"
+          "instruction": "SET HERO_HIDE_BIT, A",
+          "original_operation": "SET 2, A"
         },
         {
           "source": "Source/Overlays/Join.asm",
           "line": 32,
-          "instruction": "RES 2, A"
+          "instruction": "RES HERO_HIDE_BIT, A",
+          "original_operation": "RES 2, A"
         }
       ],
       "mask_name": "HERO_HIDE",
@@ -18400,32 +18526,38 @@
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 105,
-          "operation": "RES 6, (IX + FExpense.Flags)"
+          "operation": "RES EXP_ACTIVE_BIT, (IX + FExpense.Flags)",
+          "original_operation": "RES 6, (IX + FExpense.Flags)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 151,
-          "operation": "SET 6, (HL)"
+          "operation": "SET EXP_ACTIVE_BIT, (HL)",
+          "original_operation": "SET 6, (HL)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 175,
-          "operation": "SET 6, (HL)"
+          "operation": "SET EXP_ACTIVE_BIT, (HL)",
+          "original_operation": "SET 6, (HL)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 197,
-          "operation": "SET 6, (HL)"
+          "operation": "SET EXP_ACTIVE_BIT, (HL)",
+          "original_operation": "SET 6, (HL)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 216,
-          "operation": "BIT 6, (IX + FExpense.Flags)"
+          "operation": "BIT EXP_ACTIVE_BIT, (IX + FExpense.Flags)",
+          "original_operation": "BIT 6, (IX + FExpense.Flags)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 253,
-          "operation": "BIT 6, (IX + FExpense.Flags)"
+          "operation": "BIT EXP_ACTIVE_BIT, (IX + FExpense.Flags)",
+          "original_operation": "BIT 6, (IX + FExpense.Flags)"
         }
       ],
       "mask_name": "EXP_ACTIVE",
@@ -18522,7 +18654,8 @@
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 372,
-          "operation": "BIT 6, E"
+          "operation": "BIT UNIT_AFLOAT_BIT, E",
+          "original_operation": "BIT 6, E"
         }
       ],
       "mask_name": "UNIT_AFLOAT",
@@ -18564,12 +18697,14 @@
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 375,
-          "operation": "SET 5, (HL)"
+          "operation": "SET TROOP_DROWN_BIT, (HL)",
+          "original_operation": "SET 5, (HL)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 556,
-          "operation": "BIT 5, (IY + FTroop.ID)"
+          "operation": "BIT TROOP_DROWN_BIT, (IY + FTroop.ID)",
+          "original_operation": "BIT 5, (IY + FTroop.ID)"
         }
       ],
       "mask_name": "TROOP_DROWN",
@@ -18622,12 +18757,14 @@
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 455,
-          "operation": "SET 7, (HL)"
+          "operation": "SET TROOP_REBEL_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 518,
-          "operation": "SET 7, (HL)"
+          "operation": "SET TROOP_REBEL_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         },
         {
           "source": "Source/Engine/TickTime.asm",
@@ -18637,7 +18774,8 @@
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 620,
-          "operation": "BIT 7, A"
+          "operation": "BIT TROOP_REBEL_BIT, A",
+          "original_operation": "BIT 7, A"
         }
       ],
       "mask_name": "TROOP_REBEL",
@@ -18712,7 +18850,8 @@
         {
           "source": "Source/Engine/TickTime.asm",
           "line": 515,
-          "operation": "BIT 0, D"
+          "operation": "BIT UNIT_MUTINY_BIT, D",
+          "original_operation": "BIT 0, D"
         }
       ],
       "mask_name": "UNIT_MUTINY",
@@ -18890,7 +19029,8 @@
         {
           "source": "Source/Files/06_PRES.asm",
           "line": 1071,
-          "instruction": "SET 0, E"
+          "instruction": "SET PIX_PAIR_LO_BIT, E",
+          "original_operation": "SET 0, E"
         }
       ],
       "mask_name": null,
@@ -18926,7 +19066,8 @@
         {
           "source": "Source/Files/06_PRES.asm",
           "line": 1072,
-          "instruction": "SET 1, E"
+          "instruction": "SET PIX_PAIR_HI_BIT, E",
+          "original_operation": "SET 1, E"
         }
       ],
       "mask_name": null,
@@ -18964,32 +19105,38 @@
         {
           "source": "Source/Files/08_HERIMG.asm",
           "line": 118,
-          "instruction": "BIT 0, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ROW_BIT, (IY + FRleState.Flags)",
+          "original_operation": "BIT 0, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/08_HERIMG.asm",
           "line": 132,
-          "instruction": "BIT 0, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ROW_BIT, (IY + FRleState.Flags)",
+          "original_operation": "BIT 0, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/33_BL1.asm",
           "line": 121,
-          "instruction": "BIT 0, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ROW_BIT, (IY + FRleState.Flags)",
+          "original_operation": "BIT 0, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/33_BL1.asm",
           "line": 135,
-          "instruction": "BIT 0, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ROW_BIT, (IY + FRleState.Flags)",
+          "original_operation": "BIT 0, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/34_BL2.asm",
           "line": 121,
-          "instruction": "BIT 0, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ROW_BIT, (IY + FRleState.Flags)",
+          "original_operation": "BIT 0, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/34_BL2.asm",
           "line": 135,
-          "instruction": "BIT 0, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ROW_BIT, (IY + FRleState.Flags)",
+          "original_operation": "BIT 0, (IY + FRleState.Flags)"
         }
       ],
       "mask_name": "RLE_ROW",
@@ -19086,47 +19233,56 @@
         {
           "source": "Source/Files/08_HERIMG.asm",
           "line": 193,
-          "instruction": ".RepeatRun      BIT 2, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".RepeatRun      BIT 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/08_HERIMG.asm",
           "line": 205,
-          "instruction": ".EndRun         RES 2, (IY + FRleState.Flags)"
+          "instruction": "RES RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".EndRun         RES 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/08_HERIMG.asm",
           "line": 223,
-          "instruction": "SET 2, (IY + FRleState.Flags)"
+          "instruction": "SET RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": "SET 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/33_BL1.asm",
           "line": 196,
-          "instruction": ".RepeatRun      BIT 2, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".RepeatRun      BIT 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/33_BL1.asm",
           "line": 208,
-          "instruction": ".EndRun         RES 2, (IY + FRleState.Flags)"
+          "instruction": "RES RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".EndRun         RES 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/33_BL1.asm",
           "line": 226,
-          "instruction": "SET 2, (IY + FRleState.Flags)"
+          "instruction": "SET RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": "SET 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/34_BL2.asm",
           "line": 196,
-          "instruction": ".RepeatRun      BIT 2, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".RepeatRun      BIT 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/34_BL2.asm",
           "line": 208,
-          "instruction": ".EndRun         RES 2, (IY + FRleState.Flags)"
+          "instruction": "RES RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".EndRun         RES 2, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/34_BL2.asm",
           "line": 226,
-          "instruction": "SET 2, (IY + FRleState.Flags)"
+          "instruction": "SET RLE_RUN_BIT, (IY + FRleState.Flags)",
+          "original_operation": "SET 2, (IY + FRleState.Flags)"
         }
       ],
       "mask_name": "RLE_RUN",
@@ -19256,32 +19412,38 @@
         {
           "source": "Source/Files/08_HERIMG.asm",
           "line": 175,
-          "instruction": "SET 3, (IY + FRleState.Flags)"
+          "instruction": "SET RLE_ATTR_BIT, (IY + FRleState.Flags)",
+          "original_operation": "SET 3, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/08_HERIMG.asm",
           "line": 225,
-          "instruction": ".ContinueRun    BIT 3, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ATTR_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".ContinueRun    BIT 3, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/33_BL1.asm",
           "line": 178,
-          "instruction": "SET 3, (IY + FRleState.Flags)"
+          "instruction": "SET RLE_ATTR_BIT, (IY + FRleState.Flags)",
+          "original_operation": "SET 3, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/33_BL1.asm",
           "line": 228,
-          "instruction": ".ContinueRun    BIT 3, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ATTR_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".ContinueRun    BIT 3, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/34_BL2.asm",
           "line": 178,
-          "instruction": "SET 3, (IY + FRleState.Flags)"
+          "instruction": "SET RLE_ATTR_BIT, (IY + FRleState.Flags)",
+          "original_operation": "SET 3, (IY + FRleState.Flags)"
         },
         {
           "source": "Source/Files/34_BL2.asm",
           "line": 228,
-          "instruction": ".ContinueRun    BIT 3, (IY + FRleState.Flags)"
+          "instruction": "BIT RLE_ATTR_BIT, (IY + FRleState.Flags)",
+          "original_operation": ".ContinueRun    BIT 3, (IY + FRleState.Flags)"
         }
       ],
       "mask_name": "RLE_ATTR",
@@ -19378,12 +19540,14 @@
         {
           "source": "Source/Loader/Menu/CursorBackdrop.asm",
           "line": 57,
-          "instruction": "BIT 7, C"
+          "instruction": "BIT CUR_RESTORE_BIT, C",
+          "original_operation": "BIT 7, C"
         },
         {
           "source": "Source/Loader/Menu/CursorBackdrop.asm",
           "line": 66,
-          "instruction": "BIT 7, C"
+          "instruction": "BIT CUR_RESTORE_BIT, C",
+          "original_operation": "BIT 7, C"
         }
       ],
       "mask_name": "CUR_RESTORE",
@@ -19436,22 +19600,26 @@
         {
           "source": "Source/Loader/Menu/EditUnits.asm",
           "line": 162,
-          "instruction": "BIT 0, A"
+          "instruction": "BIT MENU_FIRE_BIT, A",
+          "original_operation": "BIT 0, A"
         },
         {
           "source": "Source/Loader/Menu/ShowHelp.asm",
           "line": 63,
-          "instruction": "BIT 0, A"
+          "instruction": "BIT MENU_FIRE_BIT, A",
+          "original_operation": "BIT 0, A"
         },
         {
           "source": "Source/Loader/Menu/WaitPress.asm",
           "line": 16,
-          "instruction": "BIT 0, C"
+          "instruction": "BIT MENU_FIRE_BIT, C",
+          "original_operation": "BIT 0, C"
         },
         {
           "source": "Source/Loader/Menu/WaitRelease.asm",
           "line": 15,
-          "instruction": "BIT 0, C"
+          "instruction": "BIT MENU_FIRE_BIT, C",
+          "original_operation": "BIT 0, C"
         }
       ],
       "mask_name": "MENU_FIRE",
@@ -19526,7 +19694,8 @@
         {
           "source": "Source/Loader/Menu/MoveCursor.asm",
           "line": 80,
-          "instruction": ".MoveDown       BIT 1, C"
+          "instruction": "BIT MENU_DOWN_BIT, C",
+          "original_operation": ".MoveDown       BIT 1, C"
         }
       ],
       "mask_name": "MENU_DOWN",
@@ -19568,12 +19737,14 @@
         {
           "source": "Source/Loader/Menu/EditUnits.asm",
           "line": 183,
-          "instruction": "BIT 2, A"
+          "instruction": "BIT MENU_UP_BIT, A",
+          "original_operation": "BIT 2, A"
         },
         {
           "source": "Source/Loader/Menu/MoveCursor.asm",
           "line": 71,
-          "instruction": ".MoveUp         BIT 2, C"
+          "instruction": "BIT MENU_UP_BIT, C",
+          "original_operation": ".MoveUp         BIT 2, C"
         }
       ],
       "mask_name": "MENU_UP",
@@ -19626,12 +19797,14 @@
         {
           "source": "Source/Loader/Menu/EditUnits.asm",
           "line": 179,
-          "instruction": "BIT 3, A"
+          "instruction": "BIT MENU_RIGHT_BIT, A",
+          "original_operation": "BIT 3, A"
         },
         {
           "source": "Source/Loader/Menu/MoveCursor.asm",
           "line": 59,
-          "instruction": ".MoveRight      BIT 3, C"
+          "instruction": "BIT MENU_RIGHT_BIT, C",
+          "original_operation": ".MoveRight      BIT 3, C"
         }
       ],
       "mask_name": "MENU_RIGHT",
@@ -19684,12 +19857,14 @@
         {
           "source": "Source/Loader/Menu/EditUnits.asm",
           "line": 175,
-          "instruction": "BIT 4, A"
+          "instruction": "BIT MENU_LEFT_BIT, A",
+          "original_operation": "BIT 4, A"
         },
         {
           "source": "Source/Loader/Menu/MoveCursor.asm",
           "line": 50,
-          "instruction": "BIT 4, C"
+          "instruction": "BIT MENU_LEFT_BIT, C",
+          "original_operation": "BIT 4, C"
         }
       ],
       "mask_name": "MENU_LEFT",
@@ -19742,17 +19917,20 @@
         {
           "source": "Source/Loader/Menu/HighlightAreas.asm",
           "line": 41,
-          "instruction": "SET 7, (IX + FMenuArea.XAndActive)"
+          "instruction": "SET MENU_ACTIVE_BIT, (IX + FMenuArea.XAndActive)",
+          "original_operation": "SET 7, (IX + FMenuArea.XAndActive)"
         },
         {
           "source": "Source/Loader/Menu/HighlightAreas.asm",
           "line": 60,
-          "instruction": ".Unhighlight    RES 7, (IX + FMenuArea.XAndActive)"
+          "instruction": "RES MENU_ACTIVE_BIT, (IX + FMenuArea.XAndActive)",
+          "original_operation": ".Unhighlight    RES 7, (IX + FMenuArea.XAndActive)"
         },
         {
           "source": "Source/Loader/Menu/PollMenu.asm",
           "line": 76,
-          "instruction": ".SelectedArea   RES 7, (HL)"
+          "instruction": "RES MENU_ACTIVE_BIT, (HL)",
+          "original_operation": ".SelectedArea   RES 7, (HL)"
         }
       ],
       "mask_name": "MENU_ACTIVE",
@@ -19816,7 +19994,8 @@
         {
           "source": "Source/Loader/Menu/RandomByte.asm",
           "line": 17,
-          "instruction": "RES 5, H"
+          "instruction": "RES BEEP_WRAP_BIT, H",
+          "original_operation": "RES 5, H"
         }
       ],
       "mask_name": null,
@@ -19854,7 +20033,8 @@
         {
           "source": "Source/Loader/Music.asm",
           "line": 215,
-          "instruction": "BIT 7, A"
+          "instruction": "BIT SMP_MUTE_N_BIT, A",
+          "original_operation": "BIT 7, A"
         }
       ],
       "mask_name": "SMP_MUTE_N",
@@ -19896,7 +20076,8 @@
         {
           "source": "Source/Loader/Music.asm",
           "line": 223,
-          "instruction": ".ToneDisable    BIT 6, A"
+          "instruction": "BIT SMP_MUTE_T_BIT, A",
+          "original_operation": ".ToneDisable    BIT 6, A"
         }
       ],
       "mask_name": "SMP_MUTE_T",
@@ -19938,7 +20119,8 @@
         {
           "source": "Source/Loader/Music.asm",
           "line": 242,
-          "instruction": "BIT 5, (IX + FSampleStep.NoiseAndFlags)"
+          "instruction": "BIT SMP_ADD_BIT, (IX + FSampleStep.NoiseAndFlags)",
+          "original_operation": "BIT 5, (IX + FSampleStep.NoiseAndFlags)"
         }
       ],
       "mask_name": "SMP_ADD",
@@ -19980,17 +20162,20 @@
         {
           "source": "Source/Loader/Music.asm",
           "line": 245,
-          "instruction": "SET 4, D"
+          "instruction": "SET SLIDE_ADD_BIT, D",
+          "original_operation": "SET 4, D"
         },
         {
           "source": "Source/Loader/Music.asm",
           "line": 713,
-          "instruction": "BIT 4, D"
+          "instruction": "BIT SLIDE_ADD_BIT, D",
+          "original_operation": "BIT 4, D"
         },
         {
           "source": "Source/Loader/Music.asm",
           "line": 716,
-          "instruction": "RES 4, D"
+          "instruction": "RES SLIDE_ADD_BIT, D",
+          "original_operation": "RES 4, D"
         }
       ],
       "mask_name": "SLIDE_ADD",
@@ -20054,7 +20239,8 @@
         {
           "source": "Source/Loader/Music.asm",
           "line": 581,
-          "instruction": ".SetVolumeFlag  SET 4, (HL)"
+          "instruction": "SET AY_ENVELOPE_BIT, (HL)",
+          "original_operation": ".SetVolumeFlag  SET 4, (HL)"
         }
       ],
       "mask_name": "AY_ENVELOPE",
@@ -20096,12 +20282,14 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 1045,
-          "instruction": "BIT 6, C"
+          "instruction": "BIT MAP_MIRROR_BIT, C",
+          "original_operation": "BIT 6, C"
         },
         {
           "source": "Source/Overlays/TargetMap.asm",
           "line": 97,
-          "instruction": "BIT 6, (HL)"
+          "instruction": "BIT MAP_MIRROR_BIT, (HL)",
+          "original_operation": "BIT 6, (HL)"
         }
       ],
       "mask_name": "MAP_MIRROR",
@@ -20154,12 +20342,14 @@
         {
           "source": "Source/Overlays/Capture.asm",
           "line": 472,
-          "instruction": "BIT 0, (HL)"
+          "instruction": "BIT PIECE_INDEX_BIT, (HL)",
+          "original_operation": "BIT 0, (HL)"
         },
         {
           "source": "Source/Overlays/Capture.asm",
           "line": 476,
-          "instruction": "SET 0, (HL)"
+          "instruction": "SET PIECE_INDEX_BIT, (HL)",
+          "original_operation": "SET 0, (HL)"
         }
       ],
       "mask_name": null,
@@ -20208,27 +20398,32 @@
         {
           "source": "Source/Overlays/City.asm",
           "line": 33,
-          "instruction": "BIT 1, (IX + FTown.Flags - FTown.Name)"
+          "instruction": "BIT TOWN_ANGER_BIT, (IX + FTown.Flags - FTown.Name)",
+          "original_operation": "BIT 1, (IX + FTown.Flags - FTown.Name)"
         },
         {
           "source": "Source/Overlays/City.asm",
           "line": 57,
-          "instruction": "SET 1, (IX + FTown.Flags - FTown.Name)"
+          "instruction": "SET TOWN_ANGER_BIT, (IX + FTown.Flags - FTown.Name)",
+          "original_operation": "SET 1, (IX + FTown.Flags - FTown.Name)"
         },
         {
           "source": "Source/Overlays/City.asm",
           "line": 156,
-          "instruction": "BIT 1, (IX + FTown.Flags - FTown.Name)"
+          "instruction": "BIT TOWN_ANGER_BIT, (IX + FTown.Flags - FTown.Name)",
+          "original_operation": "BIT 1, (IX + FTown.Flags - FTown.Name)"
         },
         {
           "source": "Source/Overlays/City.asm",
           "line": 206,
-          "instruction": "BIT 1, (IX + FTown.Flags - FTown.Name)"
+          "instruction": "BIT TOWN_ANGER_BIT, (IX + FTown.Flags - FTown.Name)",
+          "original_operation": "BIT 1, (IX + FTown.Flags - FTown.Name)"
         },
         {
           "source": "Source/Overlays/City.asm",
           "line": 354,
-          "instruction": "BIT 1, (IX + FTown.Flags - FTown.Name)"
+          "instruction": "BIT TOWN_ANGER_BIT, (IX + FTown.Flags - FTown.Name)",
+          "original_operation": "BIT 1, (IX + FTown.Flags - FTown.Name)"
         }
       ],
       "mask_name": "TOWN_ANGER",
@@ -20314,7 +20509,8 @@
         {
           "source": "Source/Overlays/City.asm",
           "line": 43,
-          "instruction": "BIT 4, D"
+          "instruction": "BIT UNIT_CITY_BIT, D",
+          "original_operation": "BIT 4, D"
         }
       ],
       "mask_name": "UNIT_CITY",
@@ -20356,27 +20552,32 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 84,
-          "instruction": "BIT 0, B"
+          "instruction": "BIT MAP_INDEX_BIT, B",
+          "original_operation": "BIT 0, B"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 88,
-          "instruction": "BIT 0, (HL)"
+          "instruction": "BIT MAP_INDEX_BIT, (HL)",
+          "original_operation": "BIT 0, (HL)"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 94,
-          "instruction": "SET 0, (HL)"
+          "instruction": "SET MAP_INDEX_BIT, (HL)",
+          "original_operation": "SET 0, (HL)"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 126,
-          "instruction": "BIT 0, (HL)"
+          "instruction": "BIT MAP_INDEX_BIT, (HL)",
+          "original_operation": "BIT 0, (HL)"
         },
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 132,
-          "instruction": "SET 0, (HL)"
+          "instruction": "SET MAP_INDEX_BIT, (HL)",
+          "original_operation": "SET 0, (HL)"
         }
       ],
       "mask_name": null,
@@ -20458,17 +20659,20 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 125,
-          "instruction": "SET 1, A"
+          "instruction": "SET VIEW_AIR_BIT, A",
+          "original_operation": "SET 1, A"
         },
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 132,
-          "instruction": "BIT 1, A"
+          "instruction": "BIT VIEW_AIR_BIT, A",
+          "original_operation": "BIT 1, A"
         },
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 657,
-          "instruction": "BIT 1, A"
+          "instruction": "BIT VIEW_AIR_BIT, A",
+          "original_operation": "BIT 1, A"
         }
       ],
       "mask_name": "VIEW_AIR",
@@ -20532,17 +20736,20 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 142,
-          "instruction": "BIT 0, A"
+          "instruction": "BIT VIEW_WORLD_BIT, A",
+          "original_operation": "BIT 0, A"
         },
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 172,
-          "instruction": "BIT 0, A"
+          "instruction": "BIT VIEW_WORLD_BIT, A",
+          "original_operation": "BIT 0, A"
         },
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 648,
-          "instruction": "BIT 0, A"
+          "instruction": "BIT VIEW_WORLD_BIT, A",
+          "original_operation": "BIT 0, A"
         }
       ],
       "mask_name": "VIEW_WORLD",
@@ -20606,7 +20813,8 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 419,
-          "instruction": "BIT 0, (HL)"
+          "instruction": "BIT FOG_INDEX_BIT, (HL)",
+          "original_operation": "BIT 0, (HL)"
         }
       ],
       "mask_name": null,
@@ -20642,7 +20850,8 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 459,
-          "instruction": "BIT 0, A"
+          "instruction": "BIT ROW_ODD_BIT, A",
+          "original_operation": "BIT 0, A"
         }
       ],
       "mask_name": null,
@@ -20678,7 +20887,8 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 470,
-          "instruction": "BIT 0, C"
+          "instruction": "BIT COL_ODD_BIT, C",
+          "original_operation": "BIT 0, C"
         }
       ],
       "mask_name": null,
@@ -20716,7 +20926,8 @@
         {
           "source": "Source/Overlays/Maps.asm",
           "line": 1110,
-          "instruction": "SET 7, (HL)"
+          "instruction": "SET ATTR_FLASH_BIT, (HL)",
+          "original_operation": "SET 7, (HL)"
         }
       ],
       "mask_name": "ATTR_FLASH",
@@ -20758,7 +20969,8 @@
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 27,
-          "instruction": "BIT 0, A"
+          "instruction": "BIT SEA_ACCESS_BIT, A",
+          "original_operation": "BIT 0, A"
         }
       ],
       "mask_name": "SEA_ACCESS",
@@ -20798,7 +21010,8 @@
         {
           "source": "Source/Overlays/Sail.asm",
           "line": 50,
-          "instruction": "SET 0, A"
+          "instruction": "SET SEA_FIRST_BIT, A",
+          "original_operation": "SET 0, A"
         }
       ],
       "mask_name": null,
@@ -20836,7 +21049,8 @@
         {
           "source": "Source/Overlays/TakeOff.asm",
           "line": 59,
-          "instruction": "BIT 2, (IX + FSoldier.SpecialFlags)"
+          "instruction": "BIT HERO_CARRY_BIT, (IX + FSoldier.SpecialFlags)",
+          "original_operation": "BIT 2, (IX + FSoldier.SpecialFlags)"
         }
       ],
       "mask_name": "HERO_CARRY",
@@ -20876,7 +21090,8 @@
         {
           "source": "Source/Overlays/Treasure.asm",
           "line": 77,
-          "instruction": "BIT 0, E"
+          "instruction": "BIT GIFT_MAP_BIT, E",
+          "original_operation": "BIT 0, E"
         }
       ],
       "mask_name": null,

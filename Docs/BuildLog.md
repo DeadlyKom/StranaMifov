@@ -1,14 +1,11 @@
-> Исторический журнал сборки до полного смыслового переименования. Прежние имена файлов и номера строк сохранены как часть исходной диагностики. Текущий результат — [Build.md](Build.md).
+# Журнал итоговой сборки
 
-# Лог проверенной сборки
-
-Полный сохранённый вывод sjasmplus. Исходный текст лога приведён без изменений.
+Дата отчёта UTC: `2026-10-21T04:58:23.248096+00:00`. Текущий результат — [Build.md](Build.md).
 
 ```text
 SjASMPlus Z80 Cross-Assembler v1.23.1 (https://github.com/z00m128/sjasmplus)
 Pass 1 complete (0 errors)
 Pass 2 complete (0 errors)
-Source/Loader/Menu/F63F2.asm(31): warning[out0]: 'out (c),0' is unstable, on CMOS based chips it does `out (c),255`
 include data: name=Assets/Gfx/raw/CTPAHA_cursor.ink (16 bytes) Offset=0  Len=16
 include data: name=Assets/Gfx/raw/CTPAHA_cursor.mask (16 bytes) Offset=0  Len=16
 include data: name=Assets/Gfx/raw/CTPAHA_font_codes_032_255.bin (1792 bytes) Offset=0  Len=1792
@@ -550,9 +547,7 @@ include data: name=Assets/Gfx/raw/battlefield_mode_7_tilemap.bin (40 bytes) Offs
 include data: name=Assets/Gfx/raw/battlefield_mode_8_tilemap.bin (40 bytes) Offset=0  Len=40
 include data: name=Assets/Gfx/raw/battlefield_special_bit7_tilemap.bin (40 bytes) Offset=0  Len=40
 include data: name=Assets/Screens/Defeat.scr (6912 bytes) Offset=0  Len=6912
+MYTHLAND.TRD: byte-for-byte match, 655360 bytes
 Pass 3 complete
-MYTHLAND.TRD восстановлен побайтово, 655360 байтов
-Errors: 0, warnings: 1, compiled: 405611 lines, work time: 26.359 seconds
+Errors: 0, warnings: 0, compiled: 408101 lines, work time: 30.313 seconds
 ```
-
-[К оглавлению документации](README.md)

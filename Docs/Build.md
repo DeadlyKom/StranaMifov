@@ -1,30 +1,27 @@
-> После именования битов выполнена статическая сверка, исходные байты сохранены. Повторная сборка sjasmplus не запускалась. Ниже описана сохранённая сборка до этой правки.
-
 # Сборка и проверка
 
-SjASMPlus 1.23.1 завершил сборку с **0 ошибок и 0 предупреждений**.
+SjASMPlus 1.23.1 собрал текущие исходники с **0 ошибок и 0 предупреждений**.
+Дата отчёта UTC: `2026-10-21T04:58:23.248096+00:00`.
 
-Проверена сохранённая локальная рабочая копия после разметки полей, указателей, рабочих данных и условных комментариев. Выполнена команда задачи `Build` из [tasks.json](../.vscode/tasks.json), использован локальный [sjasmplus](../Tools/Sjasmplus/sjasmplus.exe).
-Дата отчёта UTC: `2026-10-20T21:37:48.215409+00:00`.
+Выполнена команда задачи `Build` из [tasks.json](../.vscode/tasks.json):
 
-- [MYTHLAND.trd](../MYTHLAND.trd), 655360 байт, побайтово совпадает с [оригиналом](../Tools/Disasm/Disk/original.trd)
-- [MYTHLAND.lst](../Tmp/MYTHLAND.lst), листинг текущей сборки
-- [MYTHLAND.sym](../Tmp/MYTHLAND.sym), символы текущей сборки
-- Все 7726 значений реестра совпали с фактическими значениями ассемблера
-- Статическая проверка подтвердила 81 блок, 348741 байт активного содержимого и 22242 команды
-
-SHA-256 образа:
-
-```text
-08b0e7fd5c59bc104c9de623d2bd0bc2ff0dabf43c340cca6a06b165d2232717
+```powershell
+.\Tools\Sjasmplus\sjasmplus.exe --fullpath=rel --lst=Tmp/MYTHLAND.lst --sym=Tmp/MYTHLAND.sym Builder/Main.asm
 ```
 
-Результаты и отпечатки исходников находятся в [BuildVerification.json](../Tools/Disasm/Reports/BuildVerification.json), транскрипция в [StaticVerification.json](../Tools/Disasm/Reports/StaticVerification.json), вывод ассемблера в [BuildLog.txt](../Tools/Disasm/Reports/BuildLog.txt).
+- [MYTHLAND.trd](../MYTHLAND.trd), 655360 байт, побайтово совпал с [оригиналом](../Tools/Disasm/Disk/original.trd)
+- SHA-256: `08b0e7fd5c59bc104c9de623d2bd0bc2ff0dabf43c340cca6a06b165d2232717`
+- [MYTHLAND.lst](../Tmp/MYTHLAND.lst) и [MYTHLAND.sym](../Tmp/MYTHLAND.sym) получены этим запуском
+- Проверены все 7917 значений [реестра символов](Symbols.md), расхождений нет
+- Статическая сверка подтвердила 81 блок, 348741 байт активного содержимого, 22242 инструкции и 486 установленных входов
+- Сборка сохранила исходники и метаданные Git без изменений
 
-Проверены 1680 условных инструкций, известные обращения к IX/IY выражены именованными полями и курсорными смещениями. Реестр содержит 59 типов структур и 311 непосредственно объявленных полей. Для 30 битовых полей сохранены схемы и свидетельства потребителей.
+Упаковку диска выполняет встроенный Lua sjasmplus через [Tools/pack.lua](../Tools/pack.lua). Отдельный сборочный PowerShell-сценарий не требуется. Изменять и пересобирать проект можно через `Ctrl+B` в VS Code, образ сохраняется в корне проекта, листинг и символы в `Tmp`.
 
-Шесть фикстур проверки транскрипции подтвердили принятие правильных выражений и отказ при ошибочном EQU, сдвиге поля, изменении цели JP и подмене DB. Результаты в [VerifierGuards.json](../Tools/Disasm/Reports/VerifierGuards.json). Аудит оформления и ссылок в [ReadabilityAudit.json](../Tools/Disasm/Reports/ReadabilityAudit.json), комментариев условий в [ConditionalCommentAudit.json](../Tools/Disasm/Reports/ConditionalCommentAudit.json).
+В исходниках проверены 1680 пояснений условных инструкций. Обращения к известным структурам используют имена полей, нулевое смещение прочих курсоров записано явно как `(IX + #00)` или `(IY + #00)`. Для 39 битовых полей сохранены 40 схем, для инструкций определены 108 имён позиций и 82 маски. После RET, JR, JP и DJNZ сохранены разделительные пустые строки.
 
-В VS Code откройте корень проекта и нажмите `Ctrl+B`. Задача напрямую вызывает sjasmplus, результат сохраняется в корне проекта, листинг и символы в `Tmp`. Пути сборки относительные. Полный запуск игры в эмуляторе не выполнялся.
+Подробные отчёты: [BuildVerification.json](../Tools/Disasm/Reports/BuildVerification.json), [StaticVerification.json](../Tools/Disasm/Reports/StaticVerification.json), [SymbolAudit.json](../Tools/Disasm/Reports/SymbolAudit.json), [ReadabilityAudit.json](../Tools/Disasm/Reports/ReadabilityAudit.json), [FlagConstantsVerification.json](../Tools/Disasm/Reports/FlagConstantsVerification.json).
 
-[Рабочие данные и самомодификация](Runtime.md) · [Границы проверки](VerificationLimits.md) · [Оглавление](README.md)
+Полный вывод ассемблера приведён в [BuildLog.md](BuildLog.md), машинная копия — [BuildLog.txt](../Tools/Disasm/Reports/BuildLog.txt). Границы подтверждённого поведения перечислены в [VerificationLimits.md](VerificationLimits.md).
+
+Оригинал и пересобранный диск проверены в полном эмуляторе до меню CTPAHA. Полученные экраны совпали по всем 6912 байтам, см. [проверку запуска](RuntimeVerification.md).

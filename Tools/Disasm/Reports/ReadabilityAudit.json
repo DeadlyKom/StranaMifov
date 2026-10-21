@@ -1,9 +1,20 @@
 {
-  "source_files": 504,
-  "markdown_files": 27,
-  "local_markdown_links": 11547,
+  "source_files": 505,
+  "total_asm_inc_files": 506,
+  "markdown_files": 28,
+  "local_markdown_links": 12673,
   "finding_counts": {},
   "findings": [],
   "project_edited": false,
-  "assembler_executed": false
+  "assembler_executed": false,
+  "explicit_zero_index_operands": 72,
+  "explicit_zero_index_policy": "Required by the user for byte cursors without a structure field",
+  "control_transfer_counts": {
+    "RET": 578,
+    "JR": 1542,
+    "DJNZ": 330,
+    "JP": 460
+  },
+  "missing_blank_lines_after_transfers": [],
+  "verified_utc": "2026-10-21T04:58:23.248096+00:00"
 }
